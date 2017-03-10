@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace MyHealth
 {
-    public partial class Form1 : Form
+    public partial class MyHealth : Form
     {
-        public Form1()
+        public MyHealth()
         {
             InitializeComponent();
+        }
+
+        private void MyHealth_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
