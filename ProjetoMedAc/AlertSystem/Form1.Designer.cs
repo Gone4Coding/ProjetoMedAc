@@ -1,6 +1,6 @@
 ﻿namespace AlertSystem
 {
-    partial class Form1
+    partial class FormAlertSystem
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FormAlertSystem
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(663, 464);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "FormAlertSystem";
+            this.Text = "Alert System";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

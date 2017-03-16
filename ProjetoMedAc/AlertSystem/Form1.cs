@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AlertSystem
 {
-    public partial class Form1 : Form
+    public partial class FormAlertSystem : Form
     {
-        public Form1()
+        public FormAlertSystem()
         {
             InitializeComponent();
         }
