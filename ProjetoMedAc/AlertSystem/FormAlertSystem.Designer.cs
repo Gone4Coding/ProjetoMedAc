@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.tabControlRecors = new System.Windows.Forms.TabControl();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.groupBoxPatients = new System.Windows.Forms.GroupBox();
+            this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
-            this.tabPageManageRecords = new System.Windows.Forms.TabPage();
-            this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelInfoPatient = new System.Windows.Forms.Panel();
             this.richTextBoxAlergies = new System.Windows.Forms.RichTextBox();
             this.richTextBox_address = new System.Windows.Forms.RichTextBox();
@@ -66,12 +63,25 @@
             this.tb_nif = new System.Windows.Forms.TextBox();
             this.tb_lastName = new System.Windows.Forms.TextBox();
             this.tb_firstname = new System.Windows.Forms.TextBox();
+            this.tabPageManageRecords = new System.Windows.Forms.TabPage();
+            this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
+            this.toolStripPatients = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.bt_edit = new System.Windows.Forms.Button();
+            this.bt_cancel = new System.Windows.Forms.Button();
             this.tabControlRecors.SuspendLayout();
             this.tabPagePatients.SuspendLayout();
             this.groupBoxPatients.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
             this.groupBoxPatient.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelInfoPatient.SuspendLayout();
+            this.toolStripPatients.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlRecors
@@ -85,17 +95,19 @@
             this.tabControlRecors.Location = new System.Drawing.Point(0, 0);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
-            this.tabControlRecors.Size = new System.Drawing.Size(1093, 754);
+            this.tabControlRecors.Size = new System.Drawing.Size(1327, 864);
             this.tabControlRecors.TabIndex = 0;
+            this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
             // 
             // tabPagePatients
             // 
+            this.tabPagePatients.Controls.Add(this.toolStripPatients);
             this.tabPagePatients.Controls.Add(this.groupBoxPatients);
             this.tabPagePatients.Controls.Add(this.groupBoxPatient);
             this.tabPagePatients.Location = new System.Drawing.Point(4, 22);
             this.tabPagePatients.Name = "tabPagePatients";
             this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePatients.Size = new System.Drawing.Size(1085, 728);
+            this.tabPagePatients.Size = new System.Drawing.Size(1319, 838);
             this.tabPagePatients.TabIndex = 2;
             this.tabPagePatients.Text = "Patients";
             this.tabPagePatients.UseVisualStyleBackColor = true;
@@ -105,73 +117,46 @@
             this.groupBoxPatients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxPatients.AutoSize = true;
-            this.groupBoxPatients.Controls.Add(this.dataGridView1);
-            this.groupBoxPatients.Controls.Add(this.label15);
-            this.groupBoxPatients.Controls.Add(this.textBox1);
-            this.groupBoxPatients.Location = new System.Drawing.Point(19, 17);
+            this.groupBoxPatients.Controls.Add(this.dataGridViewPatients);
+            this.groupBoxPatients.Location = new System.Drawing.Point(8, 43);
             this.groupBoxPatients.Name = "groupBoxPatients";
-            this.groupBoxPatients.Size = new System.Drawing.Size(304, 695);
+            this.groupBoxPatients.Size = new System.Drawing.Size(500, 779);
             this.groupBoxPatients.TabIndex = 2;
             this.groupBoxPatients.TabStop = false;
             this.groupBoxPatients.Text = "Patients";
+            // 
+            // dataGridViewPatients
+            // 
+            this.dataGridViewPatients.AllowUserToAddRows = false;
+            this.dataGridViewPatients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dataGridViewPatients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewPatients.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPatients.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewPatients.Location = new System.Drawing.Point(27, 36);
+            this.dataGridViewPatients.MultiSelect = false;
+            this.dataGridViewPatients.Name = "dataGridViewPatients";
+            this.dataGridViewPatients.ReadOnly = true;
+            this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 718);
+            this.dataGridViewPatients.TabIndex = 2;
+            this.dataGridViewPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatients_CellClick);
             // 
             // groupBoxPatient
             // 
             this.groupBoxPatient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxPatient.Controls.Add(this.bt_cancel);
+            this.groupBoxPatient.Controls.Add(this.bt_edit);
+            this.groupBoxPatient.Controls.Add(this.buttonAdd);
             this.groupBoxPatient.Controls.Add(this.panelInfoPatient);
-            this.groupBoxPatient.Location = new System.Drawing.Point(349, 17);
+            this.groupBoxPatient.Location = new System.Drawing.Point(512, 43);
             this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Size = new System.Drawing.Size(710, 695);
+            this.groupBoxPatient.Size = new System.Drawing.Size(781, 779);
             this.groupBoxPatient.TabIndex = 1;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient Info";
-            // 
-            // tabPageManageRecords
-            // 
-            this.tabPageManageRecords.Location = new System.Drawing.Point(4, 22);
-            this.tabPageManageRecords.Name = "tabPageManageRecords";
-            this.tabPageManageRecords.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageManageRecords.Size = new System.Drawing.Size(1085, 728);
-            this.tabPageManageRecords.TabIndex = 3;
-            this.tabPageManageRecords.Text = "Manage Records";
-            this.tabPageManageRecords.UseVisualStyleBackColor = true;
-            // 
-            // tabPage_viewRecords
-            // 
-            this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_viewRecords.Name = "tabPage_viewRecords";
-            this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_viewRecords.Size = new System.Drawing.Size(1085, 728);
-            this.tabPage_viewRecords.TabIndex = 4;
-            this.tabPage_viewRecords.Text = "View Records";
-            this.tabPage_viewRecords.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(62, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(221, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(15, 35);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(41, 13);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "Search";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 71);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(265, 599);
-            this.dataGridView1.TabIndex = 2;
             // 
             // panelInfoPatient
             // 
@@ -204,7 +189,7 @@
             this.panelInfoPatient.Controls.Add(this.tb_nif);
             this.panelInfoPatient.Controls.Add(this.tb_lastName);
             this.panelInfoPatient.Controls.Add(this.tb_firstname);
-            this.panelInfoPatient.Location = new System.Drawing.Point(59, 58);
+            this.panelInfoPatient.Location = new System.Drawing.Point(83, 36);
             this.panelInfoPatient.Name = "panelInfoPatient";
             this.panelInfoPatient.Size = new System.Drawing.Size(617, 598);
             this.panelInfoPatient.TabIndex = 1;
@@ -436,24 +421,139 @@
             this.tb_firstname.Size = new System.Drawing.Size(301, 20);
             this.tb_firstname.TabIndex = 32;
             // 
+            // tabPageManageRecords
+            // 
+            this.tabPageManageRecords.Location = new System.Drawing.Point(4, 22);
+            this.tabPageManageRecords.Name = "tabPageManageRecords";
+            this.tabPageManageRecords.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageManageRecords.Size = new System.Drawing.Size(1085, 728);
+            this.tabPageManageRecords.TabIndex = 3;
+            this.tabPageManageRecords.Text = "Manage Records";
+            this.tabPageManageRecords.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_viewRecords
+            // 
+            this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_viewRecords.Name = "tabPage_viewRecords";
+            this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_viewRecords.Size = new System.Drawing.Size(1085, 728);
+            this.tabPage_viewRecords.TabIndex = 4;
+            this.tabPage_viewRecords.Text = "View Records";
+            this.tabPage_viewRecords.UseVisualStyleBackColor = true;
+            // 
+            // toolStripPatients
+            // 
+            this.toolStripPatients.AutoSize = false;
+            this.toolStripPatients.BackColor = System.Drawing.Color.Silver;
+            this.toolStripPatients.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripPatients.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonAdd,
+            this.toolStripSeparator1,
+            this.toolStripButtonRefresh,
+            this.toolStripSeparator2,
+            this.toolStripTextBox,
+            this.toolStripButton2});
+            this.toolStripPatients.Location = new System.Drawing.Point(3, 3);
+            this.toolStripPatients.Name = "toolStripPatients";
+            this.toolStripPatients.Size = new System.Drawing.Size(1313, 40);
+            this.toolStripPatients.TabIndex = 3;
+            this.toolStripPatients.Text = "toolStrip1";
+            // 
+            // toolStripButtonAdd
+            // 
+            this.toolStripButtonAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAdd.Image")));
+            this.toolStripButtonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAdd.Name = "toolStripButtonAdd";
+            this.toolStripButtonAdd.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripButtonAdd.Size = new System.Drawing.Size(30, 37);
+            this.toolStripButtonAdd.Text = "Add New Patient";
+            this.toolStripButtonAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 37);
+            this.toolStripButton2.Text = "Search Patient";
+            // 
+            // toolStripButtonRefresh
+            // 
+            this.toolStripButtonRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRefresh.Image")));
+            this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
+            this.toolStripButtonRefresh.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripButtonRefresh.Size = new System.Drawing.Size(30, 37);
+            this.toolStripButtonRefresh.Text = "Refresh Patient List";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripTextBox
+            // 
+            this.toolStripTextBox.Name = "toolStripTextBox";
+            this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripTextBox.Size = new System.Drawing.Size(190, 40);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(83, 649);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(183, 105);
+            this.buttonAdd.TabIndex = 2;
+            this.buttonAdd.Text = "Add New Patient";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            // 
+            // bt_edit
+            // 
+            this.bt_edit.Location = new System.Drawing.Point(284, 649);
+            this.bt_edit.Name = "bt_edit";
+            this.bt_edit.Size = new System.Drawing.Size(183, 105);
+            this.bt_edit.TabIndex = 3;
+            this.bt_edit.Text = "Edit ";
+            this.bt_edit.UseVisualStyleBackColor = true;
+            this.bt_edit.Click += new System.EventHandler(this.bt_edit_Click);
+            // 
+            // bt_cancel
+            // 
+            this.bt_cancel.Location = new System.Drawing.Point(517, 649);
+            this.bt_cancel.Name = "bt_cancel";
+            this.bt_cancel.Size = new System.Drawing.Size(183, 105);
+            this.bt_cancel.TabIndex = 4;
+            this.bt_cancel.Text = "Cancel";
+            this.bt_cancel.UseVisualStyleBackColor = true;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
+            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 755);
+            this.ClientSize = new System.Drawing.Size(1327, 865);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAlertSystem";
             this.Text = "Alert System";
+            this.Load += new System.EventHandler(this.FormAlertSystem_Load);
             this.tabControlRecors.ResumeLayout(false);
             this.tabPagePatients.ResumeLayout(false);
             this.tabPagePatients.PerformLayout();
             this.groupBoxPatients.ResumeLayout(false);
-            this.groupBoxPatients.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).EndInit();
             this.groupBoxPatient.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelInfoPatient.ResumeLayout(false);
             this.panelInfoPatient.PerformLayout();
+            this.toolStripPatients.ResumeLayout(false);
+            this.toolStripPatients.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -466,9 +566,7 @@
         private System.Windows.Forms.TabPage tabPageManageRecords;
         private System.Windows.Forms.TabPage tabPage_viewRecords;
         private System.Windows.Forms.GroupBox groupBoxPatients;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridViewPatients;
         private System.Windows.Forms.Panel panelInfoPatient;
         private System.Windows.Forms.RichTextBox richTextBoxAlergies;
         private System.Windows.Forms.RichTextBox richTextBox_address;
@@ -498,6 +596,16 @@
         private System.Windows.Forms.TextBox tb_nif;
         private System.Windows.Forms.TextBox tb_lastName;
         private System.Windows.Forms.TextBox tb_firstname;
+        private System.Windows.Forms.ToolStrip toolStripPatients;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAdd;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox;
+        private System.Windows.Forms.Button bt_edit;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button bt_cancel;
     }
 }
 

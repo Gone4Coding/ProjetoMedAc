@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ServiceLayer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServiceLayer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:57877/ServiceHealth.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="HeartRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PatientSNS" type="xs:int" />
+      <xs:element minOccurs="0" name="Rate" type="xs:int" />
+      <xs:element minOccurs="0" name="Time" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeartRate" nillable="true" type="tns:HeartRate" />
+  <xs:complexType name="OxygenSaturation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PatientSNS" type="xs:int" />
+      <xs:element minOccurs="0" name="Saturation" type="xs:int" />
+      <xs:element minOccurs="0" name="Time" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OxygenSaturation" nillable="true" type="tns:OxygenSaturation" />
+  <xs:complexType name="BloodPressure">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Diastolic" type="xs:int" />
+      <xs:element minOccurs="0" name="PatientSNS" type="xs:int" />
+      <xs:element minOccurs="0" name="Systolic" type="xs:int" />
+      <xs:element minOccurs="0" name="Time" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BloodPressure" nillable="true" type="tns:BloodPressure" />
+  <xs:complexType name="Patient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Alergies" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nif" type="xs:int" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sns" type="xs:int" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Weight" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Patient" nillable="true" type="tns:Patient" />
+  <xs:complexType name="ArrayOfPatient">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Patient" nillable="true" type="tns:Patient" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPatient" nillable="true" type="tns:ArrayOfPatient" />
+  <xs:complexType name="ArrayOfHeartRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeartRate" nillable="true" type="tns:HeartRate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHeartRate" nillable="true" type="tns:ArrayOfHeartRate" />
+  <xs:complexType name="ArrayOfOxygenSaturation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OxygenSaturation" nillable="true" type="tns:OxygenSaturation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOxygenSaturation" nillable="true" type="tns:ArrayOfOxygenSaturation" />
+  <xs:complexType name="ArrayOfBloodPressure">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BloodPressure" nillable="true" type="tns:BloodPressure" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBloodPressure" nillable="true" type="tns:ArrayOfBloodPressure" />
+  <xs:complexType name="Alert">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaximumCriticalValue" type="xs:int" />
+      <xs:element minOccurs="0" name="MaximumValue" type="xs:int" />
+      <xs:element minOccurs="0" name="MinimumCriticalValue" type="xs:int" />
+      <xs:element minOccurs="0" name="MinimumValue" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Alert" nillable="true" type="tns:Alert" />
+</xs:schema>

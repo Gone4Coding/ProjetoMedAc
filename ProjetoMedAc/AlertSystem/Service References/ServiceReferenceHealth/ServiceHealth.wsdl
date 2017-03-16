@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceHealth" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:57877/ServiceHealth.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:57877/ServiceHealth.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:57877/ServiceHealth.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiceLayer" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceHealth_ValidatePatient_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidatePatient" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_ValidatePatient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidatePatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_InsertHeartRateRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHeartRateRecord" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_InsertHeartRateRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertHeartRateRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_InsertOxygenSaturationRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOxygenSaturationRecord" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_InsertOxygenSaturationRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOxygenSaturationRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_InsertBloodPressureRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBloodPressureRecord" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_InsertBloodPressureRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBloodPressureRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertPatient_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPatient" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertPatient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdatePatient_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePatient" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdatePatient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeletePatient_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePatient" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeletePatient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetPatient_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatient" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetPatient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetPatientList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatientList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetPatientList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPatientListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_HeartRateList_InputMessage">
+    <wsdl:part name="parameters" element="tns:HeartRateList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_HeartRateList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HeartRateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_OxygenSaturationList_InputMessage">
+    <wsdl:part name="parameters" element="tns:OxygenSaturationList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_OxygenSaturationList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OxygenSaturationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_BloodPressureList_InputMessage">
+    <wsdl:part name="parameters" element="tns:BloodPressureList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_BloodPressureList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BloodPressureListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlert" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAlert" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdateAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlert" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdateAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeleteAlert_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlert" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeleteAlert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlertResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceHealth">
+    <wsdl:operation name="ValidatePatient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatient" message="tns:IServiceHealth_ValidatePatient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatientResponse" message="tns:IServiceHealth_ValidatePatient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertHeartRateRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/InsertHeartRateRecord" message="tns:IServiceHealth_InsertHeartRateRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/InsertHeartRateRecordResponse" message="tns:IServiceHealth_InsertHeartRateRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOxygenSaturationRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/InsertOxygenSaturationRecord" message="tns:IServiceHealth_InsertOxygenSaturationRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/InsertOxygenSaturationRecordResponse" message="tns:IServiceHealth_InsertOxygenSaturationRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertBloodPressureRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/InsertBloodPressureRecord" message="tns:IServiceHealth_InsertBloodPressureRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/InsertBloodPressureRecordResponse" message="tns:IServiceHealth_InsertBloodPressureRecord_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServiceHealthAlert">
+    <wsdl:operation name="InsertPatient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertPatient" message="tns:IServiceHealthAlert_InsertPatient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertPatientResponse" message="tns:IServiceHealthAlert_InsertPatient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient" message="tns:IServiceHealthAlert_UpdatePatient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse" message="tns:IServiceHealthAlert_UpdatePatient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeletePatient" message="tns:IServiceHealthAlert_DeletePatient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeletePatientResponse" message="tns:IServiceHealthAlert_DeletePatient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetPatient" message="tns:IServiceHealthAlert_GetPatient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetPatientResponse" message="tns:IServiceHealthAlert_GetPatient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetPatientList" message="tns:IServiceHealthAlert_GetPatientList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetPatientListResponse" message="tns:IServiceHealthAlert_GetPatientList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HeartRateList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/HeartRateList" message="tns:IServiceHealthAlert_HeartRateList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/HeartRateListResponse" message="tns:IServiceHealthAlert_HeartRateList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OxygenSaturationList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/OxygenSaturationList" message="tns:IServiceHealthAlert_OxygenSaturationList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/OxygenSaturationListResponse" message="tns:IServiceHealthAlert_OxygenSaturationList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BloodPressureList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/BloodPressureList" message="tns:IServiceHealthAlert_BloodPressureList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/BloodPressureListResponse" message="tns:IServiceHealthAlert_BloodPressureList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlert" message="tns:IServiceHealthAlert_GetAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlertResponse" message="tns:IServiceHealthAlert_GetAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertAlert" message="tns:IServiceHealthAlert_InsertAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse" message="tns:IServiceHealthAlert_InsertAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert" message="tns:IServiceHealthAlert_UpdateAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse" message="tns:IServiceHealthAlert_UpdateAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert" message="tns:IServiceHealthAlert_DeleteAlert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse" message="tns:IServiceHealthAlert_DeleteAlert_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceHealth" type="tns:IServiceHealth">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidatePatient">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealth/ValidatePatient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertHeartRateRecord">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealth/InsertHeartRateRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOxygenSaturationRecord">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealth/InsertOxygenSaturationRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBloodPressureRecord">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealth/InsertBloodPressureRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IServiceHealthAlert" type="tns:IServiceHealthAlert">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertPatient">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/InsertPatient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatient">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/UpdatePatient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatient">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeletePatient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatient">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetPatient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientList">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetPatientList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeartRateList">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/HeartRateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OxygenSaturationList">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/OxygenSaturationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BloodPressureList">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/BloodPressureList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlert">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAlert">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/InsertAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlert">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/UpdateAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlert">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceHealth">
+    <wsdl:port name="BasicHttpBinding_IServiceHealth" binding="tns:BasicHttpBinding_IServiceHealth">
+      <soap:address location="http://localhost:57877/ServiceHealth.svc" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IServiceHealthAlert" binding="tns:BasicHttpBinding_IServiceHealthAlert">
+      <soap:address location="http://localhost:57877/ServiceHealth.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

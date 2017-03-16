@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ebb37897-613e-4f11-b38b-8961d76d6069" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:57877/ServiceHealth.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceHealth.wsdl" MetadataType="Wsdl" ID="ee32afdd-e80e-408b-971d-26d2368e6342" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?wsdl" />
+    <MetadataFile FileName="ServiceHealth.xsd" MetadataType="Schema" ID="c5b7bd4b-cca9-4888-9743-222236b4c6ff" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceHealth1.xsd" MetadataType="Schema" ID="dbe352ba-c9f8-4bf9-8d00-1d4fa5e08448" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceHealth.disco" MetadataType="Disco" ID="0f843e3e-22a5-4825-b6c1-68c134b67c29" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?disco" />
+    <MetadataFile FileName="ServiceHealth2.xsd" MetadataType="Schema" ID="8a57ead3-00f6-43d7-8ae3-bed7a7f38888" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
