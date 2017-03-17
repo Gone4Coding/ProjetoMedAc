@@ -17,26 +17,22 @@ namespace AlertSystem
     {
         private ServiceHealthAlertClient client;
         private bool asc;
+        private int patientAge;
         public FormAlertSystem()
-        {        
+        {
             InitializeComponent();
             client = new ServiceHealthAlertClient();
         }
-
         #region Eventos
-
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            MessageBox.Show(tabControlRecors.SelectedTab.TabIndex.ToString());
-
+           // MessageBox.Show(tabControlRecors.SelectedTab.TabIndex.ToString());
         }
-
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
             #region PatientsPage
-
+            comboBoxGender.Items.Add(" ");
             comboBoxGender.Items.Add("Female");
             comboBoxGender.Items.Add("Male");
 
@@ -46,7 +42,7 @@ namespace AlertSystem
 
             toolStripComboBox.SelectedIndex = 0;
 
-            load();
+            load(null);
 
             #endregion
         }
@@ -58,17 +54,14 @@ namespace AlertSystem
                 Patient patientSelected = client.GetPatient(sns);
 
                 fillFields(patientSelected);
-
             }
             catch (ArgumentOutOfRangeException x)
             {
                 Console.WriteLine(x.Message);
             }
         }
-
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
-        {
-            clearFields();
+        {          
             bt_edit.Hide();
             bt_cancelEdit.Hide();
             bt_save.Hide();
@@ -77,19 +70,28 @@ namespace AlertSystem
             dataGridViewPatients.ClearSelection();
             dataGridViewPatients.Enabled = false;
             enableTextBoxes(true);
-
+            clearFields();
+            enableSearch(false);     
         }
         private void bt_cancel_Click(object sender, EventArgs e)
         {
-            load();
+            load(null);
+            enableSearch(true);
+            dateTimePicker_birthdate.Format = DateTimePickerFormat.Long;
         }
-
+        private void dateTimePicker_birthdate_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
+        }
         private void bt_edit_Click(object sender, EventArgs e)
         {
             enableTextBoxes(true);
             bt_save.Enabled = true;
             bt_edit.Enabled = false;
             bt_cancelEdit.Show();
+            dataGridViewPatients.ClearSelection();
+            dataGridViewPatients.Enabled = false;
+            enableSearch(false);
         }
         private void bt_save_Click(object sender, EventArgs e)
         {
@@ -104,28 +106,30 @@ namespace AlertSystem
             bt_edit.Enabled = true;
             bt_save.Enabled = false;
             bt_cancelEdit.Hide();
-        }
 
+            dataGridViewPatients.ClearSelection();
+            dataGridViewPatients.Enabled = true;
+        }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             Patient p = new Patient();
-            p.Name =tb_firstname.Text;
-            p.Surname= tb_lastName.Text;
-            p.BirthDate= dateTimePicker_birthdate.Value;
-            p.Nif = Convert.ToInt32(tb_nif.Text) ;
+            p.Name = tb_firstname.Text;
+            p.Surname = tb_lastName.Text;
+            p.BirthDate = dateTimePicker_birthdate.Value;
+            p.Nif = Convert.ToInt32(tb_nif.Text);
             p.Sns = Convert.ToInt32(tb_sns.Text);
-            if (tb_phone.Text.Equals(" "))   
+            if (tb_phone.Text.Equals(" "))
                 p.Phone = Convert.ToInt32(tb_phone.Text);
             p.Email = tb_email.Text;
             p.EmergencyNumber = Convert.ToInt32(tb_emergencyContact.Text);
-            p.EmergencyName = tb_emergencyContactName.Text ;
-            p.Adress = richTextBox_address.Text ;
-            p.Gender = comboBoxGender.Text ;
-            if(tb_height.Text.Equals(" "))
-                p.Height = Convert.ToInt32(tb_height.Text) ;
+            p.EmergencyName = tb_emergencyContactName.Text;
+            p.Adress = richTextBox_address.Text;
+            p.Gender = comboBoxGender.Text;
+            if (tb_height.Text.Equals(" "))
+                p.Height = Convert.ToInt32(tb_height.Text);
             if (tb_weight.Text.Equals(" "))
                 p.Weight = Convert.ToDouble(tb_weight.Text);
-            p.Alergies= richTextBoxAlergies.Text;
+            p.Alergies = richTextBoxAlergies.Text;
 
             bool res = client.InsertPatient(p);
 
@@ -135,14 +139,17 @@ namespace AlertSystem
             }
             else
             {
+                int rowIndex = 0;
+               
+                MessageBox.Show(p.Name + " " + p.Surname + " sucessfully added!", "SUCESS", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    
                 clearFields();
-                load();
+                load(p);
+                enableSearch(true);
             }
         }
-
         private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
             List<Patient> patients;
 
             switch (e.ColumnIndex)
@@ -206,26 +213,29 @@ namespace AlertSystem
             }
 
         }
-
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
         {
-            load();
+            load(null);
         }
-
         private void dataGridViewPatients_SelectionChanged(object sender, EventArgs e)
         {
-            int index = dataGridViewPatients.CurrentCell.RowIndex;
-            int sns = Convert.ToInt32(dataGridViewPatients.Rows[index].Cells["Sns"].Value);
-            Patient patientSelected = client.GetPatient(sns);
+            if (dataGridViewPatients.Rows.Count > 0 & dataGridViewPatients.CurrentCell!=null)
+            {
+                int index = dataGridViewPatients.CurrentCell.RowIndex;
+                int sns = Convert.ToInt32(dataGridViewPatients.Rows[index].Cells["Sns"].Value);
+                Patient patientSelected = client.GetPatient(sns);
 
-            fillFields(patientSelected);
+                fillFields(patientSelected);
+            }
         }
         #endregion
 
         #region Metodos
 
-        private void load()
+        private void load(Patient p)
         {
+            int rowIndex = 0;
+
             bt_edit.Show();
             bt_edit.Enabled = true;
             bt_save.Show();
@@ -236,7 +246,25 @@ namespace AlertSystem
             dataGridViewPatients.Enabled = true;
             List<Patient> patients = new List<Patient>(client.GetPatientList());
             fillGridView(patients);
-            fillFirstSelected();
+            if (p == null)
+            {
+                fillFirstSelected();
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dataGridViewPatients.Rows)
+                {
+                    if (p.Sns == Convert.ToInt32(row.Cells[11].Value))
+                    {
+                        rowIndex = row.Index;
+                    }
+                }
+
+                dataGridViewPatients.Rows[rowIndex].Selected = true;
+
+                fillFields(p);
+            }
+
             enableTextBoxes(false);
         }
         private void enableTextBoxes(bool estado)
@@ -256,11 +284,9 @@ namespace AlertSystem
             tb_weight.Enabled = estado;
             richTextBoxAlergies.Enabled = estado;
         }
-
-       
         private void fillGridView(List<Patient> patients)
         {
-           
+
             dataGridViewPatients.DataSource = patients;
 
             for (int i = 0; i < dataGridViewPatients.ColumnCount; i++)
@@ -268,7 +294,7 @@ namespace AlertSystem
                 if (i != 8 && i != 9 && i != 12 && i != 11)
                 {
                     dataGridViewPatients.Columns[i].Visible = false;
-                }              
+                }
             }
 
             dataGridViewPatients.Columns[8].DisplayIndex = 0;
@@ -279,7 +305,6 @@ namespace AlertSystem
             dataGridViewPatients.RowHeadersVisible = false;
 
         }
-
         private void fillFirstSelected()
         {
             if (dataGridViewPatients.Rows.Count != 0)
@@ -290,7 +315,6 @@ namespace AlertSystem
                 fillFields(patientSelected);
             }
         }
-
         private void fillFields(Patient patient)
         {
             tb_firstname.Text = patient.Name;
@@ -308,12 +332,19 @@ namespace AlertSystem
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
         }
+        private int getAge(DateTime dateOfBirth)
+        {
+            var today = DateTime.Today;
 
+            var a = (today.Year * 100 + today.Month) * 100 + today.Day;
+            var b = (dateOfBirth.Year * 100 + dateOfBirth.Month) * 100 + dateOfBirth.Day;
+
+            return (a - b) / 10000;
+        }
         private void clearFields()
         {
             tb_firstname.Clear();
             tb_lastName.Clear();
-            //dateTimePicker_birthdate.Value = patient.
             tb_nif.Clear();
             tb_sns.Clear();
             tb_phone.Clear();
@@ -321,13 +352,23 @@ namespace AlertSystem
             tb_emergencyContact.Clear();
             tb_emergencyContactName.Clear();
             richTextBox_address.Clear();
-            comboBoxGender.Text = " ";
+            comboBoxGender.SelectedIndex = 0;
             tb_height.Clear();
             tb_weight.Clear();
             richTextBoxAlergies.Clear();
+
+            dateTimePicker_birthdate.Format = DateTimePickerFormat.Custom;
+            dateTimePicker_birthdate.CustomFormat = " ";
         }
+        private void enableSearch(bool estado)
+        {
+            toolStripComboBox.Enabled = estado;
+            toolStripButtonSearch.Enabled = estado;
+            toolStripTextBox.Enabled = estado;
+        }
+
         #endregion
 
-   
+        
     }
 }
