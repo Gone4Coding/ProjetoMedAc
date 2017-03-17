@@ -18,10 +18,12 @@ namespace AlertSystem
         private ServiceHealthAlertClient client;
         private bool asc;
         private int patientAge;
+        private DateTime dateValue;
         public FormAlertSystem()
         {
             InitializeComponent();
             client = new ServiceHealthAlertClient();
+            dateValue = new DateTime(6969, 01, 01);
         }
         #region Eventos
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,18 +72,21 @@ namespace AlertSystem
             dataGridViewPatients.ClearSelection();
             dataGridViewPatients.Enabled = false;
             enableTextBoxes(true);
+            dateTimePicker_birthdate.Value = dateValue;
             clearFields();
-            enableSearch(false);     
+            enableSearch(false);
+                 
         }
         private void bt_cancel_Click(object sender, EventArgs e)
         {
             load(null);
             enableSearch(true);
-            dateTimePicker_birthdate.Format = DateTimePickerFormat.Long;
+            dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
         }
         private void dateTimePicker_birthdate_ValueChanged(object sender, EventArgs e)
         {
-            dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
+                dateTimePicker_birthdate.Value = DateTime.Now;
+                dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;          
         }
         private void bt_edit_Click(object sender, EventArgs e)
         {
@@ -103,6 +108,7 @@ namespace AlertSystem
         private void bt_cancelEdit_Click(object sender, EventArgs e)
         {
             enableTextBoxes(false);
+            enableSearch(true);
             bt_edit.Enabled = true;
             bt_save.Enabled = false;
             bt_cancelEdit.Hide();
@@ -112,40 +118,27 @@ namespace AlertSystem
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            Patient p = new Patient();
-            p.Name = tb_firstname.Text;
-            p.Surname = tb_lastName.Text;
-            p.BirthDate = dateTimePicker_birthdate.Value;
-            p.Nif = Convert.ToInt32(tb_nif.Text);
-            p.Sns = Convert.ToInt32(tb_sns.Text);
-            if (tb_phone.Text.Equals(" "))
-                p.Phone = Convert.ToInt32(tb_phone.Text);
-            p.Email = tb_email.Text;
-            p.EmergencyNumber = Convert.ToInt32(tb_emergencyContact.Text);
-            p.EmergencyName = tb_emergencyContactName.Text;
-            p.Adress = richTextBox_address.Text;
-            p.Gender = comboBoxGender.Text;
-            if (tb_height.Text.Equals(" "))
-                p.Height = Convert.ToInt32(tb_height.Text);
-            if (tb_weight.Text.Equals(" "))
-                p.Weight = Convert.ToDouble(tb_weight.Text);
-            p.Alergies = richTextBoxAlergies.Text;
-
-            bool res = client.InsertPatient(p);
-
-            if (!res)
+            if (validateFields())
             {
-                MessageBox.Show("erro");
-            }
-            else
-            {
-                int rowIndex = 0;
-               
-                MessageBox.Show(p.Name + " " + p.Surname + " sucessfully added!", "SUCESS", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    
-                clearFields();
-                load(p);
-                enableSearch(true);
+                Patient p = readFields();
+
+                bool res = client.InsertPatient(p);
+
+                if (!res)
+                {
+                    MessageBox.Show("erro");
+                }
+                else
+                {
+                    int rowIndex = 0;
+
+                    MessageBox.Show(p.Name + " " + p.Surname + " sucessfully added!", "SUCESS", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    clearFields();
+                    load(p);
+                    enableSearch(true);
+                }
             }
         }
         private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -327,7 +320,10 @@ namespace AlertSystem
             tb_emergencyContact.Text = patient.EmergencyNumber.ToString();
             tb_emergencyContactName.Text = patient.EmergencyName;
             richTextBox_address.Text = patient.Adress;
-            comboBoxGender.Text = patient.Gender;
+            if (patient.Gender.Equals("F"))
+                comboBoxGender.SelectedIndex = 2;
+            if (patient.Gender.Equals("M"))
+                comboBoxGender.SelectedIndex = 3;
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
@@ -367,6 +363,59 @@ namespace AlertSystem
             toolStripTextBox.Enabled = estado;
         }
 
+        private bool validateFields()
+        {
+            if (tb_firstname.Text.Equals("") || tb_lastName.Text.Equals("") ||
+                dateTimePicker_birthdate.Value == dateValue || tb_nif.Text.Equals("") ||
+                tb_sns.Text.Equals("") || tb_emergencyContact.Text.Equals("") || comboBoxGender.SelectedIndex == 0)
+            {
+                MessageBox.Show("campos vazios");
+                return false;
+            }
+            else
+            {
+                MessageBox.Show("TRUE");
+                return true;
+            }
+
+        }
+
+        private Patient readFields()
+        {
+            Patient p = new Patient();
+            p.Name = tb_firstname.Text;
+            p.Surname = tb_lastName.Text;
+            if (!dateTimePicker_birthdate.Value.Equals(DateTime.MaxValue))
+            {
+                p.BirthDate = dateTimePicker_birthdate.Value;
+            }
+            p.BirthDate = dateTimePicker_birthdate.Value;
+            if (!tb_nif.Text.Equals(""))
+                p.Nif = Convert.ToInt32(tb_nif.Text);
+            if (!tb_sns.Text.Equals(""))
+                p.Sns = Convert.ToInt32(tb_sns.Text);
+            if (!tb_phone.Text.Equals(""))
+                p.Phone = Convert.ToInt32(tb_phone.Text);
+            p.Email = tb_email.Text;
+            if (!tb_emergencyContact.Text.Equals(""))
+                p.EmergencyNumber = Convert.ToInt32(tb_emergencyContact.Text);
+            p.EmergencyName = tb_emergencyContactName.Text;
+            p.Adress = richTextBox_address.Text;
+            if (comboBoxGender.SelectedIndex != 0)
+            {
+                if (comboBoxGender.SelectedIndex == 1)
+                    p.Gender = "F";
+                if (comboBoxGender.SelectedIndex == 2)
+                    p.Gender = "M";
+            }
+            if (!tb_height.Text.Equals(""))
+                p.Height = Convert.ToInt32(tb_height.Text);
+            if (!tb_weight.Text.Equals(""))
+                p.Weight = Convert.ToDouble(tb_weight.Text);
+            p.Alergies = richTextBoxAlergies.Text;
+
+            return p;
+        }
         #endregion
 
         
