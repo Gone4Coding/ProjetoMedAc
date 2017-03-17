@@ -15,10 +15,6 @@ namespace AlertSystem
 {
     public partial class FormAlertSystem : Form
     {
-        private static string pagePatient = "Patients";
-        private static string pageViewRecord = "View Records";
-        private static string pageManageRecords = "Manage Records";
-
         private ServiceHealthAlertClient client;
         public FormAlertSystem()
         {        
@@ -43,19 +39,21 @@ namespace AlertSystem
             comboBoxGender.Items.Add("Female");
             comboBoxGender.Items.Add("Male");
 
-            fillGridView();
-            fillFirstSelected();
+            toolStripComboBox.Items.Add("Sns");
+            toolStripComboBox.Items.Add("Phone");
+            toolStripComboBox.Items.Add("Nome");
 
-            buttonAdd.Hide();
-            bt_cancel.Hide();
-            enableTextBoxes(false);
+            toolStripComboBox.SelectedIndex = 0;
+
+            load();
 
             #endregion
         }
 
         private void dataGridViewPatients_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int sns = Convert.ToInt32(dataGridViewPatients.Rows[0].Cells["Sns"].Value);
+            
+            int sns = Convert.ToInt32(dataGridViewPatients.Rows[e.RowIndex].Cells["Sns"].Value);
             Patient patientSelected = client.GetPatient(sns);
 
             fillFields(patientSelected);
@@ -64,8 +62,10 @@ namespace AlertSystem
         {
             clearFields();
             bt_edit.Hide();
+            bt_cancelEdit.Hide();
+            bt_save.Hide();
             buttonAdd.Show();
-            bt_cancel.Show();
+            bt_cancelAdd.Show();
             dataGridViewPatients.ClearSelection();
             dataGridViewPatients.Enabled = false;
             enableTextBoxes(true);
@@ -73,18 +73,81 @@ namespace AlertSystem
         }
         private void bt_cancel_Click(object sender, EventArgs e)
         {
-            bt_edit.Show();
-            bt_cancel.Hide();
-            buttonAdd.Hide();
-            dataGridViewPatients.Enabled = true;
-            fillGridView();
-            enableTextBoxes(false);
+            load();
         }
+
+        private void bt_edit_Click(object sender, EventArgs e)
+        {
+            enableTextBoxes(true);
+            bt_save.Enabled = true;
+            bt_edit.Enabled = false;
+            bt_cancelEdit.Show();
+        }
+        private void bt_save_Click(object sender, EventArgs e)
+        {
+            enableTextBoxes(false);
+            bt_edit.Enabled = true;
+            bt_save.Enabled = false;
+            bt_cancelEdit.Hide();
+        }
+        private void bt_cancelEdit_Click(object sender, EventArgs e)
+        {
+            enableTextBoxes(false);
+            bt_edit.Enabled = true;
+            bt_save.Enabled = false;
+            bt_cancelEdit.Hide();
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            Patient p = new Patient();
+            p.Name =tb_firstname.Text;
+            p.Surname= tb_lastName.Text;
+            //dateTimePicker_birthdate.Value = patient.
+            p.Nif = Convert.ToInt32(tb_nif.Text) ;
+            p.Sns = Convert.ToInt32(tb_sns.Text);
+            p.Phone = tb_phone.Text;
+            p.Email = tb_email.Text;
+            p.EmergencyNumber = tb_emergencyContact.Text;
+            p.EmergencyName = tb_emergencyContactName.Text ;
+            p.Adress = richTextBox_address.Text ;
+            p.Sex = comboBoxGender.Text ;
+            p.Height = Convert.ToInt32(tb_height.Text) ;
+            p.Weight = Convert.ToDouble(tb_weight.Text);
+            p.Alergies= richTextBoxAlergies.Text;
+
+            bool res = client.InsertPatient(p);
+
+            if (!res)
+            {
+                MessageBox.Show("erro");
+            }
+            else
+            {
+                clearFields();
+                load();
+            }
+        }
+       
 
         #endregion
 
         #region Metodos
 
+        private void load()
+        {
+            bt_edit.Show();
+            bt_edit.Enabled = true;
+            bt_save.Show();
+            bt_save.Enabled = false;
+            bt_cancelAdd.Hide();
+            bt_cancelEdit.Hide();
+            buttonAdd.Hide();
+            dataGridViewPatients.Enabled = true;
+            fillGridView();
+            fillFirstSelected();
+            enableTextBoxes(false);
+        }
         private void enableTextBoxes(bool estado)
         {
             tb_firstname.Enabled = estado;
@@ -103,10 +166,7 @@ namespace AlertSystem
             richTextBoxAlergies.Enabled = estado;
         }
 
-        private void bt_edit_Click(object sender, EventArgs e)
-        {
-            enableTextBoxes(true);
-        }
+       
         private void fillGridView()
         {
             List<Patient> patients = new List<Patient>(client.GetPatientList());
@@ -172,6 +232,10 @@ namespace AlertSystem
             tb_weight.Clear();
             richTextBoxAlergies.Clear();
         }
+
+
+
+
         #endregion
 
       
