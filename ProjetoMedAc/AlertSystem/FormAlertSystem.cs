@@ -16,6 +16,7 @@ namespace AlertSystem
     public partial class FormAlertSystem : Form
     {
         private ServiceHealthAlertClient client;
+        private bool asc;
         public FormAlertSystem()
         {        
             InitializeComponent();
@@ -141,15 +142,84 @@ namespace AlertSystem
 
         private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            string columnName;
+            
+            List<Patient> patients;
 
             switch (e.ColumnIndex)
             {
-                   case 
+                case 8:
+                    if (!asc)
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Name));
+                        fillGridView(patients);
+                        asc = true;
+                    }
+                    else
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Name));
+                        fillGridView(patients);
+                        asc = false;
+                    }
+                    break;
+                case 9:
+                    if (!asc)
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Nif));
+                        fillGridView(patients);
+                        asc = true;
+                    }
+                    else
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Nif));
+                        fillGridView(patients);
+                        asc = false;
+                    }
+                    break;
+                case 11:
+                    if (!asc)
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Sns));
+                        fillGridView(patients);
+                        asc = true;
+                    }
+                    else
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Sns));
+                        fillGridView(patients);
+                        asc = false;
+                    }
+                    break;
+                case 12:
+                    if (!asc)
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Surname));
+                        fillGridView(patients);
+                        asc = true;
+                    }
+                    else
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Surname));
+                        fillGridView(patients);
+                        asc = false;
+                    }
+                    break;
             }
 
         }
 
+        private void toolStripButtonRefresh_Click(object sender, EventArgs e)
+        {
+            load();
+        }
+
+        private void dataGridViewPatients_SelectionChanged(object sender, EventArgs e)
+        {
+            int index = dataGridViewPatients.CurrentCell.RowIndex;
+            int sns = Convert.ToInt32(dataGridViewPatients.Rows[index].Cells["Sns"].Value);
+            Patient patientSelected = client.GetPatient(sns);
+
+            fillFields(patientSelected);
+        }
         #endregion
 
         #region Metodos
@@ -164,7 +234,8 @@ namespace AlertSystem
             bt_cancelEdit.Hide();
             buttonAdd.Hide();
             dataGridViewPatients.Enabled = true;
-            fillGridView();
+            List<Patient> patients = new List<Patient>(client.GetPatientList());
+            fillGridView(patients);
             fillFirstSelected();
             enableTextBoxes(false);
         }
@@ -187,24 +258,23 @@ namespace AlertSystem
         }
 
        
-        private void fillGridView()
+        private void fillGridView(List<Patient> patients)
         {
-            List<Patient> patients = new List<Patient>(client.GetPatientList());
-          
+           
             dataGridViewPatients.DataSource = patients;
 
             for (int i = 0; i < dataGridViewPatients.ColumnCount; i++)
             {
-                if (i != 6 && i != 9 && i != 10 && i != 11)
+                if (i != 8 && i != 9 && i != 12 && i != 11)
                 {
                     dataGridViewPatients.Columns[i].Visible = false;
                 }              
             }
 
-            dataGridViewPatients.Columns[6].DisplayIndex = 0;
-            dataGridViewPatients.Columns[11].DisplayIndex = 1;
+            dataGridViewPatients.Columns[8].DisplayIndex = 0;
+            dataGridViewPatients.Columns[12].DisplayIndex = 1;
             dataGridViewPatients.Columns[9].DisplayIndex = 2;
-            dataGridViewPatients.Columns[10].DisplayIndex = 3;
+            dataGridViewPatients.Columns[11].DisplayIndex = 3;
 
             dataGridViewPatients.RowHeadersVisible = false;
 
@@ -225,7 +295,7 @@ namespace AlertSystem
         {
             tb_firstname.Text = patient.Name;
             tb_lastName.Text = patient.Surname;
-            //dateTimePicker_birthdate.Value = patient.
+            dateTimePicker_birthdate.Value = patient.BirthDate;
             tb_nif.Text = patient.Nif.ToString();
             tb_sns.Text = patient.Sns.ToString();
             tb_phone.Text = patient.Phone.ToString();
@@ -256,13 +326,8 @@ namespace AlertSystem
             tb_weight.Clear();
             richTextBoxAlergies.Clear();
         }
-
-
-
-
-
         #endregion
 
-       
+   
     }
 }

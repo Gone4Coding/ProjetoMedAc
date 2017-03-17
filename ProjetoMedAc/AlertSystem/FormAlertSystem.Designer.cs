@@ -166,6 +166,7 @@
             this.toolStripButtonRefresh.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.toolStripButtonRefresh.Size = new System.Drawing.Size(30, 37);
             this.toolStripButtonRefresh.Text = "Refresh Patient List";
+            this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
             // 
             // toolStripSeparator2
             // 
@@ -228,6 +229,7 @@
             this.dataGridViewPatients.TabIndex = 2;
             this.dataGridViewPatients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_CellMouseDoubleClick);
             this.dataGridViewPatients.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_ColumnHeaderMouseClick);
+            this.dataGridViewPatients.SelectionChanged += new System.EventHandler(this.dataGridViewPatients_SelectionChanged);
             // 
             // groupBoxPatient
             // 
