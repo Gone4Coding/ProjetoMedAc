@@ -33,14 +33,15 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Alergies" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BirthDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EmergencyName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EmergencyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Height" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Nif" type="xs:int" />
-      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" type="xs:int" />
       <xs:element minOccurs="0" name="Sns" type="xs:int" />
       <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Weight" type="xs:double" />
@@ -81,4 +82,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Alert" nillable="true" type="tns:Alert" />
+  <xs:complexType name="ArrayOfAlert">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Alert" nillable="true" type="tns:Alert" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlert" nillable="true" type="tns:ArrayOfAlert" />
 </xs:schema>

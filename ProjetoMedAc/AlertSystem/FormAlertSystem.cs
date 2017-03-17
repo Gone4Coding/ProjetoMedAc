@@ -49,15 +49,22 @@ namespace AlertSystem
 
             #endregion
         }
-
-        private void dataGridViewPatients_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewPatients_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
-            int sns = Convert.ToInt32(dataGridViewPatients.Rows[e.RowIndex].Cells["Sns"].Value);
-            Patient patientSelected = client.GetPatient(sns);
+            try
+            {
+                int sns = Convert.ToInt32(dataGridViewPatients.Rows[e.RowIndex].Cells["Sns"].Value);
+                Patient patientSelected = client.GetPatient(sns);
 
-            fillFields(patientSelected);
+                fillFields(patientSelected);
+
+            }
+            catch (ArgumentOutOfRangeException x)
+            {
+                Console.WriteLine(x.Message);
+            }
         }
+
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
             clearFields();
@@ -103,17 +110,20 @@ namespace AlertSystem
             Patient p = new Patient();
             p.Name =tb_firstname.Text;
             p.Surname= tb_lastName.Text;
-            //dateTimePicker_birthdate.Value = patient.
+            p.BirthDate= dateTimePicker_birthdate.Value;
             p.Nif = Convert.ToInt32(tb_nif.Text) ;
             p.Sns = Convert.ToInt32(tb_sns.Text);
-            p.Phone = tb_phone.Text;
+            if (tb_phone.Text.Equals(" "))   
+                p.Phone = Convert.ToInt32(tb_phone.Text);
             p.Email = tb_email.Text;
-            p.EmergencyNumber = tb_emergencyContact.Text;
+            p.EmergencyNumber = Convert.ToInt32(tb_emergencyContact.Text);
             p.EmergencyName = tb_emergencyContactName.Text ;
             p.Adress = richTextBox_address.Text ;
-            p.Sex = comboBoxGender.Text ;
-            p.Height = Convert.ToInt32(tb_height.Text) ;
-            p.Weight = Convert.ToDouble(tb_weight.Text);
+            p.Gender = comboBoxGender.Text ;
+            if(tb_height.Text.Equals(" "))
+                p.Height = Convert.ToInt32(tb_height.Text) ;
+            if (tb_weight.Text.Equals(" "))
+                p.Weight = Convert.ToDouble(tb_weight.Text);
             p.Alergies= richTextBoxAlergies.Text;
 
             bool res = client.InsertPatient(p);
@@ -128,7 +138,17 @@ namespace AlertSystem
                 load();
             }
         }
-       
+
+        private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName;
+
+            switch (e.ColumnIndex)
+            {
+                   case 
+            }
+
+        }
 
         #endregion
 
@@ -175,8 +195,10 @@ namespace AlertSystem
 
             for (int i = 0; i < dataGridViewPatients.ColumnCount; i++)
             {
-                if(i!=6 && i!= 9 && i!=10 && i!=11)
+                if (i != 6 && i != 9 && i != 10 && i != 11)
+                {
                     dataGridViewPatients.Columns[i].Visible = false;
+                }              
             }
 
             dataGridViewPatients.Columns[6].DisplayIndex = 0;
@@ -186,15 +208,17 @@ namespace AlertSystem
 
             dataGridViewPatients.RowHeadersVisible = false;
 
-           // dataGridViewPatients.ClearSelection();
         }
 
         private void fillFirstSelected()
         {
-            int sns = Convert.ToInt32(dataGridViewPatients.Rows[0].Cells["Sns"].Value);
-            Patient patientSelected = client.GetPatient(sns);
+            if (dataGridViewPatients.Rows.Count != 0)
+            {
+                int sns = Convert.ToInt32(dataGridViewPatients.Rows[0].Cells["Sns"].Value);
+                Patient patientSelected = client.GetPatient(sns);
 
-            fillFields(patientSelected);
+                fillFields(patientSelected);
+            }
         }
 
         private void fillFields(Patient patient)
@@ -204,12 +228,12 @@ namespace AlertSystem
             //dateTimePicker_birthdate.Value = patient.
             tb_nif.Text = patient.Nif.ToString();
             tb_sns.Text = patient.Sns.ToString();
-            tb_phone.Text = patient.Phone;
+            tb_phone.Text = patient.Phone.ToString();
             tb_email.Text = patient.Email;
-            tb_emergencyContact.Text = patient.EmergencyNumber;
+            tb_emergencyContact.Text = patient.EmergencyNumber.ToString();
             tb_emergencyContactName.Text = patient.EmergencyName;
             richTextBox_address.Text = patient.Adress;
-            comboBoxGender.Text = patient.Sex;
+            comboBoxGender.Text = patient.Gender;
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
@@ -236,8 +260,9 @@ namespace AlertSystem
 
 
 
+
         #endregion
 
-      
+       
     }
 }

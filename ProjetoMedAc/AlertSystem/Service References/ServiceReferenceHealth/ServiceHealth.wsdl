@@ -85,6 +85,12 @@
   <wsdl:message name="IServiceHealthAlert_GetAlert_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAlertResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetAlertList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetAlertList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertListResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceHealthAlert_InsertAlert_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertAlert" />
   </wsdl:message>
@@ -157,6 +163,10 @@
     <wsdl:operation name="GetAlert">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlert" message="tns:IServiceHealthAlert_GetAlert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlertResponse" message="tns:IServiceHealthAlert_GetAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlertList" message="tns:IServiceHealthAlert_GetAlertList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse" message="tns:IServiceHealthAlert_GetAlertList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertAlert">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertAlert" message="tns:IServiceHealthAlert_InsertAlert_InputMessage" />
@@ -286,6 +296,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAlert">
       <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertList">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetAlertList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

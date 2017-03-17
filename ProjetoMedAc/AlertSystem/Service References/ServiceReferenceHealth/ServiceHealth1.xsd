@@ -181,10 +181,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAlertList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlertListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServiceLayer" minOccurs="0" name="GetAlertListResult" nillable="true" type="q13:ArrayOfAlert" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="InsertAlert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServiceLayer" minOccurs="0" name="_alert" nillable="true" type="q13:Alert" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServiceLayer" minOccurs="0" name="_alert" nillable="true" type="q14:Alert" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -198,7 +210,7 @@
   <xs:element name="UpdateAlert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServiceLayer" minOccurs="0" name="_alert" nillable="true" type="q14:Alert" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServiceLayer" minOccurs="0" name="_alert" nillable="true" type="q15:Alert" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -212,7 +224,7 @@
   <xs:element name="DeleteAlert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServiceLayer" minOccurs="0" name="_alert" nillable="true" type="q15:Alert" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ServiceLayer" minOccurs="0" name="_alert" nillable="true" type="q16:Alert" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

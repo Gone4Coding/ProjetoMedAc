@@ -78,6 +78,13 @@
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabPageManageRecords = new System.Windows.Forms.TabPage();
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.tabControlRecors.SuspendLayout();
             this.tabPagePatients.SuspendLayout();
             this.toolStripPatients.SuspendLayout();
@@ -169,7 +176,7 @@
             // 
             this.toolStripTextBox.Name = "toolStripTextBox";
             this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBox.Size = new System.Drawing.Size(170, 40);
+            this.toolStripTextBox.Size = new System.Drawing.Size(150, 40);
             // 
             // toolStripComboBox
             // 
@@ -203,6 +210,10 @@
             // dataGridViewPatients
             // 
             this.dataGridViewPatients.AllowUserToAddRows = false;
+            this.dataGridViewPatients.AllowUserToDeleteRows = false;
+            this.dataGridViewPatients.AllowUserToOrderColumns = true;
+            this.dataGridViewPatients.AllowUserToResizeColumns = false;
+            this.dataGridViewPatients.AllowUserToResizeRows = false;
             this.dataGridViewPatients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dataGridViewPatients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPatients.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -215,8 +226,8 @@
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPatients.Size = new System.Drawing.Size(440, 718);
             this.dataGridViewPatients.TabIndex = 2;
-            this.dataGridViewPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatients_CellClick);
-           
+            this.dataGridViewPatients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_CellMouseDoubleClick);
+            this.dataGridViewPatients.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_ColumnHeaderMouseClick);
             // 
             // groupBoxPatient
             // 
@@ -314,6 +325,13 @@
             // panelInfoPatient
             // 
             this.panelInfoPatient.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelInfoPatient.Controls.Add(this.label20);
+            this.panelInfoPatient.Controls.Add(this.label22);
+            this.panelInfoPatient.Controls.Add(this.label19);
+            this.panelInfoPatient.Controls.Add(this.label18);
+            this.panelInfoPatient.Controls.Add(this.label17);
+            this.panelInfoPatient.Controls.Add(this.label16);
+            this.panelInfoPatient.Controls.Add(this.label15);
             this.panelInfoPatient.Controls.Add(this.richTextBoxAlergies);
             this.panelInfoPatient.Controls.Add(this.richTextBox_address);
             this.panelInfoPatient.Controls.Add(this.comboBoxGender);
@@ -623,6 +641,76 @@
             this.tabPage_viewRecords.Text = "View Records";
             this.tabPage_viewRecords.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(125, 13);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(14, 18);
+            this.label15.TabIndex = 60;
+            this.label15.Text = "*";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(125, 50);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(14, 18);
+            this.label16.TabIndex = 61;
+            this.label16.Text = "*";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(115, 85);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(14, 18);
+            this.label17.TabIndex = 62;
+            this.label17.Text = "*";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(65, 114);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(14, 18);
+            this.label18.TabIndex = 63;
+            this.label18.Text = "*";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(73, 146);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(14, 18);
+            this.label19.TabIndex = 64;
+            this.label19.Text = "*";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(197, 245);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(14, 18);
+            this.label22.TabIndex = 66;
+            this.label22.Text = "*";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(101, 386);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(14, 18);
+            this.label20.TabIndex = 67;
+            this.label20.Text = "*";
+            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -698,6 +786,13 @@
         private System.Windows.Forms.Button bt_cancelEdit;
         private System.Windows.Forms.Button bt_save;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
     }
 }
 

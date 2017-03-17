@@ -324,13 +324,19 @@ namespace AlertSystem.ServiceReferenceHealth {
         private string AlergiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime BirthDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmergencyNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmergencyNumberField;
+        private int EmergencyNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GenderField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int HeightField;
@@ -342,10 +348,7 @@ namespace AlertSystem.ServiceReferenceHealth {
         private int NifField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SexField;
+        private int PhoneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SnsField;
@@ -393,6 +396,19 @@ namespace AlertSystem.ServiceReferenceHealth {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime BirthDate {
+            get {
+                return this.BirthDateField;
+            }
+            set {
+                if ((this.BirthDateField.Equals(value) != true)) {
+                    this.BirthDateField = value;
+                    this.RaisePropertyChanged("BirthDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Email {
             get {
                 return this.EmailField;
@@ -419,14 +435,27 @@ namespace AlertSystem.ServiceReferenceHealth {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EmergencyNumber {
+        public int EmergencyNumber {
             get {
                 return this.EmergencyNumberField;
             }
             set {
-                if ((object.ReferenceEquals(this.EmergencyNumberField, value) != true)) {
+                if ((this.EmergencyNumberField.Equals(value) != true)) {
                     this.EmergencyNumberField = value;
                     this.RaisePropertyChanged("EmergencyNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Gender {
+            get {
+                return this.GenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GenderField, value) != true)) {
+                    this.GenderField = value;
+                    this.RaisePropertyChanged("Gender");
                 }
             }
         }
@@ -471,27 +500,14 @@ namespace AlertSystem.ServiceReferenceHealth {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Phone {
+        public int Phone {
             get {
                 return this.PhoneField;
             }
             set {
-                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
+                if ((this.PhoneField.Equals(value) != true)) {
                     this.PhoneField = value;
                     this.RaisePropertyChanged("Phone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Sex {
-            get {
-                return this.SexField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SexField, value) != true)) {
-                    this.SexField = value;
-                    this.RaisePropertyChanged("Sex");
                 }
             }
         }
@@ -801,6 +817,12 @@ namespace AlertSystem.ServiceReferenceHealth {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
         System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert> GetAlertAsync(string type);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert> GetAlertList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert>> GetAlertListAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
         bool InsertAlert(AlertSystem.ServiceReferenceHealth.Alert _alert);
         
@@ -917,6 +939,14 @@ namespace AlertSystem.ServiceReferenceHealth {
         
         public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert> GetAlertAsync(string type) {
             return base.Channel.GetAlertAsync(type);
+        }
+        
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert> GetAlertList() {
+            return base.Channel.GetAlertList();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert>> GetAlertListAsync() {
+            return base.Channel.GetAlertListAsync();
         }
         
         public bool InsertAlert(AlertSystem.ServiceReferenceHealth.Alert _alert) {
