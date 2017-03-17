@@ -177,7 +177,7 @@
             // 
             this.toolStripTextBox.Name = "toolStripTextBox";
             this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBox.Size = new System.Drawing.Size(140, 40);
+            this.toolStripTextBox.Size = new System.Drawing.Size(130, 40);
             // 
             // toolStripComboBox
             // 
@@ -677,6 +677,7 @@
             this.tb_nif.Name = "tb_nif";
             this.tb_nif.Size = new System.Drawing.Size(301, 26);
             this.tb_nif.TabIndex = 34;
+          
             // 
             // tb_lastName
             // 
