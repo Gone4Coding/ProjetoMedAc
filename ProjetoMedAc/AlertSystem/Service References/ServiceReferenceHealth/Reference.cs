@@ -770,16 +770,10 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<bool> InsertPatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient);
+        bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient, int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeletePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeletePatientResponse")]
-        bool DeletePatient(AlertSystem.ServiceReferenceHealth.Patient patient);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeletePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeletePatientResponse")]
-        System.Threading.Tasks.Task<bool> DeletePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient, int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientResponse")]
         AlertSystem.ServiceReferenceHealth.Patient GetPatient(int sns);
@@ -877,20 +871,12 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.InsertPatientAsync(patient);
         }
         
-        public bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.UpdatePatient(patient);
+        public bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient, int sns) {
+            return base.Channel.UpdatePatient(patient, sns);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.UpdatePatientAsync(patient);
-        }
-        
-        public bool DeletePatient(AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.DeletePatient(patient);
-        }
-        
-        public System.Threading.Tasks.Task<bool> DeletePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.DeletePatientAsync(patient);
+        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient, int sns) {
+            return base.Channel.UpdatePatientAsync(patient, sns);
         }
         
         public AlertSystem.ServiceReferenceHealth.Patient GetPatient(int sns) {
