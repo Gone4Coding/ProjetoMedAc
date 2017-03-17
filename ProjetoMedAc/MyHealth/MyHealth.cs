@@ -1,48 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PhysiologicParametersDll;
+using System.Speech;
+using System.Speech.Recognition;
+using MyHealth.VoiceRecognition;
+using System.Speech.Synthesis;
+using System.Threading.Tasks;
+
 
 namespace MyHealth
 {
     public partial class MyHealth : Form
     {
+        private SpeechSynthesizer synth;
+        private PromptBuilder pBuilder;
+        private SpeechRecognitionEngine sReconEngine;
         private PhysiologicParametersDll.PhysiologicParametersDll dll;
         private bool bloodPressure_checked;
         private bool saturation_checked;
         private bool heartRate_checked;
+        private bool speechActive = false;
+        private Stopwatch iteration = new Stopwatch();
 
         public MyHealth()
         {
             InitializeComponent();
         }
 
-        #region Events
-
         private void MyHealth_Load(object sender, EventArgs e)
         {
             this.dll = new PhysiologicParametersDll.PhysiologicParametersDll();
+            this.sReconEngine = new SpeechRecognitionEngine();
+            this.synth = new SpeechSynthesizer();
+            this.pBuilder = new PromptBuilder();
+            InitializeSpeech();
+
             tb_patientId.Text = Properties.Settings.Default.Patient_Id.ToString();
             DataLabels(false);
         }
+
+        #region Events
 
         private void bt_validate_Click(object sender, EventArgs e)
         {
             int id;
             if (int.TryParse(tb_patientId.Text, out id))
             {
-                
+
             }
         }
 
         private void bt_startMonitoring_Click(object sender, EventArgs e)
         {
+
         }
 
         private void StartMonitoring()
@@ -85,7 +97,7 @@ namespace MyHealth
                 }
 
             }));
-           
+
         }
 
         private void MyHealth_FormClosing(object sender, FormClosingEventArgs e)
@@ -93,21 +105,20 @@ namespace MyHealth
             dll.Stop();
         }
 
-        private void cb_bloodPressure_Click(object sender, EventArgs e)
+        private void cb_bloodPressure_MouseClick(object sender, MouseEventArgs e)
         {
-            
-
+            ActivateBloodPressureMonitoring(cb_bloodPressure.Checked);
         }
 
-        private void cb_saturations_Click(object sender, EventArgs e)
+        private void cb_saturations_MouseClick(object sender, MouseEventArgs e)
         {
+            ActivateSaturationMonitoring(cb_saturations.Checked);
         }
 
-        private void cb_heartRate_Click(object sender, EventArgs e)
+        private void cb_heartRate_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            ActivateHeartRateMonitoring(cb_heartRate.Checked);
         }
-
 
         #endregion Events
 
@@ -120,32 +131,104 @@ namespace MyHealth
             lb_data_HR.Visible = visible;
         }
 
-
-        #endregion Methods
-
-        private void cb_bloodPressure_MouseClick(object sender, MouseEventArgs e)
+        private void InitializeSpeech()
         {
-            bloodPressure_checked = cb_bloodPressure.Checked;
-            lb_dataBP.Visible = cb_bloodPressure.Checked;
-            lb_dataBP.Text = "Receiving...";
+            sReconEngine.LoadGrammar(VoiceRecognition.VoiceRecognition.GetGrammar());
+            sReconEngine.SetInputToDefaultAudioDevice();
+            sReconEngine.RecognizeAsync(RecognizeMode.Multiple);
+            sReconEngine.SpeechRecognized += Srecon_SpeechRecognized;
+        }
+
+        private void Srecon_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            string speech = e.Result.Text;
+            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloMyHealth.ToString()))
+            {
+                speechActive = true;
+                checkBox1.Checked = true;
+                //RecognitionWaiting();
+            }
+
+            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Bye.ToString()))
+            {
+                speechActive = false;
+                checkBox1.Checked = false;
+            }
+
+            if (speechActive)
+            {
+                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableAll.ToString()))
+                {
+                    ActivateHeartRateMonitoring(true);
+                    ActivateSaturationMonitoring(true);
+                    ActivateBloodPressureMonitoring(true);
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableAll.ToString()))
+                {
+                    ActivateHeartRateMonitoring(false);
+                    ActivateSaturationMonitoring(false);
+                    ActivateBloodPressureMonitoring(false);
+                }
+                
+            }
+        }
+
+        private void ActivateHeartRateMonitoring(bool check)
+        {
+            cb_heartRate.Checked = check;
+            heartRate_checked = check;
+            lb_data_HR.Visible = check;
+            lb_data_HR.Text = "Receiving...";
             StartMonitoring();
         }
 
-        private void cb_saturations_MouseClick(object sender, MouseEventArgs e)
+        private void ActivateSaturationMonitoring(bool check)
         {
-            saturation_checked = cb_saturations.Checked;
-            lb_data_o2.Visible = cb_saturations.Checked;
+            cb_saturations.Checked = check;
+            saturation_checked = check;
+            lb_data_o2.Visible = check;
             lb_data_o2.Text = "Receiving...";
             StartMonitoring();
         }
 
-        private void cb_heartRate_MouseClick(object sender, MouseEventArgs e)
+        private void ActivateBloodPressureMonitoring(bool check)
         {
-            heartRate_checked = cb_heartRate.Checked;
-            lb_data_HR.Visible = cb_heartRate.Checked;
-            lb_data_HR.Text = "Receiving...";
+            cb_bloodPressure.Checked = check;
+            bloodPressure_checked = check;
+            lb_dataBP.Visible = check;
+            lb_dataBP.Text = "Receiving...";
             StartMonitoring();
         }
+
+        /*private void RecognitionWaiting()
+        {
+            while (speechActive)
+            {
+                iteration.Start();
+
+                tb_first.BackColor = Color.Blue;
+
+                if(iteration.ElapsedMilliseconds/60 % 2 == 0)
+                    tb_first.BackColor = Color.Black;
+
+            }
+        }*/
+
+        /*private Task RecognitionWaiting()
+        {
+            return MethodAsyncInternal();
+        }
+
+        private async Task MethodAsyncInternal()
+        {
+            if (speechActive)
+            {
+                
+            }
+        }*/
+
+        #endregion Methods
+
 
     }
 }

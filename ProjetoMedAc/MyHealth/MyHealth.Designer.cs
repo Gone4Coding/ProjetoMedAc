@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lb_patientId = new System.Windows.Forms.Label();
             this.tb_patientId = new System.Windows.Forms.TextBox();
             this.bt_validate = new System.Windows.Forms.Button();
@@ -41,6 +42,12 @@
             this.lb_dataBP = new System.Windows.Forms.Label();
             this.lb_data_o2 = new System.Windows.Forms.Label();
             this.lb_data_HR = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tb_third = new System.Windows.Forms.TextBox();
+            this.tb_second = new System.Windows.Forms.TextBox();
+            this.tb_first = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_patientId
@@ -88,7 +95,6 @@
             this.cb_bloodPressure.TabIndex = 4;
             this.cb_bloodPressure.Text = "Blood Pressure";
             this.cb_bloodPressure.UseVisualStyleBackColor = true;
-            this.cb_bloodPressure.Click += new System.EventHandler(this.cb_bloodPressure_Click);
             this.cb_bloodPressure.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_bloodPressure_MouseClick);
             // 
             // cb_saturations
@@ -100,7 +106,6 @@
             this.cb_saturations.TabIndex = 4;
             this.cb_saturations.Text = "O2 Saturation";
             this.cb_saturations.UseVisualStyleBackColor = true;
-            this.cb_saturations.Click += new System.EventHandler(this.cb_saturations_Click);
             this.cb_saturations.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_saturations_MouseClick);
             // 
             // cb_heartRate
@@ -112,7 +117,6 @@
             this.cb_heartRate.TabIndex = 4;
             this.cb_heartRate.Text = "Heart Rate";
             this.cb_heartRate.UseVisualStyleBackColor = true;
-            this.cb_heartRate.Click += new System.EventHandler(this.cb_heartRate_Click);
             this.cb_heartRate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_heartRate_MouseClick);
             // 
             // tb_bloodPressure
@@ -166,11 +170,47 @@
             this.lb_data_HR.TabIndex = 6;
             this.lb_data_HR.Text = "Data_HR";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(319, 12);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(63, 17);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Speech";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // tb_third
+            // 
+            this.tb_third.Location = new System.Drawing.Point(353, 259);
+            this.tb_third.Name = "tb_third";
+            this.tb_third.Size = new System.Drawing.Size(20, 20);
+            this.tb_third.TabIndex = 8;
+            // 
+            // tb_second
+            // 
+            this.tb_second.Location = new System.Drawing.Point(327, 259);
+            this.tb_second.Name = "tb_second";
+            this.tb_second.Size = new System.Drawing.Size(20, 20);
+            this.tb_second.TabIndex = 8;
+            // 
+            // tb_first
+            // 
+            this.tb_first.Enabled = false;
+            this.tb_first.Location = new System.Drawing.Point(301, 259);
+            this.tb_first.Name = "tb_first";
+            this.tb_first.Size = new System.Drawing.Size(20, 20);
+            this.tb_first.TabIndex = 8;
+            // 
             // MyHealth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 258);
+            this.ClientSize = new System.Drawing.Size(385, 291);
+            this.Controls.Add(this.tb_first);
+            this.Controls.Add(this.tb_second);
+            this.Controls.Add(this.tb_third);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.lb_data_HR);
             this.Controls.Add(this.lb_data_o2);
             this.Controls.Add(this.lb_dataBP);
@@ -189,6 +229,7 @@
             this.Text = "MyHealth";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyHealth_FormClosing);
             this.Load += new System.EventHandler(this.MyHealth_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,6 +250,11 @@
         private System.Windows.Forms.Label lb_dataBP;
         private System.Windows.Forms.Label lb_data_o2;
         private System.Windows.Forms.Label lb_data_HR;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox tb_third;
+        private System.Windows.Forms.TextBox tb_second;
+        private System.Windows.Forms.TextBox tb_first;
     }
 }
 
