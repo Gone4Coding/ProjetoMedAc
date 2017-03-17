@@ -1,0 +1,15 @@
+﻿Find 
+Find Terms
+Search
+Search in MedLine
+Enable All
+Disable All
+Enable Oxygen Saturation
+Disable Oxygen Saturation
+Enable Heart Rate
+Disable Heart Rate
+Enable Blood Pressure
+Disable Blood Pressure
+Set Id
+Change Id
+Close
