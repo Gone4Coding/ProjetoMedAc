@@ -31,7 +31,9 @@ namespace MyHealth.VoiceRecognition
             ChangeId,
             Close,
             HelloMyHealth,
-            Bye
+            Bye,
+            Yes,
+            No
         }
         
         public static Grammar GetGrammar()

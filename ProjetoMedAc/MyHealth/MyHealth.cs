@@ -14,6 +14,7 @@ namespace MyHealth
 {
     public partial class MyHealth : Form
     {
+        #region Variables 
         private SpeechSynthesizer synth;
         private PromptBuilder pBuilder;
         private SpeechRecognitionEngine sReconEngine;
@@ -23,6 +24,8 @@ namespace MyHealth
         private bool heartRate_checked;
         private bool speechActive = false;
         private Stopwatch iteration = new Stopwatch();
+        private bool closeQuestion = false;
+        #endregion
 
         public MyHealth()
         {
@@ -142,12 +145,12 @@ namespace MyHealth
         private void Srecon_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             string speech = e.Result.Text;
+
             if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloMyHealth.ToString()) && !speechActive)
             {
                 speechActive = true;
                 checkBox1.Checked = true;
-                Greetings();
-                //RecognitionWaiting();
+                Speak("Greetings.");
             }
 
             if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Bye.ToString()))
@@ -158,6 +161,14 @@ namespace MyHealth
 
             if (speechActive)
             {
+                // "CLOSE" QUESTION
+                if (closeQuestion)
+                {
+                    if(speech.Equals(VoiceRecognition.VoiceRecognition.Code.Yes.ToString())) Close();
+                }
+
+
+
                 if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartMonitoring.ToString()))
                 {
                     ActivateHeartRateMonitoring(true);
@@ -195,6 +206,41 @@ namespace MyHealth
                 {
                     ActivateSaturationMonitoring(false);
                 }
+                else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.SetId.ToString())
+                          || speech.Contains(VoiceRecognition.VoiceRecognition.Code.ChangeId.ToString()))
+                {
+                    //TODO MUDAR SNS
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.SearchInMedline.ToString()))
+                {
+                    //TODO ABRIR O FORM PARA PROCURAR NO MEDLINE
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Find.ToString()))
+                {
+                    /* TODO
+                     * Colocar uma variavel boolean p/ dizer que isto esta ativo
+                     * Verificar se esta variavel esta a true logo no inicio 
+                     * Processar a partir dai
+                     */
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.FindTerms.ToString()))
+                {
+                    /* TODO
+                     * Colocar uma variavel boolean p/ dizer que isto esta ativo
+                     * Verificar se esta variavel esta a true logo no inicio 
+                     * Processar a partir dai                     
+                     */
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Close.ToString()))
+                {
+                    Speak("Are you sure you want to close the programm?");
+                    closeQuestion = true;
+                    /* TODO
+                     * Colocar uma variavel boolean p/ dizer que isto esta ativo
+                     * Verificar se esta variavel esta a true logo no inicio 
+                     * Processar a partir dai                     
+                     */
+                }
 
             }
         }
@@ -228,11 +274,11 @@ namespace MyHealth
             lb_dataBP.Text = "Receiving...";
             StartMonitoring();
         }
-
-        private void Greetings()
+        
+        private void Speak(string phrase)
         {
             pBuilder.ClearContent();
-            pBuilder.AppendText("Greetings Master.");
+            pBuilder.AppendText(phrase);
             synth.SpeakAsync(pBuilder);
         }
 

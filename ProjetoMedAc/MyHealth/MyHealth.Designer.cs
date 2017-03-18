@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lb_patientId = new System.Windows.Forms.Label();
             this.tb_patientId = new System.Windows.Forms.TextBox();
             this.bt_validate = new System.Windows.Forms.Button();
@@ -42,12 +41,10 @@
             this.lb_dataBP = new System.Windows.Forms.Label();
             this.lb_data_o2 = new System.Windows.Forms.Label();
             this.lb_data_HR = new System.Windows.Forms.Label();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tb_third = new System.Windows.Forms.TextBox();
             this.tb_second = new System.Windows.Forms.TextBox();
             this.tb_first = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_patientId
@@ -68,7 +65,7 @@
             // 
             // bt_validate
             // 
-            this.bt_validate.Location = new System.Drawing.Point(205, 17);
+            this.bt_validate.Location = new System.Drawing.Point(205, 18);
             this.bt_validate.Name = "bt_validate";
             this.bt_validate.Size = new System.Drawing.Size(75, 23);
             this.bt_validate.TabIndex = 2;
@@ -229,7 +226,6 @@
             this.Text = "MyHealth";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyHealth_FormClosing);
             this.Load += new System.EventHandler(this.MyHealth_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,7 +246,6 @@
         private System.Windows.Forms.Label lb_dataBP;
         private System.Windows.Forms.Label lb_data_o2;
         private System.Windows.Forms.Label lb_data_HR;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox tb_third;
         private System.Windows.Forms.TextBox tb_second;
