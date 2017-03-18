@@ -142,10 +142,11 @@ namespace MyHealth
         private void Srecon_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             string speech = e.Result.Text;
-            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloMyHealth.ToString()))
+            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloMyHealth.ToString()) && !speechActive)
             {
                 speechActive = true;
                 checkBox1.Checked = true;
+                Greetings();
                 //RecognitionWaiting();
             }
 
@@ -157,24 +158,50 @@ namespace MyHealth
 
             if (speechActive)
             {
-                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableAll.ToString()))
+                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartMonitoring.ToString()))
                 {
                     ActivateHeartRateMonitoring(true);
                     ActivateSaturationMonitoring(true);
                     ActivateBloodPressureMonitoring(true);
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableAll.ToString()))
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopMonitoring.ToString()))
                 {
                     ActivateHeartRateMonitoring(false);
                     ActivateSaturationMonitoring(false);
                     ActivateBloodPressureMonitoring(false);
                 }
-                
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableBloodPressure.ToString()))
+                {
+                    ActivateBloodPressureMonitoring(true);
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableBloodPressure.ToString()))
+                {
+                    ActivateBloodPressureMonitoring(false);
+
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableHeartRate.ToString()))
+                {
+                    ActivateHeartRateMonitoring(true);
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableHeartRate.ToString()))
+                {
+                    ActivateHeartRateMonitoring(false);
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableOxygenSaturation.ToString()))
+                {
+                    ActivateSaturationMonitoring(true);
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableOxygenSaturation.ToString()))
+                {
+                    ActivateSaturationMonitoring(false);
+                }
+
             }
         }
 
         private void ActivateHeartRateMonitoring(bool check)
         {
+            if(!check) tb_heartRate.Clear();
             cb_heartRate.Checked = check;
             heartRate_checked = check;
             lb_data_HR.Visible = check;
@@ -184,6 +211,7 @@ namespace MyHealth
 
         private void ActivateSaturationMonitoring(bool check)
         {
+            if (!check) tb_saturation.Clear();
             cb_saturations.Checked = check;
             saturation_checked = check;
             lb_data_o2.Visible = check;
@@ -193,11 +221,19 @@ namespace MyHealth
 
         private void ActivateBloodPressureMonitoring(bool check)
         {
+            if (!check) tb_bloodPressure.Clear();
             cb_bloodPressure.Checked = check;
             bloodPressure_checked = check;
             lb_dataBP.Visible = check;
             lb_dataBP.Text = "Receiving...";
             StartMonitoring();
+        }
+
+        private void Greetings()
+        {
+            pBuilder.ClearContent();
+            pBuilder.AppendText("Greetings Master.");
+            synth.SpeakAsync(pBuilder);
         }
 
         /*private void RecognitionWaiting()
