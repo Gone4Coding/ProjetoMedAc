@@ -47,6 +47,8 @@ namespace AlertSystem
             #endregion
         }
         #region Eventos
+        //      
+        #region PatientsTab
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
            // MessageBox.Show(tabControlRecors.SelectedTab.TabIndex.ToString());
@@ -249,9 +251,12 @@ namespace AlertSystem
             }
         }
         #endregion
+        // 
+        #endregion
 
         #region Metodos
-
+        // 
+        #region PatientsTab
         private void load(Patient p)
         {
             int rowIndex = 0;
@@ -545,6 +550,8 @@ namespace AlertSystem
 
             return isnumeric;
         }
+        #endregion
+        //
         #endregion
 
 
