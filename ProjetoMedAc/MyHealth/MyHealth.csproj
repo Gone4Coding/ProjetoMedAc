@@ -68,6 +68,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServiceReferenceHealth\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="VoiceRecognition\VoiceRecognition.cs" />
     <EmbeddedResource Include="MyHealth.resx">
       <DependentUpon>MyHealth.cs</DependentUpon>
@@ -90,14 +95,52 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\ServiceReferenceHealth\MyHealth.ServiceReferenceHealth.Alert.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferenceHealth\MyHealth.ServiceReferenceHealth.BloodPressure.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferenceHealth\MyHealth.ServiceReferenceHealth.HeartRate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferenceHealth\MyHealth.ServiceReferenceHealth.OxygenSaturation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferenceHealth\MyHealth.ServiceReferenceHealth.Patient.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth.wsdl" />
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\PhysiologicParametersDll.dll" />
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth.disco" />
+    <None Include="Service References\ServiceReferenceHealth\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReferenceHealth\configuration.svcinfo" />
+    <None Include="Service References\ServiceReferenceHealth\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="VoiceRecognition\ellipsis.gif" />
     <Content Include="VoiceRecognition\EnglishWords.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReferenceHealth\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
