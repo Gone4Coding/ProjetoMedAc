@@ -19,14 +19,14 @@ namespace AlertSystem
         private ServiceHealthAlertClient client;
         private bool asc;
         private int patientAge;
-        private DateTime dateValue;
+        
 
         private int snsPatientEdit;
         public FormAlertSystem()
         {
             InitializeComponent();
             client = new ServiceHealthAlertClient();
-            dateValue = new DateTime(6969, 01, 01);
+            
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -78,7 +78,7 @@ namespace AlertSystem
             dataGridViewPatients.ClearSelection();
             dataGridViewPatients.Enabled = false;
             enableTextBoxes(true);         
-            dateTimePicker_birthdate.Value = dateValue;         
+           // dateTimePicker_birthdate.Value = dateValue;         
             clearFields();
             enableSearch(false);
                  
@@ -92,7 +92,7 @@ namespace AlertSystem
         }
         private void dateTimePicker_birthdate_ValueChanged(object sender, EventArgs e)
         {
-                dateTimePicker_birthdate.Value = DateTime.Now;
+               // dateTimePicker_birthdate.Value = DateTime.Now;
                 dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
         }
         private void bt_edit_Click(object sender, EventArgs e)
@@ -360,6 +360,8 @@ namespace AlertSystem
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
+
+            fillMonitorPatientInfo(patient);
         }
         private int getAge(DateTime dateOfBirth)
         {
@@ -523,7 +525,7 @@ namespace AlertSystem
                 p.EmergencyNumber = Convert.ToInt32(tb_emergencyContact.Text);
             p.EmergencyName = tb_emergencyContactName.Text;
             p.Adress = richTextBox_address.Text;
-            if (comboBoxGender.SelectedIndex != 0)
+            if (comboBoxGender.SelectedIndex != -1)
             {
                 if (comboBoxGender.SelectedIndex == 0)
                     p.Gender = "F";
@@ -552,6 +554,27 @@ namespace AlertSystem
         }
         #endregion
         //
+
+        #region Monitor
+
+        private void fillMonitorPatientInfo(Patient patient)
+        {
+            textBoxFirstName.Text = patient.Name;
+             textBoxLastName.Text= patient.Surname;           
+           textBoxSNS.Text = patient.Sns.ToString();
+            textBoxAge.Text = getAge(patient.BirthDate).ToString();
+            tb_phone.Text = patient.Phone.ToString();
+            textBoxEmergencyContact.Text = patient.EmergencyNumber.ToString();           
+            if (patient.Gender.Equals("F"))
+                textBoxGender.Text = "Female";
+            if (patient.Gender.Equals("M"))
+                textBoxGender.Text = "Male";
+            textBoxheight.Text = patient.Height.ToString();
+            textBoxWeight.Text = patient.Weight.ToString();
+            richTextBox1Alergies.Text = patient.Alergies;
+        }
+
+        #endregion
         #endregion
 
 
