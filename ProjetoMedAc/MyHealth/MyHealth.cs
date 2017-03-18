@@ -25,6 +25,7 @@ namespace MyHealth
         private bool speechActive = false;
         private Stopwatch iteration = new Stopwatch();
         private bool closeQuestion = false;
+        private bool setId = false;
         #endregion
 
         public MyHealth()
@@ -146,11 +147,11 @@ namespace MyHealth
         {
             string speech = e.Result.Text;
 
-            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloMyHealth.ToString()) && !speechActive)
+            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloAlice.ToString()) && !speechActive)
             {
                 speechActive = true;
                 checkBox1.Checked = true;
-                Speak("Greetings.");
+                Speak("Hi.");
             }
 
             if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Bye.ToString()))
@@ -161,14 +162,38 @@ namespace MyHealth
 
             if (speechActive)
             {
+                if(speech.Equals(VoiceRecognition.VoiceRecognition.Code.Alice.ToString()))
+                    Speak("Yes?");
+
                 // "CLOSE" QUESTION
                 if (closeQuestion)
                 {
-                    if(speech.Equals(VoiceRecognition.VoiceRecognition.Code.Yes.ToString())) Close();
+                    if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Yes.ToString()))
+                    {
+                        Close();
+                    }
+                    else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.No.ToString()))
+                    {
+                        closeQuestion = false;
+                    }
                 }
 
-
-
+                if (setId)
+                {
+                    int sns;
+                    if (int.TryParse(speech, out sns))
+                    {
+                        Speak(sns.ToString());
+                    }
+                    else
+                    {
+                        pBuilder.ClearContent();
+                        pBuilder.AppendText("WROOONG");
+                        synth.SelectVoiceByHints(VoiceGender.Male, VoiceAge.Adult);
+                        setId = false;
+                    }
+                }
+                
                 if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartMonitoring.ToString()))
                 {
                     ActivateHeartRateMonitoring(true);
@@ -181,28 +206,28 @@ namespace MyHealth
                     ActivateSaturationMonitoring(false);
                     ActivateBloodPressureMonitoring(false);
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableBloodPressure.ToString()))
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartBloodPressure.ToString()))
                 {
                     ActivateBloodPressureMonitoring(true);
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableBloodPressure.ToString()))
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopBloodPressure.ToString()))
                 {
                     ActivateBloodPressureMonitoring(false);
 
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableHeartRate.ToString()))
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartHeartRate.ToString()))
                 {
                     ActivateHeartRateMonitoring(true);
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableHeartRate.ToString()))
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopHeartRate.ToString()))
                 {
                     ActivateHeartRateMonitoring(false);
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.EnableOxygenSaturation.ToString()))
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartOxygenSaturation.ToString()))
                 {
                     ActivateSaturationMonitoring(true);
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.DisableOxygenSaturation.ToString()))
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopOxygenSaturation.ToString()))
                 {
                     ActivateSaturationMonitoring(false);
                 }
@@ -210,6 +235,8 @@ namespace MyHealth
                           || speech.Contains(VoiceRecognition.VoiceRecognition.Code.ChangeId.ToString()))
                 {
                     //TODO MUDAR SNS
+                    Speak("Tell me the number.");
+                    setId = true;
                 }
                 else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.SearchInMedline.ToString()))
                 {
@@ -233,7 +260,7 @@ namespace MyHealth
                 }
                 else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Close.ToString()))
                 {
-                    Speak("Are you sure you want to close the programm?");
+                    Speak("You sure?");
                     closeQuestion = true;
                     /* TODO
                      * Colocar uma variavel boolean p/ dizer que isto esta ativo
@@ -279,6 +306,7 @@ namespace MyHealth
         {
             pBuilder.ClearContent();
             pBuilder.AppendText(phrase);
+            synth.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
             synth.SpeakAsync(pBuilder);
         }
 
