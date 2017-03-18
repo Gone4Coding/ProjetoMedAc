@@ -42,7 +42,7 @@ namespace MyHealth
             InitializeSpeech();
 
             tb_patientId.Text = Properties.Settings.Default.Patient_Id.ToString();
-            DataLabels(false);
+            DateLabels(false);
         }
 
         #region Events
@@ -56,12 +56,7 @@ namespace MyHealth
             }
         }
 
-        private void bt_startMonitoring_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void StartMonitoring()
+       private void StartMonitoring()
         {
             dll.Initialize(MyProcessMethod, 1000, bloodPressure_checked, saturation_checked, heartRate_checked);
 
@@ -83,20 +78,20 @@ namespace MyHealth
                         int systolic = Convert.ToInt32(bp[0]);
                         int diastolic = Convert.ToInt32(bp[1]);
 
-                        tb_bloodPressure.Text = "Systolic: " + systolic + " - Diastolic: " + diastolic;
-                        lb_dataBP.Text = date.ToString();
+                        lb_dataBP.Text = diastolic + "/" + systolic;
+                        lb_dateBP.Text = date.ToString();
                         break;
 
                     case "SPO2":
                         int sat = Convert.ToInt32(data);
-                        tb_saturation.Text = sat + "%";
-                        lb_data_o2.Text = date.ToString();
+                        lb_dataSPO2.Text = sat + "%";
+                        lb_date_o2.Text = date.ToString();
                         break;
 
                     case "HR":
                         int hr = Convert.ToInt32(data);
-                        tb_heartRate.Text = hr + "bpm";
-                        lb_data_HR.Text = date.ToString();
+                        lb_dataHR.Text = hr + "bpm";
+                        lb_date_HR.Text = date.ToString();
                         break;
                 }
 
@@ -128,11 +123,14 @@ namespace MyHealth
 
         #region Methods
 
-        private void DataLabels(bool visible)
+        private void DateLabels(bool visible)
         {
+            lb_dateBP.Visible = visible;
+            lb_date_o2.Visible = visible;
+            lb_date_HR.Visible = visible;
             lb_dataBP.Visible = visible;
-            lb_data_o2.Visible = visible;
-            lb_data_HR.Visible = visible;
+            lb_dataHR.Visible = visible;
+            lb_dataSPO2.Visible = visible;
         }
 
         private void InitializeSpeech()
@@ -187,9 +185,7 @@ namespace MyHealth
                     }
                     else
                     {
-                        pBuilder.ClearContent();
-                        pBuilder.AppendText("WROOONG");
-                        synth.SelectVoiceByHints(VoiceGender.Male, VoiceAge.Adult);
+                        Speak("That's not a number");
                         setId = false;
                     }
                 }
@@ -274,29 +270,35 @@ namespace MyHealth
 
         private void ActivateHeartRateMonitoring(bool check)
         {
-            if(!check) tb_heartRate.Clear();
+            if(!check) lb_dataHR.Text = "";
             cb_heartRate.Checked = check;
             heartRate_checked = check;
-            lb_data_HR.Visible = check;
-            lb_data_HR.Text = "Receiving...";
+            lb_date_HR.Visible = check;
+            lb_date_HR.Text = "Receiving...";
+            lb_dataHR.Visible = check;
+            lb_dataHR.Text = "Receiving...";
             StartMonitoring();
         }
 
         private void ActivateSaturationMonitoring(bool check)
         {
-            if (!check) tb_saturation.Clear();
+            if (!check) lb_dataSPO2.Text = "";
             cb_saturations.Checked = check;
             saturation_checked = check;
-            lb_data_o2.Visible = check;
-            lb_data_o2.Text = "Receiving...";
+            lb_date_o2.Visible = check;
+            lb_date_o2.Text = "Receiving...";
+            lb_dataSPO2.Visible = check;
+            lb_dataSPO2.Text = "Receiving...";
             StartMonitoring();
         }
 
         private void ActivateBloodPressureMonitoring(bool check)
         {
-            if (!check) tb_bloodPressure.Clear();
+            if (!check) lb_dataBP.Text = "";
             cb_bloodPressure.Checked = check;
             bloodPressure_checked = check;
+            lb_dateBP.Visible = check;
+            lb_dateBP.Text = "Receiving...";
             lb_dataBP.Visible = check;
             lb_dataBP.Text = "Receiving...";
             StartMonitoring();
