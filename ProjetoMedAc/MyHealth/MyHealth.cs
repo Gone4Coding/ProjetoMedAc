@@ -8,6 +8,7 @@ using System.Speech.Recognition;
 using MyHealth.VoiceRecognition;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
+using MyHealth.ServiceReferenceHealth;
 
 
 namespace MyHealth
@@ -16,6 +17,7 @@ namespace MyHealth
     {
         #region Variables 
 
+        private ServiceHealthClient client;
         private SpeechSynthesizer synth;
         private PromptBuilder pBuilder;
         private SpeechRecognitionEngine sReconEngine;
@@ -24,7 +26,6 @@ namespace MyHealth
         private bool saturation_checked;
         private bool heartRate_checked;
         private bool speechActive = false;
-        private Stopwatch iteration = new Stopwatch();
         private bool closeQuestion = false;
         private bool setId = false;
 

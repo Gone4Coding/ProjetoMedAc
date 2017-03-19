@@ -106,14 +106,14 @@
     <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.Patient.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReferenceHealth\ServiceHealth1.wsdl" />
-    <None Include="Service References\ServiceReferenceHealth\ServiceHealth3.xsd">
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth.wsdl" />
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReferenceHealth\ServiceHealth31.xsd">
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReferenceHealth\ServiceHealth32.xsd">
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -127,6 +127,9 @@
     <WCFMetadataStorage Include="Service References\ServiceReferenceHealth\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\ServiceReferenceHealth\ServiceHealth.disco" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Service References\ServiceReferenceHealth\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +140,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceReferenceHealth\ServiceHealth1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ebb37897-613e-4f11-b38b-8961d76d6069" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="413ea645-1ee1-4769-8f7d-146e50ddfbcb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -9,9 +9,7 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings>
-      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
-    </CollectionMappings>
+    <CollectionMappings />
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -24,11 +22,11 @@
     <MetadataSource Address="http://localhost:54135/ServiceHealth.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiceHealth3.xsd" MetadataType="Schema" ID="1e17c4a3-685d-4ac5-89fe-4c0862de118b" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd2" />
-    <MetadataFile FileName="ServiceHealth1.disco" MetadataType="Disco" ID="4810bceb-fa88-4b73-b509-e8df9c88f03b" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?disco" />
-    <MetadataFile FileName="ServiceHealth31.xsd" MetadataType="Schema" ID="0968b3ff-999d-44be-b79a-3c25fc11a2fa" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd0" />
-    <MetadataFile FileName="ServiceHealth1.wsdl" MetadataType="Wsdl" ID="b55ac303-deb2-4b0c-910e-6731d381d4d5" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?wsdl" />
-    <MetadataFile FileName="ServiceHealth32.xsd" MetadataType="Schema" ID="d44ab30a-7478-48ed-8e70-8b5e547c080e" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceHealth.xsd" MetadataType="Schema" ID="4305e7cb-e85d-4b5e-8586-e1182056acfc" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceHealth.disco" MetadataType="Disco" ID="555f1d86-7bde-4389-b067-db8ef28f4507" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?disco" />
+    <MetadataFile FileName="ServiceHealth1.xsd" MetadataType="Schema" ID="8131d037-f90a-4351-b74d-d3c13bd230a1" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceHealth.wsdl" MetadataType="Wsdl" ID="94362430-be6e-484d-899f-1ad10d1061bb" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?wsdl" />
+    <MetadataFile FileName="ServiceHealth2.xsd" MetadataType="Schema" ID="810f2a40-b6a9-46e5-a0aa-c22f8242f0d7" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
