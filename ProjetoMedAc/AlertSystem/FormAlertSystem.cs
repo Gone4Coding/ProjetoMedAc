@@ -111,7 +111,7 @@ namespace AlertSystem
             {
                 Patient p = readFields();
                 
-                bool res = client.UpdatePatient(p,snsPatientEdit);
+                bool res = client.UpdatePatient(p);
 
                 if (!res)
                 {

@@ -428,7 +428,7 @@
             // 
             this.toolStripTextBoxMonitor.Name = "toolStripTextBoxMonitor";
             this.toolStripTextBoxMonitor.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(80, 40);
+            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(70, 40);
             // 
             // toolStripComboBoxmonitor
             // 
@@ -507,7 +507,7 @@
             this.tabPagePatients.Location = new System.Drawing.Point(4, 22);
             this.tabPagePatients.Name = "tabPagePatients";
             this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePatients.Size = new System.Drawing.Size(1319, 838);
+            this.tabPagePatients.Size = new System.Drawing.Size(1319, 714);
             this.tabPagePatients.TabIndex = 2;
             this.tabPagePatients.Text = "Patients";
             this.tabPagePatients.UseVisualStyleBackColor = true;
@@ -567,7 +567,7 @@
             // 
             this.toolStripTextBox.Name = "toolStripTextBox";
             this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBox.Size = new System.Drawing.Size(90, 40);
+            this.toolStripTextBox.Size = new System.Drawing.Size(80, 40);
             // 
             // toolStripComboBox
             // 
@@ -593,7 +593,7 @@
             this.groupBoxPatients.Controls.Add(this.dataGridViewPatients);
             this.groupBoxPatients.Location = new System.Drawing.Point(8, 43);
             this.groupBoxPatients.Name = "groupBoxPatients";
-            this.groupBoxPatients.Size = new System.Drawing.Size(500, 779);
+            this.groupBoxPatients.Size = new System.Drawing.Size(500, 767);
             this.groupBoxPatients.TabIndex = 2;
             this.groupBoxPatients.TabStop = false;
             this.groupBoxPatients.Text = "Patients";
@@ -615,7 +615,7 @@
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 705);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 693);
             this.dataGridViewPatients.TabIndex = 2;
             this.dataGridViewPatients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_CellMouseDoubleClick);
             this.dataGridViewPatients.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_ColumnHeaderMouseClick);
@@ -634,7 +634,7 @@
             this.groupBoxPatient.Controls.Add(this.panelInfoPatient);
             this.groupBoxPatient.Location = new System.Drawing.Point(512, 43);
             this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Size = new System.Drawing.Size(781, 779);
+            this.groupBoxPatient.Size = new System.Drawing.Size(781, 655);
             this.groupBoxPatient.TabIndex = 1;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient Info";
@@ -645,7 +645,7 @@
             this.bt_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save.Image = ((System.Drawing.Image)(resources.GetObject("bt_save.Image")));
             this.bt_save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_save.Location = new System.Drawing.Point(221, 649);
+            this.bt_save.Location = new System.Drawing.Point(221, 525);
             this.bt_save.Name = "bt_save";
             this.bt_save.Size = new System.Drawing.Size(114, 105);
             this.bt_save.TabIndex = 6;
@@ -660,7 +660,7 @@
             this.bt_cancelEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelEdit.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelEdit.Image")));
             this.bt_cancelEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelEdit.Location = new System.Drawing.Point(583, 649);
+            this.bt_cancelEdit.Location = new System.Drawing.Point(583, 525);
             this.bt_cancelEdit.Name = "bt_cancelEdit";
             this.bt_cancelEdit.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelEdit.TabIndex = 5;
@@ -675,7 +675,7 @@
             this.bt_cancelAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelAdd.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelAdd.Image")));
             this.bt_cancelAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelAdd.Location = new System.Drawing.Point(583, 649);
+            this.bt_cancelAdd.Location = new System.Drawing.Point(583, 525);
             this.bt_cancelAdd.Name = "bt_cancelAdd";
             this.bt_cancelAdd.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelAdd.TabIndex = 4;
@@ -690,7 +690,7 @@
             this.bt_edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_edit.Image = ((System.Drawing.Image)(resources.GetObject("bt_edit.Image")));
             this.bt_edit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_edit.Location = new System.Drawing.Point(84, 649);
+            this.bt_edit.Location = new System.Drawing.Point(84, 525);
             this.bt_edit.Name = "bt_edit";
             this.bt_edit.Size = new System.Drawing.Size(114, 105);
             this.bt_edit.TabIndex = 3;
@@ -705,7 +705,7 @@
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonAdd.Image")));
             this.buttonAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAdd.Location = new System.Drawing.Point(83, 649);
+            this.buttonAdd.Location = new System.Drawing.Point(83, 525);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(183, 105);
             this.buttonAdd.TabIndex = 2;
@@ -754,7 +754,7 @@
             this.panelInfoPatient.Controls.Add(this.tb_firstname);
             this.panelInfoPatient.Location = new System.Drawing.Point(83, 36);
             this.panelInfoPatient.Name = "panelInfoPatient";
-            this.panelInfoPatient.Size = new System.Drawing.Size(617, 598);
+            this.panelInfoPatient.Size = new System.Drawing.Size(617, 474);
             this.panelInfoPatient.TabIndex = 1;
             // 
             // label20
@@ -1094,7 +1094,7 @@
             this.tabControlRecors.Location = new System.Drawing.Point(0, 0);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
-            this.tabControlRecors.Size = new System.Drawing.Size(1327, 864);
+            this.tabControlRecors.Size = new System.Drawing.Size(1327, 740);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
             // 
@@ -1102,7 +1102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1327, 865);
+            this.ClientSize = new System.Drawing.Size(1327, 741);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAlertSystem";

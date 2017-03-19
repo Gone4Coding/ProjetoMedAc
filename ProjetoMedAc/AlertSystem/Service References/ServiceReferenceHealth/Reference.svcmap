@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:57877/ServiceHealth.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:54135/ServiceHealth.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiceHealth.wsdl" MetadataType="Wsdl" ID="ee32afdd-e80e-408b-971d-26d2368e6342" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?wsdl" />
-    <MetadataFile FileName="ServiceHealth.xsd" MetadataType="Schema" ID="c5b7bd4b-cca9-4888-9743-222236b4c6ff" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?xsd=xsd1" />
-    <MetadataFile FileName="ServiceHealth1.xsd" MetadataType="Schema" ID="dbe352ba-c9f8-4bf9-8d00-1d4fa5e08448" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?xsd=xsd0" />
-    <MetadataFile FileName="ServiceHealth.disco" MetadataType="Disco" ID="0f843e3e-22a5-4825-b6c1-68c134b67c29" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?disco" />
-    <MetadataFile FileName="ServiceHealth2.xsd" MetadataType="Schema" ID="8a57ead3-00f6-43d7-8ae3-bed7a7f38888" SourceId="1" SourceUrl="http://localhost:57877/ServiceHealth.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceHealth3.xsd" MetadataType="Schema" ID="1e17c4a3-685d-4ac5-89fe-4c0862de118b" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceHealth1.disco" MetadataType="Disco" ID="4810bceb-fa88-4b73-b509-e8df9c88f03b" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?disco" />
+    <MetadataFile FileName="ServiceHealth31.xsd" MetadataType="Schema" ID="0968b3ff-999d-44be-b79a-3c25fc11a2fa" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceHealth1.wsdl" MetadataType="Wsdl" ID="b55ac303-deb2-4b0c-910e-6731d381d4d5" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?wsdl" />
+    <MetadataFile FileName="ServiceHealth32.xsd" MetadataType="Schema" ID="d44ab30a-7478-48ed-8e70-8b5e547c080e" SourceId="1" SourceUrl="http://localhost:54135/ServiceHealth.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

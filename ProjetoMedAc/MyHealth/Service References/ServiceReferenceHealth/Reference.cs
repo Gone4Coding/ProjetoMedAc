@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlertSystem.ServiceReferenceHealth {
+namespace MyHealth.ServiceReferenceHealth {
     using System.Runtime.Serialization;
     using System;
     
@@ -681,31 +681,31 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<bool> ValidatePatientAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/InsertHeartRateRecord", ReplyAction="http://tempuri.org/IServiceHealth/InsertHeartRateRecordResponse")]
-        bool InsertHeartRateRecord(AlertSystem.ServiceReferenceHealth.HeartRate heartRate);
+        bool InsertHeartRateRecord(MyHealth.ServiceReferenceHealth.HeartRate heartRate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/InsertHeartRateRecord", ReplyAction="http://tempuri.org/IServiceHealth/InsertHeartRateRecordResponse")]
-        System.Threading.Tasks.Task<bool> InsertHeartRateRecordAsync(AlertSystem.ServiceReferenceHealth.HeartRate heartRate);
+        System.Threading.Tasks.Task<bool> InsertHeartRateRecordAsync(MyHealth.ServiceReferenceHealth.HeartRate heartRate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/InsertOxygenSaturationRecord", ReplyAction="http://tempuri.org/IServiceHealth/InsertOxygenSaturationRecordResponse")]
-        bool InsertOxygenSaturationRecord(AlertSystem.ServiceReferenceHealth.OxygenSaturation saturation);
+        bool InsertOxygenSaturationRecord(MyHealth.ServiceReferenceHealth.OxygenSaturation saturation);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/InsertOxygenSaturationRecord", ReplyAction="http://tempuri.org/IServiceHealth/InsertOxygenSaturationRecordResponse")]
-        System.Threading.Tasks.Task<bool> InsertOxygenSaturationRecordAsync(AlertSystem.ServiceReferenceHealth.OxygenSaturation saturation);
+        System.Threading.Tasks.Task<bool> InsertOxygenSaturationRecordAsync(MyHealth.ServiceReferenceHealth.OxygenSaturation saturation);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/InsertBloodPressureRecord", ReplyAction="http://tempuri.org/IServiceHealth/InsertBloodPressureRecordResponse")]
-        bool InsertBloodPressureRecord(AlertSystem.ServiceReferenceHealth.BloodPressure bloodPressure);
+        bool InsertBloodPressureRecord(MyHealth.ServiceReferenceHealth.BloodPressure bloodPressure);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/InsertBloodPressureRecord", ReplyAction="http://tempuri.org/IServiceHealth/InsertBloodPressureRecordResponse")]
-        System.Threading.Tasks.Task<bool> InsertBloodPressureRecordAsync(AlertSystem.ServiceReferenceHealth.BloodPressure bloodPressure);
+        System.Threading.Tasks.Task<bool> InsertBloodPressureRecordAsync(MyHealth.ServiceReferenceHealth.BloodPressure bloodPressure);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceHealthChannel : AlertSystem.ServiceReferenceHealth.IServiceHealth, System.ServiceModel.IClientChannel {
+    public interface IServiceHealthChannel : MyHealth.ServiceReferenceHealth.IServiceHealth, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceHealthClient : System.ServiceModel.ClientBase<AlertSystem.ServiceReferenceHealth.IServiceHealth>, AlertSystem.ServiceReferenceHealth.IServiceHealth {
+    public partial class ServiceHealthClient : System.ServiceModel.ClientBase<MyHealth.ServiceReferenceHealth.IServiceHealth>, MyHealth.ServiceReferenceHealth.IServiceHealth {
         
         public ServiceHealthClient() {
         }
@@ -734,27 +734,27 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.ValidatePatientAsync(sns);
         }
         
-        public bool InsertHeartRateRecord(AlertSystem.ServiceReferenceHealth.HeartRate heartRate) {
+        public bool InsertHeartRateRecord(MyHealth.ServiceReferenceHealth.HeartRate heartRate) {
             return base.Channel.InsertHeartRateRecord(heartRate);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertHeartRateRecordAsync(AlertSystem.ServiceReferenceHealth.HeartRate heartRate) {
+        public System.Threading.Tasks.Task<bool> InsertHeartRateRecordAsync(MyHealth.ServiceReferenceHealth.HeartRate heartRate) {
             return base.Channel.InsertHeartRateRecordAsync(heartRate);
         }
         
-        public bool InsertOxygenSaturationRecord(AlertSystem.ServiceReferenceHealth.OxygenSaturation saturation) {
+        public bool InsertOxygenSaturationRecord(MyHealth.ServiceReferenceHealth.OxygenSaturation saturation) {
             return base.Channel.InsertOxygenSaturationRecord(saturation);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertOxygenSaturationRecordAsync(AlertSystem.ServiceReferenceHealth.OxygenSaturation saturation) {
+        public System.Threading.Tasks.Task<bool> InsertOxygenSaturationRecordAsync(MyHealth.ServiceReferenceHealth.OxygenSaturation saturation) {
             return base.Channel.InsertOxygenSaturationRecordAsync(saturation);
         }
         
-        public bool InsertBloodPressureRecord(AlertSystem.ServiceReferenceHealth.BloodPressure bloodPressure) {
+        public bool InsertBloodPressureRecord(MyHealth.ServiceReferenceHealth.BloodPressure bloodPressure) {
             return base.Channel.InsertBloodPressureRecord(bloodPressure);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertBloodPressureRecordAsync(AlertSystem.ServiceReferenceHealth.BloodPressure bloodPressure) {
+        public System.Threading.Tasks.Task<bool> InsertBloodPressureRecordAsync(MyHealth.ServiceReferenceHealth.BloodPressure bloodPressure) {
             return base.Channel.InsertBloodPressureRecordAsync(bloodPressure);
         }
     }
@@ -764,85 +764,85 @@ namespace AlertSystem.ServiceReferenceHealth {
     public interface IServiceHealthAlert {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertPatientResponse")]
-        bool InsertPatient(AlertSystem.ServiceReferenceHealth.Patient patient);
+        bool InsertPatient(MyHealth.ServiceReferenceHealth.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertPatientResponse")]
-        System.Threading.Tasks.Task<bool> InsertPatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Threading.Tasks.Task<bool> InsertPatientAsync(MyHealth.ServiceReferenceHealth.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient);
+        bool UpdatePatient(MyHealth.ServiceReferenceHealth.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Threading.Tasks.Task<bool> UpdatePatientAsync(MyHealth.ServiceReferenceHealth.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientResponse")]
-        AlertSystem.ServiceReferenceHealth.Patient GetPatient(int sns);
+        MyHealth.ServiceReferenceHealth.Patient GetPatient(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Patient> GetPatientAsync(int sns);
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Patient> GetPatientAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatientList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientListResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient> GetPatientList();
+        MyHealth.ServiceReferenceHealth.Patient[] GetPatientList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatientList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient>> GetPatientListAsync();
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Patient[]> GetPatientListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/HeartRateList", ReplyAction="http://tempuri.org/IServiceHealthAlert/HeartRateListResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate> HeartRateList(int sns);
+        MyHealth.ServiceReferenceHealth.HeartRate[] HeartRateList(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/HeartRateList", ReplyAction="http://tempuri.org/IServiceHealthAlert/HeartRateListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate>> HeartRateListAsync(int sns);
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.HeartRate[]> HeartRateListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/OxygenSaturationList", ReplyAction="http://tempuri.org/IServiceHealthAlert/OxygenSaturationListResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation> OxygenSaturationList(int sns);
+        MyHealth.ServiceReferenceHealth.OxygenSaturation[] OxygenSaturationList(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/OxygenSaturationList", ReplyAction="http://tempuri.org/IServiceHealthAlert/OxygenSaturationListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation>> OxygenSaturationListAsync(int sns);
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.OxygenSaturation[]> OxygenSaturationListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/BloodPressureList", ReplyAction="http://tempuri.org/IServiceHealthAlert/BloodPressureListResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure> BloodPressureList(int sns);
+        MyHealth.ServiceReferenceHealth.BloodPressure[] BloodPressureList(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/BloodPressureList", ReplyAction="http://tempuri.org/IServiceHealthAlert/BloodPressureListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure>> BloodPressureListAsync(int sns);
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.BloodPressure[]> BloodPressureListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        AlertSystem.ServiceReferenceHealth.Alert GetAlert(string type);
+        MyHealth.ServiceReferenceHealth.Alert GetAlert(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert> GetAlertAsync(string type);
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Alert> GetAlertAsync(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert> GetAlertList();
+        MyHealth.ServiceReferenceHealth.Alert[] GetAlertList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert>> GetAlertListAsync();
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Alert[]> GetAlertListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        bool InsertAlert(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        bool InsertAlert(MyHealth.ServiceReferenceHealth.Alert _alert);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        System.Threading.Tasks.Task<bool> InsertAlertAsync(MyHealth.ServiceReferenceHealth.Alert _alert);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        bool UpdateAlert(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        bool UpdateAlert(MyHealth.ServiceReferenceHealth.Alert _alert);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        System.Threading.Tasks.Task<bool> UpdateAlertAsync(MyHealth.ServiceReferenceHealth.Alert _alert);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        bool DeleteAlert(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        bool DeleteAlert(MyHealth.ServiceReferenceHealth.Alert _alert);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        System.Threading.Tasks.Task<bool> DeleteAlertAsync(MyHealth.ServiceReferenceHealth.Alert _alert);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceHealthAlertChannel : AlertSystem.ServiceReferenceHealth.IServiceHealthAlert, System.ServiceModel.IClientChannel {
+    public interface IServiceHealthAlertChannel : MyHealth.ServiceReferenceHealth.IServiceHealthAlert, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceHealthAlertClient : System.ServiceModel.ClientBase<AlertSystem.ServiceReferenceHealth.IServiceHealthAlert>, AlertSystem.ServiceReferenceHealth.IServiceHealthAlert {
+    public partial class ServiceHealthAlertClient : System.ServiceModel.ClientBase<MyHealth.ServiceReferenceHealth.IServiceHealthAlert>, MyHealth.ServiceReferenceHealth.IServiceHealthAlert {
         
         public ServiceHealthAlertClient() {
         }
@@ -863,99 +863,99 @@ namespace AlertSystem.ServiceReferenceHealth {
                 base(binding, remoteAddress) {
         }
         
-        public bool InsertPatient(AlertSystem.ServiceReferenceHealth.Patient patient) {
+        public bool InsertPatient(MyHealth.ServiceReferenceHealth.Patient patient) {
             return base.Channel.InsertPatient(patient);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertPatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient) {
+        public System.Threading.Tasks.Task<bool> InsertPatientAsync(MyHealth.ServiceReferenceHealth.Patient patient) {
             return base.Channel.InsertPatientAsync(patient);
         }
         
-        public bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient) {
+        public bool UpdatePatient(MyHealth.ServiceReferenceHealth.Patient patient) {
             return base.Channel.UpdatePatient(patient);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient) {
+        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(MyHealth.ServiceReferenceHealth.Patient patient) {
             return base.Channel.UpdatePatientAsync(patient);
         }
         
-        public AlertSystem.ServiceReferenceHealth.Patient GetPatient(int sns) {
+        public MyHealth.ServiceReferenceHealth.Patient GetPatient(int sns) {
             return base.Channel.GetPatient(sns);
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Patient> GetPatientAsync(int sns) {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Patient> GetPatientAsync(int sns) {
             return base.Channel.GetPatientAsync(sns);
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient> GetPatientList() {
+        public MyHealth.ServiceReferenceHealth.Patient[] GetPatientList() {
             return base.Channel.GetPatientList();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient>> GetPatientListAsync() {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Patient[]> GetPatientListAsync() {
             return base.Channel.GetPatientListAsync();
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate> HeartRateList(int sns) {
+        public MyHealth.ServiceReferenceHealth.HeartRate[] HeartRateList(int sns) {
             return base.Channel.HeartRateList(sns);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate>> HeartRateListAsync(int sns) {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.HeartRate[]> HeartRateListAsync(int sns) {
             return base.Channel.HeartRateListAsync(sns);
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation> OxygenSaturationList(int sns) {
+        public MyHealth.ServiceReferenceHealth.OxygenSaturation[] OxygenSaturationList(int sns) {
             return base.Channel.OxygenSaturationList(sns);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation>> OxygenSaturationListAsync(int sns) {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.OxygenSaturation[]> OxygenSaturationListAsync(int sns) {
             return base.Channel.OxygenSaturationListAsync(sns);
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure> BloodPressureList(int sns) {
+        public MyHealth.ServiceReferenceHealth.BloodPressure[] BloodPressureList(int sns) {
             return base.Channel.BloodPressureList(sns);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure>> BloodPressureListAsync(int sns) {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.BloodPressure[]> BloodPressureListAsync(int sns) {
             return base.Channel.BloodPressureListAsync(sns);
         }
         
-        public AlertSystem.ServiceReferenceHealth.Alert GetAlert(string type) {
+        public MyHealth.ServiceReferenceHealth.Alert GetAlert(string type) {
             return base.Channel.GetAlert(type);
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert> GetAlertAsync(string type) {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Alert> GetAlertAsync(string type) {
             return base.Channel.GetAlertAsync(type);
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert> GetAlertList() {
+        public MyHealth.ServiceReferenceHealth.Alert[] GetAlertList() {
             return base.Channel.GetAlertList();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Alert>> GetAlertListAsync() {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.Alert[]> GetAlertListAsync() {
             return base.Channel.GetAlertListAsync();
         }
         
-        public bool InsertAlert(AlertSystem.ServiceReferenceHealth.Alert _alert) {
+        public bool InsertAlert(MyHealth.ServiceReferenceHealth.Alert _alert) {
             return base.Channel.InsertAlert(_alert);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert) {
+        public System.Threading.Tasks.Task<bool> InsertAlertAsync(MyHealth.ServiceReferenceHealth.Alert _alert) {
             return base.Channel.InsertAlertAsync(_alert);
         }
         
-        public bool UpdateAlert(AlertSystem.ServiceReferenceHealth.Alert _alert) {
+        public bool UpdateAlert(MyHealth.ServiceReferenceHealth.Alert _alert) {
             return base.Channel.UpdateAlert(_alert);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert) {
+        public System.Threading.Tasks.Task<bool> UpdateAlertAsync(MyHealth.ServiceReferenceHealth.Alert _alert) {
             return base.Channel.UpdateAlertAsync(_alert);
         }
         
-        public bool DeleteAlert(AlertSystem.ServiceReferenceHealth.Alert _alert) {
+        public bool DeleteAlert(MyHealth.ServiceReferenceHealth.Alert _alert) {
             return base.Channel.DeleteAlert(_alert);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert) {
+        public System.Threading.Tasks.Task<bool> DeleteAlertAsync(MyHealth.ServiceReferenceHealth.Alert _alert) {
             return base.Channel.DeleteAlertAsync(_alert);
         }
     }
