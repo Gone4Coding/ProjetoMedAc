@@ -15,8 +15,32 @@ namespace MyHealth.VoiceRecognition
         
         public enum Code
         {
+            // Commands With A
+            Alice,
+
+            // Commands With B
+            Bye,
+
+            // Commands With C
+            ChangeId,
+            Close,
+
+            // Commands With F
             Find,
             FindTerms,
+
+            // Commands With G
+            GotoHome,
+            GotoUserInformation,
+            GotoConfigurations,
+
+            // Commands With H
+            HelloAlice,
+
+            // Commands With N
+            No,
+
+            // Commands With S
             Search,
             SearchInMedline,
             StartMonitoring,
@@ -28,13 +52,9 @@ namespace MyHealth.VoiceRecognition
             StartBloodPressure,
             StopBloodPressure,
             SetId,
-            ChangeId,
-            Close,
-            HelloAlice,
-            Alice,
-            Bye,
-            Yes,
-            No
+
+            // Commands With Y
+            Yes
         }
         
         public static Grammar GetGrammar()

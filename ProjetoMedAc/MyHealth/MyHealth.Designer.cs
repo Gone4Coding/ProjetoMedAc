@@ -40,33 +40,40 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.mainTabing = new System.Windows.Forms.TabControl();
             this.home = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_userName = new System.Windows.Forms.Label();
+            this.gb_monitoringParametrs = new System.Windows.Forms.GroupBox();
             this.gb_physiologicDataNormal = new System.Windows.Forms.GroupBox();
             this.lb_dataHR = new System.Windows.Forms.Label();
             this.lb_dataBP = new System.Windows.Forms.Label();
             this.lb_dataSPO2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.personalData = new System.Windows.Forms.TabPage();
             this.medline = new System.Windows.Forms.TabPage();
+            this.browser = new System.Windows.Forms.WebBrowser();
+            this.panelURL = new System.Windows.Forms.Panel();
+            this.bt_searchMedLine = new System.Windows.Forms.Button();
+            this.tb_url = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.configurations = new System.Windows.Forms.TabPage();
+            this.bt_cancel = new System.Windows.Forms.Button();
+            this.bt_save = new System.Windows.Forms.Button();
             this.cb_medlineURL = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gb_voice = new System.Windows.Forms.GroupBox();
             this.numberRating = new System.Windows.Forms.NumericUpDown();
             this.lb_rate = new System.Windows.Forms.Label();
             this.rb_female = new System.Windows.Forms.RadioButton();
             this.rb_male = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
-            this.bt_saveURL = new System.Windows.Forms.Button();
             this.mainTabing.SuspendLayout();
             this.home.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gb_monitoringParametrs.SuspendLayout();
             this.gb_physiologicDataNormal.SuspendLayout();
+            this.medline.SuspendLayout();
+            this.panelURL.SuspendLayout();
             this.configurations.SuspendLayout();
             this.cb_medlineURL.SuspendLayout();
             this.gb_voice.SuspendLayout();
@@ -176,6 +183,9 @@
             // 
             // mainTabing
             // 
+            this.mainTabing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTabing.Controls.Add(this.home);
             this.mainTabing.Controls.Add(this.personalData);
             this.mainTabing.Controls.Add(this.medline);
@@ -189,8 +199,9 @@
             // 
             // home
             // 
-            this.home.Controls.Add(this.label1);
-            this.home.Controls.Add(this.groupBox1);
+            this.home.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
+            this.home.Controls.Add(this.lb_userName);
+            this.home.Controls.Add(this.gb_monitoringParametrs);
             this.home.Controls.Add(this.gb_physiologicDataNormal);
             this.home.Controls.Add(this.bt_Insert);
             this.home.Controls.Add(this.tb_patientId);
@@ -202,36 +213,36 @@
             this.home.Size = new System.Drawing.Size(653, 405);
             this.home.TabIndex = 0;
             this.home.Text = "Home";
-            this.home.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lb_userName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(198, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 22);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "UserName";
+            this.lb_userName.AutoSize = true;
+            this.lb_userName.Location = new System.Drawing.Point(198, 15);
+            this.lb_userName.Name = "lb_userName";
+            this.lb_userName.Size = new System.Drawing.Size(95, 22);
+            this.lb_userName.TabIndex = 9;
+            this.lb_userName.Text = "UserName";
             // 
-            // groupBox1
+            // gb_monitoringParametrs
             // 
-            this.groupBox1.Controls.Add(this.cb_bloodPressure);
-            this.groupBox1.Controls.Add(this.cb_saturations);
-            this.groupBox1.Controls.Add(this.cb_heartRate);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.groupBox1.Location = new System.Drawing.Point(7, 92);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(640, 91);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Monitoring Parameters";
+            this.gb_monitoringParametrs.BackColor = System.Drawing.Color.Transparent;
+            this.gb_monitoringParametrs.Controls.Add(this.cb_bloodPressure);
+            this.gb_monitoringParametrs.Controls.Add(this.cb_saturations);
+            this.gb_monitoringParametrs.Controls.Add(this.cb_heartRate);
+            this.gb_monitoringParametrs.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.gb_monitoringParametrs.Location = new System.Drawing.Point(7, 92);
+            this.gb_monitoringParametrs.Name = "gb_monitoringParametrs";
+            this.gb_monitoringParametrs.Size = new System.Drawing.Size(640, 91);
+            this.gb_monitoringParametrs.TabIndex = 8;
+            this.gb_monitoringParametrs.TabStop = false;
+            this.gb_monitoringParametrs.Text = "Monitoring Parameters";
             // 
             // gb_physiologicDataNormal
             // 
+            this.gb_physiologicDataNormal.BackColor = System.Drawing.Color.Transparent;
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataHR);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataBP);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataSPO2);
-            this.gb_physiologicDataNormal.Controls.Add(this.button2);
             this.gb_physiologicDataNormal.Controls.Add(this.button1);
             this.gb_physiologicDataNormal.Controls.Add(this.label4);
             this.gb_physiologicDataNormal.Controls.Add(this.label3);
@@ -274,16 +285,6 @@
             this.lb_dataSPO2.TabIndex = 9;
             this.lb_dataSPO2.Text = "DataSPO2";
             // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(6, 85);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 52);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Simple View";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -323,16 +324,18 @@
             // 
             // personalData
             // 
+            this.personalData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
             this.personalData.Location = new System.Drawing.Point(4, 29);
             this.personalData.Name = "personalData";
             this.personalData.Padding = new System.Windows.Forms.Padding(3);
             this.personalData.Size = new System.Drawing.Size(653, 405);
             this.personalData.TabIndex = 1;
             this.personalData.Text = "User Information";
-            this.personalData.UseVisualStyleBackColor = true;
             // 
             // medline
             // 
+            this.medline.Controls.Add(this.browser);
+            this.medline.Controls.Add(this.panelURL);
             this.medline.Location = new System.Drawing.Point(4, 29);
             this.medline.Name = "medline";
             this.medline.Size = new System.Drawing.Size(653, 405);
@@ -340,8 +343,60 @@
             this.medline.Text = "MedLine";
             this.medline.UseVisualStyleBackColor = true;
             // 
+            // browser
+            // 
+            this.browser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.browser.Location = new System.Drawing.Point(-4, 58);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.Size = new System.Drawing.Size(657, 347);
+            this.browser.TabIndex = 1;
+            // 
+            // panelURL
+            // 
+            this.panelURL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
+            this.panelURL.Controls.Add(this.bt_searchMedLine);
+            this.panelURL.Controls.Add(this.tb_url);
+            this.panelURL.Controls.Add(this.label6);
+            this.panelURL.Location = new System.Drawing.Point(0, 0);
+            this.panelURL.Name = "panelURL";
+            this.panelURL.Size = new System.Drawing.Size(653, 56);
+            this.panelURL.TabIndex = 0;
+            // 
+            // bt_searchMedLine
+            // 
+            this.bt_searchMedLine.FlatAppearance.BorderSize = 0;
+            this.bt_searchMedLine.Location = new System.Drawing.Point(575, 12);
+            this.bt_searchMedLine.Name = "bt_searchMedLine";
+            this.bt_searchMedLine.Size = new System.Drawing.Size(75, 30);
+            this.bt_searchMedLine.TabIndex = 2;
+            this.bt_searchMedLine.Text = "Search";
+            this.bt_searchMedLine.UseVisualStyleBackColor = true;
+            this.bt_searchMedLine.Click += new System.EventHandler(this.bt_searchMedLine_Click);
+            // 
+            // tb_url
+            // 
+            this.tb_url.Location = new System.Drawing.Point(56, 13);
+            this.tb_url.Name = "tb_url";
+            this.tb_url.Size = new System.Drawing.Size(513, 27);
+            this.tb_url.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 22);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "URL";
+            // 
             // configurations
             // 
+            this.configurations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
+            this.configurations.Controls.Add(this.bt_cancel);
+            this.configurations.Controls.Add(this.bt_save);
             this.configurations.Controls.Add(this.cb_medlineURL);
             this.configurations.Controls.Add(this.gb_voice);
             this.configurations.Location = new System.Drawing.Point(4, 29);
@@ -350,11 +405,29 @@
             this.configurations.Size = new System.Drawing.Size(653, 405);
             this.configurations.TabIndex = 3;
             this.configurations.Text = "Configurations";
-            this.configurations.UseVisualStyleBackColor = true;
+            // 
+            // bt_cancel
+            // 
+            this.bt_cancel.Location = new System.Drawing.Point(554, 364);
+            this.bt_cancel.Name = "bt_cancel";
+            this.bt_cancel.Size = new System.Drawing.Size(93, 35);
+            this.bt_cancel.TabIndex = 2;
+            this.bt_cancel.Text = "Cancel";
+            this.bt_cancel.UseVisualStyleBackColor = true;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
+            // 
+            // bt_save
+            // 
+            this.bt_save.Location = new System.Drawing.Point(455, 364);
+            this.bt_save.Name = "bt_save";
+            this.bt_save.Size = new System.Drawing.Size(93, 35);
+            this.bt_save.TabIndex = 2;
+            this.bt_save.Text = "Save";
+            this.bt_save.UseVisualStyleBackColor = true;
+            this.bt_save.Click += new System.EventHandler(this.bt_save_Click);
             // 
             // cb_medlineURL
             // 
-            this.cb_medlineURL.Controls.Add(this.bt_saveURL);
             this.cb_medlineURL.Controls.Add(this.label5);
             this.cb_medlineURL.Controls.Add(this.textBox1);
             this.cb_medlineURL.Location = new System.Drawing.Point(267, 16);
@@ -363,6 +436,15 @@
             this.cb_medlineURL.TabIndex = 1;
             this.cb_medlineURL.TabStop = false;
             this.cb_medlineURL.Text = "URL MedLine";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 22);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "URL";
             // 
             // textBox1
             // 
@@ -432,28 +514,11 @@
             this.rb_male.Text = "Male";
             this.rb_male.UseVisualStyleBackColor = true;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 22);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "URL";
-            // 
-            // bt_saveURL
-            // 
-            this.bt_saveURL.Location = new System.Drawing.Point(267, 93);
-            this.bt_saveURL.Name = "bt_saveURL";
-            this.bt_saveURL.Size = new System.Drawing.Size(93, 35);
-            this.bt_saveURL.TabIndex = 2;
-            this.bt_saveURL.Text = "Save";
-            this.bt_saveURL.UseVisualStyleBackColor = true;
-            // 
             // MyHealth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(679, 476);
             this.Controls.Add(this.mainTabing);
             this.Controls.Add(this.checkBox1);
@@ -465,10 +530,13 @@
             this.mainTabing.ResumeLayout(false);
             this.home.ResumeLayout(false);
             this.home.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gb_monitoringParametrs.ResumeLayout(false);
+            this.gb_monitoringParametrs.PerformLayout();
             this.gb_physiologicDataNormal.ResumeLayout(false);
             this.gb_physiologicDataNormal.PerformLayout();
+            this.medline.ResumeLayout(false);
+            this.panelURL.ResumeLayout(false);
+            this.panelURL.PerformLayout();
             this.configurations.ResumeLayout(false);
             this.cb_medlineURL.ResumeLayout(false);
             this.cb_medlineURL.PerformLayout();
@@ -497,15 +565,14 @@
         private System.Windows.Forms.TabPage personalData;
         private System.Windows.Forms.TabPage medline;
         private System.Windows.Forms.GroupBox gb_physiologicDataNormal;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gb_monitoringParametrs;
+        private System.Windows.Forms.Label lb_userName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lb_dataHR;
         private System.Windows.Forms.Label lb_dataBP;
         private System.Windows.Forms.Label lb_dataSPO2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage configurations;
         private System.Windows.Forms.GroupBox gb_voice;
@@ -515,8 +582,14 @@
         private System.Windows.Forms.NumericUpDown numberRating;
         private System.Windows.Forms.GroupBox cb_medlineURL;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button bt_saveURL;
+        private System.Windows.Forms.Button bt_save;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panelURL;
+        private System.Windows.Forms.Button bt_searchMedLine;
+        private System.Windows.Forms.TextBox tb_url;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.WebBrowser browser;
+        private System.Windows.Forms.Button bt_cancel;
     }
 }
 
