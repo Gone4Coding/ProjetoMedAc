@@ -49,12 +49,16 @@ namespace MyHealth
 
         #region Events
 
-        private void bt_validate_Click(object sender, EventArgs e)
+        private void bt_insert_Click(object sender, EventArgs e)
         {
-            int id;
-            if (int.TryParse(tb_patientId.Text, out id))
+            int sns;
+            if (int.TryParse(tb_patientId.Text, out sns))
             {
 
+            }
+            else
+            {
+                MessageBox.Show("Wrong format!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -274,6 +278,7 @@ namespace MyHealth
                 else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.SearchInMedline.ToString()))
                 {
                     //TODO ABRIR O FORM PARA PROCURAR NO MEDLINE
+                    mainTabing.SelectedTab = medline;
                 }
                 else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Find.ToString()))
                 {
@@ -307,14 +312,19 @@ namespace MyHealth
         
         private void Speak(string phrase)
         {
+            string genderProperties = Properties.Settings.Default.Gender_Voice;
+            VoiceGender gender = (genderProperties.Equals("Male")) ? VoiceGender.Male : VoiceGender.Female;
+
+            int rate = Properties.Settings.Default.Voice_Rate;
+
             pBuilder.ClearContent();
             pBuilder.AppendText(phrase);
-            synth.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
+            synth.SelectVoiceByHints(gender, VoiceAge.Adult);
+            synth.Rate = rate;
             synth.SpeakAsync(pBuilder);
         }
-        
+
         #endregion Methods
-
-
+        
     }
 }

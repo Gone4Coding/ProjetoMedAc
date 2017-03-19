@@ -5,5 +5,14 @@
     <Setting Name="Patient_Id" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="Gender_Voice" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Voice_Rate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MedLine_URL" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

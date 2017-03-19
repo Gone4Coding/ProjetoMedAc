@@ -761,7 +761,7 @@ namespace AlertSystem.ServiceReferenceHealth {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReferenceHealth.IServiceHealthAlert")]
-    public interface IServiceHealthAlert {
+    public interface IServiceHealthAlert { 
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertPatientResponse")]
         bool InsertPatient(AlertSystem.ServiceReferenceHealth.Patient patient);

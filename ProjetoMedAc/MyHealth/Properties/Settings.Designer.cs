@@ -34,5 +34,41 @@ namespace MyHealth.Properties {
                 this["Patient_Id"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Gender_Voice {
+            get {
+                return ((string)(this["Gender_Voice"]));
+            }
+            set {
+                this["Gender_Voice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Voice_Rate {
+            get {
+                return ((int)(this["Voice_Rate"]));
+            }
+            set {
+                this["Voice_Rate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MedLine_URL {
+            get {
+                return ((string)(this["MedLine_URL"]));
+            }
+            set {
+                this["MedLine_URL"] = value;
+            }
+        }
     }
 }
