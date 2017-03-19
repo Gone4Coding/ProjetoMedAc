@@ -22,6 +22,7 @@ namespace MyHealth
         private PromptBuilder pBuilder;
         private SpeechRecognitionEngine sReconEngine;
         private PhysiologicParametersDll.PhysiologicParametersDll dll;
+        private int snsUser;
         private bool bloodPressure_checked;
         private bool saturation_checked;
         private bool heartRate_checked;
@@ -35,19 +36,21 @@ namespace MyHealth
 
         public MyHealth()
         {
+            this.dll = new PhysiologicParametersDll.PhysiologicParametersDll();
+            this.sReconEngine = new SpeechRecognitionEngine();
+            this.synth = new SpeechSynthesizer();
+            this.pBuilder = new PromptBuilder();
+            this.client = new ServiceHealthClient();
+
             InitializeComponent();
         }
 
         private void MyHealth_Load(object sender, EventArgs e)
         {
-            this.dll = new PhysiologicParametersDll.PhysiologicParametersDll();
-            this.sReconEngine = new SpeechRecognitionEngine();
-            this.synth = new SpeechSynthesizer();
-            this.pBuilder = new PromptBuilder();
-            InitializeSpeech();
-
             tb_patientId.Text = Properties.Settings.Default.Patient_Id.ToString();
+            snsUser = Properties.Settings.Default.Patient_Id;
             HideLabels(false);
+            InitializeSpeech();
         }
 
         private void MyHealth_FormClosing(object sender, FormClosingEventArgs e)
@@ -272,7 +275,17 @@ namespace MyHealth
             int sns;
             if (int.TryParse(tb_patientId.Text, out sns))
             {
+                bool verifiedSNS = client.ValidatePatient(sns);
 
+                if (!verifiedSNS)
+                {
+                    MessageBox.Show("The SNS is not valid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    Properties.Settings.Default.Patient_Id = sns;
+                    Properties.Settings.Default.Save();
+                }
             }
             else
             {
@@ -303,6 +316,10 @@ namespace MyHealth
 
                         lb_dataBP.Text = diastolic + "/" + systolic;
                         lb_dateBP.Text = date.ToString();
+                        /*BloodPressure bp = new BloodPressure();
+                        bp.PatientSNS = snsUser;
+                        bp.Date = date;
+                        client.InsertBloodPressureRecord(bp)*/
                         break;
 
                     case "SPO2":
