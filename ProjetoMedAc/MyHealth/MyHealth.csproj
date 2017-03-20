@@ -73,6 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Util.cs" />
     <Compile Include="VoiceRecognition\VoiceRecognition.cs" />
     <EmbeddedResource Include="MyHealth.resx">
       <DependentUpon>MyHealth.cs</DependentUpon>

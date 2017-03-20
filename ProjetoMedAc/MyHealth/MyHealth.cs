@@ -3,9 +3,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
+using System.Threading;
 using System.Xml;
 using MyHealth.ServiceReferenceHealth;
-
+using System.Threading.Tasks;
 
 namespace MyHealth
 {
@@ -238,6 +239,7 @@ namespace MyHealth
 
         private void EveryThingOk()
         {
+            MoveGroupBoxUser();
             gb_monitoringParametrs.Visible = true;
             gb_physiologicDataNormal.Visible = true;
             lb_userName.Visible = true;
@@ -451,17 +453,50 @@ namespace MyHealth
         }
 
         private void MoveGroupBoxUser()
-        {
-            Point initialPoint = new Point(192, 71);
-            Point finalPoint = new Point(6, 6);
+        { 
+            Control destination = new Control();
+            destination.Location = new Point(6, 6);
 
-            for (int xInit = initialPoint.X; xInit <= finalPoint.X; xInit++)
+            slideToDestination(destination, gb_user, 2, null);
+        }
+
+        private void slideToDestination(Control destination, Control control, int delay, Action onFinish)
+        {
+            new Task(() =>
             {
-                for (int yInit = initialPoint.Y; yInit < finalPoint.Y; yInit++)
+                int directionX = destination.Left > control.Left ? 1 : -1;
+                int directionY = destination.Bottom > control.Top ? 1 : -1;
+
+                while (control.Left != destination.Left || control.Top != destination.Bottom)
                 {
-                    gb_user.Location = new Point(xInit, yInit);
+                    try
+                    {
+                        if (control.Left != destination.Left)
+                        {
+                            this.Invoke((Action)delegate ()
+                            {
+                                control.Left += directionX;
+                            });
+                        }
+                        if (control.Top != destination.Bottom)
+                        {
+                            this.Invoke((Action)delegate ()
+                            {
+                                control.Top += directionY;
+                            });
+                        }
+                        Thread.Sleep(delay);
+                    }
+                    catch
+                    {
+                        // form could be disposed
+                        break;
+                    }
                 }
-            }
+
+                if (onFinish != null) onFinish();
+
+            }).Start();
         }
 
         #endregion
