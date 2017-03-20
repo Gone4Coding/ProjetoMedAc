@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lb_patientId = new System.Windows.Forms.Label();
-            this.tb_patientId = new System.Windows.Forms.TextBox();
+            this.tb_patientSNS = new System.Windows.Forms.TextBox();
             this.bt_Insert = new System.Windows.Forms.Button();
             this.cb_bloodPressure = new System.Windows.Forms.CheckBox();
             this.cb_saturations = new System.Windows.Forms.CheckBox();
@@ -40,7 +40,9 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.mainTabing = new System.Windows.Forms.TabControl();
             this.home = new System.Windows.Forms.TabPage();
+            this.gb_user = new System.Windows.Forms.GroupBox();
             this.lb_userName = new System.Windows.Forms.Label();
+            this.lb_serviceError = new System.Windows.Forms.Label();
             this.gb_monitoringParametrs = new System.Windows.Forms.GroupBox();
             this.gb_physiologicDataNormal = new System.Windows.Forms.GroupBox();
             this.lb_dataHR = new System.Windows.Forms.Label();
@@ -51,6 +53,36 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.personalData = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tb_weight = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tb_height = new System.Windows.Forms.TextBox();
+            this.tb_emContactNumCountryCode = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tb_emergencyContactNum = new System.Windows.Forms.TextBox();
+            this.tb_emergencyContactName = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxGender = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.richTextBox_address = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tb_firstname = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tb_lastName = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tb_email = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_phone = new System.Windows.Forms.TextBox();
+            this.dateTimePicker_birthdate = new System.Windows.Forms.DateTimePicker();
+            this.tb_phoneCountryCode = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tb_nif = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tb_sns = new System.Windows.Forms.TextBox();
             this.medline = new System.Windows.Forms.TabPage();
             this.browser = new System.Windows.Forms.WebBrowser();
             this.panelURL = new System.Windows.Forms.Panel();
@@ -58,8 +90,8 @@
             this.tb_url = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.configurations = new System.Windows.Forms.TabPage();
-            this.bt_cancel = new System.Windows.Forms.Button();
-            this.bt_save = new System.Windows.Forms.Button();
+            this.bt_cancelConfigurations = new System.Windows.Forms.Button();
+            this.bt_saveConfigurations = new System.Windows.Forms.Button();
             this.cb_medlineURL = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -70,8 +102,12 @@
             this.rb_male = new System.Windows.Forms.RadioButton();
             this.mainTabing.SuspendLayout();
             this.home.SuspendLayout();
+            this.gb_user.SuspendLayout();
             this.gb_monitoringParametrs.SuspendLayout();
             this.gb_physiologicDataNormal.SuspendLayout();
+            this.personalData.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.medline.SuspendLayout();
             this.panelURL.SuspendLayout();
             this.configurations.SuspendLayout();
@@ -84,23 +120,23 @@
             // 
             this.lb_patientId.AutoSize = true;
             this.lb_patientId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.lb_patientId.Location = new System.Drawing.Point(11, 15);
+            this.lb_patientId.Location = new System.Drawing.Point(7, 29);
             this.lb_patientId.Name = "lb_patientId";
             this.lb_patientId.Size = new System.Drawing.Size(47, 22);
             this.lb_patientId.TabIndex = 0;
             this.lb_patientId.Text = "SNS";
             // 
-            // tb_patientId
+            // tb_patientSNS
             // 
-            this.tb_patientId.Location = new System.Drawing.Point(64, 12);
-            this.tb_patientId.Name = "tb_patientId";
-            this.tb_patientId.Size = new System.Drawing.Size(128, 27);
-            this.tb_patientId.TabIndex = 1;
+            this.tb_patientSNS.Location = new System.Drawing.Point(60, 26);
+            this.tb_patientSNS.Name = "tb_patientSNS";
+            this.tb_patientSNS.Size = new System.Drawing.Size(128, 27);
+            this.tb_patientSNS.TabIndex = 1;
             // 
             // bt_Insert
             // 
             this.bt_Insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.bt_Insert.Location = new System.Drawing.Point(64, 45);
+            this.bt_Insert.Location = new System.Drawing.Point(60, 59);
             this.bt_Insert.Name = "bt_Insert";
             this.bt_Insert.Size = new System.Drawing.Size(91, 34);
             this.bt_Insert.TabIndex = 2;
@@ -173,8 +209,11 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(16, 452);
+            this.checkBox1.Location = new System.Drawing.Point(12, 521);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(63, 17);
             this.checkBox1.TabIndex = 7;
@@ -194,34 +233,55 @@
             this.mainTabing.Location = new System.Drawing.Point(12, 12);
             this.mainTabing.Name = "mainTabing";
             this.mainTabing.SelectedIndex = 0;
-            this.mainTabing.Size = new System.Drawing.Size(661, 438);
+            this.mainTabing.Size = new System.Drawing.Size(694, 507);
             this.mainTabing.TabIndex = 8;
             // 
             // home
             // 
             this.home.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
-            this.home.Controls.Add(this.lb_userName);
+            this.home.Controls.Add(this.gb_user);
+            this.home.Controls.Add(this.lb_serviceError);
             this.home.Controls.Add(this.gb_monitoringParametrs);
             this.home.Controls.Add(this.gb_physiologicDataNormal);
-            this.home.Controls.Add(this.bt_Insert);
-            this.home.Controls.Add(this.tb_patientId);
-            this.home.Controls.Add(this.lb_patientId);
             this.home.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.home.Location = new System.Drawing.Point(4, 29);
             this.home.Name = "home";
             this.home.Padding = new System.Windows.Forms.Padding(3);
-            this.home.Size = new System.Drawing.Size(653, 405);
+            this.home.Size = new System.Drawing.Size(686, 474);
             this.home.TabIndex = 0;
             this.home.Text = "Home";
+            // 
+            // gb_user
+            // 
+            this.gb_user.Controls.Add(this.tb_patientSNS);
+            this.gb_user.Controls.Add(this.lb_patientId);
+            this.gb_user.Controls.Add(this.lb_userName);
+            this.gb_user.Controls.Add(this.bt_Insert);
+            this.gb_user.Location = new System.Drawing.Point(6, 6);
+            this.gb_user.Name = "gb_user";
+            this.gb_user.Size = new System.Drawing.Size(297, 103);
+            this.gb_user.TabIndex = 11;
+            this.gb_user.TabStop = false;
+            this.gb_user.Text = "Patient";
             // 
             // lb_userName
             // 
             this.lb_userName.AutoSize = true;
-            this.lb_userName.Location = new System.Drawing.Point(198, 15);
+            this.lb_userName.Location = new System.Drawing.Point(194, 29);
             this.lb_userName.Name = "lb_userName";
             this.lb_userName.Size = new System.Drawing.Size(95, 22);
             this.lb_userName.TabIndex = 9;
             this.lb_userName.Text = "UserName";
+            // 
+            // lb_serviceError
+            // 
+            this.lb_serviceError.AutoSize = true;
+            this.lb_serviceError.ForeColor = System.Drawing.Color.Firebrick;
+            this.lb_serviceError.Location = new System.Drawing.Point(500, 15);
+            this.lb_serviceError.Name = "lb_serviceError";
+            this.lb_serviceError.Size = new System.Drawing.Size(180, 22);
+            this.lb_serviceError.TabIndex = 10;
+            this.lb_serviceError.Text = "Service Is Not Active!";
             // 
             // gb_monitoringParametrs
             // 
@@ -230,7 +290,7 @@
             this.gb_monitoringParametrs.Controls.Add(this.cb_saturations);
             this.gb_monitoringParametrs.Controls.Add(this.cb_heartRate);
             this.gb_monitoringParametrs.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.gb_monitoringParametrs.Location = new System.Drawing.Point(7, 92);
+            this.gb_monitoringParametrs.Location = new System.Drawing.Point(6, 115);
             this.gb_monitoringParametrs.Name = "gb_monitoringParametrs";
             this.gb_monitoringParametrs.Size = new System.Drawing.Size(640, 91);
             this.gb_monitoringParametrs.TabIndex = 8;
@@ -251,7 +311,7 @@
             this.gb_physiologicDataNormal.Controls.Add(this.lb_date_HR);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dateBP);
             this.gb_physiologicDataNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.gb_physiologicDataNormal.Location = new System.Drawing.Point(6, 189);
+            this.gb_physiologicDataNormal.Location = new System.Drawing.Point(6, 212);
             this.gb_physiologicDataNormal.Name = "gb_physiologicDataNormal";
             this.gb_physiologicDataNormal.Size = new System.Drawing.Size(641, 210);
             this.gb_physiologicDataNormal.TabIndex = 7;
@@ -325,12 +385,313 @@
             // personalData
             // 
             this.personalData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
+            this.personalData.Controls.Add(this.groupBox2);
+            this.personalData.Controls.Add(this.groupBox1);
             this.personalData.Location = new System.Drawing.Point(4, 29);
             this.personalData.Name = "personalData";
             this.personalData.Padding = new System.Windows.Forms.Padding(3);
-            this.personalData.Size = new System.Drawing.Size(653, 405);
+            this.personalData.Size = new System.Drawing.Size(686, 474);
             this.personalData.TabIndex = 1;
             this.personalData.Text = "User Information";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.tb_weight);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.tb_height);
+            this.groupBox2.Controls.Add(this.tb_emContactNumCountryCode);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.tb_emergencyContactNum);
+            this.groupBox2.Controls.Add(this.tb_emergencyContactName);
+            this.groupBox2.Location = new System.Drawing.Point(6, 294);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(674, 171);
+            this.groupBox2.TabIndex = 59;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Clinical Data";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(6, 128);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(66, 22);
+            this.label17.TabIndex = 67;
+            this.label17.Text = "Weight";
+            // 
+            // tb_weight
+            // 
+            this.tb_weight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_weight.Location = new System.Drawing.Point(231, 125);
+            this.tb_weight.Name = "tb_weight";
+            this.tb_weight.Size = new System.Drawing.Size(120, 26);
+            this.tb_weight.TabIndex = 66;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(6, 96);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(62, 22);
+            this.label18.TabIndex = 65;
+            this.label18.Text = "Height";
+            // 
+            // tb_height
+            // 
+            this.tb_height.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_height.Location = new System.Drawing.Point(231, 93);
+            this.tb_height.Name = "tb_height";
+            this.tb_height.Size = new System.Drawing.Size(120, 26);
+            this.tb_height.TabIndex = 64;
+            // 
+            // tb_emContactNumCountryCode
+            // 
+            this.tb_emContactNumCountryCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_emContactNumCountryCode.Location = new System.Drawing.Point(231, 61);
+            this.tb_emContactNumCountryCode.Name = "tb_emContactNumCountryCode";
+            this.tb_emContactNumCountryCode.Size = new System.Drawing.Size(70, 26);
+            this.tb_emContactNumCountryCode.TabIndex = 63;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(6, 32);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(219, 22);
+            this.label15.TabIndex = 54;
+            this.label15.Text = "Emergency Contact Name";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(6, 64);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(179, 22);
+            this.label16.TabIndex = 53;
+            this.label16.Text = "Emergency Contact *";
+            // 
+            // tb_emergencyContactNum
+            // 
+            this.tb_emergencyContactNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_emergencyContactNum.Location = new System.Drawing.Point(307, 61);
+            this.tb_emergencyContactNum.Name = "tb_emergencyContactNum";
+            this.tb_emergencyContactNum.Size = new System.Drawing.Size(225, 26);
+            this.tb_emergencyContactNum.TabIndex = 52;
+            // 
+            // tb_emergencyContactName
+            // 
+            this.tb_emergencyContactName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_emergencyContactName.Location = new System.Drawing.Point(231, 29);
+            this.tb_emergencyContactName.Name = "tb_emergencyContactName";
+            this.tb_emergencyContactName.Size = new System.Drawing.Size(301, 26);
+            this.tb_emergencyContactName.TabIndex = 51;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBoxGender);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.richTextBox_address);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.tb_firstname);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.tb_lastName);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.tb_email);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.tb_phone);
+            this.groupBox1.Controls.Add(this.dateTimePicker_birthdate);
+            this.groupBox1.Controls.Add(this.tb_phoneCountryCode);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.tb_nif);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.tb_sns);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(674, 282);
+            this.groupBox1.TabIndex = 58;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Demographic Data";
+            // 
+            // comboBoxGender
+            // 
+            this.comboBoxGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxGender.FormattingEnabled = true;
+            this.comboBoxGender.Location = new System.Drawing.Point(121, 241);
+            this.comboBoxGender.Name = "comboBoxGender";
+            this.comboBoxGender.Size = new System.Drawing.Size(120, 28);
+            this.comboBoxGender.TabIndex = 62;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(6, 245);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 22);
+            this.label14.TabIndex = 61;
+            this.label14.Text = "Gender *";
+            // 
+            // richTextBox_address
+            // 
+            this.richTextBox_address.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox_address.Location = new System.Drawing.Point(121, 186);
+            this.richTextBox_address.Name = "richTextBox_address";
+            this.richTextBox_address.Size = new System.Drawing.Size(301, 49);
+            this.richTextBox_address.TabIndex = 60;
+            this.richTextBox_address.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 190);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(76, 22);
+            this.label13.TabIndex = 59;
+            this.label13.Text = "Address";
+            // 
+            // tb_firstname
+            // 
+            this.tb_firstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_firstname.Location = new System.Drawing.Point(121, 29);
+            this.tb_firstname.Name = "tb_firstname";
+            this.tb_firstname.Size = new System.Drawing.Size(200, 26);
+            this.tb_firstname.TabIndex = 44;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(6, 158);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 22);
+            this.label11.TabIndex = 57;
+            this.label11.Text = "Email";
+            // 
+            // tb_lastName
+            // 
+            this.tb_lastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_lastName.Location = new System.Drawing.Point(441, 29);
+            this.tb_lastName.Name = "tb_lastName";
+            this.tb_lastName.Size = new System.Drawing.Size(227, 26);
+            this.tb_lastName.TabIndex = 45;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(6, 126);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(87, 22);
+            this.label12.TabIndex = 56;
+            this.label12.Text = "Phone Nº";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 30);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(109, 22);
+            this.label7.TabIndex = 46;
+            this.label7.Text = "First Name *";
+            // 
+            // tb_email
+            // 
+            this.tb_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_email.Location = new System.Drawing.Point(121, 154);
+            this.tb_email.Name = "tb_email";
+            this.tb_email.Size = new System.Drawing.Size(301, 26);
+            this.tb_email.TabIndex = 55;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(327, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 22);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Last Name *";
+            // 
+            // tb_phone
+            // 
+            this.tb_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_phone.Location = new System.Drawing.Point(197, 123);
+            this.tb_phone.Name = "tb_phone";
+            this.tb_phone.Size = new System.Drawing.Size(225, 26);
+            this.tb_phone.TabIndex = 54;
+            // 
+            // dateTimePicker_birthdate
+            // 
+            this.dateTimePicker_birthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker_birthdate.Location = new System.Drawing.Point(121, 60);
+            this.dateTimePicker_birthdate.Name = "dateTimePicker_birthdate";
+            this.dateTimePicker_birthdate.Size = new System.Drawing.Size(301, 26);
+            this.dateTimePicker_birthdate.TabIndex = 48;
+            // 
+            // tb_phoneCountryCode
+            // 
+            this.tb_phoneCountryCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_phoneCountryCode.Location = new System.Drawing.Point(121, 123);
+            this.tb_phoneCountryCode.Name = "tb_phoneCountryCode";
+            this.tb_phoneCountryCode.Size = new System.Drawing.Size(70, 26);
+            this.tb_phoneCountryCode.TabIndex = 54;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(94, 22);
+            this.label8.TabIndex = 49;
+            this.label8.Text = "Birthdate *";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(327, 94);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 22);
+            this.label9.TabIndex = 53;
+            this.label9.Text = "SNS *";
+            // 
+            // tb_nif
+            // 
+            this.tb_nif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_nif.Location = new System.Drawing.Point(121, 91);
+            this.tb_nif.Name = "tb_nif";
+            this.tb_nif.Size = new System.Drawing.Size(200, 26);
+            this.tb_nif.TabIndex = 50;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 93);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 22);
+            this.label10.TabIndex = 52;
+            this.label10.Text = "NIF *";
+            // 
+            // tb_sns
+            // 
+            this.tb_sns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_sns.Location = new System.Drawing.Point(441, 90);
+            this.tb_sns.Name = "tb_sns";
+            this.tb_sns.Size = new System.Drawing.Size(227, 26);
+            this.tb_sns.TabIndex = 51;
             // 
             // medline
             // 
@@ -338,7 +699,7 @@
             this.medline.Controls.Add(this.panelURL);
             this.medline.Location = new System.Drawing.Point(4, 29);
             this.medline.Name = "medline";
-            this.medline.Size = new System.Drawing.Size(653, 405);
+            this.medline.Size = new System.Drawing.Size(686, 474);
             this.medline.TabIndex = 2;
             this.medline.Text = "MedLine";
             this.medline.UseVisualStyleBackColor = true;
@@ -351,7 +712,7 @@
             this.browser.Location = new System.Drawing.Point(-4, 58);
             this.browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(657, 347);
+            this.browser.Size = new System.Drawing.Size(690, 416);
             this.browser.TabIndex = 1;
             // 
             // panelURL
@@ -395,36 +756,36 @@
             // configurations
             // 
             this.configurations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
-            this.configurations.Controls.Add(this.bt_cancel);
-            this.configurations.Controls.Add(this.bt_save);
+            this.configurations.Controls.Add(this.bt_cancelConfigurations);
+            this.configurations.Controls.Add(this.bt_saveConfigurations);
             this.configurations.Controls.Add(this.cb_medlineURL);
             this.configurations.Controls.Add(this.gb_voice);
             this.configurations.Location = new System.Drawing.Point(4, 29);
             this.configurations.Name = "configurations";
             this.configurations.Padding = new System.Windows.Forms.Padding(3);
-            this.configurations.Size = new System.Drawing.Size(653, 405);
+            this.configurations.Size = new System.Drawing.Size(686, 474);
             this.configurations.TabIndex = 3;
             this.configurations.Text = "Configurations";
             // 
-            // bt_cancel
+            // bt_cancelConfigurations
             // 
-            this.bt_cancel.Location = new System.Drawing.Point(554, 364);
-            this.bt_cancel.Name = "bt_cancel";
-            this.bt_cancel.Size = new System.Drawing.Size(93, 35);
-            this.bt_cancel.TabIndex = 2;
-            this.bt_cancel.Text = "Cancel";
-            this.bt_cancel.UseVisualStyleBackColor = true;
-            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
+            this.bt_cancelConfigurations.Location = new System.Drawing.Point(554, 470);
+            this.bt_cancelConfigurations.Name = "bt_cancelConfigurations";
+            this.bt_cancelConfigurations.Size = new System.Drawing.Size(93, 35);
+            this.bt_cancelConfigurations.TabIndex = 2;
+            this.bt_cancelConfigurations.Text = "Cancel";
+            this.bt_cancelConfigurations.UseVisualStyleBackColor = true;
+            this.bt_cancelConfigurations.Click += new System.EventHandler(this.bt_cancel_Click);
             // 
-            // bt_save
+            // bt_saveConfigurations
             // 
-            this.bt_save.Location = new System.Drawing.Point(455, 364);
-            this.bt_save.Name = "bt_save";
-            this.bt_save.Size = new System.Drawing.Size(93, 35);
-            this.bt_save.TabIndex = 2;
-            this.bt_save.Text = "Save";
-            this.bt_save.UseVisualStyleBackColor = true;
-            this.bt_save.Click += new System.EventHandler(this.bt_save_Click);
+            this.bt_saveConfigurations.Location = new System.Drawing.Point(455, 470);
+            this.bt_saveConfigurations.Name = "bt_saveConfigurations";
+            this.bt_saveConfigurations.Size = new System.Drawing.Size(93, 35);
+            this.bt_saveConfigurations.TabIndex = 2;
+            this.bt_saveConfigurations.Text = "Save";
+            this.bt_saveConfigurations.UseVisualStyleBackColor = true;
+            this.bt_saveConfigurations.Click += new System.EventHandler(this.bt_save_Click);
             // 
             // cb_medlineURL
             // 
@@ -519,7 +880,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(679, 476);
+            this.ClientSize = new System.Drawing.Size(712, 545);
             this.Controls.Add(this.mainTabing);
             this.Controls.Add(this.checkBox1);
             this.Name = "MyHealth";
@@ -530,10 +891,17 @@
             this.mainTabing.ResumeLayout(false);
             this.home.ResumeLayout(false);
             this.home.PerformLayout();
+            this.gb_user.ResumeLayout(false);
+            this.gb_user.PerformLayout();
             this.gb_monitoringParametrs.ResumeLayout(false);
             this.gb_monitoringParametrs.PerformLayout();
             this.gb_physiologicDataNormal.ResumeLayout(false);
             this.gb_physiologicDataNormal.PerformLayout();
+            this.personalData.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.medline.ResumeLayout(false);
             this.panelURL.ResumeLayout(false);
             this.panelURL.PerformLayout();
@@ -551,7 +919,7 @@
         #endregion
 
         private System.Windows.Forms.Label lb_patientId;
-        private System.Windows.Forms.TextBox tb_patientId;
+        private System.Windows.Forms.TextBox tb_patientSNS;
         private System.Windows.Forms.Button bt_Insert;
         private System.Windows.Forms.CheckBox cb_bloodPressure;
         private System.Windows.Forms.CheckBox cb_saturations;
@@ -582,14 +950,46 @@
         private System.Windows.Forms.NumericUpDown numberRating;
         private System.Windows.Forms.GroupBox cb_medlineURL;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button bt_save;
+        private System.Windows.Forms.Button bt_saveConfigurations;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panelURL;
         private System.Windows.Forms.Button bt_searchMedLine;
         private System.Windows.Forms.TextBox tb_url;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.WebBrowser browser;
-        private System.Windows.Forms.Button bt_cancel;
+        private System.Windows.Forms.Button bt_cancelConfigurations;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tb_lastName;
+        private System.Windows.Forms.TextBox tb_firstname;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_birthdate;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tb_sns;
+        private System.Windows.Forms.TextBox tb_nif;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tb_email;
+        private System.Windows.Forms.TextBox tb_phone;
+        private System.Windows.Forms.TextBox tb_phoneCountryCode;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RichTextBox richTextBox_address;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox comboBoxGender;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox tb_emContactNumCountryCode;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox tb_emergencyContactNum;
+        private System.Windows.Forms.TextBox tb_emergencyContactName;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox tb_weight;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox tb_height;
+        private System.Windows.Forms.Label lb_serviceError;
+        private System.Windows.Forms.GroupBox gb_user;
     }
 }
 

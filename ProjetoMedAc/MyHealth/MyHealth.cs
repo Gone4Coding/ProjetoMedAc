@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using PhysiologicParametersDll;
-using System.Speech;
 using System.Speech.Recognition;
-using MyHealth.VoiceRecognition;
 using System.Speech.Synthesis;
-using System.Threading.Tasks;
+using System.Xml;
 using MyHealth.ServiceReferenceHealth;
 
 
@@ -17,18 +13,22 @@ namespace MyHealth
     {
         #region Variables 
 
-        private ServiceHealthClient client;
+        private ServiceHealthClient clientHealth;
+        private ServiceHealthAlertClient clientHealthAlert;
+
         private SpeechSynthesizer synth;
         private PromptBuilder pBuilder;
         private SpeechRecognitionEngine sReconEngine;
         private PhysiologicParametersDll.PhysiologicParametersDll dll;
-        private int snsUser;
+
+        private Patient patient;
         private bool bloodPressure_checked;
         private bool saturation_checked;
         private bool heartRate_checked;
         private bool speechActive = false;
         private bool closeQuestion = false;
         private bool setId = false;
+        private bool serviceActive = false;
 
         #endregion
 
@@ -40,17 +40,19 @@ namespace MyHealth
             this.sReconEngine = new SpeechRecognitionEngine();
             this.synth = new SpeechSynthesizer();
             this.pBuilder = new PromptBuilder();
-            this.client = new ServiceHealthClient();
+            this.clientHealth = new ServiceHealthClient();
+            this.clientHealthAlert = new ServiceHealthAlertClient();
 
             InitializeComponent();
         }
 
         private void MyHealth_Load(object sender, EventArgs e)
         {
-            tb_patientId.Text = Properties.Settings.Default.Patient_Id.ToString();
-            snsUser = Properties.Settings.Default.Patient_Id;
+            this.CenterToScreen();
+            HideAll();
             HideLabels(false);
-            InitializeSpeech();
+            gb_user.Location = new Point(192,71);
+            tb_patientSNS.Text = Properties.Settings.Default.Patient_Id.ToString();
         }
 
         private void MyHealth_FormClosing(object sender, FormClosingEventArgs e)
@@ -90,7 +92,7 @@ namespace MyHealth
                     Speak("Yes?");
 
                 // Commands that starts with an S
-                if(speech.StartsWith("S")) CommandsWithS(speech);
+                if (speech.StartsWith("S")) CommandsWithS(speech);
 
                 #region "CLOSE" QUESTION
                 if (closeQuestion)
@@ -105,7 +107,7 @@ namespace MyHealth
                     }
                 }
                 #endregion "CLOSE" QUESTION
-                
+
 
                 #region "SET ID"/"CHANGE ID" QUESTION
                 if (setId)
@@ -219,6 +221,54 @@ namespace MyHealth
             synth.SpeakAsync(pBuilder);
         }
 
+        private void ServiceNotAvailable(bool firstTime)
+        {
+            lb_serviceError.Visible = true;
+
+            foreach (TabPage tabPage in mainTabing.TabPages)
+            {
+                if (tabPage != home)
+                    tabPage.Enabled = false;
+            }
+
+            if(!firstTime)
+                MessageBox.Show("The Service is Not Active", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+        }
+
+        private void EveryThingOk()
+        {
+            gb_monitoringParametrs.Visible = true;
+            gb_physiologicDataNormal.Visible = true;
+            lb_userName.Visible = true;
+
+            foreach (TabPage tabPage in mainTabing.TabPages)
+            {
+                tabPage.Enabled = true;
+            }
+        }
+
+        private void WrongUser()
+        {
+            gb_monitoringParametrs.Visible = false;
+            gb_physiologicDataNormal.Visible = false;
+            lb_userName.Visible = false;
+        }
+
+        private void HideAll()
+        {
+            lb_userName.Visible = false;
+            lb_serviceError.Visible = false;
+            gb_monitoringParametrs.Visible = false;
+            gb_physiologicDataNormal.Visible = false;
+
+            foreach (TabPage tabPage in mainTabing.TabPages)
+            {
+                if (tabPage != home)
+                    tabPage.Enabled = false;
+            }
+        }
+
         #endregion General
 
         #region TabHome
@@ -273,19 +323,33 @@ namespace MyHealth
         private void bt_insert_Click(object sender, EventArgs e)
         {
             int sns;
-            if (int.TryParse(tb_patientId.Text, out sns))
+            if (int.TryParse(tb_patientSNS.Text, out sns))
             {
-                bool verifiedSNS = client.ValidatePatient(sns);
+                try
+                {
+                    bool verifiedSNS = clientHealth.ValidatePatient(sns);
 
-                if (!verifiedSNS)
-                {
-                    MessageBox.Show("The SNS is not valid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (!verifiedSNS)
+                    {
+                        MessageBox.Show("The SNS is not valid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        WrongUser();
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.Patient_Id = sns;
+                        Properties.Settings.Default.Save();
+                        patient = clientHealthAlert.GetPatient(sns);
+                        serviceActive = true;
+
+                        EveryThingOk();
+                        InitializeSpeech();
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    Properties.Settings.Default.Patient_Id = sns;
-                    Properties.Settings.Default.Save();
+                    ServiceNotAvailable(false);
                 }
+
             }
             else
             {
@@ -305,33 +369,65 @@ namespace MyHealth
                 string[] info = message.Split(';');
                 string type = info[0];
                 string data = info[1];
-                TimeSpan date = Convert.ToDateTime(info[2]).TimeOfDay;
+                DateTime dateTime = Convert.ToDateTime(info[2]);
+
+                TimeSpan time = dateTime.TimeOfDay;
+                DateTime date = dateTime.Date;
+
+                int snsUser = patient.Sns;
 
                 switch (type)
                 {
                     case "BP":
-                        string[] bp = data.Split('-');
-                        int systolic = Convert.ToInt32(bp[0]);
-                        int diastolic = Convert.ToInt32(bp[1]);
-
+                        string[] bpData = data.Split('-');
+                        int systolic = Convert.ToInt32(bpData[0]);
+                        int diastolic = Convert.ToInt32(bpData[1]);
                         lb_dataBP.Text = diastolic + "/" + systolic;
-                        lb_dateBP.Text = date.ToString();
-                        /*BloodPressure bp = new BloodPressure();
-                        bp.PatientSNS = snsUser;
-                        bp.Date = date;
-                        client.InsertBloodPressureRecord(bp)*/
+                        lb_dateBP.Text = time.ToString();
+
+                        if (serviceActive)
+                        {
+
+                            BloodPressure bp = new BloodPressure();
+                            bp.PatientSNS = snsUser;
+                            bp.Date = date;
+                            bp.Time = time;
+                            bp.Diastolic = diastolic;
+                            bp.Systolic = systolic;
+                            clientHealth.InsertBloodPressureRecord(bp);
+                        }
                         break;
 
                     case "SPO2":
-                        int sat = Convert.ToInt32(data);
-                        lb_dataSPO2.Text = sat + "%";
-                        lb_date_o2.Text = date.ToString();
+                        int spo2Data = Convert.ToInt32(data);
+                        lb_dataSPO2.Text = spo2Data + "%";
+                        lb_date_o2.Text = time.ToString();
+
+                        if (serviceActive)
+                        {
+                            OxygenSaturation spo2 = new OxygenSaturation();
+                            spo2.PatientSNS = snsUser;
+                            spo2.Date = date;
+                            spo2.Time = time;
+                            spo2.Saturation = spo2Data;
+                            clientHealth.InsertOxygenSaturationRecord(spo2);
+                        }
                         break;
 
                     case "HR":
-                        int hr = Convert.ToInt32(data);
-                        lb_dataHR.Text = hr + "bpm";
-                        lb_date_HR.Text = date.ToString();
+                        int hrData = Convert.ToInt32(data);
+                        lb_dataHR.Text = hrData + "bpm";
+                        lb_date_HR.Text = time.ToString();
+
+                        if (serviceActive)
+                        {
+                            HeartRate hr = new HeartRate();
+                            hr.PatientSNS = snsUser;
+                            hr.Date = date;
+                            hr.Time = time;
+                            hr.Rate = hrData;
+                            clientHealth.InsertHeartRateRecord(hr);
+                        }
                         break;
                 }
 
@@ -354,9 +450,41 @@ namespace MyHealth
             ActivateHeartRateMonitoring(cb_heartRate.Checked);
         }
 
+        private void MoveGroupBoxUser()
+        {
+            Point initialPoint = new Point(192, 71);
+            Point finalPoint = new Point(6, 6);
+
+            for (int xInit = initialPoint.X; xInit <= finalPoint.X; xInit++)
+            {
+                for (int yInit = initialPoint.Y; yInit < finalPoint.Y; yInit++)
+                {
+                    gb_user.Location = new Point(xInit, yInit);
+                }
+            }
+        }
+
         #endregion
 
         #region TabUserInformation
+
+        private void FillUserInfo()
+        {
+            tb_firstname.Text = patient.Name;
+            tb_lastName.Text = patient.Surname;
+            lb_userName.Text = patient.Name + " " + patient.Surname;
+            dateTimePicker_birthdate.Value = patient.BirthDate;
+            tb_nif.Text = patient.Nif.ToString();
+            tb_sns.Text = patient.Sns.ToString();
+            tb_phone.Text = patient.Phone.ToString();
+            tb_email.Text = patient.Email;
+            richTextBox_address.Text = patient.Adress;
+            comboBoxGender.Text = patient.Gender;
+            tb_emergencyContactName.Text = patient.EmergencyName;
+            tb_emergencyContactNum.Text = patient.EmergencyNumber.ToString();
+            tb_height.Text = patient.Height.ToString();
+            tb_weight.Text = patient.Weight.ToString();
+        }
 
         #endregion
 
@@ -404,7 +532,8 @@ namespace MyHealth
             numberRating.Value = Properties.Settings.Default.Voice_Rate;
         }
 
+
         #endregion
-        
+
     }
 }
