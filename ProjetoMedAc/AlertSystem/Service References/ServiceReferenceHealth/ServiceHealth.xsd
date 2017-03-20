@@ -33,6 +33,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Alergies" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ativo" type="xs:boolean" />
       <xs:element minOccurs="0" name="BirthDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EmergencyName" nillable="true" type="xs:string" />

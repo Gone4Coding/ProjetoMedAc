@@ -324,6 +324,9 @@ namespace AlertSystem.ServiceReferenceHealth {
         private string AlergiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AtivoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime BirthDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -391,6 +394,19 @@ namespace AlertSystem.ServiceReferenceHealth {
                 if ((object.ReferenceEquals(this.AlergiesField, value) != true)) {
                     this.AlergiesField = value;
                     this.RaisePropertyChanged("Alergies");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Ativo {
+            get {
+                return this.AtivoField;
+            }
+            set {
+                if ((this.AtivoField.Equals(value) != true)) {
+                    this.AtivoField = value;
+                    this.RaisePropertyChanged("Ativo");
                 }
             }
         }
@@ -770,10 +786,16 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<bool> InsertPatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient);
+        bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient, int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient, int sns);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateStatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateStatePatientResponse")]
+        bool UpdateStatePatient(AlertSystem.ServiceReferenceHealth.Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateStatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateStatePatientResponse")]
+        System.Threading.Tasks.Task<bool> UpdateStatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientResponse")]
         AlertSystem.ServiceReferenceHealth.Patient GetPatient(int sns);
@@ -871,12 +893,20 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.InsertPatientAsync(patient);
         }
         
-        public bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.UpdatePatient(patient);
+        public bool UpdatePatient(AlertSystem.ServiceReferenceHealth.Patient patient, int sns) {
+            return base.Channel.UpdatePatient(patient, sns);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.UpdatePatientAsync(patient);
+        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient, int sns) {
+            return base.Channel.UpdatePatientAsync(patient, sns);
+        }
+        
+        public bool UpdateStatePatient(AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.UpdateStatePatient(patient);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateStatePatientAsync(AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.UpdateStatePatientAsync(patient);
         }
         
         public AlertSystem.ServiceReferenceHealth.Patient GetPatient(int sns) {

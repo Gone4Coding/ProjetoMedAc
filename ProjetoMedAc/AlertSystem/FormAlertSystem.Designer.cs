@@ -83,6 +83,8 @@
             this.bt_edit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.panelInfoPatient = new System.Windows.Forms.Panel();
+            this.groupBoxPatientMonitoring = new System.Windows.Forms.GroupBox();
+            this.checkBoxPatientMonitoring = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -119,6 +121,9 @@
             this.tb_lastName = new System.Windows.Forms.TextBox();
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
+            this.checkBoxNormal = new System.Windows.Forms.CheckBox();
+            this.checkBoxCritical = new System.Windows.Forms.CheckBox();
+            this.checkBoxWarning = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxPatientSummary.SuspendLayout();
@@ -126,6 +131,7 @@
             this.toolStripMonitor.SuspendLayout();
             this.groupBox1Patients.SuspendLayout();
             this.groupBoxFilters.SuspendLayout();
+            this.panelFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientsMonitor)).BeginInit();
             this.tabPagePatients.SuspendLayout();
             this.toolStripPatients.SuspendLayout();
@@ -133,6 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
             this.groupBoxPatient.SuspendLayout();
             this.panelInfoPatient.SuspendLayout();
+            this.groupBoxPatientMonitoring.SuspendLayout();
             this.tabControlRecors.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,32 +157,41 @@
             this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 22);
             this.tabPage_viewRecords.Name = "tabPage_viewRecords";
             this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_viewRecords.Size = new System.Drawing.Size(1319, 838);
+            this.tabPage_viewRecords.Size = new System.Drawing.Size(1403, 758);
             this.tabPage_viewRecords.TabIndex = 4;
             this.tabPage_viewRecords.Text = "View Records";
             this.tabPage_viewRecords.UseVisualStyleBackColor = true;
             // 
             // groupBoxActivitie
             // 
-            this.groupBoxActivitie.Location = new System.Drawing.Point(268, 173);
+            this.groupBoxActivitie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxActivitie.Location = new System.Drawing.Point(270, 186);
             this.groupBoxActivitie.Name = "groupBoxActivitie";
-            this.groupBoxActivitie.Size = new System.Drawing.Size(1043, 660);
+            this.groupBoxActivitie.Size = new System.Drawing.Size(1127, 569);
             this.groupBoxActivitie.TabIndex = 7;
             this.groupBoxActivitie.TabStop = false;
             this.groupBoxActivitie.Text = "Patient Activity";
             // 
             // groupBoxPatientSummary
             // 
+            this.groupBoxPatientSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxPatientSummary.Controls.Add(this.panelPatientSummary);
             this.groupBoxPatientSummary.Location = new System.Drawing.Point(268, 46);
             this.groupBoxPatientSummary.Name = "groupBoxPatientSummary";
-            this.groupBoxPatientSummary.Size = new System.Drawing.Size(1043, 121);
+            this.groupBoxPatientSummary.Size = new System.Drawing.Size(1127, 121);
             this.groupBoxPatientSummary.TabIndex = 6;
             this.groupBoxPatientSummary.TabStop = false;
             this.groupBoxPatientSummary.Text = "Patient Summary";
             // 
             // panelPatientSummary
             // 
+            this.panelPatientSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelPatientSummary.Controls.Add(this.textBoxGender);
             this.panelPatientSummary.Controls.Add(this.richTextBox1Alergies);
             this.panelPatientSummary.Controls.Add(this.textBoxWeight);
@@ -196,7 +212,7 @@
             this.panelPatientSummary.Controls.Add(this.label38);
             this.panelPatientSummary.Controls.Add(this.textBoxSNS);
             this.panelPatientSummary.Controls.Add(this.textBoxPhoneNumber);
-            this.panelPatientSummary.Location = new System.Drawing.Point(6, 15);
+            this.panelPatientSummary.Location = new System.Drawing.Point(53, 15);
             this.panelPatientSummary.Name = "panelPatientSummary";
             this.panelPatientSummary.Size = new System.Drawing.Size(1031, 100);
             this.panelPatientSummary.TabIndex = 8;
@@ -405,7 +421,7 @@
             this.toolStripButtonSearchMonitor});
             this.toolStripMonitor.Location = new System.Drawing.Point(3, 3);
             this.toolStripMonitor.Name = "toolStripMonitor";
-            this.toolStripMonitor.Size = new System.Drawing.Size(1313, 40);
+            this.toolStripMonitor.Size = new System.Drawing.Size(1397, 40);
             this.toolStripMonitor.TabIndex = 4;
             this.toolStripMonitor.Text = "toolStrip1";
             // 
@@ -428,7 +444,7 @@
             // 
             this.toolStripTextBoxMonitor.Name = "toolStripTextBoxMonitor";
             this.toolStripTextBoxMonitor.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(70, 40);
+            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(30, 40);
             // 
             // toolStripComboBoxmonitor
             // 
@@ -472,6 +488,9 @@
             // 
             // panelFilters
             // 
+            this.panelFilters.Controls.Add(this.checkBoxWarning);
+            this.panelFilters.Controls.Add(this.checkBoxCritical);
+            this.panelFilters.Controls.Add(this.checkBoxNormal);
             this.panelFilters.Location = new System.Drawing.Point(6, 20);
             this.panelFilters.Name = "panelFilters";
             this.panelFilters.Size = new System.Drawing.Size(229, 100);
@@ -507,7 +526,7 @@
             this.tabPagePatients.Location = new System.Drawing.Point(4, 22);
             this.tabPagePatients.Name = "tabPagePatients";
             this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePatients.Size = new System.Drawing.Size(1319, 714);
+            this.tabPagePatients.Size = new System.Drawing.Size(1403, 758);
             this.tabPagePatients.TabIndex = 2;
             this.tabPagePatients.Text = "Patients";
             this.tabPagePatients.UseVisualStyleBackColor = true;
@@ -527,7 +546,7 @@
             this.toolStripButtonSearch});
             this.toolStripPatients.Location = new System.Drawing.Point(3, 3);
             this.toolStripPatients.Name = "toolStripPatients";
-            this.toolStripPatients.Size = new System.Drawing.Size(1313, 40);
+            this.toolStripPatients.Size = new System.Drawing.Size(1397, 40);
             this.toolStripPatients.TabIndex = 3;
             this.toolStripPatients.Text = "toolStrip1";
             // 
@@ -567,7 +586,7 @@
             // 
             this.toolStripTextBox.Name = "toolStripTextBox";
             this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBox.Size = new System.Drawing.Size(80, 40);
+            this.toolStripTextBox.Size = new System.Drawing.Size(40, 40);
             // 
             // toolStripComboBox
             // 
@@ -593,7 +612,7 @@
             this.groupBoxPatients.Controls.Add(this.dataGridViewPatients);
             this.groupBoxPatients.Location = new System.Drawing.Point(8, 43);
             this.groupBoxPatients.Name = "groupBoxPatients";
-            this.groupBoxPatients.Size = new System.Drawing.Size(500, 767);
+            this.groupBoxPatients.Size = new System.Drawing.Size(500, 811);
             this.groupBoxPatients.TabIndex = 2;
             this.groupBoxPatients.TabStop = false;
             this.groupBoxPatients.Text = "Patients";
@@ -615,7 +634,7 @@
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 693);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 737);
             this.dataGridViewPatients.TabIndex = 2;
             this.dataGridViewPatients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_CellMouseDoubleClick);
             this.dataGridViewPatients.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_ColumnHeaderMouseClick);
@@ -634,7 +653,7 @@
             this.groupBoxPatient.Controls.Add(this.panelInfoPatient);
             this.groupBoxPatient.Location = new System.Drawing.Point(512, 43);
             this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Size = new System.Drawing.Size(781, 655);
+            this.groupBoxPatient.Size = new System.Drawing.Size(865, 699);
             this.groupBoxPatient.TabIndex = 1;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient Info";
@@ -645,7 +664,7 @@
             this.bt_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save.Image = ((System.Drawing.Image)(resources.GetObject("bt_save.Image")));
             this.bt_save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_save.Location = new System.Drawing.Point(221, 525);
+            this.bt_save.Location = new System.Drawing.Point(170, 569);
             this.bt_save.Name = "bt_save";
             this.bt_save.Size = new System.Drawing.Size(114, 105);
             this.bt_save.TabIndex = 6;
@@ -660,7 +679,7 @@
             this.bt_cancelEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelEdit.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelEdit.Image")));
             this.bt_cancelEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelEdit.Location = new System.Drawing.Point(583, 525);
+            this.bt_cancelEdit.Location = new System.Drawing.Point(712, 569);
             this.bt_cancelEdit.Name = "bt_cancelEdit";
             this.bt_cancelEdit.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelEdit.TabIndex = 5;
@@ -675,7 +694,7 @@
             this.bt_cancelAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelAdd.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelAdd.Image")));
             this.bt_cancelAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelAdd.Location = new System.Drawing.Point(583, 525);
+            this.bt_cancelAdd.Location = new System.Drawing.Point(712, 569);
             this.bt_cancelAdd.Name = "bt_cancelAdd";
             this.bt_cancelAdd.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelAdd.TabIndex = 4;
@@ -690,7 +709,7 @@
             this.bt_edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_edit.Image = ((System.Drawing.Image)(resources.GetObject("bt_edit.Image")));
             this.bt_edit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_edit.Location = new System.Drawing.Point(84, 525);
+            this.bt_edit.Location = new System.Drawing.Point(33, 569);
             this.bt_edit.Name = "bt_edit";
             this.bt_edit.Size = new System.Drawing.Size(114, 105);
             this.bt_edit.TabIndex = 3;
@@ -705,7 +724,7 @@
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonAdd.Image")));
             this.buttonAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAdd.Location = new System.Drawing.Point(83, 525);
+            this.buttonAdd.Location = new System.Drawing.Point(32, 569);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(183, 105);
             this.buttonAdd.TabIndex = 2;
@@ -717,6 +736,7 @@
             // panelInfoPatient
             // 
             this.panelInfoPatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panelInfoPatient.Controls.Add(this.groupBoxPatientMonitoring);
             this.panelInfoPatient.Controls.Add(this.label20);
             this.panelInfoPatient.Controls.Add(this.label22);
             this.panelInfoPatient.Controls.Add(this.label19);
@@ -752,10 +772,34 @@
             this.panelInfoPatient.Controls.Add(this.tb_nif);
             this.panelInfoPatient.Controls.Add(this.tb_lastName);
             this.panelInfoPatient.Controls.Add(this.tb_firstname);
-            this.panelInfoPatient.Location = new System.Drawing.Point(83, 36);
+            this.panelInfoPatient.Location = new System.Drawing.Point(33, 19);
             this.panelInfoPatient.Name = "panelInfoPatient";
-            this.panelInfoPatient.Size = new System.Drawing.Size(617, 474);
+            this.panelInfoPatient.Size = new System.Drawing.Size(796, 550);
             this.panelInfoPatient.TabIndex = 1;
+            // 
+            // groupBoxPatientMonitoring
+            // 
+            this.groupBoxPatientMonitoring.Controls.Add(this.checkBoxPatientMonitoring);
+            this.groupBoxPatientMonitoring.Location = new System.Drawing.Point(596, 13);
+            this.groupBoxPatientMonitoring.Name = "groupBoxPatientMonitoring";
+            this.groupBoxPatientMonitoring.Size = new System.Drawing.Size(179, 58);
+            this.groupBoxPatientMonitoring.TabIndex = 7;
+            this.groupBoxPatientMonitoring.TabStop = false;
+            this.groupBoxPatientMonitoring.Text = "Patient Monitoring";
+            // 
+            // checkBoxPatientMonitoring
+            // 
+            this.checkBoxPatientMonitoring.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxPatientMonitoring.AutoSize = true;
+            this.checkBoxPatientMonitoring.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxPatientMonitoring.Location = new System.Drawing.Point(58, 19);
+            this.checkBoxPatientMonitoring.Name = "checkBoxPatientMonitoring";
+            this.checkBoxPatientMonitoring.Size = new System.Drawing.Size(71, 24);
+            this.checkBoxPatientMonitoring.TabIndex = 7;
+            this.checkBoxPatientMonitoring.Text = "Active";
+            this.checkBoxPatientMonitoring.UseVisualStyleBackColor = true;
+            this.checkBoxPatientMonitoring.Click += new System.EventHandler(this.checkBoxPatientMonitoring_Click);
             // 
             // label20
             // 
@@ -1094,15 +1138,51 @@
             this.tabControlRecors.Location = new System.Drawing.Point(0, 0);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
-            this.tabControlRecors.Size = new System.Drawing.Size(1327, 740);
+            this.tabControlRecors.Size = new System.Drawing.Size(1411, 784);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
+            // 
+            // checkBoxNormal
+            // 
+            this.checkBoxNormal.AutoSize = true;
+            this.checkBoxNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxNormal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.checkBoxNormal.Location = new System.Drawing.Point(17, 10);
+            this.checkBoxNormal.Name = "checkBoxNormal";
+            this.checkBoxNormal.Size = new System.Drawing.Size(78, 24);
+            this.checkBoxNormal.TabIndex = 8;
+            this.checkBoxNormal.Text = "Normal";
+            this.checkBoxNormal.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxCritical
+            // 
+            this.checkBoxCritical.AutoSize = true;
+            this.checkBoxCritical.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCritical.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.checkBoxCritical.Location = new System.Drawing.Point(17, 59);
+            this.checkBoxCritical.Name = "checkBoxCritical";
+            this.checkBoxCritical.Size = new System.Drawing.Size(75, 24);
+            this.checkBoxCritical.TabIndex = 9;
+            this.checkBoxCritical.Text = "Critical";
+            this.checkBoxCritical.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxWarning
+            // 
+            this.checkBoxWarning.AutoSize = true;
+            this.checkBoxWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxWarning.ForeColor = System.Drawing.Color.Gold;
+            this.checkBoxWarning.Location = new System.Drawing.Point(123, 10);
+            this.checkBoxWarning.Name = "checkBoxWarning";
+            this.checkBoxWarning.Size = new System.Drawing.Size(87, 24);
+            this.checkBoxWarning.TabIndex = 10;
+            this.checkBoxWarning.Text = "Warning";
+            this.checkBoxWarning.UseVisualStyleBackColor = true;
             // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1327, 741);
+            this.ClientSize = new System.Drawing.Size(1411, 785);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAlertSystem";
@@ -1118,6 +1198,8 @@
             this.toolStripMonitor.PerformLayout();
             this.groupBox1Patients.ResumeLayout(false);
             this.groupBoxFilters.ResumeLayout(false);
+            this.panelFilters.ResumeLayout(false);
+            this.panelFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientsMonitor)).EndInit();
             this.tabPagePatients.ResumeLayout(false);
             this.tabPagePatients.PerformLayout();
@@ -1128,6 +1210,8 @@
             this.groupBoxPatient.ResumeLayout(false);
             this.panelInfoPatient.ResumeLayout(false);
             this.panelInfoPatient.PerformLayout();
+            this.groupBoxPatientMonitoring.ResumeLayout(false);
+            this.groupBoxPatientMonitoring.PerformLayout();
             this.tabControlRecors.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1223,6 +1307,11 @@
         private System.Windows.Forms.TextBox textBoxPhoneNumber;
         private System.Windows.Forms.Panel panelFilters;
         private System.Windows.Forms.TextBox textBoxGender;
+        private System.Windows.Forms.GroupBox groupBoxPatientMonitoring;
+        private System.Windows.Forms.CheckBox checkBoxPatientMonitoring;
+        private System.Windows.Forms.CheckBox checkBoxWarning;
+        private System.Windows.Forms.CheckBox checkBoxCritical;
+        private System.Windows.Forms.CheckBox checkBoxNormal;
     }
 }
 
