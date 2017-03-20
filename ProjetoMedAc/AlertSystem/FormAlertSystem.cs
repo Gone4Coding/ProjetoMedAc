@@ -18,15 +18,16 @@ namespace AlertSystem
     {
         private ServiceHealthAlertClient client;
         private bool asc;
+        private bool fromSelection;
         private int patientAge;
-        
 
-        private int snsPatientEdit;
+        private Patient patientToEdit;
+        //private int snsPatientEdit;
         public FormAlertSystem()
         {
             InitializeComponent();
             client = new ServiceHealthAlertClient();
-            
+
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -42,7 +43,7 @@ namespace AlertSystem
 
             toolStripComboBox.SelectedIndex = 0;
 
-            load(null);
+            load(null,false);
 
             #endregion
         }
@@ -51,9 +52,9 @@ namespace AlertSystem
         #region PatientsTab
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // MessageBox.Show(tabControlRecors.SelectedTab.TabIndex.ToString());
+            // MessageBox.Show(tabControlRecors.SelectedTab.TabIndex.ToString());
         }
-      
+
         private void dataGridViewPatients_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -69,7 +70,7 @@ namespace AlertSystem
             }
         }
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
-        {          
+        {
             bt_edit.Hide();
             bt_cancelEdit.Hide();
             bt_save.Hide();
@@ -77,23 +78,24 @@ namespace AlertSystem
             bt_cancelAdd.Show();
             dataGridViewPatients.ClearSelection();
             dataGridViewPatients.Enabled = false;
-            enableTextBoxes(true);         
-           // dateTimePicker_birthdate.Value = dateValue;         
+            enableTextBoxes(true);
+            groupBoxPatientMonitoring.Hide();
             clearFields();
             enableSearch(false);
-                 
+
         }
         private void bt_cancel_Click(object sender, EventArgs e)
         {
-            load(null);
+            load(null,false);
             enableSearch(true);
             dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
             errorProvider1.Clear();
+            groupBoxPatientMonitoring.Show();
         }
         private void dateTimePicker_birthdate_ValueChanged(object sender, EventArgs e)
         {
-               // dateTimePicker_birthdate.Value = DateTime.Now;
-                dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
+            // dateTimePicker_birthdate.Value = DateTime.Now;
+            dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
         }
         private void bt_edit_Click(object sender, EventArgs e)
         {
@@ -110,8 +112,8 @@ namespace AlertSystem
             if (validateFields(true))
             {
                 Patient p = readFields();
-                
-                bool res = client.UpdatePatient(p);
+
+                bool res = client.UpdatePatient(p, patientToEdit.Sns);
 
                 if (!res)
                 {
@@ -125,8 +127,8 @@ namespace AlertSystem
                     bt_cancelEdit.Hide();
                     MessageBox.Show("suss");
 
-                    load(p);
-                }       
+                    load(p,false);
+                }
             }
 
         }
@@ -141,9 +143,9 @@ namespace AlertSystem
             dataGridViewPatients.Enabled = true;
             errorProvider1.Clear();
 
-            Patient p = client.GetPatient(snsPatientEdit);
+            Patient p = client.GetPatient(patientToEdit.Sns);
             clearFields();
-            load(p);
+            load(p,false);
             enableSearch(true);
         }
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -160,17 +162,18 @@ namespace AlertSystem
                 }
                 else
                 {
-                  
+
                     MessageBox.Show(p.Name + " " + p.Surname + " sucessfully added!", "SUCESS", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
                     clearFields();
-                    load(p);
+                    load(p,false);
                     enableSearch(true);
+                    groupBoxPatientMonitoring.Show();
                 }
             }
         }
-        private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)   
+        private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             List<Patient> patients;
 
@@ -237,11 +240,12 @@ namespace AlertSystem
         }
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
         {
-            load(null);
+            load(null,false);
         }
         private void dataGridViewPatients_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridViewPatients.Rows.Count > 0 & dataGridViewPatients.CurrentCell!=null)
+            fromSelection = false;
+            if (dataGridViewPatients.Rows.Count > 0 & dataGridViewPatients.CurrentCell != null)
             {
                 int index = dataGridViewPatients.CurrentCell.RowIndex;
                 int sns = Convert.ToInt32(dataGridViewPatients.Rows[index].Cells["Sns"].Value);
@@ -250,6 +254,43 @@ namespace AlertSystem
                 fillFields(patientSelected);
             }
         }
+        private void checkBoxPatientMonitoring_Click(object sender, EventArgs e)
+        {
+           
+                if (!checkBoxPatientMonitoring.Checked)
+                {
+                    patientToEdit.Ativo = false;
+                    bool res = client.UpdateStatePatient(patientToEdit);
+
+                    if (!res)
+                    {
+                        MessageBox.Show("erro");
+                    }
+                    else
+                    {
+                        readMonitoring(patientToEdit);
+                        load(patientToEdit, false);
+                        MessageBox.Show("MONITORIZAÇAO DESATIVADA "); 
+                        
+                    }
+                }
+                else
+                {
+                    patientToEdit.Ativo = true;
+                    bool res = client.UpdateStatePatient(patientToEdit);
+
+                    if (!res)
+                    {
+                        MessageBox.Show("erro");
+                    }
+                    else
+                    {
+                        readMonitoring(patientToEdit);
+                        load(patientToEdit, false);
+                        MessageBox.Show("SOB MONITORIZAÇAO");                     
+                    }
+                }
+        }
         #endregion
         // 
         #endregion
@@ -257,7 +298,7 @@ namespace AlertSystem
         #region Metodos
         // 
         #region PatientsTab
-        private void load(Patient p)
+        private void load(Patient p, bool monitoring)
         {
             int rowIndex = 0;
 
@@ -279,7 +320,7 @@ namespace AlertSystem
             {
                 foreach (DataGridViewRow row in dataGridViewPatients.Rows)
                 {
-                    if (p.Sns == Convert.ToInt32(row.Cells[11].Value))
+                    if (p.Sns == Convert.ToInt32(row.Cells[12].Value))
                     {
                         rowIndex = row.Index;
                     }
@@ -287,7 +328,8 @@ namespace AlertSystem
 
                 dataGridViewPatients.Rows[rowIndex].Selected = true;
 
-                fillFields(p);
+                if (!monitoring)
+                    fillFields(p);
             }
 
             enableTextBoxes(false);
@@ -313,19 +355,29 @@ namespace AlertSystem
         {
 
             dataGridViewPatients.DataSource = patients;
+            
 
             for (int i = 0; i < dataGridViewPatients.ColumnCount; i++)
             {
-                if (i != 8 && i != 9 && i != 12 && i != 11)
+                if (i != 2 && i != 12 && i != 13 && i != 7 && i!=9)
                 {
                     dataGridViewPatients.Columns[i].Visible = false;
                 }
             }
 
-            dataGridViewPatients.Columns[8].DisplayIndex = 0;
-            dataGridViewPatients.Columns[12].DisplayIndex = 1;
-            dataGridViewPatients.Columns[9].DisplayIndex = 2;
-            dataGridViewPatients.Columns[11].DisplayIndex = 3;
+            foreach (DataGridViewRow row in dataGridViewPatients.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["Ativo"].Value))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Chocolate;
+                }   
+            }
+
+            dataGridViewPatients.Columns[12].DisplayIndex = 0;
+            dataGridViewPatients.Columns[9].DisplayIndex = 1;
+            dataGridViewPatients.Columns[13].DisplayIndex = 2;
+            dataGridViewPatients.Columns[7].DisplayIndex = 3;
+            dataGridViewPatients.Columns[2].DisplayIndex = 4;
 
             dataGridViewPatients.RowHeadersVisible = false;
 
@@ -342,12 +394,13 @@ namespace AlertSystem
         }
         private void fillFields(Patient patient)
         {
+            patientToEdit = patient;
             tb_firstname.Text = patient.Name;
             tb_lastName.Text = patient.Surname;
             dateTimePicker_birthdate.Value = patient.BirthDate;
             tb_nif.Text = patient.Nif.ToString();
             tb_sns.Text = patient.Sns.ToString();
-            snsPatientEdit = patient.Sns;
+            // snsPatientEdit = patient.Sns;
             tb_phone.Text = patient.Phone.ToString();
             tb_email.Text = patient.Email;
             tb_emergencyContact.Text = patient.EmergencyNumber.ToString();
@@ -360,7 +413,7 @@ namespace AlertSystem
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
-
+            readMonitoring(patient);
             fillMonitorPatientInfo(patient);
         }
         private int getAge(DateTime dateOfBirth)
@@ -405,7 +458,7 @@ namespace AlertSystem
             errorProvider1.Clear();
 
             Regex regexNif = new Regex(@"^[0-9]{9}$");
-            Regex regexSns = new Regex(@"^[0-9]{9}$");
+
             Regex regexPhone = new Regex(@"^((\+351)?([1-9]{2}[0-9]{7})|(2[0-9]{8}))$");
             Regex regexEmail = new Regex(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$");
 
@@ -463,7 +516,7 @@ namespace AlertSystem
                 if (!isNumber(tb_sns.Text))
                 {
                     tb_sns.Focus();
-                    errorProvider1.SetError(tb_sns,"Has to be a number");
+                    errorProvider1.SetError(tb_sns, "Has to be a number");
                     errors++;
                 }
 
@@ -481,6 +534,21 @@ namespace AlertSystem
                     errors++;
                 }
 
+                if (!regexNif.IsMatch(tb_sns.Text))
+                {
+                    tb_sns.Focus();
+                    errorProvider1.SetError(tb_sns, "Enter at least 9 digits");
+                    errors++;
+                }
+
+
+                if (!regexNif.IsMatch(tb_nif.Text))
+                {
+                    tb_nif.Focus();
+                    errorProvider1.SetError(tb_nif, "Enter at least 9 digits");
+                    errors++;
+                }
+
                 if (errors > 0)
                     return false;
 
@@ -488,20 +556,20 @@ namespace AlertSystem
                 if (listPatients.Where(i => i.Nif == Convert.ToInt32(tb_nif.Text)).ToList().Count > 0 && !fromEdition)
                 {
                     tb_nif.Focus();
-                    errorProvider1.SetError(tb_nif,"NIF already exists");
+                    errorProvider1.SetError(tb_nif, "NIF already exists");
                     errors++;
 
                 }
                 if (listPatients.Where(i => i.Sns == Convert.ToInt32(tb_sns.Text)).ToList().Count > 0 && !fromEdition)
                 {
                     tb_sns.Focus();
-                    errorProvider1.SetError(tb_sns,"SNS already exists");
+                    errorProvider1.SetError(tb_sns, "SNS already exists");
                     errors++;
                 }
 
                 if (errors > 0)
                     return false;
-            }  
+            }
             return true;
         }
         private Patient readFields()
@@ -541,6 +609,20 @@ namespace AlertSystem
             return p;
         }
 
+        private void readMonitoring(Patient p)
+        {
+            if (!p.Ativo)
+            {
+                checkBoxPatientMonitoring.Checked = false;
+                checkBoxPatientMonitoring.ForeColor = Color.Gray;
+            }
+            else
+            {
+                checkBoxPatientMonitoring.Checked = true;
+                checkBoxPatientMonitoring.ForeColor = Color.Green;
+            }
+        }
+
         private bool isNumber(string data)
         {
             bool isnumeric = true;
@@ -560,11 +642,11 @@ namespace AlertSystem
         private void fillMonitorPatientInfo(Patient patient)
         {
             textBoxFirstName.Text = patient.Name;
-             textBoxLastName.Text= patient.Surname;           
-           textBoxSNS.Text = patient.Sns.ToString();
+            textBoxLastName.Text = patient.Surname;
+            textBoxSNS.Text = patient.Sns.ToString();
             textBoxAge.Text = getAge(patient.BirthDate).ToString();
             tb_phone.Text = patient.Phone.ToString();
-            textBoxEmergencyContact.Text = patient.EmergencyNumber.ToString();           
+            textBoxEmergencyContact.Text = patient.EmergencyNumber.ToString();
             if (patient.Gender.Equals("F"))
                 textBoxGender.Text = "Female";
             if (patient.Gender.Equals("M"))
@@ -574,9 +656,12 @@ namespace AlertSystem
             richTextBox1Alergies.Text = patient.Alergies;
         }
 
-        #endregion
-        #endregion
 
 
+        #endregion
+
+        #endregion
+
+       
     }
 }
