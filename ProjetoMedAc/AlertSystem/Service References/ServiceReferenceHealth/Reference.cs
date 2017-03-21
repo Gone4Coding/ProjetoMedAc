@@ -339,6 +339,9 @@ namespace AlertSystem.ServiceReferenceHealth {
         private int EmergencyNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmergencyNumberCountryCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GenderField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -352,6 +355,9 @@ namespace AlertSystem.ServiceReferenceHealth {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PhoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneCountryCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SnsField;
@@ -464,6 +470,19 @@ namespace AlertSystem.ServiceReferenceHealth {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EmergencyNumberCountryCode {
+            get {
+                return this.EmergencyNumberCountryCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmergencyNumberCountryCodeField, value) != true)) {
+                    this.EmergencyNumberCountryCodeField = value;
+                    this.RaisePropertyChanged("EmergencyNumberCountryCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Gender {
             get {
                 return this.GenderField;
@@ -529,6 +548,19 @@ namespace AlertSystem.ServiceReferenceHealth {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneCountryCode {
+            get {
+                return this.PhoneCountryCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneCountryCodeField, value) != true)) {
+                    this.PhoneCountryCodeField = value;
+                    this.RaisePropertyChanged("PhoneCountryCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Sns {
             get {
                 return this.SnsField;
@@ -579,9 +611,9 @@ namespace AlertSystem.ServiceReferenceHealth {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Alert", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlertType", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
     [System.SerializableAttribute()]
-    public partial class Alert : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class AlertType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -828,34 +860,34 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.BloodPressure[]> BloodPressureListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        AlertSystem.ServiceReferenceHealth.Alert GetAlert(string type);
+        AlertSystem.ServiceReferenceHealth.AlertType GetAlert(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert> GetAlertAsync(string type);
+        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.AlertType> GetAlertAsync(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        AlertSystem.ServiceReferenceHealth.Alert[] GetAlertList();
+        AlertSystem.ServiceReferenceHealth.AlertType[] GetAlertList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert[]> GetAlertListAsync();
+        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.AlertType[]> GetAlertListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        bool InsertAlert(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        bool InsertAlert(AlertSystem.ServiceReferenceHealth.AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertSystem.ServiceReferenceHealth.AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        bool UpdateAlert(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        bool UpdateAlert(AlertSystem.ServiceReferenceHealth.AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertSystem.ServiceReferenceHealth.AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        bool DeleteAlert(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        bool DeleteAlert(AlertSystem.ServiceReferenceHealth.AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert);
+        System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertSystem.ServiceReferenceHealth.AlertType alertType);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -949,44 +981,44 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.BloodPressureListAsync(sns);
         }
         
-        public AlertSystem.ServiceReferenceHealth.Alert GetAlert(string type) {
+        public AlertSystem.ServiceReferenceHealth.AlertType GetAlert(string type) {
             return base.Channel.GetAlert(type);
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert> GetAlertAsync(string type) {
+        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.AlertType> GetAlertAsync(string type) {
             return base.Channel.GetAlertAsync(type);
         }
         
-        public AlertSystem.ServiceReferenceHealth.Alert[] GetAlertList() {
+        public AlertSystem.ServiceReferenceHealth.AlertType[] GetAlertList() {
             return base.Channel.GetAlertList();
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Alert[]> GetAlertListAsync() {
+        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.AlertType[]> GetAlertListAsync() {
             return base.Channel.GetAlertListAsync();
         }
         
-        public bool InsertAlert(AlertSystem.ServiceReferenceHealth.Alert _alert) {
-            return base.Channel.InsertAlert(_alert);
+        public bool InsertAlert(AlertSystem.ServiceReferenceHealth.AlertType alertType) {
+            return base.Channel.InsertAlert(alertType);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert) {
-            return base.Channel.InsertAlertAsync(_alert);
+        public System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertSystem.ServiceReferenceHealth.AlertType alertType) {
+            return base.Channel.InsertAlertAsync(alertType);
         }
         
-        public bool UpdateAlert(AlertSystem.ServiceReferenceHealth.Alert _alert) {
-            return base.Channel.UpdateAlert(_alert);
+        public bool UpdateAlert(AlertSystem.ServiceReferenceHealth.AlertType alertType) {
+            return base.Channel.UpdateAlert(alertType);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert) {
-            return base.Channel.UpdateAlertAsync(_alert);
+        public System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertSystem.ServiceReferenceHealth.AlertType alertType) {
+            return base.Channel.UpdateAlertAsync(alertType);
         }
         
-        public bool DeleteAlert(AlertSystem.ServiceReferenceHealth.Alert _alert) {
-            return base.Channel.DeleteAlert(_alert);
+        public bool DeleteAlert(AlertSystem.ServiceReferenceHealth.AlertType alertType) {
+            return base.Channel.DeleteAlert(alertType);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertSystem.ServiceReferenceHealth.Alert _alert) {
-            return base.Channel.DeleteAlertAsync(_alert);
+        public System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertSystem.ServiceReferenceHealth.AlertType alertType) {
+            return base.Channel.DeleteAlertAsync(alertType);
         }
     }
 }

@@ -258,7 +258,8 @@ namespace AlertSystem
         }
         private void checkBoxPatientMonitoring_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
                 if (!checkBoxPatientMonitoring.Checked)
                 {
                     patientToEdit.Ativo = false;
@@ -278,20 +279,27 @@ namespace AlertSystem
                 }
                 else
                 {
-                    patientToEdit.Ativo = true;
-                    bool res = client.UpdateStatePatient(patientToEdit);
+                   
+                        patientToEdit.Ativo = true;
+                        bool res = client.UpdateStatePatient(patientToEdit);
 
-                    if (!res)
-                    {
-                        MessageBox.Show("erro");
-                    }
-                    else
-                    {
-                        readMonitoring(patientToEdit);
-                        load(patientToEdit, false);
-                        MessageBox.Show("SOB MONITORIZAÇAO");                     
-                    }
+                        if (!res)
+                        {
+                            MessageBox.Show("erro");
+                        }
+                        else
+                        {
+                            readMonitoring(patientToEdit);
+                            load(patientToEdit, false);
+                            MessageBox.Show("SOB MONITORIZAÇAO");
+                        }   
                 }
+            }
+            catch (NullReferenceException x)
+            {
+                MessageBox.Show("No patient to set active!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                checkBoxPatientMonitoring.Checked = false;
+            }
         }
         #endregion
         // 
@@ -417,6 +425,18 @@ namespace AlertSystem
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
+            int index = 0;
+            foreach (string item in comboBoxCode.Items)
+            {
+                index++;
+                string [] code = item.Split(' ');
+
+                if (patient.EmergencyNumberCountryCode.Equals(item))
+                    comboBoxEmergencyCode.SelectedIndex = index;
+            }
+            if (!patient.PhoneCountryCode.Equals(""))
+                comboBoxCode.SelectedIndex = index;
+
             readMonitoring(patient);
             fillMonitorPatientInfo(patient);
         }
@@ -638,6 +658,14 @@ namespace AlertSystem
             if (!tb_weight.Text.Equals(""))
                 p.Weight = Convert.ToDouble(tb_weight.Text);
             p.Alergies = richTextBoxAlergies.Text;
+            if (comboBoxCode.SelectedIndex != -1)
+            {
+                p.PhoneCountryCode = comboBoxCode.SelectedItem.ToString();
+            }
+            if (comboBoxEmergencyCode.SelectedIndex != -1)
+            {
+                p.EmergencyNumberCountryCode = comboBoxEmergencyCode.SelectedItem.ToString();
+            }
 
             return p;
         }

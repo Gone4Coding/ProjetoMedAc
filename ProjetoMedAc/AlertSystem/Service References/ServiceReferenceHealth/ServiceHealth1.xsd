@@ -178,7 +178,7 @@
   <xs:element name="GetAlertResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetAlertResult" nillable="true" type="q12:Alert" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetAlertResult" nillable="true" type="q12:AlertType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -190,14 +190,14 @@
   <xs:element name="GetAlertListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetAlertListResult" nillable="true" type="q13:ArrayOfAlert" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetAlertListResult" nillable="true" type="q13:ArrayOfAlertType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertAlert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="_alert" nillable="true" type="q14:Alert" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="alertType" nillable="true" type="q14:AlertType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -211,7 +211,7 @@
   <xs:element name="UpdateAlert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="_alert" nillable="true" type="q15:Alert" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="alertType" nillable="true" type="q15:AlertType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -225,7 +225,7 @@
   <xs:element name="DeleteAlert">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="_alert" nillable="true" type="q16:Alert" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="alertType" nillable="true" type="q16:AlertType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

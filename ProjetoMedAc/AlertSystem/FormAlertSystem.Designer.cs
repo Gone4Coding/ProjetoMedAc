@@ -86,6 +86,8 @@
             this.bt_edit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.panelInfoPatient = new System.Windows.Forms.Panel();
+            this.comboBoxEmergencyCode = new System.Windows.Forms.ComboBox();
+            this.comboBoxCode = new System.Windows.Forms.ComboBox();
             this.groupBoxPatientMonitoring = new System.Windows.Forms.GroupBox();
             this.checkBoxPatientMonitoring = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -124,8 +126,7 @@
             this.tb_lastName = new System.Windows.Forms.TextBox();
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
-            this.comboBoxCode = new System.Windows.Forms.ComboBox();
-            this.comboBoxEmergencyCode = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxPatientSummary.SuspendLayout();
@@ -446,7 +447,7 @@
             // 
             this.toolStripTextBoxMonitor.Name = "toolStripTextBoxMonitor";
             this.toolStripTextBoxMonitor.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(20, 40);
+            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(0, 40);
             // 
             // toolStripComboBoxmonitor
             // 
@@ -624,7 +625,7 @@
             // 
             this.toolStripTextBox.Name = "toolStripTextBox";
             this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBox.Size = new System.Drawing.Size(30, 40);
+            this.toolStripTextBox.Size = new System.Drawing.Size(20, 40);
             // 
             // toolStripComboBox
             // 
@@ -774,6 +775,7 @@
             // panelInfoPatient
             // 
             this.panelInfoPatient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panelInfoPatient.Controls.Add(this.label21);
             this.panelInfoPatient.Controls.Add(this.comboBoxEmergencyCode);
             this.panelInfoPatient.Controls.Add(this.comboBoxCode);
             this.panelInfoPatient.Controls.Add(this.groupBoxPatientMonitoring);
@@ -816,6 +818,26 @@
             this.panelInfoPatient.Name = "panelInfoPatient";
             this.panelInfoPatient.Size = new System.Drawing.Size(796, 550);
             this.panelInfoPatient.TabIndex = 1;
+            // 
+            // comboBoxEmergencyCode
+            // 
+            this.comboBoxEmergencyCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEmergencyCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxEmergencyCode.FormattingEnabled = true;
+            this.comboBoxEmergencyCode.Location = new System.Drawing.Point(286, 238);
+            this.comboBoxEmergencyCode.Name = "comboBoxEmergencyCode";
+            this.comboBoxEmergencyCode.Size = new System.Drawing.Size(71, 28);
+            this.comboBoxEmergencyCode.TabIndex = 69;
+            // 
+            // comboBoxCode
+            // 
+            this.comboBoxCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCode.FormattingEnabled = true;
+            this.comboBoxCode.Location = new System.Drawing.Point(286, 171);
+            this.comboBoxCode.Name = "comboBoxCode";
+            this.comboBoxCode.Size = new System.Drawing.Size(71, 28);
+            this.comboBoxCode.TabIndex = 68;
             // 
             // groupBoxPatientMonitoring
             // 
@@ -1115,9 +1137,9 @@
             // tb_emergencyContact
             // 
             this.tb_emergencyContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_emergencyContact.Location = new System.Drawing.Point(380, 240);
+            this.tb_emergencyContact.Location = new System.Drawing.Point(363, 240);
             this.tb_emergencyContact.Name = "tb_emergencyContact";
-            this.tb_emergencyContact.Size = new System.Drawing.Size(207, 26);
+            this.tb_emergencyContact.Size = new System.Drawing.Size(224, 26);
             this.tb_emergencyContact.TabIndex = 38;
             // 
             // tb_email
@@ -1131,9 +1153,9 @@
             // tb_phone
             // 
             this.tb_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_phone.Location = new System.Drawing.Point(380, 173);
+            this.tb_phone.Location = new System.Drawing.Point(363, 173);
             this.tb_phone.Name = "tb_phone";
-            this.tb_phone.Size = new System.Drawing.Size(207, 26);
+            this.tb_phone.Size = new System.Drawing.Size(224, 26);
             this.tb_phone.TabIndex = 36;
             // 
             // tb_sns
@@ -1182,25 +1204,15 @@
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
             // 
-            // comboBoxCode
+            // label21
             // 
-            this.comboBoxCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxCode.FormattingEnabled = true;
-            this.comboBoxCode.Location = new System.Drawing.Point(286, 171);
-            this.comboBoxCode.Name = "comboBoxCode";
-            this.comboBoxCode.Size = new System.Drawing.Size(88, 28);
-            this.comboBoxCode.TabIndex = 68;
-            // 
-            // comboBoxEmergencyCode
-            // 
-            this.comboBoxEmergencyCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEmergencyCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEmergencyCode.FormattingEnabled = true;
-            this.comboBoxEmergencyCode.Location = new System.Drawing.Point(286, 238);
-            this.comboBoxEmergencyCode.Name = "comboBoxEmergencyCode";
-            this.comboBoxEmergencyCode.Size = new System.Drawing.Size(88, 28);
-            this.comboBoxEmergencyCode.TabIndex = 69;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(103, 308);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(14, 18);
+            this.label21.TabIndex = 70;
+            this.label21.Text = "*";
             // 
             // FormAlertSystem
             // 
@@ -1338,6 +1350,7 @@
         private System.Windows.Forms.CheckBox checkBoxNormal;
         private System.Windows.Forms.ComboBox comboBoxEmergencyCode;
         private System.Windows.Forms.ComboBox comboBoxCode;
+        private System.Windows.Forms.Label label21;
     }
 }
 

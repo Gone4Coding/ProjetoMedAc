@@ -92,7 +92,8 @@ namespace AlertSystem
 
             public override string ToString()
             {
-                return name + " " + alpha2Code + " (+" + CallingCodes + ")";
+
+                return name + " " + alpha2Code +  " (+ " + CallingCodes + ")";
             }
         }
 
