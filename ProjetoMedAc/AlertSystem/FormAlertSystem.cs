@@ -36,6 +36,8 @@ namespace AlertSystem
             comboBoxGender.Items.Add("Female");
             comboBoxGender.Items.Add("Male");
 
+            fillComboBoxCountries();
+
             toolStripComboBox.Items.Add("Sns");
             toolStripComboBox.Items.Add("Phone");
             toolStripComboBox.Items.Add("Nome");
@@ -71,7 +73,6 @@ namespace AlertSystem
         }
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
-            //Countries.getAllCountries();
             bt_edit.Hide();
             bt_cancelEdit.Hide();
             bt_save.Hide();
@@ -351,6 +352,8 @@ namespace AlertSystem
             tb_height.Enabled = estado;
             tb_weight.Enabled = estado;
             richTextBoxAlergies.Enabled = estado;
+            comboBoxCode.Enabled = estado;
+            comboBoxEmergencyCode.Enabled = estado;
         }
         private void fillGridView(List<Patient> patients)
         {
@@ -417,6 +420,30 @@ namespace AlertSystem
             readMonitoring(patient);
             fillMonitorPatientInfo(patient);
         }
+
+        private void fillComboBoxCountries()
+        {
+            List<Countries.Country> countries =  Countries.getAllCountries();
+         
+
+            if (countries != null)
+            {
+                foreach (Countries.Country country in countries)
+                {
+                    if(!country.CallingCodes.Equals(""))
+                    comboBoxCode.Items.Add(country.ToString());
+                    comboBoxEmergencyCode.Items.Add(country.ToString());
+                }
+            }
+            else
+            {
+                comboBoxCode.Items.Add("PT +351");
+                comboBoxEmergencyCode.Items.Add("PT +351");
+            }
+
+            comboBoxCode.DropDownWidth = 300;
+            comboBoxEmergencyCode.DropDownWidth = 300;
+        }
         private int getAge(DateTime dateOfBirth)
         {
             var today = DateTime.Today;
@@ -467,7 +494,7 @@ namespace AlertSystem
 
             if (tb_firstname.Text.Equals("") || tb_lastName.Text.Equals("") ||
                 dateTimePicker_birthdate.Format == DateTimePickerFormat.Custom || tb_nif.Text.Equals("") ||
-                tb_sns.Text.Equals("") || tb_emergencyContact.Text.Equals("") || comboBoxGender.SelectedIndex == -1)
+                tb_sns.Text.Equals("") || tb_emergencyContact.Text.Equals("") || comboBoxGender.SelectedIndex == -1 || comboBoxEmergencyCode.SelectedIndex == -1)
             {
                 errors = 0;
 
@@ -505,6 +532,11 @@ namespace AlertSystem
                 if (comboBoxGender.SelectedIndex == -1)
                 {
                     errorProvider1.SetError(comboBoxGender, "Required field");
+                    errors++;
+                }
+                if (comboBoxEmergencyCode.SelectedIndex == -1)
+                {
+                    errorProvider1.SetError(comboBoxEmergencyCode, "Required field");
                     errors++;
                 }
                 if (errors > 0)
@@ -635,6 +667,8 @@ namespace AlertSystem
 
             return isnumeric;
         }
+
+
         #endregion
         //
 
