@@ -71,6 +71,7 @@ namespace AlertSystem
         }
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
+            //Countries.getAllCountries();
             bt_edit.Hide();
             bt_cancelEdit.Hide();
             bt_save.Hide();
