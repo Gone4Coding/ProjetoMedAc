@@ -428,6 +428,41 @@ namespace AlertSystem
             int index = 0;
             foreach (string item in comboBoxCode.Items)
             {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 index++;
                 string [] code = item.Split(' ');
 
