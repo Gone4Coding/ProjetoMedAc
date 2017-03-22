@@ -20,7 +20,7 @@ namespace AlertSystem
         private bool asc;
         private bool fromSelection;
         private int patientAge;
-
+        private List<Countries.Country> countries;
         private Patient patientToEdit;
         //private int snsPatientEdit;
         public FormAlertSystem()
@@ -44,6 +44,7 @@ namespace AlertSystem
             toolStripComboBox.Items.Add("Nif");
 
             toolStripComboBox.SelectedIndex = 0;
+            //toolStripTextBox.Width = 500;
 
             load(null,false);
 
@@ -84,7 +85,6 @@ namespace AlertSystem
             groupBoxPatientMonitoring.Hide();
             clearFields();
             enableSearch(false);
-
         }
         private void bt_cancel_Click(object sender, EventArgs e)
         {
@@ -273,13 +273,11 @@ namespace AlertSystem
                     {
                         readMonitoring(patientToEdit);
                         load(patientToEdit, false);
-                        MessageBox.Show("MONITORIZAÇAO DESATIVADA "); 
-                        
+                        MessageBox.Show("MONITORIZAÇAO DESATIVADA ");                        
                     }
                 }
                 else
-                {
-                   
+                {                   
                         patientToEdit.Ativo = true;
                         bool res = client.UpdateStatePatient(patientToEdit);
 
@@ -367,15 +365,17 @@ namespace AlertSystem
         {
 
             dataGridViewPatients.DataSource = patients;
-            
+
 
             for (int i = 0; i < dataGridViewPatients.ColumnCount; i++)
             {
-                if (i != 2 && i != 12 && i != 13 && i != 7 && i!=9)
+                if (i != 14 && i != 10 && i != 15 && i != 2 && i != 8)
                 {
                     dataGridViewPatients.Columns[i].Visible = false;
                 }
             }
+
+
 
             foreach (DataGridViewRow row in dataGridViewPatients.Rows)
             {
@@ -385,10 +385,10 @@ namespace AlertSystem
                 }   
             }
 
-            dataGridViewPatients.Columns[12].DisplayIndex = 0;
-            dataGridViewPatients.Columns[9].DisplayIndex = 1;
-            dataGridViewPatients.Columns[13].DisplayIndex = 2;
-            dataGridViewPatients.Columns[7].DisplayIndex = 3;
+            dataGridViewPatients.Columns[14].DisplayIndex = 0;
+            dataGridViewPatients.Columns[10].DisplayIndex = 1;
+            dataGridViewPatients.Columns[15].DisplayIndex = 2;
+            dataGridViewPatients.Columns[8].DisplayIndex = 3;
             dataGridViewPatients.Columns[2].DisplayIndex = 4;
 
             dataGridViewPatients.RowHeadersVisible = false;
@@ -425,69 +425,27 @@ namespace AlertSystem
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
-            int index = 0;
-            foreach (string item in comboBoxCode.Items)
-            {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                index++;
-                string [] code = item.Split(' ');
-
-                if (patient.EmergencyNumberCountryCode.Equals(item))
-                    comboBoxEmergencyCode.SelectedIndex = index;
-            }
-            if (!patient.PhoneCountryCode.Equals(""))
-                comboBoxCode.SelectedIndex = index;
-
+            if(patient.EmergencyNumberCountryCode!=null)
+                comboBoxEmergencyCode.Text = countries.First(i => i.CallingCodes == patient.EmergencyNumberCountryCode).ToString();
+            if (patient.PhoneCountryCode != null)
+                comboBoxCode.Text = countries.First(i => i.CallingCodes == patient.PhoneCountryCode).ToString();
             readMonitoring(patient);
             fillMonitorPatientInfo(patient);
         }
 
         private void fillComboBoxCountries()
         {
-            List<Countries.Country> countries =  Countries.getAllCountries();
-         
-
+            countries =  Countries.getAllCountries();
+        
             if (countries != null)
             {
                 foreach (Countries.Country country in countries)
                 {
-                    if(!country.CallingCodes.Equals(""))
-                    comboBoxCode.Items.Add(country.ToString());
-                    comboBoxEmergencyCode.Items.Add(country.ToString());
+                    if (!country.CallingCodes.Equals(""))
+                    {
+                        comboBoxCode.Items.Add(country.ToString());
+                        comboBoxEmergencyCode.Items.Add(country.ToString());
+                    }
                 }
             }
             else
@@ -695,11 +653,13 @@ namespace AlertSystem
             p.Alergies = richTextBoxAlergies.Text;
             if (comboBoxCode.SelectedIndex != -1)
             {
-                p.PhoneCountryCode = comboBoxCode.SelectedItem.ToString();
+                string[] alpha = comboBoxCode.SelectedItem.ToString().Split(' ');
+                p.PhoneCountryCode = alpha[2];
             }
             if (comboBoxEmergencyCode.SelectedIndex != -1)
             {
-                p.EmergencyNumberCountryCode = comboBoxEmergencyCode.SelectedItem.ToString();
+                string [] alpha = comboBoxEmergencyCode.SelectedItem.ToString().Split(' ');
+                p.EmergencyNumberCountryCode = alpha[2];
             }
 
             return p;

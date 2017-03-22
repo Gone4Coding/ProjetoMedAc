@@ -86,6 +86,7 @@
             this.bt_edit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.panelInfoPatient = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
             this.comboBoxEmergencyCode = new System.Windows.Forms.ComboBox();
             this.comboBoxCode = new System.Windows.Forms.ComboBox();
             this.groupBoxPatientMonitoring = new System.Windows.Forms.GroupBox();
@@ -126,7 +127,6 @@
             this.tb_lastName = new System.Windows.Forms.TextBox();
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
-            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxPatientSummary.SuspendLayout();
@@ -477,7 +477,7 @@
             this.groupBox1Patients.Size = new System.Drawing.Size(257, 787);
             this.groupBox1Patients.TabIndex = 3;
             this.groupBox1Patients.TabStop = false;
-            this.groupBox1Patients.Text = "Patients";
+            this.groupBox1Patients.Text = "Active Patients";
             // 
             // groupBoxFilters
             // 
@@ -623,9 +623,10 @@
             // 
             // toolStripTextBox
             // 
+            this.toolStripTextBox.AutoSize = false;
             this.toolStripTextBox.Name = "toolStripTextBox";
             this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBox.Size = new System.Drawing.Size(20, 40);
+            this.toolStripTextBox.Size = new System.Drawing.Size(200, 40);
             // 
             // toolStripComboBox
             // 
@@ -819,6 +820,16 @@
             this.panelInfoPatient.Size = new System.Drawing.Size(796, 550);
             this.panelInfoPatient.TabIndex = 1;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(103, 308);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(14, 18);
+            this.label21.TabIndex = 70;
+            this.label21.Text = "*";
+            // 
             // comboBoxEmergencyCode
             // 
             this.comboBoxEmergencyCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -826,7 +837,7 @@
             this.comboBoxEmergencyCode.FormattingEnabled = true;
             this.comboBoxEmergencyCode.Location = new System.Drawing.Point(286, 238);
             this.comboBoxEmergencyCode.Name = "comboBoxEmergencyCode";
-            this.comboBoxEmergencyCode.Size = new System.Drawing.Size(71, 28);
+            this.comboBoxEmergencyCode.Size = new System.Drawing.Size(104, 28);
             this.comboBoxEmergencyCode.TabIndex = 69;
             // 
             // comboBoxCode
@@ -836,7 +847,7 @@
             this.comboBoxCode.FormattingEnabled = true;
             this.comboBoxCode.Location = new System.Drawing.Point(286, 171);
             this.comboBoxCode.Name = "comboBoxCode";
-            this.comboBoxCode.Size = new System.Drawing.Size(71, 28);
+            this.comboBoxCode.Size = new System.Drawing.Size(104, 28);
             this.comboBoxCode.TabIndex = 68;
             // 
             // groupBoxPatientMonitoring
@@ -1137,9 +1148,9 @@
             // tb_emergencyContact
             // 
             this.tb_emergencyContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_emergencyContact.Location = new System.Drawing.Point(363, 240);
+            this.tb_emergencyContact.Location = new System.Drawing.Point(408, 240);
             this.tb_emergencyContact.Name = "tb_emergencyContact";
-            this.tb_emergencyContact.Size = new System.Drawing.Size(224, 26);
+            this.tb_emergencyContact.Size = new System.Drawing.Size(179, 26);
             this.tb_emergencyContact.TabIndex = 38;
             // 
             // tb_email
@@ -1153,9 +1164,9 @@
             // tb_phone
             // 
             this.tb_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_phone.Location = new System.Drawing.Point(363, 173);
+            this.tb_phone.Location = new System.Drawing.Point(408, 173);
             this.tb_phone.Name = "tb_phone";
-            this.tb_phone.Size = new System.Drawing.Size(224, 26);
+            this.tb_phone.Size = new System.Drawing.Size(179, 26);
             this.tb_phone.TabIndex = 36;
             // 
             // tb_sns
@@ -1203,16 +1214,6 @@
             this.tabControlRecors.Size = new System.Drawing.Size(1411, 784);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(103, 308);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(14, 18);
-            this.label21.TabIndex = 70;
-            this.label21.Text = "*";
             // 
             // FormAlertSystem
             // 
