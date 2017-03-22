@@ -33,15 +33,18 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Alergies" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ativo" type="xs:boolean" />
       <xs:element minOccurs="0" name="BirthDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EmergencyName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EmergencyNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="EmergencyNumberCountryCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Height" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Nif" type="xs:int" />
       <xs:element minOccurs="0" name="Phone" type="xs:int" />
+      <xs:element minOccurs="0" name="PhoneCountryCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Sns" type="xs:int" />
       <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Weight" type="xs:double" />
@@ -72,7 +75,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfBloodPressure" nillable="true" type="tns:ArrayOfBloodPressure" />
-  <xs:complexType name="Alert">
+  <xs:complexType name="AlertType">
     <xs:sequence>
       <xs:element minOccurs="0" name="MaximumCriticalValue" type="xs:int" />
       <xs:element minOccurs="0" name="MaximumValue" type="xs:int" />
@@ -81,11 +84,11 @@
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Alert" nillable="true" type="tns:Alert" />
-  <xs:complexType name="ArrayOfAlert">
+  <xs:element name="AlertType" nillable="true" type="tns:AlertType" />
+  <xs:complexType name="ArrayOfAlertType">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Alert" nillable="true" type="tns:Alert" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AlertType" nillable="true" type="tns:AlertType" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfAlert" nillable="true" type="tns:ArrayOfAlert" />
+  <xs:element name="ArrayOfAlertType" nillable="true" type="tns:ArrayOfAlertType" />
 </xs:schema>

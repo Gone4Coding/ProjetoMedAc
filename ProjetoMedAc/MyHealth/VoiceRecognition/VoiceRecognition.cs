@@ -26,7 +26,6 @@ namespace MyHealth.VoiceRecognition
             Close,
 
             // Commands With F
-            Find,
             FindTerms,
 
             // Commands With G

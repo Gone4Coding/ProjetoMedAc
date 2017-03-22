@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Net;
 using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
@@ -21,15 +22,27 @@ namespace MyHealth
         private PromptBuilder pBuilder;
         private SpeechRecognitionEngine sReconEngine;
         private PhysiologicParametersDll.PhysiologicParametersDll dll;
+        private string queryForMedline = @"query?db=healthTopics&term=";
 
         private Patient patient;
         private bool bloodPressure_checked;
         private bool saturation_checked;
         private bool heartRate_checked;
+
         private bool speechActive = false;
+        private bool serviceActive = false;
+
+        private enum Question
+        {
+            Close,
+            SetId,
+            GotoMedLine,
+            NULL
+        }
+
         private bool closeQuestion = false;
         private bool setId = false;
-        private bool serviceActive = false;
+        private bool goToMedlineQuestion = false;
 
         #endregion
 
@@ -69,6 +82,40 @@ namespace MyHealth
             sReconEngine.SpeechRecognized += Srecon_SpeechRecognized;
         }
 
+        private void ChangeQuestionActive(bool allFalse, Question question)
+        {
+            if (allFalse)
+            {
+                closeQuestion = false;
+                setId = false;
+                goToMedlineQuestion = false;
+
+                return;
+            }
+
+            switch (question)
+            {
+                case Question.Close:
+                    closeQuestion = true;
+                    setId = false;
+                    goToMedlineQuestion = false;
+                    break;
+
+                case Question.SetId:
+                    closeQuestion = false;
+                    setId = true;
+                    goToMedlineQuestion = false;
+
+                    break;
+                case Question.GotoMedLine:
+                    closeQuestion = false;
+                    setId = false;
+                    goToMedlineQuestion = true;
+                    break;
+            }
+
+        }
+
         private void Srecon_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             string speech = e.Result.Text;
@@ -106,9 +153,12 @@ namespace MyHealth
                     {
                         closeQuestion = false;
                     }
+                    else
+                    {
+                        ChangeQuestionActive(true, Question.NULL);
+                    }
                 }
                 #endregion "CLOSE" QUESTION
-
 
                 #region "SET ID"/"CHANGE ID" QUESTION
                 if (setId)
@@ -126,19 +176,30 @@ namespace MyHealth
                 }
                 #endregion "SET ID"/"CHANGE ID" QUESTION
 
+                #region GOTO MEDLINE
 
-                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Find.ToString()))
+                if (goToMedlineQuestion)
                 {
-
+                    mainTabing.SelectedTab = medline;
                 }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.FindTerms.ToString()))
+
+                #endregion
+
+
+                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.FindTerms.ToString()))
                 {
+                    /*
+                     * Ask if user wants to go to MedLine
+                     * If yes => GO 
+                     */
+                    Speak("Do you want to search in MedLine?");
+                    ChangeQuestionActive(false, Question.GotoMedLine);
 
                 }
                 else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Close.ToString()))
                 {
                     Speak("You sure?");
-                    closeQuestion = true;
+                    ChangeQuestionActive(false, Question.Close);
                 }
                 else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.GotoHome.ToString()))
                 {
@@ -157,6 +218,8 @@ namespace MyHealth
 
         private void CommandsWithS(string speech)
         {
+            #region Monitoring Related
+            
             if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartMonitoring.ToString()))
             {
                 ActivateHeartRateMonitoring(true);
@@ -194,20 +257,36 @@ namespace MyHealth
             {
                 ActivateSaturationMonitoring(false);
             }
+            #endregion
             else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.SetId.ToString())
                       || speech.Contains(VoiceRecognition.VoiceRecognition.Code.ChangeId.ToString()))
             {
                 //TODO MUDAR SNS
                 Speak("Tell me the number.");
-                setId = true;
+                ChangeQuestionActive(false, Question.SetId);
             }
             else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.SearchInMedline.ToString()))
             {
                 //TODO ABRIR O FORM PARA PROCURAR NO MEDLINE
                 mainTabing.SelectedTab = medline;
             }
-        }
+            else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.Search.ToString()))
+            {
+                if (mainTabing.SelectedTab == medline)
+                {
+                    string terms = speech.Replace(VoiceRecognition.VoiceRecognition.Code.Search.ToString(), "");
 
+                    UseBrowser(terms);
+                    goToMedlineQuestion = false;
+                }
+                else
+                {
+                    Speak("Do you want to search in MedLine?");
+                    ChangeQuestionActive(false, Question.GotoMedLine);
+                }
+            }
+        }
+        
         private void Speak(string phrase)
         {
             string genderProperties = Properties.Settings.Default.Gender_Voice;
@@ -341,6 +420,7 @@ namespace MyHealth
                         Properties.Settings.Default.Patient_Id = sns;
                         Properties.Settings.Default.Save();
                         patient = clientHealthAlert.GetPatient(sns);
+                        FillUserInfo();
                         serviceActive = true;
 
                         EveryThingOk();
@@ -519,6 +599,8 @@ namespace MyHealth
             tb_emergencyContactNum.Text = patient.EmergencyNumber.ToString();
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
+            tb_phoneCountryCode.Text = patient.PhoneCountryCode;
+            tb_emContactNumCountryCode.Text = patient.EmergencyNumberCountryCode;
         }
 
         #endregion
@@ -532,8 +614,25 @@ namespace MyHealth
 
         private void Navigate()
         {
-            string url = tb_url.Text;
-            browser.Navigate(url);
+            string terms = tb_url.Text;
+
+            UseBrowser(terms);
+        }
+
+        private void UseBrowser(string terms)
+        {
+            string finalURL = Properties.Settings.Default.MedLine_URL + queryForMedline + terms + "&retmax=" + Properties.Settings.Default.Retmax.ToString();
+
+            WebClient webClient = new WebClient();
+            webClient.DownloadStringAsync(new Uri(finalURL));
+            webClient.DownloadStringCompleted += Result_DownloadStringCompleted;
+
+            browser.DocumentText = "<h4>Retreiving Data...</h4>";
+        }
+
+        private void Result_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            browser.DocumentText = WebPage.LoadPage(e.Result);
         }
 
         #endregion TabMedLine
@@ -550,23 +649,54 @@ namespace MyHealth
             else if (rb_female.Checked)
                 Properties.Settings.Default.Gender_Voice = "Female";
 
-            Properties.Settings.Default.Voice_Rate = Convert.ToInt32(numberRating.Value);
+            Properties.Settings.Default.Voice_Rate = Convert.ToInt32(numberRatingVoice.Value);
 
-            Properties.Settings.Default.MedLine_URL = tb_url.Text;
+            Properties.Settings.Default.MedLine_URL = tb_urlMedline.Text;
+
+            Properties.Settings.Default.DLL_Rate = Convert.ToInt32(numberRatingDLL.Value);
+
+            int retmax;
+            if (int.TryParse(tb_retmax.Text, out retmax))
+            {
+                Properties.Settings.Default.Retmax = retmax;
+            }
+            else
+            {
+                MessageBox.Show("Nº of Received Documents must be a whole number", "Warning", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+
+            Properties.Settings.Default.Save();
         }
 
         private void bt_cancel_Click(object sender, EventArgs e)
         {
-            tb_url.Text = Properties.Settings.Default.MedLine_URL;
+            RetreivePropertiesInfo();
+        }
+
+        private void mainTabing_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (mainTabing.SelectedTab == configurations)
+            {
+                RetreivePropertiesInfo();
+            }
+        }
+
+        private void RetreivePropertiesInfo()
+        {
+            tb_urlMedline.Text = Properties.Settings.Default.MedLine_URL;
 
             if (Properties.Settings.Default.Gender_Voice.Equals("Male"))
                 rb_male.Checked = true;
             else
                 rb_female.Checked = true;
 
-            numberRating.Value = Properties.Settings.Default.Voice_Rate;
-        }
+            numberRatingVoice.Value = Properties.Settings.Default.Voice_Rate;
 
+            numberRatingDLL.Value = Convert.ToDecimal(Properties.Settings.Default.DLL_Rate);
+
+            tb_retmax.Text = Properties.Settings.Default.Retmax.ToString();
+        }
 
         #endregion
 

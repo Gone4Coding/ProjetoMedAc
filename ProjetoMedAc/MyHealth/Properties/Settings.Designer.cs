@@ -70,5 +70,29 @@ namespace MyHealth.Properties {
                 this["MedLine_URL"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int DLL_Rate {
+            get {
+                return ((int)(this["DLL_Rate"]));
+            }
+            set {
+                this["DLL_Rate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Retmax {
+            get {
+                return ((int)(this["Retmax"]));
+            }
+            set {
+                this["Retmax"] = value;
+            }
+        }
     }
 }
