@@ -324,6 +324,9 @@ namespace MyHealth.ServiceReferenceHealth {
         private string AlergiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AtivoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime BirthDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -334,6 +337,9 @@ namespace MyHealth.ServiceReferenceHealth {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int EmergencyNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmergencyNumberCountryCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GenderField;
@@ -349,6 +355,9 @@ namespace MyHealth.ServiceReferenceHealth {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PhoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneCountryCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SnsField;
@@ -391,6 +400,19 @@ namespace MyHealth.ServiceReferenceHealth {
                 if ((object.ReferenceEquals(this.AlergiesField, value) != true)) {
                     this.AlergiesField = value;
                     this.RaisePropertyChanged("Alergies");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Ativo {
+            get {
+                return this.AtivoField;
+            }
+            set {
+                if ((this.AtivoField.Equals(value) != true)) {
+                    this.AtivoField = value;
+                    this.RaisePropertyChanged("Ativo");
                 }
             }
         }
@@ -443,6 +465,19 @@ namespace MyHealth.ServiceReferenceHealth {
                 if ((this.EmergencyNumberField.Equals(value) != true)) {
                     this.EmergencyNumberField = value;
                     this.RaisePropertyChanged("EmergencyNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EmergencyNumberCountryCode {
+            get {
+                return this.EmergencyNumberCountryCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmergencyNumberCountryCodeField, value) != true)) {
+                    this.EmergencyNumberCountryCodeField = value;
+                    this.RaisePropertyChanged("EmergencyNumberCountryCode");
                 }
             }
         }
@@ -513,6 +548,19 @@ namespace MyHealth.ServiceReferenceHealth {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneCountryCode {
+            get {
+                return this.PhoneCountryCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneCountryCodeField, value) != true)) {
+                    this.PhoneCountryCodeField = value;
+                    this.RaisePropertyChanged("PhoneCountryCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Sns {
             get {
                 return this.SnsField;
@@ -563,9 +611,9 @@ namespace MyHealth.ServiceReferenceHealth {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Alert", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlertType", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
     [System.SerializableAttribute()]
-    public partial class Alert : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class AlertType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -770,10 +818,16 @@ namespace MyHealth.ServiceReferenceHealth {
         System.Threading.Tasks.Task<bool> InsertPatientAsync(Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        bool UpdatePatient(Patient patient);
+        bool UpdatePatient(Patient patient, int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdatePatientResponse")]
-        System.Threading.Tasks.Task<bool> UpdatePatientAsync(Patient patient);
+        System.Threading.Tasks.Task<bool> UpdatePatientAsync(Patient patient, int sns);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateStatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateStatePatientResponse")]
+        bool UpdateStatePatient(Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateStatePatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateStatePatientResponse")]
+        System.Threading.Tasks.Task<bool> UpdateStatePatientAsync(Patient patient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatient", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientResponse")]
         Patient GetPatient(int sns);
@@ -806,34 +860,34 @@ namespace MyHealth.ServiceReferenceHealth {
         System.Threading.Tasks.Task<BloodPressure[]> BloodPressureListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        Alert GetAlert(string type);
+        AlertType GetAlert(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        System.Threading.Tasks.Task<Alert> GetAlertAsync(string type);
+        System.Threading.Tasks.Task<AlertType> GetAlertAsync(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        Alert[] GetAlertList();
+        AlertType[] GetAlertList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        System.Threading.Tasks.Task<Alert[]> GetAlertListAsync();
+        System.Threading.Tasks.Task<AlertType[]> GetAlertListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        bool InsertAlert(Alert _alert);
+        bool InsertAlert(AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        System.Threading.Tasks.Task<bool> InsertAlertAsync(Alert _alert);
+        System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        bool UpdateAlert(Alert _alert);
+        bool UpdateAlert(AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAlertAsync(Alert _alert);
+        System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        bool DeleteAlert(Alert _alert);
+        bool DeleteAlert(AlertType alertType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAlertAsync(Alert _alert);
+        System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertType alertType);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -871,12 +925,20 @@ namespace MyHealth.ServiceReferenceHealth {
             return base.Channel.InsertPatientAsync(patient);
         }
         
-        public bool UpdatePatient(Patient patient) {
-            return base.Channel.UpdatePatient(patient);
+        public bool UpdatePatient(Patient patient, int sns) {
+            return base.Channel.UpdatePatient(patient, sns);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(Patient patient) {
-            return base.Channel.UpdatePatientAsync(patient);
+        public System.Threading.Tasks.Task<bool> UpdatePatientAsync(Patient patient, int sns) {
+            return base.Channel.UpdatePatientAsync(patient, sns);
+        }
+        
+        public bool UpdateStatePatient(Patient patient) {
+            return base.Channel.UpdateStatePatient(patient);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateStatePatientAsync(Patient patient) {
+            return base.Channel.UpdateStatePatientAsync(patient);
         }
         
         public Patient GetPatient(int sns) {
@@ -919,44 +981,44 @@ namespace MyHealth.ServiceReferenceHealth {
             return base.Channel.BloodPressureListAsync(sns);
         }
         
-        public Alert GetAlert(string type) {
+        public AlertType GetAlert(string type) {
             return base.Channel.GetAlert(type);
         }
         
-        public System.Threading.Tasks.Task<Alert> GetAlertAsync(string type) {
+        public System.Threading.Tasks.Task<AlertType> GetAlertAsync(string type) {
             return base.Channel.GetAlertAsync(type);
         }
         
-        public Alert[] GetAlertList() {
+        public AlertType[] GetAlertList() {
             return base.Channel.GetAlertList();
         }
         
-        public System.Threading.Tasks.Task<Alert[]> GetAlertListAsync() {
+        public System.Threading.Tasks.Task<AlertType[]> GetAlertListAsync() {
             return base.Channel.GetAlertListAsync();
         }
         
-        public bool InsertAlert(Alert _alert) {
-            return base.Channel.InsertAlert(_alert);
+        public bool InsertAlert(AlertType alertType) {
+            return base.Channel.InsertAlert(alertType);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertAlertAsync(Alert _alert) {
-            return base.Channel.InsertAlertAsync(_alert);
+        public System.Threading.Tasks.Task<bool> InsertAlertAsync(AlertType alertType) {
+            return base.Channel.InsertAlertAsync(alertType);
         }
         
-        public bool UpdateAlert(Alert _alert) {
-            return base.Channel.UpdateAlert(_alert);
+        public bool UpdateAlert(AlertType alertType) {
+            return base.Channel.UpdateAlert(alertType);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateAlertAsync(Alert _alert) {
-            return base.Channel.UpdateAlertAsync(_alert);
+        public System.Threading.Tasks.Task<bool> UpdateAlertAsync(AlertType alertType) {
+            return base.Channel.UpdateAlertAsync(alertType);
         }
         
-        public bool DeleteAlert(Alert _alert) {
-            return base.Channel.DeleteAlert(_alert);
+        public bool DeleteAlert(AlertType alertType) {
+            return base.Channel.DeleteAlert(alertType);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAlertAsync(Alert _alert) {
-            return base.Channel.DeleteAlertAsync(_alert);
+        public System.Threading.Tasks.Task<bool> DeleteAlertAsync(AlertType alertType) {
+            return base.Channel.DeleteAlertAsync(alertType);
         }
     }
 }

@@ -48,7 +48,6 @@
             this.lb_dataHR = new System.Windows.Forms.Label();
             this.lb_dataBP = new System.Windows.Forms.Label();
             this.lb_dataSPO2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -90,13 +89,20 @@
             this.tb_url = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.configurations = new System.Windows.Forms.TabPage();
+            this.gb_receivingData = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.numberRatingDLL = new System.Windows.Forms.NumericUpDown();
             this.bt_cancelConfigurations = new System.Windows.Forms.Button();
             this.bt_saveConfigurations = new System.Windows.Forms.Button();
             this.cb_medlineURL = new System.Windows.Forms.GroupBox();
+            this.tb_retmax = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_urlMedline = new System.Windows.Forms.TextBox();
             this.gb_voice = new System.Windows.Forms.GroupBox();
-            this.numberRating = new System.Windows.Forms.NumericUpDown();
+            this.numberRatingVoice = new System.Windows.Forms.NumericUpDown();
             this.lb_rate = new System.Windows.Forms.Label();
             this.rb_female = new System.Windows.Forms.RadioButton();
             this.rb_male = new System.Windows.Forms.RadioButton();
@@ -111,9 +117,11 @@
             this.medline.SuspendLayout();
             this.panelURL.SuspendLayout();
             this.configurations.SuspendLayout();
+            this.gb_receivingData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numberRatingDLL)).BeginInit();
             this.cb_medlineURL.SuspendLayout();
             this.gb_voice.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numberRating)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberRatingVoice)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_patientId
@@ -123,7 +131,7 @@
             this.lb_patientId.Location = new System.Drawing.Point(7, 29);
             this.lb_patientId.Name = "lb_patientId";
             this.lb_patientId.Size = new System.Drawing.Size(47, 22);
-            this.lb_patientId.TabIndex = 0;
+            this.lb_patientId.TabIndex = 2;
             this.lb_patientId.Text = "SNS";
             // 
             // tb_patientSNS
@@ -131,7 +139,7 @@
             this.tb_patientSNS.Location = new System.Drawing.Point(60, 26);
             this.tb_patientSNS.Name = "tb_patientSNS";
             this.tb_patientSNS.Size = new System.Drawing.Size(128, 27);
-            this.tb_patientSNS.TabIndex = 1;
+            this.tb_patientSNS.TabIndex = 3;
             // 
             // bt_Insert
             // 
@@ -139,7 +147,7 @@
             this.bt_Insert.Location = new System.Drawing.Point(60, 59);
             this.bt_Insert.Name = "bt_Insert";
             this.bt_Insert.Size = new System.Drawing.Size(91, 34);
-            this.bt_Insert.TabIndex = 2;
+            this.bt_Insert.TabIndex = 4;
             this.bt_Insert.Text = "Insert";
             this.bt_Insert.UseVisualStyleBackColor = true;
             this.bt_Insert.Click += new System.EventHandler(this.bt_insert_Click);
@@ -151,7 +159,7 @@
             this.cb_bloodPressure.Name = "cb_bloodPressure";
             this.cb_bloodPressure.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cb_bloodPressure.Size = new System.Drawing.Size(193, 26);
-            this.cb_bloodPressure.TabIndex = 4;
+            this.cb_bloodPressure.TabIndex = 7;
             this.cb_bloodPressure.Text = "(BP) Blood Pressure";
             this.cb_bloodPressure.UseVisualStyleBackColor = true;
             this.cb_bloodPressure.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_bloodPressure_MouseClick);
@@ -163,7 +171,7 @@
             this.cb_saturations.Name = "cb_saturations";
             this.cb_saturations.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cb_saturations.Size = new System.Drawing.Size(205, 26);
-            this.cb_saturations.TabIndex = 4;
+            this.cb_saturations.TabIndex = 8;
             this.cb_saturations.Text = "(SPO2) O2 Saturation";
             this.cb_saturations.UseVisualStyleBackColor = true;
             this.cb_saturations.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_saturations_MouseClick);
@@ -175,7 +183,7 @@
             this.cb_heartRate.Name = "cb_heartRate";
             this.cb_heartRate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cb_heartRate.Size = new System.Drawing.Size(159, 26);
-            this.cb_heartRate.TabIndex = 4;
+            this.cb_heartRate.TabIndex = 9;
             this.cb_heartRate.Text = "(HR) Heart Rate";
             this.cb_heartRate.UseVisualStyleBackColor = true;
             this.cb_heartRate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_heartRate_MouseClick);
@@ -235,6 +243,7 @@
             this.mainTabing.SelectedIndex = 0;
             this.mainTabing.Size = new System.Drawing.Size(694, 507);
             this.mainTabing.TabIndex = 8;
+            this.mainTabing.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainTabing_MouseClick);
             // 
             // home
             // 
@@ -260,7 +269,7 @@
             this.gb_user.Location = new System.Drawing.Point(6, 6);
             this.gb_user.Name = "gb_user";
             this.gb_user.Size = new System.Drawing.Size(297, 103);
-            this.gb_user.TabIndex = 11;
+            this.gb_user.TabIndex = 1;
             this.gb_user.TabStop = false;
             this.gb_user.Text = "Patient";
             // 
@@ -270,7 +279,7 @@
             this.lb_userName.Location = new System.Drawing.Point(194, 29);
             this.lb_userName.Name = "lb_userName";
             this.lb_userName.Size = new System.Drawing.Size(95, 22);
-            this.lb_userName.TabIndex = 9;
+            this.lb_userName.TabIndex = 5;
             this.lb_userName.Text = "UserName";
             // 
             // lb_serviceError
@@ -292,8 +301,8 @@
             this.gb_monitoringParametrs.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.gb_monitoringParametrs.Location = new System.Drawing.Point(6, 115);
             this.gb_monitoringParametrs.Name = "gb_monitoringParametrs";
-            this.gb_monitoringParametrs.Size = new System.Drawing.Size(640, 91);
-            this.gb_monitoringParametrs.TabIndex = 8;
+            this.gb_monitoringParametrs.Size = new System.Drawing.Size(674, 91);
+            this.gb_monitoringParametrs.TabIndex = 6;
             this.gb_monitoringParametrs.TabStop = false;
             this.gb_monitoringParametrs.Text = "Monitoring Parameters";
             // 
@@ -303,7 +312,6 @@
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataHR);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataBP);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataSPO2);
-            this.gb_physiologicDataNormal.Controls.Add(this.button1);
             this.gb_physiologicDataNormal.Controls.Add(this.label4);
             this.gb_physiologicDataNormal.Controls.Add(this.label3);
             this.gb_physiologicDataNormal.Controls.Add(this.label2);
@@ -313,8 +321,8 @@
             this.gb_physiologicDataNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.gb_physiologicDataNormal.Location = new System.Drawing.Point(6, 212);
             this.gb_physiologicDataNormal.Name = "gb_physiologicDataNormal";
-            this.gb_physiologicDataNormal.Size = new System.Drawing.Size(641, 210);
-            this.gb_physiologicDataNormal.TabIndex = 7;
+            this.gb_physiologicDataNormal.Size = new System.Drawing.Size(674, 210);
+            this.gb_physiologicDataNormal.TabIndex = 10;
             this.gb_physiologicDataNormal.TabStop = false;
             this.gb_physiologicDataNormal.Text = "Physiologic Data";
             // 
@@ -344,16 +352,6 @@
             this.lb_dataSPO2.Size = new System.Drawing.Size(96, 22);
             this.lb_dataSPO2.TabIndex = 9;
             this.lb_dataSPO2.Text = "DataSPO2";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(6, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 52);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Simple View";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -712,8 +710,8 @@
             this.browser.Location = new System.Drawing.Point(-4, 58);
             this.browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(690, 416);
-            this.browser.TabIndex = 1;
+            this.browser.Size = new System.Drawing.Size(694, 420);
+            this.browser.TabIndex = 4;
             // 
             // panelURL
             // 
@@ -723,16 +721,16 @@
             this.panelURL.Controls.Add(this.label6);
             this.panelURL.Location = new System.Drawing.Point(0, 0);
             this.panelURL.Name = "panelURL";
-            this.panelURL.Size = new System.Drawing.Size(653, 56);
+            this.panelURL.Size = new System.Drawing.Size(686, 56);
             this.panelURL.TabIndex = 0;
             // 
             // bt_searchMedLine
             // 
             this.bt_searchMedLine.FlatAppearance.BorderSize = 0;
-            this.bt_searchMedLine.Location = new System.Drawing.Point(575, 12);
+            this.bt_searchMedLine.Location = new System.Drawing.Point(608, 13);
             this.bt_searchMedLine.Name = "bt_searchMedLine";
             this.bt_searchMedLine.Size = new System.Drawing.Size(75, 30);
-            this.bt_searchMedLine.TabIndex = 2;
+            this.bt_searchMedLine.TabIndex = 3;
             this.bt_searchMedLine.Text = "Search";
             this.bt_searchMedLine.UseVisualStyleBackColor = true;
             this.bt_searchMedLine.Click += new System.EventHandler(this.bt_searchMedLine_Click);
@@ -741,8 +739,8 @@
             // 
             this.tb_url.Location = new System.Drawing.Point(56, 13);
             this.tb_url.Name = "tb_url";
-            this.tb_url.Size = new System.Drawing.Size(513, 27);
-            this.tb_url.TabIndex = 1;
+            this.tb_url.Size = new System.Drawing.Size(546, 27);
+            this.tb_url.TabIndex = 2;
             // 
             // label6
             // 
@@ -750,12 +748,13 @@
             this.label6.Location = new System.Drawing.Point(3, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 22);
-            this.label6.TabIndex = 0;
+            this.label6.TabIndex = 1;
             this.label6.Text = "URL";
             // 
             // configurations
             // 
             this.configurations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
+            this.configurations.Controls.Add(this.gb_receivingData);
             this.configurations.Controls.Add(this.bt_cancelConfigurations);
             this.configurations.Controls.Add(this.bt_saveConfigurations);
             this.configurations.Controls.Add(this.cb_medlineURL);
@@ -767,36 +766,116 @@
             this.configurations.TabIndex = 3;
             this.configurations.Text = "Configurations";
             // 
+            // gb_receivingData
+            // 
+            this.gb_receivingData.Controls.Add(this.label20);
+            this.gb_receivingData.Controls.Add(this.label21);
+            this.gb_receivingData.Controls.Add(this.label19);
+            this.gb_receivingData.Controls.Add(this.numberRatingDLL);
+            this.gb_receivingData.Location = new System.Drawing.Point(21, 157);
+            this.gb_receivingData.Name = "gb_receivingData";
+            this.gb_receivingData.Size = new System.Drawing.Size(228, 160);
+            this.gb_receivingData.TabIndex = 11;
+            this.gb_receivingData.TabStop = false;
+            this.gb_receivingData.Text = "Receiving Data";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 135);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(160, 22);
+            this.label20.TabIndex = 14;
+            this.label20.Text = "*ms (1s = 1000ms)";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(162, 36);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(17, 22);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "*";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(33, 38);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(48, 22);
+            this.label19.TabIndex = 12;
+            this.label19.Text = "Rate";
+            // 
+            // numberRatingDLL
+            // 
+            this.numberRatingDLL.Location = new System.Drawing.Point(87, 36);
+            this.numberRatingDLL.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.numberRatingDLL.Minimum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.numberRatingDLL.Name = "numberRatingDLL";
+            this.numberRatingDLL.Size = new System.Drawing.Size(76, 27);
+            this.numberRatingDLL.TabIndex = 13;
+            this.numberRatingDLL.Value = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            // 
             // bt_cancelConfigurations
             // 
-            this.bt_cancelConfigurations.Location = new System.Drawing.Point(554, 470);
+            this.bt_cancelConfigurations.Location = new System.Drawing.Point(587, 433);
             this.bt_cancelConfigurations.Name = "bt_cancelConfigurations";
             this.bt_cancelConfigurations.Size = new System.Drawing.Size(93, 35);
-            this.bt_cancelConfigurations.TabIndex = 2;
+            this.bt_cancelConfigurations.TabIndex = 16;
             this.bt_cancelConfigurations.Text = "Cancel";
             this.bt_cancelConfigurations.UseVisualStyleBackColor = true;
             this.bt_cancelConfigurations.Click += new System.EventHandler(this.bt_cancel_Click);
             // 
             // bt_saveConfigurations
             // 
-            this.bt_saveConfigurations.Location = new System.Drawing.Point(455, 470);
+            this.bt_saveConfigurations.Location = new System.Drawing.Point(488, 433);
             this.bt_saveConfigurations.Name = "bt_saveConfigurations";
             this.bt_saveConfigurations.Size = new System.Drawing.Size(93, 35);
-            this.bt_saveConfigurations.TabIndex = 2;
+            this.bt_saveConfigurations.TabIndex = 15;
             this.bt_saveConfigurations.Text = "Save";
             this.bt_saveConfigurations.UseVisualStyleBackColor = true;
             this.bt_saveConfigurations.Click += new System.EventHandler(this.bt_save_Click);
             // 
             // cb_medlineURL
             // 
+            this.cb_medlineURL.Controls.Add(this.tb_retmax);
+            this.cb_medlineURL.Controls.Add(this.label22);
             this.cb_medlineURL.Controls.Add(this.label5);
-            this.cb_medlineURL.Controls.Add(this.textBox1);
+            this.cb_medlineURL.Controls.Add(this.tb_urlMedline);
             this.cb_medlineURL.Location = new System.Drawing.Point(267, 16);
             this.cb_medlineURL.Name = "cb_medlineURL";
-            this.cb_medlineURL.Size = new System.Drawing.Size(366, 134);
-            this.cb_medlineURL.TabIndex = 1;
+            this.cb_medlineURL.Size = new System.Drawing.Size(413, 181);
+            this.cb_medlineURL.TabIndex = 6;
             this.cb_medlineURL.TabStop = false;
             this.cb_medlineURL.Text = "URL MedLine";
+            // 
+            // tb_retmax
+            // 
+            this.tb_retmax.Location = new System.Drawing.Point(148, 87);
+            this.tb_retmax.Name = "tb_retmax";
+            this.tb_retmax.Size = new System.Drawing.Size(53, 27);
+            this.tb_retmax.TabIndex = 10;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(7, 87);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(135, 44);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Nº of Received \r\nDocuments";
             // 
             // label5
             // 
@@ -804,45 +883,45 @@
             this.label5.Location = new System.Drawing.Point(6, 38);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 22);
-            this.label5.TabIndex = 1;
+            this.label5.TabIndex = 7;
             this.label5.Text = "URL";
             // 
-            // textBox1
+            // tb_urlMedline
             // 
-            this.textBox1.Location = new System.Drawing.Point(58, 35);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(302, 27);
-            this.textBox1.TabIndex = 0;
+            this.tb_urlMedline.Location = new System.Drawing.Point(58, 35);
+            this.tb_urlMedline.Name = "tb_urlMedline";
+            this.tb_urlMedline.Size = new System.Drawing.Size(349, 27);
+            this.tb_urlMedline.TabIndex = 8;
             // 
             // gb_voice
             // 
-            this.gb_voice.Controls.Add(this.numberRating);
+            this.gb_voice.Controls.Add(this.numberRatingVoice);
             this.gb_voice.Controls.Add(this.lb_rate);
             this.gb_voice.Controls.Add(this.rb_female);
             this.gb_voice.Controls.Add(this.rb_male);
             this.gb_voice.Location = new System.Drawing.Point(21, 16);
             this.gb_voice.Name = "gb_voice";
             this.gb_voice.Size = new System.Drawing.Size(228, 134);
-            this.gb_voice.TabIndex = 0;
+            this.gb_voice.TabIndex = 1;
             this.gb_voice.TabStop = false;
             this.gb_voice.Text = "Voice ";
             // 
-            // numberRating
+            // numberRatingVoice
             // 
-            this.numberRating.Location = new System.Drawing.Point(113, 77);
-            this.numberRating.Maximum = new decimal(new int[] {
+            this.numberRatingVoice.Location = new System.Drawing.Point(113, 77);
+            this.numberRatingVoice.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numberRating.Minimum = new decimal(new int[] {
+            this.numberRatingVoice.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             -2147483648});
-            this.numberRating.Name = "numberRating";
-            this.numberRating.Size = new System.Drawing.Size(50, 27);
-            this.numberRating.TabIndex = 2;
+            this.numberRatingVoice.Name = "numberRatingVoice";
+            this.numberRatingVoice.Size = new System.Drawing.Size(50, 27);
+            this.numberRatingVoice.TabIndex = 5;
             // 
             // lb_rate
             // 
@@ -850,7 +929,7 @@
             this.lb_rate.Location = new System.Drawing.Point(59, 79);
             this.lb_rate.Name = "lb_rate";
             this.lb_rate.Size = new System.Drawing.Size(48, 22);
-            this.lb_rate.TabIndex = 1;
+            this.lb_rate.TabIndex = 4;
             this.lb_rate.Text = "Rate";
             // 
             // rb_female
@@ -859,7 +938,7 @@
             this.rb_female.Location = new System.Drawing.Point(113, 35);
             this.rb_female.Name = "rb_female";
             this.rb_female.Size = new System.Drawing.Size(87, 26);
-            this.rb_female.TabIndex = 0;
+            this.rb_female.TabIndex = 3;
             this.rb_female.TabStop = true;
             this.rb_female.Text = "Female";
             this.rb_female.UseVisualStyleBackColor = true;
@@ -870,7 +949,7 @@
             this.rb_male.Location = new System.Drawing.Point(27, 35);
             this.rb_male.Name = "rb_male";
             this.rb_male.Size = new System.Drawing.Size(66, 26);
-            this.rb_male.TabIndex = 0;
+            this.rb_male.TabIndex = 2;
             this.rb_male.TabStop = true;
             this.rb_male.Text = "Male";
             this.rb_male.UseVisualStyleBackColor = true;
@@ -906,11 +985,14 @@
             this.panelURL.ResumeLayout(false);
             this.panelURL.PerformLayout();
             this.configurations.ResumeLayout(false);
+            this.gb_receivingData.ResumeLayout(false);
+            this.gb_receivingData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numberRatingDLL)).EndInit();
             this.cb_medlineURL.ResumeLayout(false);
             this.cb_medlineURL.PerformLayout();
             this.gb_voice.ResumeLayout(false);
             this.gb_voice.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numberRating)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberRatingVoice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -941,15 +1023,14 @@
         private System.Windows.Forms.Label lb_dataHR;
         private System.Windows.Forms.Label lb_dataBP;
         private System.Windows.Forms.Label lb_dataSPO2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage configurations;
         private System.Windows.Forms.GroupBox gb_voice;
         private System.Windows.Forms.Label lb_rate;
         private System.Windows.Forms.RadioButton rb_female;
         private System.Windows.Forms.RadioButton rb_male;
-        private System.Windows.Forms.NumericUpDown numberRating;
+        private System.Windows.Forms.NumericUpDown numberRatingVoice;
         private System.Windows.Forms.GroupBox cb_medlineURL;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_urlMedline;
         private System.Windows.Forms.Button bt_saveConfigurations;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panelURL;
@@ -990,6 +1071,13 @@
         private System.Windows.Forms.TextBox tb_height;
         private System.Windows.Forms.Label lb_serviceError;
         private System.Windows.Forms.GroupBox gb_user;
+        private System.Windows.Forms.GroupBox gb_receivingData;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown numberRatingDLL;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox tb_retmax;
+        private System.Windows.Forms.Label label22;
     }
 }
 
