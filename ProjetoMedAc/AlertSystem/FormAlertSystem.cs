@@ -328,7 +328,7 @@ namespace AlertSystem
             {
                 foreach (DataGridViewRow row in dataGridViewPatients.Rows)
                 {
-                    if (p.Sns == Convert.ToInt32(row.Cells[12].Value))
+                    if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
                     {
                         rowIndex = row.Index;
                     }

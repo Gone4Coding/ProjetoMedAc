@@ -127,6 +127,8 @@
             this.tb_lastName = new System.Windows.Forms.TextBox();
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxPatientSummary.SuspendLayout();
@@ -649,6 +651,7 @@
             this.groupBoxPatients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxPatients.AutoSize = true;
+            this.groupBoxPatients.Controls.Add(this.label23);
             this.groupBoxPatients.Controls.Add(this.dataGridViewPatients);
             this.groupBoxPatients.Location = new System.Drawing.Point(8, 43);
             this.groupBoxPatients.Name = "groupBoxPatients";
@@ -1215,11 +1218,31 @@
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Chocolate;
+            this.panel1.Location = new System.Drawing.Point(39, 84);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(161, 20);
+            this.panel1.TabIndex = 1;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label23.ForeColor = System.Drawing.Color.Chocolate;
+            this.label23.Location = new System.Drawing.Point(203, 19);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(159, 20);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "Patient on monitoring";
+            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1411, 785);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAlertSystem";
@@ -1243,6 +1266,7 @@
             this.toolStripPatients.ResumeLayout(false);
             this.toolStripPatients.PerformLayout();
             this.groupBoxPatients.ResumeLayout(false);
+            this.groupBoxPatients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).EndInit();
             this.groupBoxPatient.ResumeLayout(false);
             this.panelInfoPatient.ResumeLayout(false);
@@ -1352,6 +1376,8 @@
         private System.Windows.Forms.ComboBox comboBoxEmergencyCode;
         private System.Windows.Forms.ComboBox comboBoxCode;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label23;
     }
 }
 
