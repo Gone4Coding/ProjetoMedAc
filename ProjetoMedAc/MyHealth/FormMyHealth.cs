@@ -378,6 +378,7 @@ namespace MyHealth
             lb_date_HR.Text = "Receiving...";
             lb_dataHR.Visible = check;
             lb_dataHR.Text = "Receiving...";
+            pb_successErrorHR.Visible = check;
             StartMonitoring();
         }
 
@@ -390,6 +391,7 @@ namespace MyHealth
             lb_date_o2.Text = "Receiving...";
             lb_dataSPO2.Visible = check;
             lb_dataSPO2.Text = "Receiving...";
+            pb_successErrorSPO2.Visible = check;
             StartMonitoring();
         }
 
@@ -402,6 +404,7 @@ namespace MyHealth
             lb_dateBP.Text = "Receiving...";
             lb_dataBP.Visible = check;
             lb_dataBP.Text = "Receiving...";
+            pb_successErrorBP.Visible = check;
             StartMonitoring();
         }
 
