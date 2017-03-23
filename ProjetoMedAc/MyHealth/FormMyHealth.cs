@@ -458,7 +458,7 @@ namespace MyHealth
                 DateTime dateTime = Convert.ToDateTime(info[2]);
 
                 TimeSpan time = dateTime.TimeOfDay;
-                DateTime date = dateTime.Date;
+                DateTime date = dateTime;
 
                 int snsUser = patient.Sns;
                 

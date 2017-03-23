@@ -268,6 +268,20 @@ namespace AlertSystem
                 Patient patientSelected = client.GetPatient(sns);
 
                 fillFields(patientSelected);
+                
+            }
+        }
+        private void dataGridViewPatientsMonitor_SelectionChanged(object sender, EventArgs e)
+        {
+            fromSelection = false;
+            if (dataGridViewPatientsMonitor.Rows.Count > 0 & dataGridViewPatientsMonitor.CurrentCell != null)
+            {
+                int index = dataGridViewPatientsMonitor.CurrentCell.RowIndex;
+                int sns = Convert.ToInt32(dataGridViewPatientsMonitor.Rows[index].Cells["Sns"].Value);
+                Patient patientSelected = client.GetPatient(sns);
+
+                fillMonitorPatientInfo(patientSelected);
+                fillFields(patientSelected);               
             }
         }
         private void checkBoxPatientMonitoring_Click(object sender, EventArgs e)
@@ -343,7 +357,7 @@ namespace AlertSystem
                 fillGridViewMonitoring(activePatients);
             }
 
-            if (p == null && !monitoring)
+            if (p == null && monitoring)
             {
                 fillFirstSelected(false);
             }
@@ -356,14 +370,7 @@ namespace AlertSystem
             {
                 if (!monitoring)
                 {
-                    foreach (DataGridViewRow row in dataGridViewPatients.Rows)
-                    {
-                        if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
-                        {
-                            rowIndex = row.Index;
-                        }
-                    }
-                    dataGridViewPatients.Rows[rowIndex].Selected = true;
+                    selectPatientDataGridView(p);
                     fillFields(p);
                 }
                 else
@@ -377,9 +384,15 @@ namespace AlertSystem
                                 rowIndex = row.Index;
                             }
                         }
-                        dataGridViewPatients.Rows[rowIndex].Selected = true;
+                        dataGridViewPatientsMonitor.Rows[rowIndex].Selected = true;
                         if (p.Ativo)
+                        {
                             fillMonitorPatientInfo(p);
+                        }
+                        else
+                        {
+                            fillFirstSelected(true);
+                        }
                     }
                     else
                     {
@@ -754,7 +767,18 @@ namespace AlertSystem
             return isnumeric;
         }
 
-
+        private void selectPatientDataGridView(Patient p)
+        {
+            int rowIndex = 0;
+            foreach (DataGridViewRow row in dataGridViewPatients.Rows)
+            {
+                if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
+                {
+                    rowIndex = row.Index;
+                }
+            }
+            dataGridViewPatients.Rows[rowIndex].Selected = true;
+        }
         #endregion
         //
 
@@ -793,9 +817,9 @@ namespace AlertSystem
 
             foreach (DataGridViewRow row in dataGridViewPatientsMonitor.Rows)
             {
-                if (Convert.ToBoolean(row.Cells["Ativo"].Value))
+                if (Convert.ToBoolean(row.Cells["Sns"].Value))
                 {
-                    row.DefaultCellStyle.BackColor = Color.Chocolate;
+                   // row.DefaultCellStyle.BackColor = Color.Chocolate;
                 }
             }
 
@@ -805,7 +829,7 @@ namespace AlertSystem
             
             dataGridViewPatientsMonitor.Columns[2].DisplayIndex = 4;
 
-            dataGridViewPatients.RowHeadersVisible = false;
+            dataGridViewPatientsMonitor.RowHeadersVisible = false;
         }
 
         #endregion
@@ -910,5 +934,7 @@ namespace AlertSystem
             }
             return true;
         }
+
+      
     }
 }

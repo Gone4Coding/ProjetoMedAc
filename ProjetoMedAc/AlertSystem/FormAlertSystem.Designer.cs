@@ -78,6 +78,7 @@
             this.toolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.groupBoxPatients = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label23 = new System.Windows.Forms.Label();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
@@ -128,7 +129,6 @@
             this.tb_lastName = new System.Windows.Forms.TextBox();
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxPatientSummary.SuspendLayout();
@@ -558,6 +558,7 @@
             this.dataGridViewPatientsMonitor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPatientsMonitor.Size = new System.Drawing.Size(244, 621);
             this.dataGridViewPatientsMonitor.TabIndex = 2;
+            this.dataGridViewPatientsMonitor.SelectionChanged += new System.EventHandler(this.dataGridViewPatientsMonitor_SelectionChanged);
             // 
             // tabPagePatients
             // 
@@ -661,6 +662,14 @@
             this.groupBoxPatients.TabIndex = 2;
             this.groupBoxPatients.TabStop = false;
             this.groupBoxPatients.Text = "Patients";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Chocolate;
+            this.panel1.Location = new System.Drawing.Point(36, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(161, 20);
+            this.panel1.TabIndex = 4;
             // 
             // label23
             // 
@@ -1230,14 +1239,6 @@
             this.tabControlRecors.Size = new System.Drawing.Size(1411, 784);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Chocolate;
-            this.panel1.Location = new System.Drawing.Point(36, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(161, 20);
-            this.panel1.TabIndex = 4;
             // 
             // FormAlertSystem
             // 
