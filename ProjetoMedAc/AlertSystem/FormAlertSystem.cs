@@ -24,6 +24,7 @@ namespace AlertSystem
         private List<Countries.Country> countries;
         private List<Patient> patients;
         private Patient patientToEdit;
+        private Patient patientOnMonitoring;
 
         private BackgroundWorker backgroundWorker1;
 
@@ -65,7 +66,10 @@ namespace AlertSystem
         #region PatientsTab
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // MessageBox.Show(tabControlRecors.SelectedTab.TabIndex.ToString());
+            if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
+            {
+                load(patientToEdit,true);
+            }
         }
 
         private void dataGridViewPatients_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -329,25 +333,61 @@ namespace AlertSystem
             buttonAdd.Hide();
             dataGridViewPatients.Enabled = true;
             patients = new List<Patient>(client.GetPatientList());
-            fillGridView(patients);
-            if (p == null)
+            if (!monitoring)
             {
-                fillFirstSelected();
+                fillGridView(patients);
             }
             else
             {
-                foreach (DataGridViewRow row in dataGridViewPatients.Rows)
+                List<Patient> activePatients = patients.Where(i => i.Ativo == true).ToList();
+                fillGridViewMonitoring(activePatients);
+            }
+
+            if (p == null && !monitoring)
+            {
+                fillFirstSelected(false);
+            }
+
+            if (p == null && !monitoring)
+            {
+                fillFirstSelected(true);
+            }
+            else
+            {
+                if (!monitoring)
                 {
-                    if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
+                    foreach (DataGridViewRow row in dataGridViewPatients.Rows)
                     {
-                        rowIndex = row.Index;
+                        if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
+                        {
+                            rowIndex = row.Index;
+                        }
+                    }
+                    dataGridViewPatients.Rows[rowIndex].Selected = true;
+                    fillFields(p);
+                }
+                else
+                {
+                    if (dataGridViewPatientsMonitor.RowCount != 0)
+                    {
+                        foreach (DataGridViewRow row in dataGridViewPatientsMonitor.Rows)
+                        {
+                            if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
+                            {
+                                rowIndex = row.Index;
+                            }
+                        }
+                        dataGridViewPatients.Rows[rowIndex].Selected = true;
+                        if (p.Ativo)
+                            fillMonitorPatientInfo(p);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No patients on monitoring!", "INFO", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        tabControlRecors.SelectedTab = tabPagePatients;
                     }
                 }
-
-                dataGridViewPatients.Rows[rowIndex].Selected = true;
-
-                if (!monitoring)
-                    fillFields(p);
             }
 
             enableTextBoxes(false);
@@ -404,14 +444,27 @@ namespace AlertSystem
             dataGridViewPatients.RowHeadersVisible = false;
 
         }
-        private void fillFirstSelected()
+        private void fillFirstSelected(bool monitoring)
         {
-            if (dataGridViewPatients.Rows.Count != 0)
+            if (!monitoring)
             {
-                int sns = Convert.ToInt32(dataGridViewPatients.Rows[0].Cells["Sns"].Value);
-                Patient patientSelected = client.GetPatient(sns);
+                if (dataGridViewPatients.Rows.Count != 0)
+                {
+                    int sns = Convert.ToInt32(dataGridViewPatients.Rows[0].Cells["Sns"].Value);
+                    Patient patientSelected = client.GetPatient(sns);
 
-                fillFields(patientSelected);
+                    fillFields(patientSelected);
+                }
+            }
+            else
+            {
+                if (dataGridViewPatientsMonitor.Rows.Count != 0)
+                {
+                    int sns = Convert.ToInt32(dataGridViewPatientsMonitor.Rows[0].Cells["Sns"].Value);
+                    Patient patientSelected = client.GetPatient(sns);
+
+                    fillMonitorPatientInfo(patientSelected);
+                }
             }
         }
         private void fillFields(Patient patient)
@@ -440,7 +493,7 @@ namespace AlertSystem
             if (patient.PhoneCountryCode != null)
                 comboBoxCode.Text = countries.First(i => i.CallingCodes == patient.PhoneCountryCode).ToString();
             readMonitoring(patient);
-            fillMonitorPatientInfo(patient);
+           // fillMonitorPatientInfo(patient);
         }
 
         private void fillComboBoxCountries()
@@ -705,7 +758,7 @@ namespace AlertSystem
         #endregion
         //
 
-        #region Monitor
+      #region Monitor
 
         private void fillMonitorPatientInfo(Patient patient)
         {
@@ -724,10 +777,45 @@ namespace AlertSystem
             richTextBox1Alergies.Text = patient.Alergies;
         }
 
-        #endregion
+        private void fillGridViewMonitoring(List<Patient> patients)
+        {
+            List<Patient> patientsActive = patients.Where(i => i.Ativo == true).ToList();
+
+            dataGridViewPatientsMonitor.DataSource = patientsActive;
+
+            for (int i = 0; i < dataGridViewPatientsMonitor.ColumnCount; i++)
+            {
+                if (i != 14 && i != 10 && i != 15 && i != 2)
+                {
+                    dataGridViewPatientsMonitor.Columns[i].Visible = false;
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridViewPatientsMonitor.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["Ativo"].Value))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Chocolate;
+                }
+            }
+
+            dataGridViewPatientsMonitor.Columns[14].DisplayIndex = 0;
+            dataGridViewPatientsMonitor.Columns[10].DisplayIndex = 1;
+            dataGridViewPatientsMonitor.Columns[15].DisplayIndex = 2;
+            
+            dataGridViewPatientsMonitor.Columns[2].DisplayIndex = 4;
+
+            dataGridViewPatients.RowHeadersVisible = false;
+        }
 
         #endregion
 
+        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButtonSearch_Click(object sender, EventArgs e)
         {
             if (validateSearch())
@@ -747,8 +835,8 @@ namespace AlertSystem
                 if (pSearched != null)
                 {
                     load(pSearched, false);
-                   this.backgroundWorker1.RunWorkerAsync();
-                    Thread t = new Thread();
+                  // this.backgroundWorker1.RunWorkerAsync();
+                   // Thread t = new Thread();
                    
                 }
                 else

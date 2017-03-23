@@ -836,28 +836,28 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Patient> GetPatientAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatientList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientListResponse")]
-        AlertSystem.ServiceReferenceHealth.Patient[] GetPatientList();
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient> GetPatientList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetPatientList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetPatientListResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Patient[]> GetPatientListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient>> GetPatientListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/HeartRateList", ReplyAction="http://tempuri.org/IServiceHealthAlert/HeartRateListResponse")]
-        AlertSystem.ServiceReferenceHealth.HeartRate[] HeartRateList(int sns);
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate> HeartRateList(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/HeartRateList", ReplyAction="http://tempuri.org/IServiceHealthAlert/HeartRateListResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.HeartRate[]> HeartRateListAsync(int sns);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate>> HeartRateListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/OxygenSaturationList", ReplyAction="http://tempuri.org/IServiceHealthAlert/OxygenSaturationListResponse")]
-        AlertSystem.ServiceReferenceHealth.OxygenSaturation[] OxygenSaturationList(int sns);
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation> OxygenSaturationList(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/OxygenSaturationList", ReplyAction="http://tempuri.org/IServiceHealthAlert/OxygenSaturationListResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.OxygenSaturation[]> OxygenSaturationListAsync(int sns);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation>> OxygenSaturationListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/BloodPressureList", ReplyAction="http://tempuri.org/IServiceHealthAlert/BloodPressureListResponse")]
-        AlertSystem.ServiceReferenceHealth.BloodPressure[] BloodPressureList(int sns);
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure> BloodPressureList(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/BloodPressureList", ReplyAction="http://tempuri.org/IServiceHealthAlert/BloodPressureListResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.BloodPressure[]> BloodPressureListAsync(int sns);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure>> BloodPressureListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
         AlertSystem.ServiceReferenceHealth.AlertType GetAlert(string type);
@@ -866,10 +866,10 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.AlertType> GetAlertAsync(string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        AlertSystem.ServiceReferenceHealth.AlertType[] GetAlertList();
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.AlertType> GetAlertList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.AlertType[]> GetAlertListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.AlertType>> GetAlertListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
         bool InsertAlert(AlertSystem.ServiceReferenceHealth.AlertType alertType);
@@ -949,35 +949,35 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.GetPatientAsync(sns);
         }
         
-        public AlertSystem.ServiceReferenceHealth.Patient[] GetPatientList() {
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient> GetPatientList() {
             return base.Channel.GetPatientList();
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.Patient[]> GetPatientListAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Patient>> GetPatientListAsync() {
             return base.Channel.GetPatientListAsync();
         }
         
-        public AlertSystem.ServiceReferenceHealth.HeartRate[] HeartRateList(int sns) {
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate> HeartRateList(int sns) {
             return base.Channel.HeartRateList(sns);
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.HeartRate[]> HeartRateListAsync(int sns) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate>> HeartRateListAsync(int sns) {
             return base.Channel.HeartRateListAsync(sns);
         }
         
-        public AlertSystem.ServiceReferenceHealth.OxygenSaturation[] OxygenSaturationList(int sns) {
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation> OxygenSaturationList(int sns) {
             return base.Channel.OxygenSaturationList(sns);
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.OxygenSaturation[]> OxygenSaturationListAsync(int sns) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturation>> OxygenSaturationListAsync(int sns) {
             return base.Channel.OxygenSaturationListAsync(sns);
         }
         
-        public AlertSystem.ServiceReferenceHealth.BloodPressure[] BloodPressureList(int sns) {
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure> BloodPressureList(int sns) {
             return base.Channel.BloodPressureList(sns);
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.BloodPressure[]> BloodPressureListAsync(int sns) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure>> BloodPressureListAsync(int sns) {
             return base.Channel.BloodPressureListAsync(sns);
         }
         
@@ -989,11 +989,11 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.GetAlertAsync(type);
         }
         
-        public AlertSystem.ServiceReferenceHealth.AlertType[] GetAlertList() {
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.AlertType> GetAlertList() {
             return base.Channel.GetAlertList();
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.AlertType[]> GetAlertListAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.AlertType>> GetAlertListAsync() {
             return base.Channel.GetAlertListAsync();
         }
         
