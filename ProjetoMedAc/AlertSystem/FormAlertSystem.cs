@@ -24,6 +24,7 @@ namespace AlertSystem
         private List<Countries.Country> countries;
         private List<Patient> patients;
         private Patient patientToEdit;
+        private Patient patientOnMonitoring;
 
         private BackgroundWorker backgroundWorker1;
 
