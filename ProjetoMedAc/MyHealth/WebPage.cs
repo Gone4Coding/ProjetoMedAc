@@ -33,7 +33,7 @@ namespace MyHealth
                 output += "<p><b>Title: </b>" + node.SelectSingleNode("content[@name = 'title']").InnerText +"</p>";
                 output += "<ul>" +
                           "<li><b>Summary: </b>" + node.SelectSingleNode("content[@name = 'FullSummary']").InnerText + "</li>" +
-                          "<li><b>Link: </b>" + node.SelectSingleNode("@url").InnerText + "</li>" +
+                          "<li><b>Link: </b><a href=\""+ node.SelectSingleNode("@url").InnerText + "\">" + node.SelectSingleNode("@url").InnerText + "</a></li>" +
                           "</ul>";
             }
 

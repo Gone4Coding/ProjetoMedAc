@@ -1,6 +1,6 @@
 ﻿namespace MyHealth
 {
-    partial class MyHealth
+    partial class FormMyHealth
     {
         /// <summary>
         /// Required designer variable.
@@ -106,6 +106,9 @@
             this.lb_rate = new System.Windows.Forms.Label();
             this.rb_female = new System.Windows.Forms.RadioButton();
             this.rb_male = new System.Windows.Forms.RadioButton();
+            this.pb_successErrorBP = new System.Windows.Forms.PictureBox();
+            this.pb_successErrorSPO2 = new System.Windows.Forms.PictureBox();
+            this.pb_successErrorHR = new System.Windows.Forms.PictureBox();
             this.mainTabing.SuspendLayout();
             this.home.SuspendLayout();
             this.gb_user.SuspendLayout();
@@ -122,6 +125,9 @@
             this.cb_medlineURL.SuspendLayout();
             this.gb_voice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberRatingVoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorBP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorSPO2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorHR)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_patientId
@@ -136,6 +142,9 @@
             // 
             // tb_patientSNS
             // 
+            this.tb_patientSNS.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_patientSNS.Location = new System.Drawing.Point(60, 26);
             this.tb_patientSNS.Name = "tb_patientSNS";
             this.tb_patientSNS.Size = new System.Drawing.Size(128, 27);
@@ -143,6 +152,7 @@
             // 
             // bt_Insert
             // 
+            this.bt_Insert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.bt_Insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.bt_Insert.Location = new System.Drawing.Point(60, 59);
             this.bt_Insert.Name = "bt_Insert";
@@ -241,7 +251,7 @@
             this.mainTabing.Location = new System.Drawing.Point(12, 12);
             this.mainTabing.Name = "mainTabing";
             this.mainTabing.SelectedIndex = 0;
-            this.mainTabing.Size = new System.Drawing.Size(694, 507);
+            this.mainTabing.Size = new System.Drawing.Size(712, 507);
             this.mainTabing.TabIndex = 8;
             this.mainTabing.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainTabing_MouseClick);
             // 
@@ -256,12 +266,13 @@
             this.home.Location = new System.Drawing.Point(4, 29);
             this.home.Name = "home";
             this.home.Padding = new System.Windows.Forms.Padding(3);
-            this.home.Size = new System.Drawing.Size(686, 474);
+            this.home.Size = new System.Drawing.Size(704, 474);
             this.home.TabIndex = 0;
             this.home.Text = "Home";
             // 
             // gb_user
             // 
+            this.gb_user.BackColor = System.Drawing.Color.Transparent;
             this.gb_user.Controls.Add(this.tb_patientSNS);
             this.gb_user.Controls.Add(this.lb_patientId);
             this.gb_user.Controls.Add(this.lb_userName);
@@ -275,6 +286,8 @@
             // 
             // lb_userName
             // 
+            this.lb_userName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_userName.AutoSize = true;
             this.lb_userName.Location = new System.Drawing.Point(194, 29);
             this.lb_userName.Name = "lb_userName";
@@ -294,21 +307,30 @@
             // 
             // gb_monitoringParametrs
             // 
-            this.gb_monitoringParametrs.BackColor = System.Drawing.Color.Transparent;
+            this.gb_monitoringParametrs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gb_monitoringParametrs.BackColor = System.Drawing.Color.MistyRose;
             this.gb_monitoringParametrs.Controls.Add(this.cb_bloodPressure);
             this.gb_monitoringParametrs.Controls.Add(this.cb_saturations);
             this.gb_monitoringParametrs.Controls.Add(this.cb_heartRate);
             this.gb_monitoringParametrs.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.gb_monitoringParametrs.Location = new System.Drawing.Point(6, 115);
             this.gb_monitoringParametrs.Name = "gb_monitoringParametrs";
-            this.gb_monitoringParametrs.Size = new System.Drawing.Size(674, 91);
+            this.gb_monitoringParametrs.Size = new System.Drawing.Size(692, 91);
             this.gb_monitoringParametrs.TabIndex = 6;
             this.gb_monitoringParametrs.TabStop = false;
             this.gb_monitoringParametrs.Text = "Monitoring Parameters";
             // 
             // gb_physiologicDataNormal
             // 
+            this.gb_physiologicDataNormal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gb_physiologicDataNormal.BackColor = System.Drawing.Color.Transparent;
+            this.gb_physiologicDataNormal.Controls.Add(this.pb_successErrorHR);
+            this.gb_physiologicDataNormal.Controls.Add(this.pb_successErrorSPO2);
+            this.gb_physiologicDataNormal.Controls.Add(this.pb_successErrorBP);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataHR);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataBP);
             this.gb_physiologicDataNormal.Controls.Add(this.lb_dataSPO2);
@@ -321,7 +343,7 @@
             this.gb_physiologicDataNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.gb_physiologicDataNormal.Location = new System.Drawing.Point(6, 212);
             this.gb_physiologicDataNormal.Name = "gb_physiologicDataNormal";
-            this.gb_physiologicDataNormal.Size = new System.Drawing.Size(674, 210);
+            this.gb_physiologicDataNormal.Size = new System.Drawing.Size(692, 256);
             this.gb_physiologicDataNormal.TabIndex = 10;
             this.gb_physiologicDataNormal.TabStop = false;
             this.gb_physiologicDataNormal.Text = "Physiologic Data";
@@ -388,12 +410,15 @@
             this.personalData.Location = new System.Drawing.Point(4, 29);
             this.personalData.Name = "personalData";
             this.personalData.Padding = new System.Windows.Forms.Padding(3);
-            this.personalData.Size = new System.Drawing.Size(686, 474);
+            this.personalData.Size = new System.Drawing.Size(704, 474);
             this.personalData.TabIndex = 1;
             this.personalData.Text = "User Information";
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.tb_weight);
             this.groupBox2.Controls.Add(this.label18);
@@ -405,7 +430,7 @@
             this.groupBox2.Controls.Add(this.tb_emergencyContactName);
             this.groupBox2.Location = new System.Drawing.Point(6, 294);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(674, 171);
+            this.groupBox2.Size = new System.Drawing.Size(692, 171);
             this.groupBox2.TabIndex = 59;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Clinical Data";
@@ -492,6 +517,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.comboBoxGender);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.richTextBox_address);
@@ -513,7 +541,7 @@
             this.groupBox1.Controls.Add(this.tb_sns);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(674, 282);
+            this.groupBox1.Size = new System.Drawing.Size(692, 282);
             this.groupBox1.TabIndex = 58;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Demographic Data";
@@ -697,7 +725,7 @@
             this.medline.Controls.Add(this.panelURL);
             this.medline.Location = new System.Drawing.Point(4, 29);
             this.medline.Name = "medline";
-            this.medline.Size = new System.Drawing.Size(686, 474);
+            this.medline.Size = new System.Drawing.Size(704, 474);
             this.medline.TabIndex = 2;
             this.medline.Text = "MedLine";
             this.medline.UseVisualStyleBackColor = true;
@@ -707,29 +735,32 @@
             this.browser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.browser.Location = new System.Drawing.Point(-4, 58);
+            this.browser.Location = new System.Drawing.Point(-4, 61);
             this.browser.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(694, 420);
+            this.browser.Size = new System.Drawing.Size(712, 417);
             this.browser.TabIndex = 4;
             // 
             // panelURL
             // 
+            this.panelURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelURL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(238)))), ((int)(((byte)(193)))));
             this.panelURL.Controls.Add(this.bt_searchMedLine);
             this.panelURL.Controls.Add(this.tb_url);
             this.panelURL.Controls.Add(this.label6);
             this.panelURL.Location = new System.Drawing.Point(0, 0);
             this.panelURL.Name = "panelURL";
-            this.panelURL.Size = new System.Drawing.Size(686, 56);
+            this.panelURL.Size = new System.Drawing.Size(708, 64);
             this.panelURL.TabIndex = 0;
             // 
             // bt_searchMedLine
             // 
+            this.bt_searchMedLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_searchMedLine.FlatAppearance.BorderSize = 0;
-            this.bt_searchMedLine.Location = new System.Drawing.Point(608, 13);
+            this.bt_searchMedLine.Location = new System.Drawing.Point(622, 12);
             this.bt_searchMedLine.Name = "bt_searchMedLine";
-            this.bt_searchMedLine.Size = new System.Drawing.Size(75, 30);
+            this.bt_searchMedLine.Size = new System.Drawing.Size(75, 27);
             this.bt_searchMedLine.TabIndex = 3;
             this.bt_searchMedLine.Text = "Search";
             this.bt_searchMedLine.UseVisualStyleBackColor = true;
@@ -737,19 +768,26 @@
             // 
             // tb_url
             // 
-            this.tb_url.Location = new System.Drawing.Point(56, 13);
+            this.tb_url.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_url.Location = new System.Drawing.Point(70, 12);
             this.tb_url.Name = "tb_url";
             this.tb_url.Size = new System.Drawing.Size(546, 27);
             this.tb_url.TabIndex = 2;
+            this.tb_url.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_url_KeyDown);
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(3, 12);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 22);
+            this.label6.Size = new System.Drawing.Size(61, 22);
             this.label6.TabIndex = 1;
-            this.label6.Text = "URL";
+            this.label6.Text = "Terms";
             // 
             // configurations
             // 
@@ -762,7 +800,7 @@
             this.configurations.Location = new System.Drawing.Point(4, 29);
             this.configurations.Name = "configurations";
             this.configurations.Padding = new System.Windows.Forms.Padding(3);
-            this.configurations.Size = new System.Drawing.Size(686, 474);
+            this.configurations.Size = new System.Drawing.Size(704, 474);
             this.configurations.TabIndex = 3;
             this.configurations.Text = "Configurations";
             // 
@@ -954,15 +992,42 @@
             this.rb_male.Text = "Male";
             this.rb_male.UseVisualStyleBackColor = true;
             // 
-            // MyHealth
+            // pb_successErrorBP
+            // 
+            this.pb_successErrorBP.Location = new System.Drawing.Point(656, 27);
+            this.pb_successErrorBP.Name = "pb_successErrorBP";
+            this.pb_successErrorBP.Size = new System.Drawing.Size(16, 16);
+            this.pb_successErrorBP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_successErrorBP.TabIndex = 10;
+            this.pb_successErrorBP.TabStop = false;
+            // 
+            // pb_successErrorSPO2
+            // 
+            this.pb_successErrorSPO2.Location = new System.Drawing.Point(656, 88);
+            this.pb_successErrorSPO2.Name = "pb_successErrorSPO2";
+            this.pb_successErrorSPO2.Size = new System.Drawing.Size(16, 16);
+            this.pb_successErrorSPO2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_successErrorSPO2.TabIndex = 10;
+            this.pb_successErrorSPO2.TabStop = false;
+            // 
+            // pb_successErrorHR
+            // 
+            this.pb_successErrorHR.Location = new System.Drawing.Point(656, 152);
+            this.pb_successErrorHR.Name = "pb_successErrorHR";
+            this.pb_successErrorHR.Size = new System.Drawing.Size(16, 16);
+            this.pb_successErrorHR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_successErrorHR.TabIndex = 10;
+            this.pb_successErrorHR.TabStop = false;
+            // 
+            // FormMyHealth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(712, 545);
+            this.ClientSize = new System.Drawing.Size(730, 545);
             this.Controls.Add(this.mainTabing);
             this.Controls.Add(this.checkBox1);
-            this.Name = "MyHealth";
+            this.Name = "FormMyHealth";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyHealth";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyHealth_FormClosing);
@@ -993,6 +1058,9 @@
             this.gb_voice.ResumeLayout(false);
             this.gb_voice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberRatingVoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorBP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorSPO2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorHR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1078,6 +1146,9 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox tb_retmax;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.PictureBox pb_successErrorHR;
+        private System.Windows.Forms.PictureBox pb_successErrorSPO2;
+        private System.Windows.Forms.PictureBox pb_successErrorBP;
     }
 }
 

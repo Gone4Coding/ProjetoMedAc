@@ -8,10 +8,12 @@ using System.Threading;
 using System.Xml;
 using MyHealth.ServiceReferenceHealth;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
 namespace MyHealth
 {
-    public partial class MyHealth : Form
+    public partial class FormMyHealth : Form
     {
         #region Variables 
 
@@ -23,6 +25,8 @@ namespace MyHealth
         private SpeechRecognitionEngine sReconEngine;
         private PhysiologicParametersDll.PhysiologicParametersDll dll;
         private string queryForMedline = @"query?db=healthTopics&term=";
+        private Image success;
+        private Image error;
 
         private Patient patient;
         private bool bloodPressure_checked;
@@ -48,7 +52,7 @@ namespace MyHealth
 
         #region General
 
-        public MyHealth()
+        public FormMyHealth()
         {
             this.dll = new PhysiologicParametersDll.PhysiologicParametersDll();
             this.sReconEngine = new SpeechRecognitionEngine();
@@ -56,7 +60,8 @@ namespace MyHealth
             this.pBuilder = new PromptBuilder();
             this.clientHealth = new ServiceHealthClient();
             this.clientHealthAlert = new ServiceHealthAlertClient();
-
+            this.success = Image.FromFile(@"../../Images/success.png");
+            this.error = Image.FromFile(@"../../Images/cancel.png");
             InitializeComponent();
         }
 
@@ -65,7 +70,7 @@ namespace MyHealth
             this.CenterToScreen();
             HideAll();
             HideLabels(false);
-            gb_user.Location = new Point(192,71);
+            gb_user.Location = new Point(192, 71);
             tb_patientSNS.Text = Properties.Settings.Default.Patient_Id.ToString();
         }
 
@@ -184,8 +189,7 @@ namespace MyHealth
                 }
 
                 #endregion
-
-
+                
                 if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.FindTerms.ToString()))
                 {
                     /*
@@ -219,7 +223,7 @@ namespace MyHealth
         private void CommandsWithS(string speech)
         {
             #region Monitoring Related
-            
+
             if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartMonitoring.ToString()))
             {
                 ActivateHeartRateMonitoring(true);
@@ -286,7 +290,7 @@ namespace MyHealth
                 }
             }
         }
-        
+
         private void Speak(string phrase)
         {
             string genderProperties = Properties.Settings.Default.Gender_Voice;
@@ -311,7 +315,7 @@ namespace MyHealth
                     tabPage.Enabled = false;
             }
 
-            if(!firstTime)
+            if (!firstTime)
                 MessageBox.Show("The Service is Not Active", "Warning", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
         }
@@ -457,7 +461,7 @@ namespace MyHealth
                 DateTime date = dateTime.Date;
 
                 int snsUser = patient.Sns;
-
+                
                 switch (type)
                 {
                     case "BP":
@@ -469,15 +473,29 @@ namespace MyHealth
 
                         if (serviceActive)
                         {
+                            try
+                            {
+                                BloodPressure bp = new BloodPressure();
+                                bp.PatientSNS = snsUser;
+                                bp.Date = date;
+                                bp.Time = time;
+                                bp.Diastolic = diastolic;
+                                bp.Systolic = systolic;
+                                bool resBP = clientHealth.InsertBloodPressureRecord(bp);
 
-                            BloodPressure bp = new BloodPressure();
-                            bp.PatientSNS = snsUser;
-                            bp.Date = date;
-                            bp.Time = time;
-                            bp.Diastolic = diastolic;
-                            bp.Systolic = systolic;
-                            clientHealth.InsertBloodPressureRecord(bp);
+                                pb_successErrorBP.BackgroundImage = (resBP) ? success : error;
+                            }
+                            catch (Exception e)
+                            {
+                                serviceActive = false;
+                                pb_successErrorBP.BackgroundImage = error;
+                            }
                         }
+                        else
+                        {
+                            pb_successErrorBP.BackgroundImage = error;
+                        }
+
                         break;
 
                     case "SPO2":
@@ -487,12 +505,26 @@ namespace MyHealth
 
                         if (serviceActive)
                         {
-                            OxygenSaturation spo2 = new OxygenSaturation();
-                            spo2.PatientSNS = snsUser;
-                            spo2.Date = date;
-                            spo2.Time = time;
-                            spo2.Saturation = spo2Data;
-                            clientHealth.InsertOxygenSaturationRecord(spo2);
+                            try
+                            {
+                                OxygenSaturation spo2 = new OxygenSaturation();
+                                spo2.PatientSNS = snsUser;
+                                spo2.Date = date;
+                                spo2.Time = time;
+                                spo2.Saturation = spo2Data;
+                                bool resSPO2 = clientHealth.InsertOxygenSaturationRecord(spo2);
+
+                                pb_successErrorSPO2.Image = (resSPO2) ? success : error;
+                            }
+                            catch (Exception e)
+                            {
+                                serviceActive = false;
+                                pb_successErrorSPO2.Image = error;
+                            }
+                        }
+                        else
+                        {
+                            pb_successErrorSPO2.Image = error;
                         }
                         break;
 
@@ -503,12 +535,26 @@ namespace MyHealth
 
                         if (serviceActive)
                         {
-                            HeartRate hr = new HeartRate();
-                            hr.PatientSNS = snsUser;
-                            hr.Date = date;
-                            hr.Time = time;
-                            hr.Rate = hrData;
-                            clientHealth.InsertHeartRateRecord(hr);
+                            try
+                            {
+                                HeartRate hr = new HeartRate();
+                                hr.PatientSNS = snsUser;
+                                hr.Date = date;
+                                hr.Time = time;
+                                hr.Rate = hrData;
+                                bool resHR = clientHealth.InsertHeartRateRecord(hr);
+
+                                pb_successErrorHR.Image = (resHR) ? success : error;
+                            }
+                            catch (Exception e)
+                            {
+                                serviceActive = false;
+                                pb_successErrorHR.Image = error;
+                            }
+                        }
+                        else
+                        {
+                            pb_successErrorHR.Image = error;
                         }
                         break;
                 }
@@ -533,7 +579,7 @@ namespace MyHealth
         }
 
         private void MoveGroupBoxUser()
-        { 
+        {
             Control destination = new Control();
             destination.Location = new Point(6, 6);
 
@@ -621,8 +667,8 @@ namespace MyHealth
 
         private void UseBrowser(string terms)
         {
-            string finalURL = Properties.Settings.Default.MedLine_URL + queryForMedline + terms + "&retmax=" + Properties.Settings.Default.Retmax.ToString();
-
+            string finalURL = Properties.Settings.Default.MedLine_URL + queryForMedline + terms + "&retmax=" +
+                              Properties.Settings.Default.Retmax.ToString();
             WebClient webClient = new WebClient();
             webClient.DownloadStringAsync(new Uri(finalURL));
             webClient.DownloadStringCompleted += Result_DownloadStringCompleted;
@@ -633,6 +679,12 @@ namespace MyHealth
         private void Result_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             browser.DocumentText = WebPage.LoadPage(e.Result);
+        }
+
+        private void tb_url_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Navigate();
         }
 
         #endregion TabMedLine
@@ -693,10 +745,12 @@ namespace MyHealth
 
             numberRatingVoice.Value = Properties.Settings.Default.Voice_Rate;
 
-            numberRatingDLL.Value = Convert.ToDecimal(Properties.Settings.Default.DLL_Rate);
+            if (Properties.Settings.Default.DLL_Rate >= 3000)
+                numberRatingDLL.Value = Convert.ToDecimal(Properties.Settings.Default.DLL_Rate);
 
             tb_retmax.Text = Properties.Settings.Default.Retmax.ToString();
         }
+
 
         #endregion
 

@@ -7,6 +7,12 @@
       <xsd:import schemaLocation="http://localhost:54135/ServiceHealth.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IServiceHealth_TestConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnection" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_TestConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnectionResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceHealth_ValidatePatient_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidatePatient" />
   </wsdl:message>
@@ -110,6 +116,10 @@
     <wsdl:part name="parameters" element="tns:DeleteAlertResponse" />
   </wsdl:message>
   <wsdl:portType name="IServiceHealth">
+    <wsdl:operation name="TestConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/TestConnection" message="tns:IServiceHealth_TestConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/TestConnectionResponse" message="tns:IServiceHealth_TestConnection_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ValidatePatient">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatient" message="tns:IServiceHealth_ValidatePatient_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatientResponse" message="tns:IServiceHealth_ValidatePatient_OutputMessage" />
@@ -183,6 +193,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceHealth" type="tns:IServiceHealth">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestConnection">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealth/TestConnection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ValidatePatient">
       <soap:operation soapAction="http://tempuri.org/IServiceHealth/ValidatePatient" style="document" />
       <wsdl:input>

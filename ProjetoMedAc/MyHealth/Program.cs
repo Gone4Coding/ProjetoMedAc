@@ -16,7 +16,7 @@ namespace MyHealth
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MyHealth());
+            Application.Run(new FormMyHealth());
         }
     }
 }

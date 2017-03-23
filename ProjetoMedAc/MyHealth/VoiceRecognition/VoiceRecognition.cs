@@ -11,7 +11,7 @@ namespace MyHealth.VoiceRecognition
 {
     public static class VoiceRecognition
     {
-        private static string[] allWords = File.ReadAllLines(@"../../VoiceRecognition/EnglishWords.txt");
+        private static List<string> allWords = File.ReadAllLines(@"../../VoiceRecognition/EnglishWords.txt").ToList();
         
         public enum Code
         {

@@ -60,11 +60,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyHealth.cs">
+    <Compile Include="FormMyHealth.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MyHealth.Designer.cs">
-      <DependentUpon>MyHealth.cs</DependentUpon>
+    <Compile Include="FormMyHealth.Designer.cs">
+      <DependentUpon>FormMyHealth.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,10 +73,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="VoiceRecognition\VoiceRecognition.cs" />
     <Compile Include="WebPage.cs" />
-    <EmbeddedResource Include="MyHealth.resx">
-      <DependentUpon>MyHealth.cs</DependentUpon>
+    <EmbeddedResource Include="FormMyHealth.resx">
+      <DependentUpon>FormMyHealth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -134,6 +135,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\success.png" />
     <Content Include="VoiceRecognition\ellipsis.gif" />
     <Content Include="VoiceRecognition\EnglishWords.txt" />
   </ItemGroup>
