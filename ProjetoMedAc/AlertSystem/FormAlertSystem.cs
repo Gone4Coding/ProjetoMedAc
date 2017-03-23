@@ -748,7 +748,7 @@ namespace AlertSystem
                 {
                     load(pSearched, false);
                    this.backgroundWorker1.RunWorkerAsync();
-
+                    Thread t = new Thread();
                    
                 }
                 else
