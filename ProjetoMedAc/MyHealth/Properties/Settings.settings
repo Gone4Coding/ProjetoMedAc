@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Patient_Id" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Gender_Voice" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

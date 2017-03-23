@@ -652,6 +652,7 @@
             this.groupBoxPatients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxPatients.AutoSize = true;
+            this.groupBoxPatients.Controls.Add(this.panel1);
             this.groupBoxPatients.Controls.Add(this.label23);
             this.groupBoxPatients.Controls.Add(this.dataGridViewPatients);
             this.groupBoxPatients.Location = new System.Drawing.Point(8, 43);
@@ -1233,17 +1234,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Chocolate;
-            this.panel1.Location = new System.Drawing.Point(39, 84);
+            this.panel1.Location = new System.Drawing.Point(36, 19);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(161, 20);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 4;
             // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1411, 785);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAlertSystem";
@@ -1377,8 +1377,8 @@
         private System.Windows.Forms.ComboBox comboBoxEmergencyCode;
         private System.Windows.Forms.ComboBox comboBoxCode;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
