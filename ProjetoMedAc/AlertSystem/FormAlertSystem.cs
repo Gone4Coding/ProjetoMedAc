@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,7 @@ namespace AlertSystem
         private Patient patientToEdit;
         private Patient patientOnMonitoring;
 
-        private BackgroundWorker backgroundWorker1;
+      
 
         private enum SearchType
         {
@@ -38,8 +39,6 @@ namespace AlertSystem
         {
             InitializeComponent();
             client = new ServiceHealthAlertClient();
-            backgroundWorker1 = new BackgroundWorker();
-
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -60,15 +59,24 @@ namespace AlertSystem
             load(null,false);
 
             #endregion
+
+            #region Monitoring
+
+            radioButtonBloodPressure.Checked = true;
+
+            #endregion
         }
         #region Eventos
         //      
         #region PatientsTab
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
             {
+                
                 load(patientToEdit,true);
+               
             }
         }
 
@@ -281,7 +289,8 @@ namespace AlertSystem
                 Patient patientSelected = client.GetPatient(sns);
 
                 fillMonitorPatientInfo(patientSelected);
-                fillFields(patientSelected);               
+                fillFields(patientSelected);   
+                selectPatientDataGridView(patientSelected);            
             }
         }
         private void checkBoxPatientMonitoring_Click(object sender, EventArgs e)
@@ -353,7 +362,7 @@ namespace AlertSystem
             }
             else
             {
-                List<Patient> activePatients = patients.Where(i => i.Ativo == true).ToList();
+                List<Patient> activePatients = patients.Where(i => i.Ativo).ToList();
                 fillGridViewMonitoring(activePatients);
             }
 
@@ -786,6 +795,8 @@ namespace AlertSystem
 
         private void fillMonitorPatientInfo(Patient patient)
         {
+            patientOnMonitoring = patient;
+
             textBoxFirstName.Text = patient.Name;
             textBoxLastName.Text = patient.Surname;
             textBoxSNS.Text = patient.Sns.ToString();
@@ -803,13 +814,13 @@ namespace AlertSystem
 
         private void fillGridViewMonitoring(List<Patient> patients)
         {
-            List<Patient> patientsActive = patients.Where(i => i.Ativo == true).ToList();
+            List<Patient> patientsActive = patients.Where(i => i.Ativo).ToList();
 
             dataGridViewPatientsMonitor.DataSource = patientsActive;
 
             for (int i = 0; i < dataGridViewPatientsMonitor.ColumnCount; i++)
             {
-                if (i != 14 && i != 10 && i != 15 && i != 2)
+                if (i != 14 && i != 10 && i != 15)
                 {
                     dataGridViewPatientsMonitor.Columns[i].Visible = false;
                 }
@@ -827,19 +838,34 @@ namespace AlertSystem
             dataGridViewPatientsMonitor.Columns[10].DisplayIndex = 1;
             dataGridViewPatientsMonitor.Columns[15].DisplayIndex = 2;
             
-            dataGridViewPatientsMonitor.Columns[2].DisplayIndex = 4;
-
             dataGridViewPatientsMonitor.RowHeadersVisible = false;
         }
 
+        private void readRadioButtons(Patient patient)
+        {
+           if (radioButtonBloodPressure.Checked)
+            {
+                List<BloodPressure> patientsRecordBloodPressure = new List<BloodPressure>(client.BloodPressureList(patient.Sns).OrderByDescending(i=> i.Date));                               
+            }
+
+            if (radioButtonHeartRate.Checked)
+            {
+                List<HeartRate> patientsRecordHeartRate = new List<HeartRate>(client.HeartRateList(patient.Sns).OrderByDescending(i=> i.Date));
+            }
+
+            if (radioButtonOxygenSat.Checked)
+            {
+                List<OxygenSaturation> patientsRecordOxySat = new List<OxygenSaturation>(client.OxygenSaturationList(patient.Sns).OrderByDescending(i=> i.Date));
+            }
+            
+        }
+
+      
+        
         #endregion
 
         #endregion
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
         private void toolStripButtonSearch_Click(object sender, EventArgs e)
         {
             if (validateSearch())

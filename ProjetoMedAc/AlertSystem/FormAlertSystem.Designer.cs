@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
             this.groupBoxActivitie = new System.Windows.Forms.GroupBox();
@@ -129,8 +132,20 @@
             this.tb_lastName = new System.Windows.Forms.TextBox();
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
+            this.tabPageConfigurations = new System.Windows.Forms.TabPage();
+            this.groupBoxAlerts = new System.Windows.Forms.GroupBox();
+            this.groupBoxRecords = new System.Windows.Forms.GroupBox();
+            this.dataGridViewAlerts = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.radioButtonOxygenSat = new System.Windows.Forms.RadioButton();
+            this.radioButtonHeartRate = new System.Windows.Forms.RadioButton();
+            this.radioButtonBloodPressure = new System.Windows.Forms.RadioButton();
+            this.dataGridViewHistory = new System.Windows.Forms.DataGridView();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
+            this.groupBoxActivitie.SuspendLayout();
             this.groupBoxPatientSummary.SuspendLayout();
             this.panelPatientSummary.SuspendLayout();
             this.toolStripMonitor.SuspendLayout();
@@ -146,6 +161,13 @@
             this.panelInfoPatient.SuspendLayout();
             this.groupBoxPatientMonitoring.SuspendLayout();
             this.tabControlRecors.SuspendLayout();
+            this.groupBoxAlerts.SuspendLayout();
+            this.groupBoxRecords.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlerts)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -172,6 +194,9 @@
             this.groupBoxActivitie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxActivitie.Controls.Add(this.groupBox1);
+            this.groupBoxActivitie.Controls.Add(this.groupBoxRecords);
+            this.groupBoxActivitie.Controls.Add(this.groupBoxAlerts);
             this.groupBoxActivitie.Location = new System.Drawing.Point(270, 186);
             this.groupBoxActivitie.Name = "groupBoxActivitie";
             this.groupBoxActivitie.Size = new System.Drawing.Size(1127, 569);
@@ -1233,12 +1258,164 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlRecors.Controls.Add(this.tabPagePatients);
             this.tabControlRecors.Controls.Add(this.tabPage_viewRecords);
+            this.tabControlRecors.Controls.Add(this.tabPageConfigurations);
             this.tabControlRecors.Location = new System.Drawing.Point(0, 0);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
             this.tabControlRecors.Size = new System.Drawing.Size(1411, 784);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
+            // 
+            // tabPageConfigurations
+            // 
+            this.tabPageConfigurations.Location = new System.Drawing.Point(4, 22);
+            this.tabPageConfigurations.Name = "tabPageConfigurations";
+            this.tabPageConfigurations.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageConfigurations.Size = new System.Drawing.Size(1403, 758);
+            this.tabPageConfigurations.TabIndex = 5;
+            this.tabPageConfigurations.Text = "Configure Monitor";
+            this.tabPageConfigurations.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxAlerts
+            // 
+            this.groupBoxAlerts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxAlerts.Controls.Add(this.dataGridViewAlerts);
+            this.groupBoxAlerts.Location = new System.Drawing.Point(6, 105);
+            this.groupBoxAlerts.Name = "groupBoxAlerts";
+            this.groupBoxAlerts.Size = new System.Drawing.Size(282, 458);
+            this.groupBoxAlerts.TabIndex = 1;
+            this.groupBoxAlerts.TabStop = false;
+            this.groupBoxAlerts.Text = "Alerts";
+            // 
+            // groupBoxRecords
+            // 
+            this.groupBoxRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxRecords.Controls.Add(this.chart);
+            this.groupBoxRecords.Controls.Add(this.dataGridViewHistory);
+            this.groupBoxRecords.Location = new System.Drawing.Point(294, 19);
+            this.groupBoxRecords.Name = "groupBoxRecords";
+            this.groupBoxRecords.Size = new System.Drawing.Size(818, 544);
+            this.groupBoxRecords.TabIndex = 7;
+            this.groupBoxRecords.TabStop = false;
+            this.groupBoxRecords.Text = "Records";
+            // 
+            // dataGridViewAlerts
+            // 
+            this.dataGridViewAlerts.AllowUserToAddRows = false;
+            this.dataGridViewAlerts.AllowUserToDeleteRows = false;
+            this.dataGridViewAlerts.AllowUserToOrderColumns = true;
+            this.dataGridViewAlerts.AllowUserToResizeColumns = false;
+            this.dataGridViewAlerts.AllowUserToResizeRows = false;
+            this.dataGridViewAlerts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewAlerts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAlerts.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewAlerts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlerts.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewAlerts.Location = new System.Drawing.Point(10, 19);
+            this.dataGridViewAlerts.MultiSelect = false;
+            this.dataGridViewAlerts.Name = "dataGridViewAlerts";
+            this.dataGridViewAlerts.ReadOnly = true;
+            this.dataGridViewAlerts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAlerts.Size = new System.Drawing.Size(259, 428);
+            this.dataGridViewAlerts.TabIndex = 6;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.panel2);
+            this.groupBox1.Location = new System.Drawing.Point(6, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(282, 80);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filters";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.radioButtonOxygenSat);
+            this.panel2.Controls.Add(this.radioButtonHeartRate);
+            this.panel2.Controls.Add(this.radioButtonBloodPressure);
+            this.panel2.Location = new System.Drawing.Point(6, 20);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(270, 45);
+            this.panel2.TabIndex = 9;
+            // 
+            // radioButtonOxygenSat
+            // 
+            this.radioButtonOxygenSat.AutoSize = true;
+            this.radioButtonOxygenSat.Location = new System.Drawing.Point(11, 25);
+            this.radioButtonOxygenSat.Name = "radioButtonOxygenSat";
+            this.radioButtonOxygenSat.Size = new System.Drawing.Size(112, 17);
+            this.radioButtonOxygenSat.TabIndex = 2;
+            this.radioButtonOxygenSat.TabStop = true;
+            this.radioButtonOxygenSat.Text = "Oxygen Saturation";
+            this.radioButtonOxygenSat.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHeartRate
+            // 
+            this.radioButtonHeartRate.AutoSize = true;
+            this.radioButtonHeartRate.Location = new System.Drawing.Point(128, 3);
+            this.radioButtonHeartRate.Name = "radioButtonHeartRate";
+            this.radioButtonHeartRate.Size = new System.Drawing.Size(77, 17);
+            this.radioButtonHeartRate.TabIndex = 1;
+            this.radioButtonHeartRate.TabStop = true;
+            this.radioButtonHeartRate.Text = "Heart Rate";
+            this.radioButtonHeartRate.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonBloodPressure
+            // 
+            this.radioButtonBloodPressure.AutoSize = true;
+            this.radioButtonBloodPressure.Location = new System.Drawing.Point(11, 3);
+            this.radioButtonBloodPressure.Name = "radioButtonBloodPressure";
+            this.radioButtonBloodPressure.Size = new System.Drawing.Size(96, 17);
+            this.radioButtonBloodPressure.TabIndex = 0;
+            this.radioButtonBloodPressure.TabStop = true;
+            this.radioButtonBloodPressure.Text = "Blood Pressure";
+            this.radioButtonBloodPressure.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewHistory
+            // 
+            this.dataGridViewHistory.AllowUserToAddRows = false;
+            this.dataGridViewHistory.AllowUserToDeleteRows = false;
+            this.dataGridViewHistory.AllowUserToOrderColumns = true;
+            this.dataGridViewHistory.AllowUserToResizeColumns = false;
+            this.dataGridViewHistory.AllowUserToResizeRows = false;
+            this.dataGridViewHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewHistory.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHistory.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewHistory.Location = new System.Drawing.Point(19, 23);
+            this.dataGridViewHistory.MultiSelect = false;
+            this.dataGridViewHistory.Name = "dataGridViewHistory";
+            this.dataGridViewHistory.ReadOnly = true;
+            this.dataGridViewHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewHistory.Size = new System.Drawing.Size(782, 116);
+            this.dataGridViewHistory.TabIndex = 7;
+            // 
+            // chart
+            // 
+            this.chart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
+            this.chart.Location = new System.Drawing.Point(19, 174);
+            this.chart.Name = "chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(782, 359);
+            this.chart.TabIndex = 8;
+            this.chart.Text = "chart1";
             // 
             // FormAlertSystem
             // 
@@ -1253,6 +1430,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tabPage_viewRecords.ResumeLayout(false);
             this.tabPage_viewRecords.PerformLayout();
+            this.groupBoxActivitie.ResumeLayout(false);
             this.groupBoxPatientSummary.ResumeLayout(false);
             this.panelPatientSummary.ResumeLayout(false);
             this.panelPatientSummary.PerformLayout();
@@ -1276,6 +1454,14 @@
             this.groupBoxPatientMonitoring.ResumeLayout(false);
             this.groupBoxPatientMonitoring.PerformLayout();
             this.tabControlRecors.ResumeLayout(false);
+            this.groupBoxAlerts.ResumeLayout(false);
+            this.groupBoxRecords.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlerts)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1380,6 +1566,17 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabPage tabPageConfigurations;
+        private System.Windows.Forms.GroupBox groupBoxAlerts;
+        private System.Windows.Forms.GroupBox groupBoxRecords;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton radioButtonOxygenSat;
+        private System.Windows.Forms.RadioButton radioButtonHeartRate;
+        private System.Windows.Forms.RadioButton radioButtonBloodPressure;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.DataGridView dataGridViewHistory;
+        private System.Windows.Forms.DataGridView dataGridViewAlerts;
     }
 }
 
