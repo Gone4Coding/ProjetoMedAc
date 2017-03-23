@@ -78,6 +78,7 @@
             this.toolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.groupBoxPatients = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
             this.bt_save = new System.Windows.Forms.Button();
@@ -128,7 +129,6 @@
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxPatientSummary.SuspendLayout();
@@ -645,6 +645,7 @@
             this.toolStripButtonSearch.Name = "toolStripButtonSearch";
             this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 37);
             this.toolStripButtonSearch.Text = "Search Patient";
+            this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
             // 
             // groupBoxPatients
             // 
@@ -659,6 +660,17 @@
             this.groupBoxPatients.TabIndex = 2;
             this.groupBoxPatients.TabStop = false;
             this.groupBoxPatients.Text = "Patients";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label23.ForeColor = System.Drawing.Color.Chocolate;
+            this.label23.Location = new System.Drawing.Point(203, 19);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(159, 20);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "Patient on monitoring";
             // 
             // dataGridViewPatients
             // 
@@ -1225,17 +1237,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(161, 20);
             this.panel1.TabIndex = 1;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label23.ForeColor = System.Drawing.Color.Chocolate;
-            this.label23.Location = new System.Drawing.Point(203, 19);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(159, 20);
-            this.label23.TabIndex = 3;
-            this.label23.Text = "Patient on monitoring";
             // 
             // FormAlertSystem
             // 

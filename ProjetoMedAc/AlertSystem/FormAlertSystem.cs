@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AlertSystem.ServiceReferenceHealth;
@@ -21,12 +22,22 @@ namespace AlertSystem
         private bool fromSelection;
         private int patientAge;
         private List<Countries.Country> countries;
+        private List<Patient> patients;
         private Patient patientToEdit;
-        //private int snsPatientEdit;
+
+        private BackgroundWorker backgroundWorker1;
+
+        private enum SearchType
+        {
+            SNS,
+            NAME,
+            NIF
+        }
         public FormAlertSystem()
         {
             InitializeComponent();
             client = new ServiceHealthAlertClient();
+            backgroundWorker1 = new BackgroundWorker();
 
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
@@ -38,10 +49,9 @@ namespace AlertSystem
 
             fillComboBoxCountries();
 
-            toolStripComboBox.Items.Add("Sns");
-            toolStripComboBox.Items.Add("Phone");
-            toolStripComboBox.Items.Add("Nome");
-            toolStripComboBox.Items.Add("Nif");
+            toolStripComboBox.Items.Add("SNS");
+            toolStripComboBox.Items.Add("NAME");
+            toolStripComboBox.Items.Add("NIF");
 
             toolStripComboBox.SelectedIndex = 0;
             //toolStripTextBox.Width = 500;
@@ -318,7 +328,7 @@ namespace AlertSystem
             bt_cancelEdit.Hide();
             buttonAdd.Hide();
             dataGridViewPatients.Enabled = true;
-            List<Patient> patients = new List<Patient>(client.GetPatientList());
+            patients = new List<Patient>(client.GetPatientList());
             fillGridView(patients);
             if (p == null)
             {
@@ -714,12 +724,103 @@ namespace AlertSystem
             richTextBox1Alergies.Text = patient.Alergies;
         }
 
-
-
         #endregion
 
         #endregion
 
-       
+        private void toolStripButtonSearch_Click(object sender, EventArgs e)
+        {
+            if (validateSearch())
+            {
+                readSearch();
+            }
+        }
+
+        private void readSearch()
+        {
+            string type = toolStripComboBox.Text;
+            Patient pSearched;
+
+            if (type.Equals("SNS"))
+            {
+                pSearched = patients.FirstOrDefault(i => i.Sns == Convert.ToInt32(toolStripTextBox.Text));
+                if (pSearched != null)
+                {
+                    load(pSearched, false);
+                   this.backgroundWorker1.RunWorkerAsync();
+
+                   
+                }
+                else
+                {
+                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
+                       MessageBoxIcon.Information);
+                }
+            }
+
+            if (type.Equals("NIF"))
+            {
+                pSearched = patients.First(i => i.Nif == Convert.ToInt32(toolStripTextBox.Text));
+            }
+
+            if (type.Equals("NIF"))
+            {
+
+            }
+        }
+
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            
+            for (int i = 0; i < 20000; i++)
+            {
+                Console.WriteLine(i);
+            }
+            Form1 fom = new Form1();
+            
+            fom.ShowDialog();
+        }
+
+        private bool validateSearch()
+        {
+            if (toolStripTextBox.Text.Equals("") || toolStripComboBox.SelectedIndex == -1)
+            {
+                if (toolStripTextBox.Text.Equals(""))
+                {
+                    MessageBox.Show("Field with value can't be empty", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (toolStripComboBox.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Select a search type", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            else
+            {
+                if (toolStripComboBox.Text.Equals("SNS") && !isNumber(toolStripTextBox.Text) ||
+                    toolStripComboBox.Text.Equals("NIF") && !isNumber(toolStripTextBox.Text))
+                {
+                    MessageBox.Show("For this type of search, value has to be a number ", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                {
+                    if (toolStripTextBox.Text.Length < 9)
+                    {
+                        MessageBox.Show("Introduce a number with 9 digits", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                        return false;
+                    }                       
+                }
+            }
+            return true;
+        }
     }
 }
