@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -374,74 +375,81 @@ namespace AlertSystem
         #region PatientsTab
         private void load(Patient p, bool monitoring)
         {
-            int rowIndex = 0;
+            try
+            {
+                int rowIndex = 0;
 
-            bt_edit.Show();
-            bt_edit.Enabled = true;
-            bt_save.Show();
-            bt_save.Enabled = false;
-            bt_cancelAdd.Hide();
-            bt_cancelEdit.Hide();
-            buttonAdd.Hide();
-            dataGridViewPatients.Enabled = true;
-            patients = new List<Patient>(client.GetPatientList());
-            if (!monitoring)
-            {
-                fillGridView(patients);
-            }
-            else
-            {
-                List<Patient> activePatients = patients.Where(i => i.Ativo).ToList();
-                fillGridViewMonitoring(activePatients);
-            }
-
-            if (p == null && monitoring)
-            {
-                fillFirstSelected(false);
-            }
-
-            if (p == null && !monitoring)
-            {
-                fillFirstSelected(true);
-            }
-            else
-            {
+                bt_edit.Show();
+                bt_edit.Enabled = true;
+                bt_save.Show();
+                bt_save.Enabled = false;
+                bt_cancelAdd.Hide();
+                bt_cancelEdit.Hide();
+                buttonAdd.Hide();
+                dataGridViewPatients.Enabled = true;
+                patients = new List<Patient>(client.GetPatientList());
                 if (!monitoring)
                 {
-                    selectPatientDataGridView(p);
-                    fillFields(p);
+                    fillGridView(patients);
                 }
                 else
                 {
-                    if (dataGridViewPatientsMonitor.RowCount != 0)
+                    List<Patient> activePatients = patients.Where(i => i.Ativo).ToList();
+                    fillGridViewMonitoring(activePatients);
+                }
+
+                if (p == null && monitoring)
+                {
+                    fillFirstSelected(false);
+                }
+
+                if (p == null && !monitoring)
+                {
+                    fillFirstSelected(true);
+                }
+                else
+                {
+                    if (!monitoring)
                     {
-                        foreach (DataGridViewRow row in dataGridViewPatientsMonitor.Rows)
-                        {
-                            if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
-                            {
-                                rowIndex = row.Index;
-                            }
-                        }
-                        dataGridViewPatientsMonitor.Rows[rowIndex].Selected = true;
-                        if (p.Ativo)
-                        {
-                            fillMonitorPatientInfo(p);
-                        }
-                        else
-                        {
-                            fillFirstSelected(true);
-                        }
+                        selectPatientDataGridView(p);
+                        fillFields(p);
                     }
                     else
                     {
-                        MessageBox.Show("No patients on monitoring!", "INFO", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                        tabControlRecors.SelectedTab = tabPagePatients;
+                        if (dataGridViewPatientsMonitor.RowCount != 0)
+                        {
+                            foreach (DataGridViewRow row in dataGridViewPatientsMonitor.Rows)
+                            {
+                                if (p.Sns == Convert.ToInt32(row.Cells[14].Value))
+                                {
+                                    rowIndex = row.Index;
+                                }
+                            }
+                            dataGridViewPatientsMonitor.Rows[rowIndex].Selected = true;
+                            if (p.Ativo)
+                            {
+                                fillMonitorPatientInfo(p);
+                            }
+                            else
+                            {
+                                fillFirstSelected(true);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No patients on monitoring!", "INFO", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                            tabControlRecors.SelectedTab = tabPagePatients;
+                        }
                     }
                 }
-            }
 
-            enableTextBoxes(false);
+                enableTextBoxes(false);
+            }
+            catch (EndpointNotFoundException e)
+            {
+                MessageBox.Show("No service found!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void enableTextBoxes(bool estado)
         {
