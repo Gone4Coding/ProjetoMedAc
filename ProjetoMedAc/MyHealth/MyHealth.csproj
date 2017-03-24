@@ -60,6 +60,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings\ApplicationSettings.cs" />
     <Compile Include="FormMyHealth.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +128,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppSettings\AppSettings.xml" />
     <Content Include="DLL\PhysiologicParametersDll.dll" />
     <None Include="Service References\ServiceReferenceHealth\ServiceHealth.disco" />
     <None Include="Service References\ServiceReferenceHealth\configuration91.svcinfo" />
