@@ -449,6 +449,9 @@ namespace AlertSystem
             catch (EndpointNotFoundException e)
             {
                 MessageBox.Show("No service found!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("GOOD BYE", "BYE BYE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //MessageBox.Show("SEE YOU LATER ALIGATOR", "BYE BYE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                this.Close();
             }
         }
         private void enableTextBoxes(bool estado)
@@ -883,13 +886,20 @@ namespace AlertSystem
             
             if (radioButtonBloodPressure.Checked)
             {
-                patientsRecordBloodPressure = new List<BloodPressure>(client.BloodPressureList(patient.Sns).OrderByDescending(i=> i.Date));
+                patientsRecordBloodPressure =
+                    new List<BloodPressure>(
+                        client.BloodPressureList(patient.Sns)
+                            .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
+                            .OrderByDescending(i => i.Date));
 
                 dataGridViewHistory.DataSource = patientsRecordBloodPressure;
                 dataGridViewHistory.RowHeadersVisible = false;
-                dataGridViewHistory.Columns["PatientSNS"].Visible = false;      
-                
-                                       
+                dataGridViewHistory.Columns["PatientSNS"].Visible = false;
+
+                chart1.Titles.Clear();
+                chart1.Titles.Add("Blood Pressure");
+                startGraphics();   
+                                                      
             }
 
             if (radioButtonHeartRate.Checked)
@@ -915,35 +925,51 @@ namespace AlertSystem
 
         public void startGraphics()
         {
+            
+            chart1.Series.Clear();
+            chart1.ChartAreas.Clear();
             //Construção da àrea do gráfico
             chart1.ChartAreas.Add("area");
+            
             // chart1.ChartAreas.Add("area2");
             //chart1.Series[0].ChartArea = "area2";
-            chart1.ChartAreas["area"].AxisX.Minimum = 2010;
-            chart1.ChartAreas["area"].AxisX.Maximum = 2014;
-            chart1.ChartAreas["area"].AxisX.Interval = 1;
+            DateTime interval = DateTime.Now.AddMinutes(-120);
+            int minimumHour = interval.Minute;
+            int maximumHour = DateTime.Now.Minute;
+            chart1.ChartAreas["area"].AxisX.Minimum = 0;
+            chart1.ChartAreas["area"].AxisX.Maximum = 120;
+            chart1.ChartAreas["area"].AxisX.Interval = 2.5;
 
-            chart1.ChartAreas["area"].AxisY.Minimum = 5000;
+           // chart1.ChartAreas["area"].AxisY.Minimum = 0;
+            chart1.ChartAreas["area"].AxisY.Maximum = 300;
             chart1.ChartAreas["area"].AxisY.Interval = 25;
-            chart1.ChartAreas["area"].AxisY.Title = "#People";
-            chart1.ChartAreas["area"].AxisX.Title = "Years";
+            chart1.ChartAreas["area"].AxisY.Title = "#Value";
+            chart1.ChartAreas["area"].AxisX.Title = "Time(seconds)";
 
             // chart1.ChartAreas.Add("area2");
             //chart1.Series[0].ChartArea = "area2";
 
             //definição de duas séries para o gráfico
-            chart1.Series.Add("Feminino");
-            chart1.Series.Add("Masculino");
+            chart1.Series.Add("Diastolic");
+            chart1.Series.Add("Systolic");
             //definição da cor de cada série
-            chart1.Series["Feminino"].Color = Color.Red;
-            chart1.Series["Masculino"].Color = Color.Blue;
+            chart1.Series["Diastolic"].Color = Color.Red;
+            chart1.Series["Systolic"].Color = Color.Blue;
+            //chart1.Series["Diastolic"]["PixelPointWidth"] = "10";
+            //chart1.Series["Systolic"]["PixelPointWidth"] = "10";
             //Pontos a aparecer no gráfico
-            chart1.Series["Feminino"].Points.AddXY(2011, 5478);
-            chart1.Series["Feminino"].Points.AddXY(2012, 5456);
-            chart1.Series["Feminino"].Points.AddXY(2013, 5484);
-            chart1.Series["Masculino"].Points.AddXY(2011, 5210);
-            chart1.Series["Masculino"].Points.AddXY(2012, 5190);
-            chart1.Series["Masculino"].Points.AddXY(2013, 5100);
+            List<BloodPressure> valores = patientsRecordBloodPressure.Where(i => i.Date >= interval && i.Date <= DateTime.Now).OrderByDescending(i=> i.Date).ToList();
+            foreach (BloodPressure v in valores)
+            {   
+                chart1.Series["Diastolic"].Points.AddXY(v.Date.Minute, v.Diastolic);
+                chart1.Series["Systolic"].Points.AddXY(v.Date.Minute, v.Systolic);
+            }
+            //chart1.Series["Blood Pressure"].Points.AddXY(2011, 5478);
+            //chart1.Series["Blood Pressure"].Points.AddXY(2012, 5456);
+            //chart1.Series["Blood Pressure"].Points.AddXY(2013, 5484);
+            //chart1.Series["Heart Rate"].Points.AddXY(2011, 5210);
+            //chart1.Series["Heart Rate"].Points.AddXY(2012, 5190);
+            //chart1.Series["Heart Rate"].Points.AddXY(2013, 5100);
 
             //chart1.Series[1].ChartArea = "area2";
 
@@ -959,7 +985,8 @@ namespace AlertSystem
             //string[] nome = { "utente 1", "utente 2", "utente 3", "utente 4", "utente 5" };
             //chart1.Series.Add("peso");
             //chart1.Series[0].Points.DataBindXY(nome, valores);
-
+            chart1.Series["Diastolic"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series["Systolic"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
         }
 
         #endregion
