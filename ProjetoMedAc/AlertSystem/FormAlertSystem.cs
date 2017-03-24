@@ -32,6 +32,8 @@ namespace AlertSystem
         private List<BloodPressure> patientsRecordBloodPressure;
         private List<HeartRate> patientsRecordHeartRate;
         private List<OxygenSaturation> patientsRecordOxySat;
+
+        private Thread th;
         private enum SearchType
         {
             SNS,
@@ -40,8 +42,34 @@ namespace AlertSystem
         }
         public FormAlertSystem()
         {
+            //th = new Thread(new ThreadStart(thread));
+            //th.Start();
             InitializeComponent();
             client = new ServiceHealthAlertClient();
+           
+        }
+
+        private void thread()
+        {
+           // InitializeComponent();
+            for (int i = 0; i < 10; i++)
+            {
+                Thread.Sleep(10000);
+                if (i == 9)
+                    i = 0;
+                patients = client.GetPatientList();
+                if (patientOnMonitoring != null)
+                {
+                    patientsRecordBloodPressure =
+                        new List<BloodPressure>(
+                            client.BloodPressureList(patientOnMonitoring.Sns)
+                                .Where(x => x.Date >= DateTime.Now.AddMinutes(-120) && x.Date <= DateTime.Now)
+                                .OrderByDescending(x => x.Date));
+                }
+               
+            }
+
+
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -60,12 +88,13 @@ namespace AlertSystem
             //toolStripTextBox.Width = 500;
 
             load(null,false);
+           
 
             #endregion
 
             #region Monitoring
 
-            
+
 
             #endregion
         }
