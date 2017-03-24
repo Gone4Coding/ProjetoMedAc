@@ -115,6 +115,24 @@
   <wsdl:message name="IServiceHealthAlert_DeleteAlert_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteAlertResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertEvent" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdateEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEvent" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdateEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeleteEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEvent" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeleteEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEventResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceHealth">
     <wsdl:operation name="TestConnection">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/TestConnection" message="tns:IServiceHealth_TestConnection_InputMessage" />
@@ -189,6 +207,18 @@
     <wsdl:operation name="DeleteAlert">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert" message="tns:IServiceHealthAlert_DeleteAlert_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse" message="tns:IServiceHealthAlert_DeleteAlert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertEvent" message="tns:IServiceHealthAlert_InsertEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertEventResponse" message="tns:IServiceHealthAlert_InsertEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateEvent" message="tns:IServiceHealthAlert_UpdateEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateEventResponse" message="tns:IServiceHealthAlert_UpdateEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteEvent" message="tns:IServiceHealthAlert_DeleteEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteEventResponse" message="tns:IServiceHealthAlert_DeleteEvent_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceHealth" type="tns:IServiceHealth">
@@ -351,6 +381,33 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteAlert">
       <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertEvent">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/InsertEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvent">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/UpdateEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteEvent" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

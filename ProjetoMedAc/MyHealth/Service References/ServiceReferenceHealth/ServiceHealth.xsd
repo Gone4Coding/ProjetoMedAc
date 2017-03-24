@@ -91,4 +91,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfAlertType" nillable="true" type="tns:ArrayOfAlertType" />
+  <xs:complexType name="EventType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaximumTime" type="xs:int" />
+      <xs:element minOccurs="0" name="MinimumTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventType" nillable="true" type="tns:EventType" />
 </xs:schema>

@@ -718,6 +718,83 @@ namespace MyHealth.ServiceReferenceHealth {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EventType", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.SerializableAttribute()]
+    public partial class EventType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MaximumTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MinimumTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MaximumTime {
+            get {
+                return this.MaximumTimeField;
+            }
+            set {
+                if ((this.MaximumTimeField.Equals(value) != true)) {
+                    this.MaximumTimeField = value;
+                    this.RaisePropertyChanged("MaximumTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MinimumTime {
+            get {
+                return this.MinimumTimeField;
+            }
+            set {
+                if ((this.MinimumTimeField.Equals(value) != true)) {
+                    this.MinimumTimeField = value;
+                    this.RaisePropertyChanged("MinimumTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReferenceHealth.IServiceHealth")]
     public interface IServiceHealth {
@@ -902,6 +979,24 @@ namespace MyHealth.ServiceReferenceHealth {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
         System.Threading.Tasks.Task<bool> DeleteAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertEventResponse")]
+        bool InsertEvent(MyHealth.ServiceReferenceHealth.EventType eventType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertEventResponse")]
+        System.Threading.Tasks.Task<bool> InsertEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateEventResponse")]
+        bool UpdateEvent(MyHealth.ServiceReferenceHealth.EventType eventType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateEventResponse")]
+        System.Threading.Tasks.Task<bool> UpdateEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteEventResponse")]
+        bool DeleteEvent(MyHealth.ServiceReferenceHealth.EventType eventType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteEventResponse")]
+        System.Threading.Tasks.Task<bool> DeleteEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1033,6 +1128,30 @@ namespace MyHealth.ServiceReferenceHealth {
         
         public System.Threading.Tasks.Task<bool> DeleteAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType) {
             return base.Channel.DeleteAlertAsync(alertType);
+        }
+        
+        public bool InsertEvent(MyHealth.ServiceReferenceHealth.EventType eventType) {
+            return base.Channel.InsertEvent(eventType);
+        }
+        
+        public System.Threading.Tasks.Task<bool> InsertEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType) {
+            return base.Channel.InsertEventAsync(eventType);
+        }
+        
+        public bool UpdateEvent(MyHealth.ServiceReferenceHealth.EventType eventType) {
+            return base.Channel.UpdateEvent(eventType);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType) {
+            return base.Channel.UpdateEventAsync(eventType);
+        }
+        
+        public bool DeleteEvent(MyHealth.ServiceReferenceHealth.EventType eventType) {
+            return base.Channel.DeleteEvent(eventType);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType) {
+            return base.Channel.DeleteEventAsync(eventType);
         }
     }
 }

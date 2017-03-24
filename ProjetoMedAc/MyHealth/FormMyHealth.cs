@@ -9,6 +9,7 @@ using System.Xml;
 using MyHealth.ServiceReferenceHealth;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MyHealth.AppSettings;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
 namespace MyHealth
@@ -71,12 +72,13 @@ namespace MyHealth
             HideAll();
             HideLabels(false);
             gb_user.Location = new Point(192, 71);
-            tb_patientSNS.Text = Properties.Settings.Default.Patient_Id.ToString();
+            tb_patientSNS.Text = ApplicationSettings.Get_Patient_Id().ToString();
         }
 
         private void MyHealth_FormClosing(object sender, FormClosingEventArgs e)
         {
             dll.Stop();
+            dll = null;
         }
 
         private void InitializeSpeech()
@@ -424,8 +426,7 @@ namespace MyHealth
                     }
                     else
                     {
-                        Properties.Settings.Default.Patient_Id = sns;
-                        Properties.Settings.Default.Save();
+                        ApplicationSettings.Set_Patient_Id(sns);
                         patient = clientHealthAlert.GetPatient(sns);
                         FillUserInfo();
                         serviceActive = true;
@@ -448,7 +449,8 @@ namespace MyHealth
 
         private void StartMonitoring()
         {
-            dll.Initialize(DataParser, 1000, bloodPressure_checked, saturation_checked, heartRate_checked);
+            int rate = ApplicationSettings.Get_DLL_Rate();
+            dll.Initialize(DataParser, rate, bloodPressure_checked, saturation_checked, heartRate_checked);
         }
 
         private void DataParser(string message)
@@ -586,10 +588,10 @@ namespace MyHealth
             Control destination = new Control();
             destination.Location = new Point(6, 6);
 
-            slideToDestination(destination, gb_user, 2, null);
+            SlideToDestination(destination, gb_user, 2, null);
         }
 
-        private void slideToDestination(Control destination, Control control, int delay, Action onFinish)
+        private void SlideToDestination(Control destination, Control control, int delay, Action onFinish)
         {
             new Task(() =>
             {
@@ -670,8 +672,8 @@ namespace MyHealth
 
         private void UseBrowser(string terms)
         {
-            string finalURL = Properties.Settings.Default.MedLine_URL + queryForMedline + terms + "&retmax=" +
-                              Properties.Settings.Default.Retmax.ToString();
+            string finalURL = ApplicationSettings.Get_MedLine_URL() + queryForMedline + terms + "&retmax=" +
+                              ApplicationSettings.Get_Retmax().ToString();
             WebClient webClient = new WebClient();
             webClient.DownloadStringAsync(new Uri(finalURL));
             webClient.DownloadStringCompleted += Result_DownloadStringCompleted;
@@ -700,20 +702,20 @@ namespace MyHealth
                 MessageBox.Show("Please select a gender for the voice", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             if (rb_male.Checked)
-                Properties.Settings.Default.Gender_Voice = "Male";
+                ApplicationSettings.Set_Gender_Voice("Male");
             else if (rb_female.Checked)
-                Properties.Settings.Default.Gender_Voice = "Female";
+                ApplicationSettings.Set_Gender_Voice("Female");
 
-            Properties.Settings.Default.Voice_Rate = Convert.ToInt32(numberRatingVoice.Value);
+            ApplicationSettings.Set_Voice_Rate(Convert.ToInt32(numberRatingVoice.Value));
 
-            Properties.Settings.Default.MedLine_URL = tb_urlMedline.Text;
+            ApplicationSettings.Set_MedLine_URL(tb_urlMedline.Text);
 
-            Properties.Settings.Default.DLL_Rate = Convert.ToInt32(numberRatingDLL.Value);
+            ApplicationSettings.Set_DLL_Rate(Convert.ToInt32(numberRatingDLL.Value));
 
             int retmax;
             if (int.TryParse(tb_retmax.Text, out retmax))
             {
-                Properties.Settings.Default.Retmax = retmax;
+                ApplicationSettings.Set_Retmax(retmax);
             }
             else
             {
@@ -721,7 +723,6 @@ namespace MyHealth
                     MessageBoxIcon.Exclamation);
             }
 
-            Properties.Settings.Default.Save();
         }
 
         private void bt_cancel_Click(object sender, EventArgs e)
@@ -739,22 +740,21 @@ namespace MyHealth
 
         private void RetreivePropertiesInfo()
         {
-            tb_urlMedline.Text = Properties.Settings.Default.MedLine_URL;
+            tb_urlMedline.Text = ApplicationSettings.Get_MedLine_URL();
 
-            if (Properties.Settings.Default.Gender_Voice.Equals("Male"))
+            if (ApplicationSettings.Get_Gender_Voice().Equals("Male"))
                 rb_male.Checked = true;
             else
                 rb_female.Checked = true;
 
-            numberRatingVoice.Value = Properties.Settings.Default.Voice_Rate;
+            numberRatingVoice.Value = ApplicationSettings.Get_Voice_Rate();
 
-            if (Properties.Settings.Default.DLL_Rate >= 3000)
-                numberRatingDLL.Value = Convert.ToDecimal(Properties.Settings.Default.DLL_Rate);
+            if (ApplicationSettings.Get_DLL_Rate() >= 3000)
+                numberRatingDLL.Value = Convert.ToDecimal(ApplicationSettings.Get_DLL_Rate());
 
-            tb_retmax.Text = Properties.Settings.Default.Retmax.ToString();
+            tb_retmax.Text = ApplicationSettings.Get_Retmax().ToString();
         }
-
-
+        
         #endregion
 
     }
