@@ -884,43 +884,48 @@ namespace AlertSystem
         private void readRadioButtons(Patient patient)
         {
             
-            if (radioButtonBloodPressure.Checked)
-            {
-                patientsRecordBloodPressure =
-                    new List<BloodPressure>(
-                        client.BloodPressureList(patient.Sns)
-                            .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
-                            .OrderByDescending(i => i.Date));
+                if (radioButtonBloodPressure.Checked)
+                {
+                    patientsRecordBloodPressure =
+                        new List<BloodPressure>(
+                            client.BloodPressureList(patient.Sns)
+                                .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
+                                .OrderByDescending(i => i.Date));
 
-                dataGridViewHistory.DataSource = patientsRecordBloodPressure;
-                dataGridViewHistory.RowHeadersVisible = false;
-                dataGridViewHistory.Columns["PatientSNS"].Visible = false;
+                    dataGridViewHistory.DataSource = patientsRecordBloodPressure;
+                    dataGridViewHistory.RowHeadersVisible = false;
+                    dataGridViewHistory.Columns["PatientSNS"].Visible = false;
 
-                chart1.Titles.Clear();
-                chart1.Titles.Add("Blood Pressure");
-                startGraphics();   
-                                                      
-            }
+                    chart1.Titles.Clear();
+                    chart1.Titles.Add("Blood Pressure");
+                    startGraphics();
 
-            if (radioButtonHeartRate.Checked)
-            {
-                patientsRecordHeartRate = new List<HeartRate>(client.HeartRateList(patient.Sns).OrderByDescending(i=> i.Date));
-               
-                dataGridViewHistory.DataSource = patientsRecordHeartRate;
-                dataGridViewHistory.RowHeadersVisible = false;
-                dataGridViewHistory.Columns["PatientSNS"].Visible = false;
-                
-            }
+                }
 
-            if (radioButtonOxygenSat.Checked)
-            {
-                patientsRecordOxySat = new List<OxygenSaturation>(client.OxygenSaturationList(patient.Sns).OrderByDescending(i=> i.Date));
+                if (radioButtonHeartRate.Checked)
+                {
+                    patientsRecordHeartRate =
+                        new List<HeartRate>(client.HeartRateList(patient.Sns).OrderByDescending(i => i.Date));
+
+                    dataGridViewHistory.DataSource = patientsRecordHeartRate;
+                    dataGridViewHistory.RowHeadersVisible = false;
+                    dataGridViewHistory.Columns["PatientSNS"].Visible = false;
+
+                }
+
+                if (radioButtonOxygenSat.Checked)
+                {
+                    patientsRecordOxySat =
+                        new List<OxygenSaturation>(
+                            client.OxygenSaturationList(patient.Sns).OrderByDescending(i => i.Date));
+
+                    dataGridViewHistory.DataSource = patientsRecordOxySat;
+                    dataGridViewHistory.RowHeadersVisible = false;
+                    dataGridViewHistory.Columns["PatientSNS"].Visible = false;
+
+                }
+            
            
-                dataGridViewHistory.DataSource = patientsRecordOxySat;
-                dataGridViewHistory.RowHeadersVisible = false;
-                dataGridViewHistory.Columns["PatientSNS"].Visible = false;
-                
-            }          
         }
 
         public void startGraphics()
