@@ -28,7 +28,6 @@ namespace AlertSystem
         private List<Patient> patients;
         private Patient patientToEdit;
         private Patient patientOnMonitoring;
-
         private List<BloodPressure> patientsRecordBloodPressure;
         private List<HeartRate> patientsRecordHeartRate;
         private List<OxygenSaturation> patientsRecordOxySat;
@@ -42,11 +41,11 @@ namespace AlertSystem
         }
         public FormAlertSystem()
         {
-            //th = new Thread(new ThreadStart(thread));
-            //th.Start();
+           
             InitializeComponent();
             client = new ServiceHealthAlertClient();
-           
+            this.th = new Thread(new ThreadStart(this.thread));
+            this.th.Start();
         }
 
         private void thread()
@@ -58,6 +57,7 @@ namespace AlertSystem
                 if (i == 9)
                     i = 0;
                 patients = client.GetPatientList();
+                //this.load(patientToEdit,false);
                 if (patientOnMonitoring != null)
                 {
                     patientsRecordBloodPressure =
@@ -1045,10 +1045,7 @@ namespace AlertSystem
                 pSearched = patients.FirstOrDefault(i => i.Sns == Convert.ToInt32(toolStripTextBox.Text));
                 if (pSearched != null)
                 {
-                    load(pSearched, false);
-                  // this.backgroundWorker1.RunWorkerAsync();
-                   // Thread t = new Thread();
-                   
+                    load(pSearched, false);                  
                 }
                 else
                 {
@@ -1059,26 +1056,29 @@ namespace AlertSystem
 
             if (type.Equals("NIF"))
             {
-                pSearched = patients.First(i => i.Nif == Convert.ToInt32(toolStripTextBox.Text));
+                pSearched = patients.FirstOrDefault(i => i.Nif == Convert.ToInt32(toolStripTextBox.Text));
+
+                if (pSearched != null)
+                {
+                    load(pSearched, false);
+                }
+                else
+                {
+                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
+                       MessageBoxIcon.Information);
+                }
             }
 
-            if (type.Equals("NIF"))
+            if (type.Equals("NAME"))
             {
+                string [] splited = toolStripTextBox.Text.Split(' ');
+                List<Patient> pByName = patients.Where(i => i.Name.Contains(splited[0]) || i.Surname.Contains(splited[1])).ToList();
 
+                dataGridViewPatients.DataSource = pByName;
             }
         }
 
-        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            
-            for (int i = 0; i < 20000; i++)
-            {
-                Console.WriteLine(i);
-            }
-            Form1 fom = new Form1();
-            
-            fom.ShowDialog();
-        }
+       
 
         private bool validateSearch()
         {
@@ -1110,7 +1110,7 @@ namespace AlertSystem
                 }
                 else
                 {
-                    if (toolStripTextBox.Text.Length < 9)
+                    if (toolStripTextBox.Text.Length < 9 && isNumber(toolStripTextBox.Text))
                     {
                         MessageBox.Show("Introduce a number with 9 digits", "Warning",
                         MessageBoxButtons.OK,
@@ -1122,6 +1122,9 @@ namespace AlertSystem
             return true;
         }
 
-        
+        private void richTextBox1Alergies_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
