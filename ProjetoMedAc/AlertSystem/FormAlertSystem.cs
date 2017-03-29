@@ -33,42 +33,47 @@ namespace AlertSystem
         private List<OxygenSaturation> patientsRecordOxySat;
 
         private Thread th;
-        private enum SearchType
-        {
-            SNS,
-            NAME,
-            NIF
-        }
+
         public FormAlertSystem()
         {
-           
+
             InitializeComponent();
             client = new ServiceHealthAlertClient();
-            this.th = new Thread(new ThreadStart(this.thread));
-            this.th.Start();
+            //th = new Thread(new ThreadStart(thread));
+            //th.Start();
         }
-
         private void thread()
         {
-           // InitializeComponent();
-            for (int i = 0; i < 10; i++)
+            this.BeginInvoke(new MethodInvoker(delegate
             {
-                Thread.Sleep(10000);
-                if (i == 9)
-                    i = 0;
-                patients = client.GetPatientList();
-                //this.load(patientToEdit,false);
-                if (patientOnMonitoring != null)
-                {
-                    patientsRecordBloodPressure =
-                        new List<BloodPressure>(
-                            client.BloodPressureList(patientOnMonitoring.Sns)
-                                .Where(x => x.Date >= DateTime.Now.AddMinutes(-120) && x.Date <= DateTime.Now)
-                                .OrderByDescending(x => x.Date));
-                }
-               
-            }
 
+                //while (true)
+                //{
+                    patients = client.GetPatientList();
+                    //load(patientToEdit,false);
+                    if (patientOnMonitoring != null)
+                    {
+                        patientsRecordBloodPressure =
+                            new List<BloodPressure>(
+                                client.BloodPressureList(patientOnMonitoring.Sns)
+                                    .Where(x => x.Date >= DateTime.Now.AddMinutes(-120) && x.Date <= DateTime.Now)
+                                    .OrderByDescending(x => x.Date));
+                    }
+
+                //}
+
+                //Thread.Sleep(10000);
+                // InitializeComponent();
+                //for (int i = 0; i < 10; i++)
+                //{
+
+                //    if (i == 9)
+                //        i = 0;
+
+
+                //}
+
+            }));
 
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
@@ -87,8 +92,8 @@ namespace AlertSystem
             toolStripComboBox.SelectedIndex = 0;
             //toolStripTextBox.Width = 500;
 
-            load(null,false);
-           
+            load(null, false);
+
 
             #endregion
 
@@ -110,8 +115,15 @@ namespace AlertSystem
                 startGraphics();
             }
         }
-        #region PatientsTab
 
+        #region PatientsTab
+        private void toolStripButtonSearch_Click(object sender, EventArgs e)
+        {
+            if (validateSearch())
+            {
+                readSearch();
+            }
+        }
         private void dataGridViewPatients_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -142,7 +154,7 @@ namespace AlertSystem
         }
         private void bt_cancel_Click(object sender, EventArgs e)
         {
-            load(null,false);
+            load(null, false);
             enableSearch(true);
             dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
             errorProvider1.Clear();
@@ -183,7 +195,7 @@ namespace AlertSystem
                     bt_cancelEdit.Hide();
                     MessageBox.Show("suss");
 
-                    load(p,false);
+                    load(p, false);
                 }
             }
 
@@ -201,7 +213,7 @@ namespace AlertSystem
 
             Patient p = client.GetPatient(patientToEdit.Sns);
             clearFields();
-            load(p,false);
+            load(p, false);
             enableSearch(true);
         }
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -223,7 +235,7 @@ namespace AlertSystem
                         MessageBoxIcon.Information);
 
                     clearFields();
-                    load(p,false);
+                    load(p, false);
                     enableSearch(true);
                     groupBoxPatientMonitoring.Show();
                 }
@@ -296,7 +308,7 @@ namespace AlertSystem
         }
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
         {
-            load(null,false);
+            load(null, false);
         }
         private void dataGridViewPatients_SelectionChanged(object sender, EventArgs e)
         {
@@ -308,10 +320,10 @@ namespace AlertSystem
                 Patient patientSelected = client.GetPatient(sns);
 
                 fillFields(patientSelected);
-                
+
             }
         }
-       
+
         private void checkBoxPatientMonitoring_Click(object sender, EventArgs e)
         {
             try
@@ -329,24 +341,24 @@ namespace AlertSystem
                     {
                         readMonitoring(patientToEdit);
                         load(patientToEdit, false);
-                        MessageBox.Show("MONITORIZAÇAO DESATIVADA ");                        
+                        MessageBox.Show("MONITORIZAÇAO DESATIVADA ");
                     }
                 }
                 else
-                {                   
-                        patientToEdit.Ativo = true;
-                        bool res = client.UpdateStatePatient(patientToEdit);
+                {
+                    patientToEdit.Ativo = true;
+                    bool res = client.UpdateStatePatient(patientToEdit);
 
-                        if (!res)
-                        {
-                            MessageBox.Show("erro");
-                        }
-                        else
-                        {
-                            readMonitoring(patientToEdit);
-                            load(patientToEdit, false);
-                            MessageBox.Show("SOB MONITORIZAÇAO");
-                        }   
+                    if (!res)
+                    {
+                        MessageBox.Show("erro");
+                    }
+                    else
+                    {
+                        readMonitoring(patientToEdit);
+                        load(patientToEdit, false);
+                        MessageBox.Show("SOB MONITORIZAÇAO");
+                    }
                 }
             }
             catch (NullReferenceException x)
@@ -357,24 +369,23 @@ namespace AlertSystem
         }
         #endregion
 
-
         #region Monitoring
         private void radioButtonBloodPressure_CheckedChanged(object sender, EventArgs e)
         {
-            if(radioButtonBloodPressure.Checked)
-            readRadioButtons(patientOnMonitoring);
+            if (radioButtonBloodPressure.Checked)
+                readRadioButtons(patientOnMonitoring);
         }
 
         private void radioButtonHeartRate_CheckedChanged(object sender, EventArgs e)
         {
-            if(radioButtonHeartRate.Checked)
-            readRadioButtons(patientOnMonitoring);
+            if (radioButtonHeartRate.Checked)
+                readRadioButtons(patientOnMonitoring);
         }
 
         private void radioButtonOxygenSat_CheckedChanged(object sender, EventArgs e)
         {
-            if(radioButtonOxygenSat.Checked)
-            readRadioButtons(patientOnMonitoring);
+            if (radioButtonOxygenSat.Checked)
+                readRadioButtons(patientOnMonitoring);
         }
         private void dataGridViewPatientsMonitor_SelectionChanged(object sender, EventArgs e)
         {
@@ -391,7 +402,7 @@ namespace AlertSystem
 
                 dataGridViewHistory.DataSource = null;
                 dataGridViewHistory.Rows.Clear();
-                
+
                 readRadioButtons(patientOnMonitoring);
             }
         }
@@ -458,6 +469,8 @@ namespace AlertSystem
                             if (p.Ativo)
                             {
                                 fillMonitorPatientInfo(p);
+                                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                //patientOnMonitoring = p;
                             }
                             else
                             {
@@ -523,7 +536,7 @@ namespace AlertSystem
                 if (Convert.ToBoolean(row.Cells["Ativo"].Value))
                 {
                     row.DefaultCellStyle.BackColor = Color.Chocolate;
-                }   
+                }
             }
 
             dataGridViewPatients.Columns[14].DisplayIndex = 0;
@@ -579,18 +592,18 @@ namespace AlertSystem
             tb_height.Text = patient.Height.ToString();
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
-            if(patient.EmergencyNumberCountryCode!=null)
+            if (patient.EmergencyNumberCountryCode != null)
                 comboBoxEmergencyCode.Text = countries.First(i => i.CallingCodes == patient.EmergencyNumberCountryCode).ToString();
             if (patient.PhoneCountryCode != null)
                 comboBoxCode.Text = countries.First(i => i.CallingCodes == patient.PhoneCountryCode).ToString();
             readMonitoring(patient);
-           // fillMonitorPatientInfo(patient);
+            // fillMonitorPatientInfo(patient);
         }
 
         private void fillComboBoxCountries()
         {
-            countries =  Countries.getAllCountries();
-        
+            countries = Countries.getAllCountries();
+
             if (countries != null)
             {
                 foreach (Countries.Country country in countries)
@@ -645,7 +658,6 @@ namespace AlertSystem
             toolStripButtonSearch.Enabled = estado;
             toolStripTextBox.Enabled = estado;
         }
-
         private bool validateFields(bool fromEdition)
         {
             int errors = 0;
@@ -812,7 +824,7 @@ namespace AlertSystem
             }
             if (comboBoxEmergencyCode.SelectedIndex != -1)
             {
-                string [] alpha = comboBoxEmergencyCode.SelectedItem.ToString().Split(' ');
+                string[] alpha = comboBoxEmergencyCode.SelectedItem.ToString().Split(' ');
                 p.EmergencyNumberCountryCode = alpha[2];
             }
 
@@ -857,6 +869,91 @@ namespace AlertSystem
             }
             dataGridViewPatients.Rows[rowIndex].Selected = true;
         }
+
+        private void readSearch()
+        {
+            string type = toolStripComboBox.Text;
+            Patient pSearched;
+
+            if (type.Equals("SNS"))
+            {
+                pSearched = patients.FirstOrDefault(i => i.Sns == Convert.ToInt32(toolStripTextBox.Text));
+                if (pSearched != null)
+                {
+                    load(pSearched, false);
+                }
+                else
+                {
+                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
+                       MessageBoxIcon.Information);
+                }
+            }
+
+            if (type.Equals("NIF"))
+            {
+                pSearched = patients.FirstOrDefault(i => i.Nif == Convert.ToInt32(toolStripTextBox.Text));
+
+                if (pSearched != null)
+                {
+                    load(pSearched, false);
+                }
+                else
+                {
+                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
+                       MessageBoxIcon.Information);
+                }
+            }
+
+            if (type.Equals("NAME"))
+            {
+                string[] splited = toolStripTextBox.Text.Split(' ');
+                List<Patient> pByName = patients.Where(i => i.Name.Contains(splited[0]) || i.Surname.Contains(splited[1])).ToList();
+
+                dataGridViewPatients.DataSource = pByName;
+            }
+        }
+        private bool validateSearch()
+        {
+            if (toolStripTextBox.Text.Equals("") || toolStripComboBox.SelectedIndex == -1)
+            {
+                if (toolStripTextBox.Text.Equals(""))
+                {
+                    MessageBox.Show("Field with value can't be empty", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (toolStripComboBox.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Select a search type", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            else
+            {
+                if (toolStripComboBox.Text.Equals("SNS") && !isNumber(toolStripTextBox.Text) ||
+                    toolStripComboBox.Text.Equals("NIF") && !isNumber(toolStripTextBox.Text))
+                {
+                    MessageBox.Show("For this type of search, value has to be a number ", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                {
+                    if (toolStripTextBox.Text.Length < 9 && isNumber(toolStripTextBox.Text))
+                    {
+                        MessageBox.Show("Introduce a number with 9 digits", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         #endregion
         //
 
@@ -899,22 +996,24 @@ namespace AlertSystem
             {
                 if (Convert.ToBoolean(row.Cells["Sns"].Value))
                 {
-                   // row.DefaultCellStyle.BackColor = Color.Chocolate;
+                    // row.DefaultCellStyle.BackColor = Color.Chocolate;
                 }
             }
 
             dataGridViewPatientsMonitor.Columns[14].DisplayIndex = 0;
             dataGridViewPatientsMonitor.Columns[10].DisplayIndex = 1;
             dataGridViewPatientsMonitor.Columns[15].DisplayIndex = 2;
-            
+
             dataGridViewPatientsMonitor.RowHeadersVisible = false;
         }
 
         private void readRadioButtons(Patient patient)
         {
-            
-                if (radioButtonBloodPressure.Checked)
-                {
+
+            if (radioButtonBloodPressure.Checked)
+            {
+                //if (patientsRecordBloodPressure != null)
+                //{
                     patientsRecordBloodPressure =
                         new List<BloodPressure>(
                             client.BloodPressureList(patient.Sns)
@@ -928,57 +1027,47 @@ namespace AlertSystem
                     chart1.Titles.Clear();
                     chart1.Titles.Add("Blood Pressure");
                     startGraphics();
+                //}
 
-                }
+            }
 
-                if (radioButtonHeartRate.Checked)
-                {
-                    patientsRecordHeartRate =
-                        new List<HeartRate>(client.HeartRateList(patient.Sns).OrderByDescending(i => i.Date));
+            if (radioButtonHeartRate.Checked)
+            {
+                patientsRecordHeartRate =
+                    new List<HeartRate>(client.HeartRateList(patient.Sns).OrderByDescending(i => i.Date));
 
-                    dataGridViewHistory.DataSource = patientsRecordHeartRate;
-                    dataGridViewHistory.RowHeadersVisible = false;
-                    dataGridViewHistory.Columns["PatientSNS"].Visible = false;
+                dataGridViewHistory.DataSource = patientsRecordHeartRate;
+                dataGridViewHistory.RowHeadersVisible = false;
+                dataGridViewHistory.Columns["PatientSNS"].Visible = false;
 
-                }
+            }
 
-                if (radioButtonOxygenSat.Checked)
-                {
-                    patientsRecordOxySat =
-                        new List<OxygenSaturation>(
-                            client.OxygenSaturationList(patient.Sns).OrderByDescending(i => i.Date));
+            if (radioButtonOxygenSat.Checked)
+            {
+                patientsRecordOxySat =
+                    new List<OxygenSaturation>(
+                        client.OxygenSaturationList(patient.Sns).OrderByDescending(i => i.Date));
 
-                    dataGridViewHistory.DataSource = patientsRecordOxySat;
-                    dataGridViewHistory.RowHeadersVisible = false;
-                    dataGridViewHistory.Columns["PatientSNS"].Visible = false;
+                dataGridViewHistory.DataSource = patientsRecordOxySat;
+                dataGridViewHistory.RowHeadersVisible = false;
+                dataGridViewHistory.Columns["PatientSNS"].Visible = false;
 
-                }
-            
-           
+            }
+
+
         }
 
         public void startGraphics()
         {
-            
+
             chart1.Series.Clear();
             chart1.ChartAreas.Clear();
             //Construção da àrea do gráfico
             chart1.ChartAreas.Add("area");
-            
+
             // chart1.ChartAreas.Add("area2");
             //chart1.Series[0].ChartArea = "area2";
-            DateTime interval = DateTime.Now.AddMinutes(-120);
-            int minimumHour = interval.Minute;
-            int maximumHour = DateTime.Now.Minute;
-            chart1.ChartAreas["area"].AxisX.Minimum = 0;
-            chart1.ChartAreas["area"].AxisX.Maximum = 120;
-            chart1.ChartAreas["area"].AxisX.Interval = 2.5;
-
-           // chart1.ChartAreas["area"].AxisY.Minimum = 0;
-            chart1.ChartAreas["area"].AxisY.Maximum = 300;
-            chart1.ChartAreas["area"].AxisY.Interval = 25;
-            chart1.ChartAreas["area"].AxisY.Title = "#Value";
-            chart1.ChartAreas["area"].AxisX.Title = "Time(seconds)";
+            
 
             // chart1.ChartAreas.Add("area2");
             //chart1.Series[0].ChartArea = "area2";
@@ -992,25 +1081,46 @@ namespace AlertSystem
             //chart1.Series["Diastolic"]["PixelPointWidth"] = "10";
             //chart1.Series["Systolic"]["PixelPointWidth"] = "10";
             //Pontos a aparecer no gráfico
-            List<BloodPressure> valores = patientsRecordBloodPressure.Where(i => i.Date >= interval && i.Date <= DateTime.Now).OrderByDescending(i=> i.Date).ToList();
-            foreach (BloodPressure v in valores)
-            {   
-                chart1.Series["Diastolic"].Points.AddXY(v.Date.Minute, v.Diastolic);
-                chart1.Series["Systolic"].Points.AddXY(v.Date.Minute, v.Systolic);
-            }
-            //chart1.Series["Blood Pressure"].Points.AddXY(2011, 5478);
-            //chart1.Series["Blood Pressure"].Points.AddXY(2012, 5456);
-            //chart1.Series["Blood Pressure"].Points.AddXY(2013, 5484);
-            //chart1.Series["Heart Rate"].Points.AddXY(2011, 5210);
-            //chart1.Series["Heart Rate"].Points.AddXY(2012, 5190);
-            //chart1.Series["Heart Rate"].Points.AddXY(2013, 5100);
+            if (patientsRecordBloodPressure != null)
+            {
+                DateTime interval = DateTime.Now.AddMinutes(-120);
+            
+                List<BloodPressure> valores =
+                    patientsRecordBloodPressure.Where(i => i.Date >= interval && i.Date <= DateTime.Now)
+                        .OrderBy(i => i.Date)
+                        .ToList();
 
+                chart1.ChartAreas["area"].AxisX.Minimum = 1;
+                chart1.ChartAreas["area"].AxisX.Maximum = valores.Count;
+                chart1.ChartAreas["area"].AxisX.Interval = 1;
+
+                // chart1.ChartAreas["area"].AxisY.Minimum = 0;
+                chart1.ChartAreas["area"].AxisY.Maximum = 300;
+                chart1.ChartAreas["area"].AxisY.Interval = 25;
+                chart1.ChartAreas["area"].AxisY.Title = "#Value";
+                chart1.ChartAreas["area"].AxisX.Title = "Time(seconds)";
+
+                string[] hora = new string[valores.Count];
+                double[] valoresDistolic = new double[valores.Count];
+                double[] valoresSystolic = new double[valores.Count];
+
+                for(int i=0;i<valores.Count;i++)
+                {
+                    hora[i] = valores[i].Time.ToString();
+                    valoresDistolic[i] = valores[i].Diastolic;
+                    valoresSystolic[i] = valores[i].Systolic;
+                    //chart1.Series["Diastolic"].Points.AddXY(v.Date.Minute, v.Diastolic);
+                    //chart1.Series["Systolic"].Points.AddXY(v.Date.Minute, v.Systolic);
+                }
+                chart1.Series["Diastolic"].Points.DataBindXY(hora,valoresDistolic);
+                chart1.Series["Systolic"].Points.DataBindXY(hora, valoresSystolic);
+            }            
             //chart1.Series[1].ChartArea = "area2";
 
             chart1.ChartAreas["area"].BackColor = Color.White;
             chart1.ChartAreas["area"].BackSecondaryColor = Color.LightBlue;
             chart1.ChartAreas["area"].BackGradientStyle =
-            System.Windows.Forms.DataVisualization.Charting.GradientStyle.DiagonalRight;
+                System.Windows.Forms.DataVisualization.Charting.GradientStyle.DiagonalRight;
 
             chart1.ChartAreas["area"].AxisX.MajorGrid.LineColor = Color.LightSlateGray;
             chart1.ChartAreas["area"].AxisY.MajorGrid.LineColor = Color.LightSteelBlue;
@@ -1019,112 +1129,18 @@ namespace AlertSystem
             //string[] nome = { "utente 1", "utente 2", "utente 3", "utente 4", "utente 5" };
             //chart1.Series.Add("peso");
             //chart1.Series[0].Points.DataBindXY(nome, valores);
-            chart1.Series["Diastolic"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart1.Series["Systolic"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series["Diastolic"].ChartType =
+                System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series["Systolic"].ChartType =
+                System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
         }
 
         #endregion
 
         #endregion
 
-        private void toolStripButtonSearch_Click(object sender, EventArgs e)
-        {
-            if (validateSearch())
-            {
-                readSearch();
-            }
-        }
 
-        private void readSearch()
-        {
-            string type = toolStripComboBox.Text;
-            Patient pSearched;
 
-            if (type.Equals("SNS"))
-            {
-                pSearched = patients.FirstOrDefault(i => i.Sns == Convert.ToInt32(toolStripTextBox.Text));
-                if (pSearched != null)
-                {
-                    load(pSearched, false);                  
-                }
-                else
-                {
-                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
-                       MessageBoxIcon.Information);
-                }
-            }
-
-            if (type.Equals("NIF"))
-            {
-                pSearched = patients.FirstOrDefault(i => i.Nif == Convert.ToInt32(toolStripTextBox.Text));
-
-                if (pSearched != null)
-                {
-                    load(pSearched, false);
-                }
-                else
-                {
-                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
-                       MessageBoxIcon.Information);
-                }
-            }
-
-            if (type.Equals("NAME"))
-            {
-                string [] splited = toolStripTextBox.Text.Split(' ');
-                List<Patient> pByName = patients.Where(i => i.Name.Contains(splited[0]) || i.Surname.Contains(splited[1])).ToList();
-
-                dataGridViewPatients.DataSource = pByName;
-            }
-        }
-
-       
-
-        private bool validateSearch()
-        {
-            if (toolStripTextBox.Text.Equals("") || toolStripComboBox.SelectedIndex == -1)
-            {
-                if (toolStripTextBox.Text.Equals(""))
-                {
-                    MessageBox.Show("Field with value can't be empty", "Warning", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return false;
-                }
-
-                if (toolStripComboBox.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Select a search type", "Warning", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return false;
-                }
-            }
-            else
-            {
-                if (toolStripComboBox.Text.Equals("SNS") && !isNumber(toolStripTextBox.Text) ||
-                    toolStripComboBox.Text.Equals("NIF") && !isNumber(toolStripTextBox.Text))
-                {
-                    MessageBox.Show("For this type of search, value has to be a number ", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return false;
-                }
-                else
-                {
-                    if (toolStripTextBox.Text.Length < 9 && isNumber(toolStripTextBox.Text))
-                    {
-                        MessageBox.Show("Introduce a number with 9 digits", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                        return false;
-                    }                       
-                }
-            }
-            return true;
-        }
-
-        private void richTextBox1Alergies_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

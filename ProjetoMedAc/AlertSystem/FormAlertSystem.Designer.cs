@@ -417,7 +417,7 @@
             this.richTextBox1Alergies.Size = new System.Drawing.Size(348, 106);
             this.richTextBox1Alergies.TabIndex = 95;
             this.richTextBox1Alergies.Text = "";
-            this.richTextBox1Alergies.TextChanged += new System.EventHandler(this.richTextBox1Alergies_TextChanged);
+            
             // 
             // textBoxPhoneNumber
             // 
