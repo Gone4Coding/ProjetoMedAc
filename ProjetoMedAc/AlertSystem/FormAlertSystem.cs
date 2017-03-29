@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -33,22 +34,21 @@ namespace AlertSystem
         private List<OxygenSaturation> patientsRecordOxySat;
 
         private Thread th;
+        private Thread th1;
 
         public FormAlertSystem()
         {
 
             InitializeComponent();
             client = new ServiceHealthAlertClient();
-            //th = new Thread(new ThreadStart(thread));
-            //th.Start();
+
         }
         private void thread()
         {
             this.BeginInvoke(new MethodInvoker(delegate
             {
 
-                //while (true)
-                //{
+              
                     patients = client.GetPatientList();
                     //load(patientToEdit,false);
                     if (patientOnMonitoring != null)
@@ -59,19 +59,7 @@ namespace AlertSystem
                                     .Where(x => x.Date >= DateTime.Now.AddMinutes(-120) && x.Date <= DateTime.Now)
                                     .OrderByDescending(x => x.Date));
                     }
-
-                //}
-
-                //Thread.Sleep(10000);
-                // InitializeComponent();
-                //for (int i = 0; i < 10; i++)
-                //{
-
-                //    if (i == 9)
-                //        i = 0;
-
-
-                //}
+                    
 
             }));
 
@@ -102,6 +90,9 @@ namespace AlertSystem
 
 
             #endregion
+
+            th = new Thread(new ThreadStart(thread));
+            th.Start();
         }
         #region Eventos
         //      
@@ -1014,19 +1005,19 @@ namespace AlertSystem
             {
                 //if (patientsRecordBloodPressure != null)
                 //{
-                    patientsRecordBloodPressure =
-                        new List<BloodPressure>(
-                            client.BloodPressureList(patient.Sns)
-                                .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
-                                .OrderByDescending(i => i.Date));
+                patientsRecordBloodPressure =
+                    new List<BloodPressure>(
+                        client.BloodPressureList(patient.Sns)
+                            .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
+                            .OrderByDescending(i => i.Date));
 
-                    dataGridViewHistory.DataSource = patientsRecordBloodPressure;
-                    dataGridViewHistory.RowHeadersVisible = false;
-                    dataGridViewHistory.Columns["PatientSNS"].Visible = false;
+                dataGridViewHistory.DataSource = patientsRecordBloodPressure;
+                dataGridViewHistory.RowHeadersVisible = false;
+                dataGridViewHistory.Columns["PatientSNS"].Visible = false;
 
-                    chart1.Titles.Clear();
-                    chart1.Titles.Add("Blood Pressure");
-                    startGraphics();
+                chart1.Titles.Clear();
+                chart1.Titles.Add("Blood Pressure");
+                startGraphics();
                 //}
 
             }
@@ -1069,7 +1060,7 @@ namespace AlertSystem
 
             // chart1.ChartAreas.Add("area2");
             //chart1.Series[0].ChartArea = "area2";
-            
+
 
             // chart1.ChartAreas.Add("area2");
             //chart1.Series[0].ChartArea = "area2";
@@ -1086,38 +1077,90 @@ namespace AlertSystem
             if (patientsRecordBloodPressure != null)
             {
                 DateTime interval = DateTime.Now.AddMinutes(-120);
-            
+
                 List<BloodPressure> valores =
                     patientsRecordBloodPressure.Where(i => i.Date >= interval && i.Date <= DateTime.Now)
                         .OrderBy(i => i.Date)
                         .ToList();
 
                 chart1.ChartAreas["area"].AxisX.Minimum = 1;
-                chart1.ChartAreas["area"].AxisX.Maximum = valores.Count;
+                chart1.ChartAreas["area"].AxisX.Maximum = 120;
                 chart1.ChartAreas["area"].AxisX.Interval = 1;
 
-                // chart1.ChartAreas["area"].AxisY.Minimum = 0;
-                chart1.ChartAreas["area"].AxisY.Maximum = 300;
-                chart1.ChartAreas["area"].AxisY.Interval = 25;
+                chart1.ChartAreas["area"].AxisY.Maximum = 250;
+                chart1.ChartAreas["area"].AxisY.Interval = 10;
                 chart1.ChartAreas["area"].AxisY.Title = "#Value";
-                chart1.ChartAreas["area"].AxisX.Title = "Time(seconds)";
+                chart1.ChartAreas["area"].AxisX.Title = "Time(Minutes)";
 
-                string[] hora = new string[valores.Count];
-                double[] valoresDistolic = new double[valores.Count];
-                double[] valoresSystolic = new double[valores.Count];
+                string[] hora = new string[120];
+                double[] valoresDistolic = new double[120];
+                double[] valoresSystolic = new double[120];
 
-                for(int i=0;i<valores.Count;i++)
+                double valorMedioDistolic = 0;
+                double valorMedioSystolic = 0;
+                int nrOfvalues = 0;
+
+                string horaMedia = "";
+
+                for (int i = 0; i < 120; i++)
                 {
-                    hora[i] = valores[i].Time.ToString();
-                    valoresDistolic[i] = valores[i].Diastolic;
-                    valoresSystolic[i] = valores[i].Systolic;
-                    //chart1.Series["Diastolic"].Points.AddXY(v.Date.Minute, v.Diastolic);
-                    //chart1.Series["Systolic"].Points.AddXY(v.Date.Minute, v.Systolic);
+                    if (i == 0)
+                    {
+                        string[] hour = interval.TimeOfDay.ToString().Split(':');
+                        hora[i] = hour[0] + ":" + hour[1];
+                    }
+                    else
+                    {
+                        string[] hour = interval.AddMinutes(i).TimeOfDay.ToString().Split(':');
+                        hora[i] = hour[0] + ":" + hour[1];
+                    }
+
                 }
-                chart1.Series["Diastolic"].Points.DataBindXY(hora,valoresDistolic);
+
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    int position = 0;
+                    if (i > 0 && valores[i].Time.Minutes != valores[i - 1].Time.Minutes)
+                    {
+                        TimeSpan a = interval.TimeOfDay.Add(-valores[i - 1].Time);
+
+                        if (a.Hours < 0)
+                        {
+                            position = 59;
+                        }
+
+                        position += -(a.Minutes - 1);
+
+                        // position++;
+                        valorMedioDistolic = valorMedioDistolic / nrOfvalues;
+                        valorMedioSystolic = valorMedioSystolic / nrOfvalues;
+                        valoresDistolic[position] = valorMedioDistolic;
+                        valoresSystolic[position] = valorMedioSystolic;
+                        //hora[position] = valores[i].Time.ToString();
+                        valorMedioDistolic = 0;
+                        valorMedioSystolic = 0;
+                        nrOfvalues = 0;
+                        nrOfvalues++;
+                        valorMedioDistolic += valores[i].Diastolic;
+                        valorMedioSystolic += valores[i].Systolic;
+                    }
+                    else
+                    {
+                        nrOfvalues++;
+                        valorMedioDistolic += valores[i].Diastolic;
+                        valorMedioSystolic += valores[i].Systolic;
+                    }
+
+                    //int min = valores[i].Time.Minutes;
+                    //hora[i] = valores[i].Time.ToString();
+                    //valoresDistolic[i] = valores[i].Diastolic;
+                    //valoresSystolic[i] = valores[i].Systolic;                   
+                }
+
+                chart1.Series["Diastolic"].Points.DataBindXY(hora, valoresDistolic);
                 chart1.Series["Systolic"].Points.DataBindXY(hora, valoresSystolic);
-            }            
-            //chart1.Series[1].ChartArea = "area2";
+            }
+
 
             chart1.ChartAreas["area"].BackColor = Color.White;
             chart1.ChartAreas["area"].BackSecondaryColor = Color.LightBlue;
@@ -1127,10 +1170,7 @@ namespace AlertSystem
             chart1.ChartAreas["area"].AxisX.MajorGrid.LineColor = Color.LightSlateGray;
             chart1.ChartAreas["area"].AxisY.MajorGrid.LineColor = Color.LightSteelBlue;
 
-            //double[] valores = { 78, 55.5, 48.8, 65, 72 };
-            //string[] nome = { "utente 1", "utente 2", "utente 3", "utente 4", "utente 5" };
-            //chart1.Series.Add("peso");
-            //chart1.Series[0].Points.DataBindXY(nome, valores);
+
             chart1.Series["Diastolic"].ChartType =
                 System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chart1.Series["Systolic"].ChartType =

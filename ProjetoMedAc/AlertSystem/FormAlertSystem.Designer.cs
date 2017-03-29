@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -175,11 +175,10 @@
             this.tabPage_viewRecords.Controls.Add(this.groupBoxPatientSummary);
             this.tabPage_viewRecords.Controls.Add(this.toolStripMonitor);
             this.tabPage_viewRecords.Controls.Add(this.groupBox1Patients);
-            this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_viewRecords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 22);
             this.tabPage_viewRecords.Name = "tabPage_viewRecords";
-            this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage_viewRecords.Size = new System.Drawing.Size(1873, 936);
+            this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage_viewRecords.Size = new System.Drawing.Size(1403, 758);
             this.tabPage_viewRecords.TabIndex = 4;
             this.tabPage_viewRecords.Text = "View Records";
             this.tabPage_viewRecords.UseVisualStyleBackColor = true;
@@ -192,11 +191,9 @@
             this.groupBoxActivitie.Controls.Add(this.groupBox1);
             this.groupBoxActivitie.Controls.Add(this.groupBoxRecords);
             this.groupBoxActivitie.Controls.Add(this.groupBoxAlerts);
-            this.groupBoxActivitie.Location = new System.Drawing.Point(360, 229);
-            this.groupBoxActivitie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxActivitie.Location = new System.Drawing.Point(270, 186);
             this.groupBoxActivitie.Name = "groupBoxActivitie";
-            this.groupBoxActivitie.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxActivitie.Size = new System.Drawing.Size(1503, 700);
+            this.groupBoxActivitie.Size = new System.Drawing.Size(1127, 569);
             this.groupBoxActivitie.TabIndex = 7;
             this.groupBoxActivitie.TabStop = false;
             this.groupBoxActivitie.Text = "Patient Activity";
@@ -204,11 +201,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Location = new System.Drawing.Point(8, 23);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(6, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(376, 98);
+            this.groupBox1.Size = new System.Drawing.Size(235, 80);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filters";
@@ -218,19 +213,17 @@
             this.panel2.Controls.Add(this.radioButtonOxygenSat);
             this.panel2.Controls.Add(this.radioButtonHeartRate);
             this.panel2.Controls.Add(this.radioButtonBloodPressure);
-            this.panel2.Location = new System.Drawing.Point(8, 25);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(6, 20);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(360, 55);
+            this.panel2.Size = new System.Drawing.Size(218, 45);
             this.panel2.TabIndex = 9;
             // 
             // radioButtonOxygenSat
             // 
             this.radioButtonOxygenSat.AutoSize = true;
-            this.radioButtonOxygenSat.Location = new System.Drawing.Point(15, 31);
-            this.radioButtonOxygenSat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonOxygenSat.Location = new System.Drawing.Point(11, 25);
             this.radioButtonOxygenSat.Name = "radioButtonOxygenSat";
-            this.radioButtonOxygenSat.Size = new System.Drawing.Size(135, 20);
+            this.radioButtonOxygenSat.Size = new System.Drawing.Size(112, 17);
             this.radioButtonOxygenSat.TabIndex = 2;
             this.radioButtonOxygenSat.TabStop = true;
             this.radioButtonOxygenSat.Text = "Oxygen Saturation";
@@ -240,10 +233,9 @@
             // radioButtonHeartRate
             // 
             this.radioButtonHeartRate.AutoSize = true;
-            this.radioButtonHeartRate.Location = new System.Drawing.Point(171, 4);
-            this.radioButtonHeartRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonHeartRate.Location = new System.Drawing.Point(128, 3);
             this.radioButtonHeartRate.Name = "radioButtonHeartRate";
-            this.radioButtonHeartRate.Size = new System.Drawing.Size(91, 20);
+            this.radioButtonHeartRate.Size = new System.Drawing.Size(77, 17);
             this.radioButtonHeartRate.TabIndex = 1;
             this.radioButtonHeartRate.TabStop = true;
             this.radioButtonHeartRate.Text = "Heart Rate";
@@ -253,10 +245,9 @@
             // radioButtonBloodPressure
             // 
             this.radioButtonBloodPressure.AutoSize = true;
-            this.radioButtonBloodPressure.Location = new System.Drawing.Point(15, 4);
-            this.radioButtonBloodPressure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonBloodPressure.Location = new System.Drawing.Point(11, 3);
             this.radioButtonBloodPressure.Name = "radioButtonBloodPressure";
-            this.radioButtonBloodPressure.Size = new System.Drawing.Size(119, 20);
+            this.radioButtonBloodPressure.Size = new System.Drawing.Size(96, 17);
             this.radioButtonBloodPressure.TabIndex = 0;
             this.radioButtonBloodPressure.TabStop = true;
             this.radioButtonBloodPressure.Text = "Blood Pressure";
@@ -270,11 +261,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxRecords.Controls.Add(this.chart1);
             this.groupBoxRecords.Controls.Add(this.dataGridViewHistory);
-            this.groupBoxRecords.Location = new System.Drawing.Point(392, 23);
-            this.groupBoxRecords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxRecords.Location = new System.Drawing.Point(247, 19);
             this.groupBoxRecords.Name = "groupBoxRecords";
-            this.groupBoxRecords.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxRecords.Size = new System.Drawing.Size(1091, 670);
+            this.groupBoxRecords.Size = new System.Drawing.Size(865, 544);
             this.groupBoxRecords.TabIndex = 7;
             this.groupBoxRecords.TabStop = false;
             this.groupBoxRecords.Text = "Records";
@@ -284,12 +273,11 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(25, 214);
-            this.chart1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(19, 174);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(1043, 442);
+            this.chart1.Size = new System.Drawing.Size(829, 359);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             // 
@@ -306,13 +294,12 @@
             this.dataGridViewHistory.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHistory.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewHistory.Location = new System.Drawing.Point(25, 28);
-            this.dataGridViewHistory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewHistory.Location = new System.Drawing.Point(19, 23);
             this.dataGridViewHistory.MultiSelect = false;
             this.dataGridViewHistory.Name = "dataGridViewHistory";
             this.dataGridViewHistory.ReadOnly = true;
             this.dataGridViewHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewHistory.Size = new System.Drawing.Size(1043, 143);
+            this.dataGridViewHistory.Size = new System.Drawing.Size(829, 116);
             this.dataGridViewHistory.TabIndex = 7;
             // 
             // groupBoxAlerts
@@ -320,11 +307,9 @@
             this.groupBoxAlerts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxAlerts.Controls.Add(this.dataGridViewAlerts);
-            this.groupBoxAlerts.Location = new System.Drawing.Point(8, 129);
-            this.groupBoxAlerts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxAlerts.Location = new System.Drawing.Point(6, 105);
             this.groupBoxAlerts.Name = "groupBoxAlerts";
-            this.groupBoxAlerts.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxAlerts.Size = new System.Drawing.Size(376, 564);
+            this.groupBoxAlerts.Size = new System.Drawing.Size(235, 458);
             this.groupBoxAlerts.TabIndex = 1;
             this.groupBoxAlerts.TabStop = false;
             this.groupBoxAlerts.Text = "Alerts";
@@ -343,13 +328,12 @@
             this.dataGridViewAlerts.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewAlerts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAlerts.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewAlerts.Location = new System.Drawing.Point(13, 23);
-            this.dataGridViewAlerts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewAlerts.Location = new System.Drawing.Point(6, 19);
             this.dataGridViewAlerts.MultiSelect = false;
             this.dataGridViewAlerts.Name = "dataGridViewAlerts";
             this.dataGridViewAlerts.ReadOnly = true;
             this.dataGridViewAlerts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAlerts.Size = new System.Drawing.Size(345, 527);
+            this.dataGridViewAlerts.Size = new System.Drawing.Size(218, 428);
             this.dataGridViewAlerts.TabIndex = 6;
             // 
             // groupBoxPatientSummary
@@ -377,11 +361,9 @@
             this.groupBoxPatientSummary.Controls.Add(this.textBoxLastName);
             this.groupBoxPatientSummary.Controls.Add(this.label35);
             this.groupBoxPatientSummary.Controls.Add(this.label41);
-            this.groupBoxPatientSummary.Location = new System.Drawing.Point(357, 57);
-            this.groupBoxPatientSummary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxPatientSummary.Location = new System.Drawing.Point(268, 46);
             this.groupBoxPatientSummary.Name = "groupBoxPatientSummary";
-            this.groupBoxPatientSummary.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxPatientSummary.Size = new System.Drawing.Size(1503, 149);
+            this.groupBoxPatientSummary.Size = new System.Drawing.Size(1127, 121);
             this.groupBoxPatientSummary.TabIndex = 6;
             this.groupBoxPatientSummary.TabStop = false;
             this.groupBoxPatientSummary.Text = "Patient Summary";
@@ -390,18 +372,16 @@
             // 
             this.textBoxGender.Enabled = false;
             this.textBoxGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxGender.Location = new System.Drawing.Point(904, 94);
-            this.textBoxGender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxGender.Location = new System.Drawing.Point(678, 76);
             this.textBoxGender.Name = "textBoxGender";
-            this.textBoxGender.Size = new System.Drawing.Size(113, 17);
+            this.textBoxGender.Size = new System.Drawing.Size(86, 17);
             this.textBoxGender.TabIndex = 98;
             // 
             // label42
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(29, 34);
-            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Location = new System.Drawing.Point(22, 28);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(57, 13);
             this.label42.TabIndex = 78;
@@ -411,60 +391,53 @@
             // 
             this.richTextBox1Alergies.Enabled = false;
             this.richTextBox1Alergies.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1Alergies.Location = new System.Drawing.Point(1027, 21);
-            this.richTextBox1Alergies.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBox1Alergies.Location = new System.Drawing.Point(770, 17);
             this.richTextBox1Alergies.Name = "richTextBox1Alergies";
-            this.richTextBox1Alergies.Size = new System.Drawing.Size(348, 106);
+            this.richTextBox1Alergies.Size = new System.Drawing.Size(262, 87);
             this.richTextBox1Alergies.TabIndex = 95;
             this.richTextBox1Alergies.Text = "";
-            
             // 
             // textBoxPhoneNumber
             // 
             this.textBoxPhoneNumber.Enabled = false;
             this.textBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPhoneNumber.Location = new System.Drawing.Point(631, 60);
-            this.textBoxPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPhoneNumber.Location = new System.Drawing.Point(473, 49);
             this.textBoxPhoneNumber.Name = "textBoxPhoneNumber";
-            this.textBoxPhoneNumber.Size = new System.Drawing.Size(200, 17);
+            this.textBoxPhoneNumber.Size = new System.Drawing.Size(151, 17);
             this.textBoxPhoneNumber.TabIndex = 72;
             // 
             // textBoxWeight
             // 
             this.textBoxWeight.Enabled = false;
             this.textBoxWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWeight.Location = new System.Drawing.Point(376, 94);
-            this.textBoxWeight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxWeight.Location = new System.Drawing.Point(282, 76);
             this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.Size = new System.Drawing.Size(59, 17);
+            this.textBoxWeight.Size = new System.Drawing.Size(45, 17);
             this.textBoxWeight.TabIndex = 97;
             // 
             // textBoxSNS
             // 
             this.textBoxSNS.Enabled = false;
             this.textBoxSNS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSNS.Location = new System.Drawing.Point(631, 32);
-            this.textBoxSNS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxSNS.Location = new System.Drawing.Point(473, 26);
             this.textBoxSNS.Name = "textBoxSNS";
-            this.textBoxSNS.Size = new System.Drawing.Size(200, 17);
+            this.textBoxSNS.Size = new System.Drawing.Size(151, 17);
             this.textBoxSNS.TabIndex = 71;
             // 
             // textBoxAge
             // 
             this.textBoxAge.Enabled = false;
             this.textBoxAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAge.Location = new System.Drawing.Point(109, 94);
-            this.textBoxAge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAge.Location = new System.Drawing.Point(82, 76);
             this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.Size = new System.Drawing.Size(59, 17);
+            this.textBoxAge.Size = new System.Drawing.Size(45, 17);
             this.textBoxAge.TabIndex = 96;
             // 
             // label38
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(519, 34);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Location = new System.Drawing.Point(389, 28);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(29, 13);
             this.label38.TabIndex = 82;
@@ -474,8 +447,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(960, 21);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Location = new System.Drawing.Point(720, 17);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(44, 13);
             this.label31.TabIndex = 89;
@@ -485,18 +457,16 @@
             // 
             this.textBoxheight.Enabled = false;
             this.textBoxheight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxheight.Location = new System.Drawing.Point(236, 94);
-            this.textBoxheight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxheight.Location = new System.Drawing.Point(177, 76);
             this.textBoxheight.Name = "textBoxheight";
-            this.textBoxheight.Size = new System.Drawing.Size(59, 17);
+            this.textBoxheight.Size = new System.Drawing.Size(45, 17);
             this.textBoxheight.TabIndex = 76;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(519, 65);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Location = new System.Drawing.Point(389, 53);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(78, 13);
             this.label37.TabIndex = 83;
@@ -506,28 +476,25 @@
             // 
             this.textBoxFirstName.Enabled = false;
             this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFirstName.Location = new System.Drawing.Point(109, 32);
-            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFirstName.Location = new System.Drawing.Point(82, 26);
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(400, 17);
+            this.textBoxFirstName.Size = new System.Drawing.Size(301, 17);
             this.textBoxFirstName.TabIndex = 68;
             // 
             // textBoxEmergencyContact
             // 
             this.textBoxEmergencyContact.Enabled = false;
             this.textBoxEmergencyContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmergencyContact.Location = new System.Drawing.Point(631, 94);
-            this.textBoxEmergencyContact.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxEmergencyContact.Location = new System.Drawing.Point(473, 76);
             this.textBoxEmergencyContact.Name = "textBoxEmergencyContact";
-            this.textBoxEmergencyContact.Size = new System.Drawing.Size(200, 17);
+            this.textBoxEmergencyContact.Size = new System.Drawing.Size(151, 17);
             this.textBoxEmergencyContact.TabIndex = 74;
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(840, 98);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label32.Location = new System.Drawing.Point(630, 80);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(42, 13);
             this.label32.TabIndex = 88;
@@ -537,8 +504,7 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(67, 98);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Location = new System.Drawing.Point(50, 80);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(26, 13);
             this.label40.TabIndex = 80;
@@ -548,8 +514,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(313, 98);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Location = new System.Drawing.Point(235, 80);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(41, 13);
             this.label29.TabIndex = 92;
@@ -559,8 +524,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(177, 98);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Location = new System.Drawing.Point(133, 80);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(38, 13);
             this.label30.TabIndex = 90;
@@ -570,18 +534,16 @@
             // 
             this.textBoxLastName.Enabled = false;
             this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLastName.Location = new System.Drawing.Point(109, 60);
-            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxLastName.Location = new System.Drawing.Point(82, 49);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(400, 17);
+            this.textBoxLastName.Size = new System.Drawing.Size(301, 17);
             this.textBoxLastName.TabIndex = 69;
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(489, 98);
-            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label35.Location = new System.Drawing.Point(367, 80);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(100, 13);
             this.label35.TabIndex = 85;
@@ -591,8 +553,7 @@
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(28, 65);
-            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Location = new System.Drawing.Point(21, 53);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(58, 13);
             this.label41.TabIndex = 79;
@@ -609,9 +570,9 @@
             this.toolStripTextBoxMonitor,
             this.toolStripComboBoxmonitor,
             this.toolStripButtonSearchMonitor});
-            this.toolStripMonitor.Location = new System.Drawing.Point(4, 4);
+            this.toolStripMonitor.Location = new System.Drawing.Point(3, 3);
             this.toolStripMonitor.Name = "toolStripMonitor";
-            this.toolStripMonitor.Size = new System.Drawing.Size(1865, 49);
+            this.toolStripMonitor.Size = new System.Drawing.Size(1397, 40);
             this.toolStripMonitor.TabIndex = 4;
             this.toolStripMonitor.Text = "toolStrip1";
             // 
@@ -622,26 +583,26 @@
             this.toolStripButtonRefreshMonitor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRefreshMonitor.Name = "toolStripButtonRefreshMonitor";
             this.toolStripButtonRefreshMonitor.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripButtonRefreshMonitor.Size = new System.Drawing.Size(30, 46);
+            this.toolStripButtonRefreshMonitor.Size = new System.Drawing.Size(30, 37);
             this.toolStripButtonRefreshMonitor.Text = "Refresh Patient List";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 49);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 40);
             // 
             // toolStripTextBoxMonitor
             // 
             this.toolStripTextBoxMonitor.Name = "toolStripTextBoxMonitor";
             this.toolStripTextBoxMonitor.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(0, 49);
+            this.toolStripTextBoxMonitor.Size = new System.Drawing.Size(0, 40);
             // 
             // toolStripComboBoxmonitor
             // 
             this.toolStripComboBoxmonitor.AutoSize = false;
             this.toolStripComboBoxmonitor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripComboBoxmonitor.Name = "toolStripComboBoxmonitor";
-            this.toolStripComboBoxmonitor.Size = new System.Drawing.Size(92, 23);
+            this.toolStripComboBoxmonitor.Size = new System.Drawing.Size(70, 23);
             // 
             // toolStripButtonSearchMonitor
             // 
@@ -649,7 +610,7 @@
             this.toolStripButtonSearchMonitor.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSearchMonitor.Image")));
             this.toolStripButtonSearchMonitor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSearchMonitor.Name = "toolStripButtonSearchMonitor";
-            this.toolStripButtonSearchMonitor.Size = new System.Drawing.Size(23, 46);
+            this.toolStripButtonSearchMonitor.Size = new System.Drawing.Size(23, 37);
             this.toolStripButtonSearchMonitor.Text = "Search Patient";
             // 
             // groupBox1Patients
@@ -659,11 +620,9 @@
             this.groupBox1Patients.AutoSize = true;
             this.groupBox1Patients.Controls.Add(this.groupBoxFilters);
             this.groupBox1Patients.Controls.Add(this.dataGridViewPatientsMonitor);
-            this.groupBox1Patients.Location = new System.Drawing.Point(11, 57);
-            this.groupBox1Patients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1Patients.Location = new System.Drawing.Point(8, 46);
             this.groupBox1Patients.Name = "groupBox1Patients";
-            this.groupBox1Patients.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1Patients.Size = new System.Drawing.Size(847, 865);
+            this.groupBox1Patients.Size = new System.Drawing.Size(635, 703);
             this.groupBox1Patients.TabIndex = 3;
             this.groupBox1Patients.TabStop = false;
             this.groupBox1Patients.Text = "Active Patients";
@@ -673,11 +632,9 @@
             this.groupBoxFilters.Controls.Add(this.checkBoxWarning);
             this.groupBoxFilters.Controls.Add(this.checkBoxNormal);
             this.groupBoxFilters.Controls.Add(this.checkBoxCritical);
-            this.groupBoxFilters.Location = new System.Drawing.Point(8, 21);
-            this.groupBoxFilters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFilters.Location = new System.Drawing.Point(6, 17);
             this.groupBoxFilters.Name = "groupBoxFilters";
-            this.groupBoxFilters.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxFilters.Size = new System.Drawing.Size(321, 155);
+            this.groupBoxFilters.Size = new System.Drawing.Size(241, 126);
             this.groupBoxFilters.TabIndex = 5;
             this.groupBoxFilters.TabStop = false;
             this.groupBoxFilters.Text = "Filters";
@@ -687,8 +644,7 @@
             this.checkBoxWarning.AutoSize = true;
             this.checkBoxWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxWarning.ForeColor = System.Drawing.Color.Gold;
-            this.checkBoxWarning.Location = new System.Drawing.Point(169, 31);
-            this.checkBoxWarning.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxWarning.Location = new System.Drawing.Point(127, 25);
             this.checkBoxWarning.Name = "checkBoxWarning";
             this.checkBoxWarning.Size = new System.Drawing.Size(87, 24);
             this.checkBoxWarning.TabIndex = 10;
@@ -700,8 +656,7 @@
             this.checkBoxNormal.AutoSize = true;
             this.checkBoxNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxNormal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.checkBoxNormal.Location = new System.Drawing.Point(28, 31);
-            this.checkBoxNormal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxNormal.Location = new System.Drawing.Point(21, 25);
             this.checkBoxNormal.Name = "checkBoxNormal";
             this.checkBoxNormal.Size = new System.Drawing.Size(78, 24);
             this.checkBoxNormal.TabIndex = 8;
@@ -713,8 +668,7 @@
             this.checkBoxCritical.AutoSize = true;
             this.checkBoxCritical.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxCritical.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.checkBoxCritical.Location = new System.Drawing.Point(28, 91);
-            this.checkBoxCritical.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxCritical.Location = new System.Drawing.Point(21, 74);
             this.checkBoxCritical.Name = "checkBoxCritical";
             this.checkBoxCritical.Size = new System.Drawing.Size(75, 24);
             this.checkBoxCritical.TabIndex = 9;
@@ -735,13 +689,12 @@
             this.dataGridViewPatientsMonitor.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewPatientsMonitor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPatientsMonitor.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewPatientsMonitor.Location = new System.Drawing.Point(8, 186);
-            this.dataGridViewPatientsMonitor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewPatientsMonitor.Location = new System.Drawing.Point(6, 151);
             this.dataGridViewPatientsMonitor.MultiSelect = false;
             this.dataGridViewPatientsMonitor.Name = "dataGridViewPatientsMonitor";
             this.dataGridViewPatientsMonitor.ReadOnly = true;
             this.dataGridViewPatientsMonitor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatientsMonitor.Size = new System.Drawing.Size(313, 666);
+            this.dataGridViewPatientsMonitor.Size = new System.Drawing.Size(235, 541);
             this.dataGridViewPatientsMonitor.TabIndex = 2;
             this.dataGridViewPatientsMonitor.SelectionChanged += new System.EventHandler(this.dataGridViewPatientsMonitor_SelectionChanged);
             // 
@@ -750,11 +703,10 @@
             this.tabPagePatients.Controls.Add(this.toolStripPatients);
             this.tabPagePatients.Controls.Add(this.groupBoxPatients);
             this.tabPagePatients.Controls.Add(this.groupBoxPatient);
-            this.tabPagePatients.Location = new System.Drawing.Point(4, 25);
-            this.tabPagePatients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPagePatients.Location = new System.Drawing.Point(4, 22);
             this.tabPagePatients.Name = "tabPagePatients";
-            this.tabPagePatients.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPagePatients.Size = new System.Drawing.Size(1873, 936);
+            this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPagePatients.Size = new System.Drawing.Size(1403, 758);
             this.tabPagePatients.TabIndex = 2;
             this.tabPagePatients.Text = "Patients";
             this.tabPagePatients.UseVisualStyleBackColor = true;
@@ -772,9 +724,9 @@
             this.toolStripTextBox,
             this.toolStripComboBox,
             this.toolStripButtonSearch});
-            this.toolStripPatients.Location = new System.Drawing.Point(4, 4);
+            this.toolStripPatients.Location = new System.Drawing.Point(3, 3);
             this.toolStripPatients.Name = "toolStripPatients";
-            this.toolStripPatients.Size = new System.Drawing.Size(1865, 49);
+            this.toolStripPatients.Size = new System.Drawing.Size(1397, 40);
             this.toolStripPatients.TabIndex = 3;
             this.toolStripPatients.Text = "toolStrip1";
             // 
@@ -785,14 +737,14 @@
             this.toolStripButtonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAdd.Name = "toolStripButtonAdd";
             this.toolStripButtonAdd.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripButtonAdd.Size = new System.Drawing.Size(30, 46);
+            this.toolStripButtonAdd.Size = new System.Drawing.Size(30, 37);
             this.toolStripButtonAdd.Text = "Add New Patient";
             this.toolStripButtonAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 49);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
             // 
             // toolStripButtonRefresh
             // 
@@ -801,28 +753,28 @@
             this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
             this.toolStripButtonRefresh.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripButtonRefresh.Size = new System.Drawing.Size(30, 46);
+            this.toolStripButtonRefresh.Size = new System.Drawing.Size(30, 37);
             this.toolStripButtonRefresh.Text = "Refresh Patient List";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 49);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
             // 
             // toolStripTextBox
             // 
             this.toolStripTextBox.AutoSize = false;
             this.toolStripTextBox.Name = "toolStripTextBox";
             this.toolStripTextBox.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripTextBox.Size = new System.Drawing.Size(252, 23);
+            this.toolStripTextBox.Size = new System.Drawing.Size(182, 23);
             // 
             // toolStripComboBox
             // 
             this.toolStripComboBox.AutoSize = false;
             this.toolStripComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripComboBox.Name = "toolStripComboBox";
-            this.toolStripComboBox.Size = new System.Drawing.Size(92, 23);
+            this.toolStripComboBox.Size = new System.Drawing.Size(70, 23);
             // 
             // toolStripButtonSearch
             // 
@@ -830,7 +782,7 @@
             this.toolStripButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSearch.Image")));
             this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSearch.Name = "toolStripButtonSearch";
-            this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 46);
+            this.toolStripButtonSearch.Size = new System.Drawing.Size(23, 37);
             this.toolStripButtonSearch.Text = "Search Patient";
             this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
             // 
@@ -842,11 +794,9 @@
             this.groupBoxPatients.Controls.Add(this.panel1);
             this.groupBoxPatients.Controls.Add(this.label23);
             this.groupBoxPatients.Controls.Add(this.dataGridViewPatients);
-            this.groupBoxPatients.Location = new System.Drawing.Point(11, 53);
-            this.groupBoxPatients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxPatients.Location = new System.Drawing.Point(8, 43);
             this.groupBoxPatients.Name = "groupBoxPatients";
-            this.groupBoxPatients.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxPatients.Size = new System.Drawing.Size(667, 860);
+            this.groupBoxPatients.Size = new System.Drawing.Size(500, 699);
             this.groupBoxPatients.TabIndex = 2;
             this.groupBoxPatients.TabStop = false;
             this.groupBoxPatients.Text = "Patients";
@@ -854,10 +804,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Chocolate;
-            this.panel1.Location = new System.Drawing.Point(48, 23);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(36, 19);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(215, 25);
+            this.panel1.Size = new System.Drawing.Size(161, 20);
             this.panel1.TabIndex = 4;
             // 
             // label23
@@ -865,8 +814,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label23.ForeColor = System.Drawing.Color.Chocolate;
-            this.label23.Location = new System.Drawing.Point(271, 23);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(203, 19);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(159, 20);
             this.label23.TabIndex = 3;
@@ -884,13 +832,12 @@
             this.dataGridViewPatients.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPatients.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewPatients.Location = new System.Drawing.Point(36, 60);
-            this.dataGridViewPatients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewPatients.Location = new System.Drawing.Point(27, 49);
             this.dataGridViewPatients.MultiSelect = false;
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(587, 769);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 625);
             this.dataGridViewPatients.TabIndex = 2;
             this.dataGridViewPatients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_CellMouseDoubleClick);
             this.dataGridViewPatients.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_ColumnHeaderMouseClick);
@@ -907,11 +854,9 @@
             this.groupBoxPatient.Controls.Add(this.bt_edit);
             this.groupBoxPatient.Controls.Add(this.buttonAdd);
             this.groupBoxPatient.Controls.Add(this.panelInfoPatient);
-            this.groupBoxPatient.Location = new System.Drawing.Point(683, 53);
-            this.groupBoxPatient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxPatient.Location = new System.Drawing.Point(512, 43);
             this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxPatient.Size = new System.Drawing.Size(1153, 860);
+            this.groupBoxPatient.Size = new System.Drawing.Size(865, 699);
             this.groupBoxPatient.TabIndex = 1;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient Info";
@@ -922,10 +867,9 @@
             this.bt_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save.Image = ((System.Drawing.Image)(resources.GetObject("bt_save.Image")));
             this.bt_save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_save.Location = new System.Drawing.Point(227, 700);
-            this.bt_save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bt_save.Location = new System.Drawing.Point(170, 569);
             this.bt_save.Name = "bt_save";
-            this.bt_save.Size = new System.Drawing.Size(152, 129);
+            this.bt_save.Size = new System.Drawing.Size(114, 105);
             this.bt_save.TabIndex = 6;
             this.bt_save.Text = "Save";
             this.bt_save.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -938,10 +882,9 @@
             this.bt_cancelEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelEdit.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelEdit.Image")));
             this.bt_cancelEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelEdit.Location = new System.Drawing.Point(949, 700);
-            this.bt_cancelEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bt_cancelEdit.Location = new System.Drawing.Point(712, 569);
             this.bt_cancelEdit.Name = "bt_cancelEdit";
-            this.bt_cancelEdit.Size = new System.Drawing.Size(156, 129);
+            this.bt_cancelEdit.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelEdit.TabIndex = 5;
             this.bt_cancelEdit.Text = "Cancel";
             this.bt_cancelEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -954,10 +897,9 @@
             this.bt_cancelAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelAdd.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelAdd.Image")));
             this.bt_cancelAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelAdd.Location = new System.Drawing.Point(949, 700);
-            this.bt_cancelAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bt_cancelAdd.Location = new System.Drawing.Point(712, 569);
             this.bt_cancelAdd.Name = "bt_cancelAdd";
-            this.bt_cancelAdd.Size = new System.Drawing.Size(156, 129);
+            this.bt_cancelAdd.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelAdd.TabIndex = 4;
             this.bt_cancelAdd.Text = "Cancel";
             this.bt_cancelAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -970,10 +912,9 @@
             this.bt_edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_edit.Image = ((System.Drawing.Image)(resources.GetObject("bt_edit.Image")));
             this.bt_edit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_edit.Location = new System.Drawing.Point(44, 700);
-            this.bt_edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bt_edit.Location = new System.Drawing.Point(33, 569);
             this.bt_edit.Name = "bt_edit";
-            this.bt_edit.Size = new System.Drawing.Size(152, 129);
+            this.bt_edit.Size = new System.Drawing.Size(114, 105);
             this.bt_edit.TabIndex = 3;
             this.bt_edit.Text = "Edit ";
             this.bt_edit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -986,10 +927,9 @@
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonAdd.Image")));
             this.buttonAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAdd.Location = new System.Drawing.Point(43, 700);
-            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAdd.Location = new System.Drawing.Point(32, 569);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(244, 129);
+            this.buttonAdd.Size = new System.Drawing.Size(183, 105);
             this.buttonAdd.TabIndex = 2;
             this.buttonAdd.Text = "Add New Patient";
             this.buttonAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1038,18 +978,16 @@
             this.panelInfoPatient.Controls.Add(this.tb_nif);
             this.panelInfoPatient.Controls.Add(this.tb_lastName);
             this.panelInfoPatient.Controls.Add(this.tb_firstname);
-            this.panelInfoPatient.Location = new System.Drawing.Point(44, 23);
-            this.panelInfoPatient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelInfoPatient.Location = new System.Drawing.Point(33, 19);
             this.panelInfoPatient.Name = "panelInfoPatient";
-            this.panelInfoPatient.Size = new System.Drawing.Size(1061, 677);
+            this.panelInfoPatient.Size = new System.Drawing.Size(796, 550);
             this.panelInfoPatient.TabIndex = 1;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(137, 379);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(103, 308);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(14, 18);
             this.label21.TabIndex = 70;
@@ -1060,10 +998,9 @@
             this.comboBoxEmergencyCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEmergencyCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxEmergencyCode.FormattingEnabled = true;
-            this.comboBoxEmergencyCode.Location = new System.Drawing.Point(381, 293);
-            this.comboBoxEmergencyCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxEmergencyCode.Location = new System.Drawing.Point(286, 238);
             this.comboBoxEmergencyCode.Name = "comboBoxEmergencyCode";
-            this.comboBoxEmergencyCode.Size = new System.Drawing.Size(137, 28);
+            this.comboBoxEmergencyCode.Size = new System.Drawing.Size(104, 28);
             this.comboBoxEmergencyCode.TabIndex = 69;
             // 
             // comboBoxCode
@@ -1071,20 +1008,17 @@
             this.comboBoxCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCode.FormattingEnabled = true;
-            this.comboBoxCode.Location = new System.Drawing.Point(381, 210);
-            this.comboBoxCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxCode.Location = new System.Drawing.Point(286, 171);
             this.comboBoxCode.Name = "comboBoxCode";
-            this.comboBoxCode.Size = new System.Drawing.Size(137, 28);
+            this.comboBoxCode.Size = new System.Drawing.Size(104, 28);
             this.comboBoxCode.TabIndex = 68;
             // 
             // groupBoxPatientMonitoring
             // 
             this.groupBoxPatientMonitoring.Controls.Add(this.checkBoxPatientMonitoring);
-            this.groupBoxPatientMonitoring.Location = new System.Drawing.Point(795, 16);
-            this.groupBoxPatientMonitoring.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxPatientMonitoring.Location = new System.Drawing.Point(596, 13);
             this.groupBoxPatientMonitoring.Name = "groupBoxPatientMonitoring";
-            this.groupBoxPatientMonitoring.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxPatientMonitoring.Size = new System.Drawing.Size(239, 71);
+            this.groupBoxPatientMonitoring.Size = new System.Drawing.Size(179, 58);
             this.groupBoxPatientMonitoring.TabIndex = 7;
             this.groupBoxPatientMonitoring.TabStop = false;
             this.groupBoxPatientMonitoring.Text = "Patient Monitoring";
@@ -1095,8 +1029,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxPatientMonitoring.AutoSize = true;
             this.checkBoxPatientMonitoring.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxPatientMonitoring.Location = new System.Drawing.Point(77, 23);
-            this.checkBoxPatientMonitoring.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxPatientMonitoring.Location = new System.Drawing.Point(58, 19);
             this.checkBoxPatientMonitoring.Name = "checkBoxPatientMonitoring";
             this.checkBoxPatientMonitoring.Size = new System.Drawing.Size(71, 24);
             this.checkBoxPatientMonitoring.TabIndex = 7;
@@ -1108,8 +1041,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(135, 475);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(101, 386);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(14, 18);
             this.label20.TabIndex = 67;
@@ -1119,8 +1051,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(263, 302);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Location = new System.Drawing.Point(197, 245);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(14, 18);
             this.label22.TabIndex = 66;
@@ -1130,8 +1061,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(97, 180);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(73, 146);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(14, 18);
             this.label19.TabIndex = 64;
@@ -1141,8 +1071,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(87, 140);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(65, 114);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(14, 18);
             this.label18.TabIndex = 63;
@@ -1152,8 +1081,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(153, 105);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(115, 85);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(14, 18);
             this.label17.TabIndex = 62;
@@ -1163,8 +1091,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(167, 62);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(125, 50);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(14, 18);
             this.label16.TabIndex = 61;
@@ -1174,8 +1101,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(167, 16);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(125, 13);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(14, 18);
             this.label15.TabIndex = 60;
@@ -1184,20 +1110,18 @@
             // richTextBoxAlergies
             // 
             this.richTextBoxAlergies.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxAlergies.Location = new System.Drawing.Point(381, 583);
-            this.richTextBoxAlergies.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBoxAlergies.Location = new System.Drawing.Point(286, 474);
             this.richTextBoxAlergies.Name = "richTextBoxAlergies";
-            this.richTextBoxAlergies.Size = new System.Drawing.Size(400, 106);
+            this.richTextBoxAlergies.Size = new System.Drawing.Size(301, 87);
             this.richTextBoxAlergies.TabIndex = 59;
             this.richTextBoxAlergies.Text = "";
             // 
             // richTextBox_address
             // 
             this.richTextBox_address.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox_address.Location = new System.Drawing.Point(381, 374);
-            this.richTextBox_address.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBox_address.Location = new System.Drawing.Point(286, 304);
             this.richTextBox_address.Name = "richTextBox_address";
-            this.richTextBox_address.Size = new System.Drawing.Size(400, 80);
+            this.richTextBox_address.Size = new System.Drawing.Size(301, 66);
             this.richTextBox_address.TabIndex = 58;
             this.richTextBox_address.Text = "";
             // 
@@ -1206,18 +1130,16 @@
             this.comboBoxGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGender.FormattingEnabled = true;
-            this.comboBoxGender.Location = new System.Drawing.Point(381, 463);
-            this.comboBoxGender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxGender.Location = new System.Drawing.Point(286, 376);
             this.comboBoxGender.Name = "comboBoxGender";
-            this.comboBoxGender.Size = new System.Drawing.Size(159, 28);
+            this.comboBoxGender.Size = new System.Drawing.Size(120, 28);
             this.comboBoxGender.TabIndex = 57;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(44, 549);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(33, 446);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(66, 22);
             this.label14.TabIndex = 56;
@@ -1226,18 +1148,16 @@
             // tb_weight
             // 
             this.tb_weight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_weight.Location = new System.Drawing.Point(381, 544);
-            this.tb_weight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_weight.Location = new System.Drawing.Point(286, 442);
             this.tb_weight.Name = "tb_weight";
-            this.tb_weight.Size = new System.Drawing.Size(159, 26);
+            this.tb_weight.Size = new System.Drawing.Size(120, 26);
             this.tb_weight.TabIndex = 55;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(44, 510);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(33, 414);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(62, 22);
             this.label13.TabIndex = 54;
@@ -1247,8 +1167,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(44, 587);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(33, 477);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(75, 22);
             this.label12.TabIndex = 53;
@@ -1258,8 +1177,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(44, 470);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(33, 382);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 22);
             this.label11.TabIndex = 52;
@@ -1269,8 +1187,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(44, 378);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(33, 307);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 22);
             this.label10.TabIndex = 51;
@@ -1280,8 +1197,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(44, 340);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(33, 276);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(219, 22);
             this.label9.TabIndex = 50;
@@ -1291,8 +1207,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(44, 300);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(33, 244);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(167, 22);
             this.label8.TabIndex = 49;
@@ -1302,8 +1217,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(44, 261);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(33, 212);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 22);
             this.label7.TabIndex = 48;
@@ -1313,8 +1227,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(44, 218);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(33, 177);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(130, 22);
             this.label6.TabIndex = 47;
@@ -1324,8 +1237,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(44, 178);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(33, 145);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 22);
             this.label5.TabIndex = 46;
@@ -1335,8 +1247,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(44, 139);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(33, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 22);
             this.label4.TabIndex = 45;
@@ -1346,8 +1257,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 100);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(33, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 22);
             this.label3.TabIndex = 44;
@@ -1357,8 +1267,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(44, 60);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(33, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 22);
             this.label2.TabIndex = 43;
@@ -1368,8 +1277,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(33, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 22);
             this.label1.TabIndex = 42;
@@ -1378,92 +1286,82 @@
             // dateTimePicker_birthdate
             // 
             this.dateTimePicker_birthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker_birthdate.Location = new System.Drawing.Point(381, 95);
-            this.dateTimePicker_birthdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker_birthdate.Location = new System.Drawing.Point(286, 77);
             this.dateTimePicker_birthdate.Name = "dateTimePicker_birthdate";
-            this.dateTimePicker_birthdate.Size = new System.Drawing.Size(400, 26);
+            this.dateTimePicker_birthdate.Size = new System.Drawing.Size(301, 26);
             this.dateTimePicker_birthdate.TabIndex = 41;
             this.dateTimePicker_birthdate.ValueChanged += new System.EventHandler(this.dateTimePicker_birthdate_ValueChanged);
             // 
             // tb_height
             // 
             this.tb_height.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_height.Location = new System.Drawing.Point(381, 505);
-            this.tb_height.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_height.Location = new System.Drawing.Point(286, 410);
             this.tb_height.Name = "tb_height";
-            this.tb_height.Size = new System.Drawing.Size(159, 26);
+            this.tb_height.Size = new System.Drawing.Size(120, 26);
             this.tb_height.TabIndex = 40;
             // 
             // tb_emergencyContactName
             // 
             this.tb_emergencyContactName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_emergencyContactName.Location = new System.Drawing.Point(381, 335);
-            this.tb_emergencyContactName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_emergencyContactName.Location = new System.Drawing.Point(286, 272);
             this.tb_emergencyContactName.Name = "tb_emergencyContactName";
-            this.tb_emergencyContactName.Size = new System.Drawing.Size(400, 26);
+            this.tb_emergencyContactName.Size = new System.Drawing.Size(301, 26);
             this.tb_emergencyContactName.TabIndex = 39;
             // 
             // tb_emergencyContact
             // 
             this.tb_emergencyContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_emergencyContact.Location = new System.Drawing.Point(544, 295);
-            this.tb_emergencyContact.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_emergencyContact.Location = new System.Drawing.Point(408, 240);
             this.tb_emergencyContact.Name = "tb_emergencyContact";
-            this.tb_emergencyContact.Size = new System.Drawing.Size(237, 26);
+            this.tb_emergencyContact.Size = new System.Drawing.Size(179, 26);
             this.tb_emergencyContact.TabIndex = 38;
             // 
             // tb_email
             // 
             this.tb_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_email.Location = new System.Drawing.Point(381, 256);
-            this.tb_email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_email.Location = new System.Drawing.Point(286, 208);
             this.tb_email.Name = "tb_email";
-            this.tb_email.Size = new System.Drawing.Size(400, 26);
+            this.tb_email.Size = new System.Drawing.Size(301, 26);
             this.tb_email.TabIndex = 37;
             // 
             // tb_phone
             // 
             this.tb_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_phone.Location = new System.Drawing.Point(544, 213);
-            this.tb_phone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_phone.Location = new System.Drawing.Point(408, 173);
             this.tb_phone.Name = "tb_phone";
-            this.tb_phone.Size = new System.Drawing.Size(237, 26);
+            this.tb_phone.Size = new System.Drawing.Size(179, 26);
             this.tb_phone.TabIndex = 36;
             // 
             // tb_sns
             // 
             this.tb_sns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_sns.Location = new System.Drawing.Point(381, 174);
-            this.tb_sns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_sns.Location = new System.Drawing.Point(286, 141);
             this.tb_sns.Name = "tb_sns";
-            this.tb_sns.Size = new System.Drawing.Size(400, 26);
+            this.tb_sns.Size = new System.Drawing.Size(301, 26);
             this.tb_sns.TabIndex = 35;
             // 
             // tb_nif
             // 
             this.tb_nif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_nif.Location = new System.Drawing.Point(381, 134);
-            this.tb_nif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_nif.Location = new System.Drawing.Point(286, 109);
             this.tb_nif.Name = "tb_nif";
-            this.tb_nif.Size = new System.Drawing.Size(400, 26);
+            this.tb_nif.Size = new System.Drawing.Size(301, 26);
             this.tb_nif.TabIndex = 34;
             // 
             // tb_lastName
             // 
             this.tb_lastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_lastName.Location = new System.Drawing.Point(381, 55);
-            this.tb_lastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_lastName.Location = new System.Drawing.Point(286, 45);
             this.tb_lastName.Name = "tb_lastName";
-            this.tb_lastName.Size = new System.Drawing.Size(400, 26);
+            this.tb_lastName.Size = new System.Drawing.Size(301, 26);
             this.tb_lastName.TabIndex = 33;
             // 
             // tb_firstname
             // 
             this.tb_firstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_firstname.Location = new System.Drawing.Point(381, 16);
-            this.tb_firstname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_firstname.Location = new System.Drawing.Point(286, 13);
             this.tb_firstname.Name = "tb_firstname";
-            this.tb_firstname.Size = new System.Drawing.Size(400, 26);
+            this.tb_firstname.Size = new System.Drawing.Size(301, 26);
             this.tb_firstname.TabIndex = 32;
             // 
             // tabControlRecors
@@ -1475,32 +1373,29 @@
             this.tabControlRecors.Controls.Add(this.tabPage_viewRecords);
             this.tabControlRecors.Controls.Add(this.tabPageConfigurations);
             this.tabControlRecors.Location = new System.Drawing.Point(0, 0);
-            this.tabControlRecors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
-            this.tabControlRecors.Size = new System.Drawing.Size(1881, 965);
+            this.tabControlRecors.Size = new System.Drawing.Size(1411, 784);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
             // 
             // tabPageConfigurations
             // 
-            this.tabPageConfigurations.Location = new System.Drawing.Point(4, 25);
-            this.tabPageConfigurations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageConfigurations.Location = new System.Drawing.Point(4, 22);
             this.tabPageConfigurations.Name = "tabPageConfigurations";
-            this.tabPageConfigurations.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageConfigurations.Size = new System.Drawing.Size(1873, 936);
+            this.tabPageConfigurations.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageConfigurations.Size = new System.Drawing.Size(1403, 758);
             this.tabPageConfigurations.TabIndex = 5;
             this.tabPageConfigurations.Text = "Configure Monitor";
             this.tabPageConfigurations.UseVisualStyleBackColor = true;
             // 
             // FormAlertSystem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1881, 966);
+            this.ClientSize = new System.Drawing.Size(1411, 785);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormAlertSystem";
             this.Text = "Alert System";
             this.Load += new System.EventHandler(this.FormAlertSystem_Load);
