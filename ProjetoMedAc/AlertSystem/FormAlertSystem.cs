@@ -1034,7 +1034,8 @@ namespace AlertSystem
             if (radioButtonHeartRate.Checked)
             {
                 patientsRecordHeartRate =
-                    new List<HeartRate>(client.HeartRateList(patient.Sns).OrderByDescending(i => i.Date));
+                    new List<HeartRate>(client.HeartRateList(patient.Sns).Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
+                                .OrderByDescending(i => i.Date));
 
                 dataGridViewHistory.DataSource = patientsRecordHeartRate;
                 dataGridViewHistory.RowHeadersVisible = false;
@@ -1046,7 +1047,8 @@ namespace AlertSystem
             {
                 patientsRecordOxySat =
                     new List<OxygenSaturation>(
-                        client.OxygenSaturationList(patient.Sns).OrderByDescending(i => i.Date));
+                        client.OxygenSaturationList(patient.Sns).Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
+                                .OrderByDescending(i => i.Date));
 
                 dataGridViewHistory.DataSource = patientsRecordOxySat;
                 dataGridViewHistory.RowHeadersVisible = false;
