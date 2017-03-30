@@ -91,8 +91,8 @@ namespace AlertSystem
 
             #endregion
 
-            th = new Thread(new ThreadStart(thread));
-            th.Start();
+            //th = new Thread(new ThreadStart(thread));
+            //th.Start();
         }
         #region Eventos
         //      
@@ -1085,7 +1085,7 @@ namespace AlertSystem
 
                 chart1.ChartAreas["area"].AxisX.Minimum = 1;
                 chart1.ChartAreas["area"].AxisX.Maximum = 120;
-                chart1.ChartAreas["area"].AxisX.Interval = 1;
+                chart1.ChartAreas["area"].AxisX.Interval = 2;
 
                 chart1.ChartAreas["area"].AxisY.Maximum = 250;
                 chart1.ChartAreas["area"].AxisY.Interval = 10;
@@ -1157,8 +1157,17 @@ namespace AlertSystem
                     //valoresSystolic[i] = valores[i].Systolic;                   
                 }
 
-                chart1.Series["Diastolic"].Points.DataBindXY(hora, valoresDistolic);
-                chart1.Series["Systolic"].Points.DataBindXY(hora, valoresSystolic);
+                for (int x = 0; x < valoresDistolic.Length; x++)
+                {
+                    
+                    if (valoresDistolic[x] != 0 && valoresSystolic[x] != 0)
+                    {
+                        chart1.Series["Diastolic"].Points.AddXY(hora[x], valoresDistolic[x]);
+                        chart1.Series["Systolic"].Points.AddXY(hora[x], valoresSystolic[x]);
+                    }
+                }
+                //chart1.Series["Diastolic"].Points.DataBindXY(hora, valoresDistolic);
+                //chart1.Series["Systolic"].Points.DataBindXY(hora, valoresSystolic);
             }
 
 

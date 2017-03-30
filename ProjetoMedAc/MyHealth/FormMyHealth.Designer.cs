@@ -239,7 +239,7 @@
             this.cb_speechActivation.Text = "Speech: ";
             this.cb_speechActivation.UseVisualStyleBackColor = true;
             this.cb_speechActivation.CheckedChanged += new System.EventHandler(this.cb_speechActivation_CheckedChanged);
-            this.cb_speechActivation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_speechActivation_MouseClick);
+           
             // 
             // mainTabing
             // 
