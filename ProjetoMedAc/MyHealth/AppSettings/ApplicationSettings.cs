@@ -25,6 +25,7 @@ namespace MyHealth.AppSettings
             XmlNode patientNode = doc.SelectSingleNode("/settings/patientId");
             if (patientNode != null)
                 patientNode.InnerText = value.ToString();
+            doc.Save(settingsFile);
         }
 
         public static int Get_Patient_Id()
@@ -40,6 +41,7 @@ namespace MyHealth.AppSettings
             XmlNode genderNode = doc.SelectSingleNode("/settings/genderVoice");
             if (genderNode != null)
                 genderNode.InnerText = value;
+            doc.Save(settingsFile);
         }
 
         public static string Get_Gender_Voice()
@@ -55,6 +57,7 @@ namespace MyHealth.AppSettings
             XmlNode voiceRateNode = doc.SelectSingleNode("/settings/voiceRate");
             if (voiceRateNode != null)
                 voiceRateNode.InnerText = value.ToString();
+            doc.Save(settingsFile);
         }
 
         public static int Get_Voice_Rate()
@@ -70,6 +73,7 @@ namespace MyHealth.AppSettings
             XmlNode medURLNode = doc.SelectSingleNode("/settings/medlineURL");
             if (medURLNode != null)
                 medURLNode.InnerText = value;
+            doc.Save(settingsFile);
         }
 
         public static string Get_MedLine_URL()
@@ -85,6 +89,7 @@ namespace MyHealth.AppSettings
             XmlNode dllNode = doc.SelectSingleNode("/settings/DLLRate");
             if (dllNode != null)
                 dllNode.InnerText = value.ToString();
+            doc.Save(settingsFile);
         }
 
         public static int Get_DLL_Rate()
@@ -100,6 +105,7 @@ namespace MyHealth.AppSettings
             XmlNode retmaxNode = doc.SelectSingleNode("/settings/retmax");
             if (retmaxNode != null)
                 retmaxNode.InnerText = value.ToString();
+            doc.Save(settingsFile);
         }
 
         public static int Get_Retmax()

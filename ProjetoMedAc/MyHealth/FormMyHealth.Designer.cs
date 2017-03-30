@@ -45,6 +45,9 @@
             this.lb_serviceError = new System.Windows.Forms.Label();
             this.gb_monitoringParametrs = new System.Windows.Forms.GroupBox();
             this.gb_physiologicDataNormal = new System.Windows.Forms.GroupBox();
+            this.pb_successErrorHR = new System.Windows.Forms.PictureBox();
+            this.pb_successErrorSPO2 = new System.Windows.Forms.PictureBox();
+            this.pb_successErrorBP = new System.Windows.Forms.PictureBox();
             this.lb_dataHR = new System.Windows.Forms.Label();
             this.lb_dataBP = new System.Windows.Forms.Label();
             this.lb_dataSPO2 = new System.Windows.Forms.Label();
@@ -106,14 +109,15 @@
             this.lb_rate = new System.Windows.Forms.Label();
             this.rb_female = new System.Windows.Forms.RadioButton();
             this.rb_male = new System.Windows.Forms.RadioButton();
-            this.pb_successErrorBP = new System.Windows.Forms.PictureBox();
-            this.pb_successErrorSPO2 = new System.Windows.Forms.PictureBox();
-            this.pb_successErrorHR = new System.Windows.Forms.PictureBox();
+            this.activity = new System.Windows.Forms.TabPage();
             this.mainTabing.SuspendLayout();
             this.home.SuspendLayout();
             this.gb_user.SuspendLayout();
             this.gb_monitoringParametrs.SuspendLayout();
             this.gb_physiologicDataNormal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorHR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorSPO2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorBP)).BeginInit();
             this.personalData.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -125,9 +129,6 @@
             this.cb_medlineURL.SuspendLayout();
             this.gb_voice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberRatingVoice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorBP)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorSPO2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorHR)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_patientId
@@ -245,6 +246,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTabing.Controls.Add(this.home);
             this.mainTabing.Controls.Add(this.personalData);
+            this.mainTabing.Controls.Add(this.activity);
             this.mainTabing.Controls.Add(this.medline);
             this.mainTabing.Controls.Add(this.configurations);
             this.mainTabing.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
@@ -347,6 +349,33 @@
             this.gb_physiologicDataNormal.TabIndex = 10;
             this.gb_physiologicDataNormal.TabStop = false;
             this.gb_physiologicDataNormal.Text = "Physiologic Data";
+            // 
+            // pb_successErrorHR
+            // 
+            this.pb_successErrorHR.Location = new System.Drawing.Point(656, 152);
+            this.pb_successErrorHR.Name = "pb_successErrorHR";
+            this.pb_successErrorHR.Size = new System.Drawing.Size(16, 16);
+            this.pb_successErrorHR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_successErrorHR.TabIndex = 10;
+            this.pb_successErrorHR.TabStop = false;
+            // 
+            // pb_successErrorSPO2
+            // 
+            this.pb_successErrorSPO2.Location = new System.Drawing.Point(656, 88);
+            this.pb_successErrorSPO2.Name = "pb_successErrorSPO2";
+            this.pb_successErrorSPO2.Size = new System.Drawing.Size(16, 16);
+            this.pb_successErrorSPO2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_successErrorSPO2.TabIndex = 10;
+            this.pb_successErrorSPO2.TabStop = false;
+            // 
+            // pb_successErrorBP
+            // 
+            this.pb_successErrorBP.Location = new System.Drawing.Point(656, 27);
+            this.pb_successErrorBP.Name = "pb_successErrorBP";
+            this.pb_successErrorBP.Size = new System.Drawing.Size(16, 16);
+            this.pb_successErrorBP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_successErrorBP.TabIndex = 10;
+            this.pb_successErrorBP.TabStop = false;
             // 
             // lb_dataHR
             // 
@@ -992,32 +1021,14 @@
             this.rb_male.Text = "Male";
             this.rb_male.UseVisualStyleBackColor = true;
             // 
-            // pb_successErrorBP
+            // activity
             // 
-            this.pb_successErrorBP.Location = new System.Drawing.Point(656, 27);
-            this.pb_successErrorBP.Name = "pb_successErrorBP";
-            this.pb_successErrorBP.Size = new System.Drawing.Size(16, 16);
-            this.pb_successErrorBP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_successErrorBP.TabIndex = 10;
-            this.pb_successErrorBP.TabStop = false;
-            // 
-            // pb_successErrorSPO2
-            // 
-            this.pb_successErrorSPO2.Location = new System.Drawing.Point(656, 88);
-            this.pb_successErrorSPO2.Name = "pb_successErrorSPO2";
-            this.pb_successErrorSPO2.Size = new System.Drawing.Size(16, 16);
-            this.pb_successErrorSPO2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_successErrorSPO2.TabIndex = 10;
-            this.pb_successErrorSPO2.TabStop = false;
-            // 
-            // pb_successErrorHR
-            // 
-            this.pb_successErrorHR.Location = new System.Drawing.Point(656, 152);
-            this.pb_successErrorHR.Name = "pb_successErrorHR";
-            this.pb_successErrorHR.Size = new System.Drawing.Size(16, 16);
-            this.pb_successErrorHR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_successErrorHR.TabIndex = 10;
-            this.pb_successErrorHR.TabStop = false;
+            this.activity.Location = new System.Drawing.Point(4, 29);
+            this.activity.Name = "activity";
+            this.activity.Size = new System.Drawing.Size(704, 474);
+            this.activity.TabIndex = 4;
+            this.activity.Text = "Activity";
+            this.activity.UseVisualStyleBackColor = true;
             // 
             // FormMyHealth
             // 
@@ -1041,6 +1052,9 @@
             this.gb_monitoringParametrs.PerformLayout();
             this.gb_physiologicDataNormal.ResumeLayout(false);
             this.gb_physiologicDataNormal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorHR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorSPO2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorBP)).EndInit();
             this.personalData.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1058,9 +1072,6 @@
             this.gb_voice.ResumeLayout(false);
             this.gb_voice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberRatingVoice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorBP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorSPO2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_successErrorHR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1149,6 +1160,7 @@
         private System.Windows.Forms.PictureBox pb_successErrorHR;
         private System.Windows.Forms.PictureBox pb_successErrorSPO2;
         private System.Windows.Forms.PictureBox pb_successErrorBP;
+        private System.Windows.Forms.TabPage activity;
     }
 }
 

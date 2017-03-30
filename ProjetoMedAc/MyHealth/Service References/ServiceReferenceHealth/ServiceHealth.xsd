@@ -75,7 +75,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfBloodPressure" nillable="true" type="tns:ArrayOfBloodPressure" />
-  <xs:complexType name="AlertType">
+  <xs:complexType name="ConfigurationLimitType">
     <xs:sequence>
       <xs:element minOccurs="0" name="MaximumCriticalValue" type="xs:int" />
       <xs:element minOccurs="0" name="MaximumValue" type="xs:int" />
@@ -84,13 +84,13 @@
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="AlertType" nillable="true" type="tns:AlertType" />
-  <xs:complexType name="ArrayOfAlertType">
+  <xs:element name="ConfigurationLimitType" nillable="true" type="tns:ConfigurationLimitType" />
+  <xs:complexType name="ArrayOfConfigurationLimitType">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="AlertType" nillable="true" type="tns:AlertType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConfigurationLimitType" nillable="true" type="tns:ConfigurationLimitType" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfAlertType" nillable="true" type="tns:ArrayOfAlertType" />
+  <xs:element name="ArrayOfConfigurationLimitType" nillable="true" type="tns:ArrayOfConfigurationLimitType" />
   <xs:complexType name="EventType">
     <xs:sequence>
       <xs:element minOccurs="0" name="MaximumTime" type="xs:int" />

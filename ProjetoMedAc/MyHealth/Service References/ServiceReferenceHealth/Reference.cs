@@ -611,9 +611,9 @@ namespace MyHealth.ServiceReferenceHealth {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AlertType", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConfigurationLimitType", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
     [System.SerializableAttribute()]
-    public partial class AlertType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ConfigurationLimitType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -811,6 +811,12 @@ namespace MyHealth.ServiceReferenceHealth {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/ValidatePatient", ReplyAction="http://tempuri.org/IServiceHealth/ValidatePatientResponse")]
         System.Threading.Tasks.Task<bool> ValidatePatientAsync(int sns);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/ValidatePatientState", ReplyAction="http://tempuri.org/IServiceHealth/ValidatePatientStateResponse")]
+        bool ValidatePatientState(int sns);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/ValidatePatientState", ReplyAction="http://tempuri.org/IServiceHealth/ValidatePatientStateResponse")]
+        System.Threading.Tasks.Task<bool> ValidatePatientStateAsync(int sns);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealth/InsertHeartRateRecord", ReplyAction="http://tempuri.org/IServiceHealth/InsertHeartRateRecordResponse")]
         bool InsertHeartRateRecord(MyHealth.ServiceReferenceHealth.HeartRate heartRate);
         
@@ -871,6 +877,14 @@ namespace MyHealth.ServiceReferenceHealth {
         
         public System.Threading.Tasks.Task<bool> ValidatePatientAsync(int sns) {
             return base.Channel.ValidatePatientAsync(sns);
+        }
+        
+        public bool ValidatePatientState(int sns) {
+            return base.Channel.ValidatePatientState(sns);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ValidatePatientStateAsync(int sns) {
+            return base.Channel.ValidatePatientStateAsync(sns);
         }
         
         public bool InsertHeartRateRecord(MyHealth.ServiceReferenceHealth.HeartRate heartRate) {
@@ -950,35 +964,35 @@ namespace MyHealth.ServiceReferenceHealth {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/BloodPressureList", ReplyAction="http://tempuri.org/IServiceHealthAlert/BloodPressureListResponse")]
         System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.BloodPressure[]> BloodPressureListAsync(int sns);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        MyHealth.ServiceReferenceHealth.AlertType GetAlert(string type);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitResponse")]
+        MyHealth.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(string type);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertResponse")]
-        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.AlertType> GetAlertAsync(string type);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitResponse")]
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(string type);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        MyHealth.ServiceReferenceHealth.AlertType[] GetAlertList();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitListResponse")]
+        MyHealth.ServiceReferenceHealth.ConfigurationLimitType[] GetConfigurationLimitList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetAlertList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse")]
-        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.AlertType[]> GetAlertListAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitListResponse")]
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType[]> GetConfigurationLimitListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        bool InsertAlert(MyHealth.ServiceReferenceHealth.AlertType alertType);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertConfigurationLimitResponse")]
+        bool InsertConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse")]
-        System.Threading.Tasks.Task<bool> InsertAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertConfigurationLimitResponse")]
+        System.Threading.Tasks.Task<bool> InsertConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        bool UpdateAlert(MyHealth.ServiceReferenceHealth.AlertType alertType);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateConfigurationLimitResponse")]
+        bool UpdateConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateConfigurationLimitResponse")]
+        System.Threading.Tasks.Task<bool> UpdateConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        bool DeleteAlert(MyHealth.ServiceReferenceHealth.AlertType alertType);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimitResponse")]
+        bool DeleteConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimitResponse")]
+        System.Threading.Tasks.Task<bool> DeleteConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertEventResponse")]
         bool InsertEvent(MyHealth.ServiceReferenceHealth.EventType eventType);
@@ -1090,44 +1104,44 @@ namespace MyHealth.ServiceReferenceHealth {
             return base.Channel.BloodPressureListAsync(sns);
         }
         
-        public MyHealth.ServiceReferenceHealth.AlertType GetAlert(string type) {
-            return base.Channel.GetAlert(type);
+        public MyHealth.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(string type) {
+            return base.Channel.GetConfigurationLimit(type);
         }
         
-        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.AlertType> GetAlertAsync(string type) {
-            return base.Channel.GetAlertAsync(type);
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(string type) {
+            return base.Channel.GetConfigurationLimitAsync(type);
         }
         
-        public MyHealth.ServiceReferenceHealth.AlertType[] GetAlertList() {
-            return base.Channel.GetAlertList();
+        public MyHealth.ServiceReferenceHealth.ConfigurationLimitType[] GetConfigurationLimitList() {
+            return base.Channel.GetConfigurationLimitList();
         }
         
-        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.AlertType[]> GetAlertListAsync() {
-            return base.Channel.GetAlertListAsync();
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType[]> GetConfigurationLimitListAsync() {
+            return base.Channel.GetConfigurationLimitListAsync();
         }
         
-        public bool InsertAlert(MyHealth.ServiceReferenceHealth.AlertType alertType) {
-            return base.Channel.InsertAlert(alertType);
+        public bool InsertConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType) {
+            return base.Channel.InsertConfigurationLimit(configurationLimitType);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType) {
-            return base.Channel.InsertAlertAsync(alertType);
+        public System.Threading.Tasks.Task<bool> InsertConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType) {
+            return base.Channel.InsertConfigurationLimitAsync(configurationLimitType);
         }
         
-        public bool UpdateAlert(MyHealth.ServiceReferenceHealth.AlertType alertType) {
-            return base.Channel.UpdateAlert(alertType);
+        public bool UpdateConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType) {
+            return base.Channel.UpdateConfigurationLimit(configurationLimitType);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType) {
-            return base.Channel.UpdateAlertAsync(alertType);
+        public System.Threading.Tasks.Task<bool> UpdateConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType) {
+            return base.Channel.UpdateConfigurationLimitAsync(configurationLimitType);
         }
         
-        public bool DeleteAlert(MyHealth.ServiceReferenceHealth.AlertType alertType) {
-            return base.Channel.DeleteAlert(alertType);
+        public bool DeleteConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType) {
+            return base.Channel.DeleteConfigurationLimit(configurationLimitType);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAlertAsync(MyHealth.ServiceReferenceHealth.AlertType alertType) {
-            return base.Channel.DeleteAlertAsync(alertType);
+        public System.Threading.Tasks.Task<bool> DeleteConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType) {
+            return base.Channel.DeleteConfigurationLimitAsync(configurationLimitType);
         }
         
         public bool InsertEvent(MyHealth.ServiceReferenceHealth.EventType eventType) {

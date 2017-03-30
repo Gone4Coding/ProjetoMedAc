@@ -1,8 +1,8 @@
-﻿<settings>
+<settings>
   <patientId>123</patientId>
-  <genderVoice>Female</genderVoice>
-  <voiceRate>0</voiceRate>
+  <genderVoice>Male</genderVoice>
+  <voiceRate>2</voiceRate>
   <medlineURL>https://wsearch.nlm.nih.gov/ws/</medlineURL>
   <DLLRate>3000</DLLRate>
-  <retmax>15</retmax>
+  <retmax>14</retmax>
 </settings>

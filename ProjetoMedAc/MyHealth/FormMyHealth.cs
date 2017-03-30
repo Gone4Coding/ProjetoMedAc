@@ -191,7 +191,7 @@ namespace MyHealth
                 }
 
                 #endregion
-                
+
                 if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.FindTerms.ToString()))
                 {
                     /*
@@ -417,22 +417,30 @@ namespace MyHealth
             {
                 try
                 {
-                    bool verifiedSNS = clientHealth.ValidatePatient(sns);
-
-                    if (!verifiedSNS)
+                    if (!clientHealth.ValidatePatient(sns))
                     {
                         MessageBox.Show("The SNS is not valid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         WrongUser();
                     }
                     else
                     {
-                        ApplicationSettings.Set_Patient_Id(sns);
-                        patient = clientHealthAlert.GetPatient(sns);
-                        FillUserInfo();
-                        serviceActive = true;
+                        if (clientHealth.ValidatePatientState(sns))
+                        {
+                            ApplicationSettings.Set_Patient_Id(sns);
+                            patient = clientHealthAlert.GetPatient(sns);
+                            FillUserInfo();
+                            serviceActive = true;
 
-                        EveryThingOk();
-                        InitializeSpeech();
+                            EveryThingOk();
+                            InitializeSpeech();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Currently You Are Not Being Monitored.\nTalk to your physician", "Warning",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            WrongUser();
+                        }
+
                     }
                 }
                 catch (Exception)
@@ -466,9 +474,10 @@ namespace MyHealth
                 DateTime date = dateTime;
 
                 int snsUser = patient.Sns;
-                
+
                 switch (type)
                 {
+                    #region Case BP
                     case "BP":
                         string[] bpData = data.Split('-');
                         int systolic = Convert.ToInt32(bpData[0]);
@@ -502,7 +511,8 @@ namespace MyHealth
                         }
 
                         break;
-
+                    #endregion Case BP
+                    #region Case SPO2
                     case "SPO2":
                         int spo2Data = Convert.ToInt32(data);
                         lb_dataSPO2.Text = spo2Data + "%";
@@ -532,7 +542,8 @@ namespace MyHealth
                             pb_successErrorSPO2.Image = error;
                         }
                         break;
-
+                    #endregion Case SPO2
+                    #region Case HR
                     case "HR":
                         int hrData = Convert.ToInt32(data);
                         lb_dataHR.Text = hrData + "bpm";
@@ -562,6 +573,7 @@ namespace MyHealth
                             pb_successErrorHR.Image = error;
                         }
                         break;
+                        #endregion Case HR
                 }
 
             }));
@@ -754,7 +766,7 @@ namespace MyHealth
 
             tb_retmax.Text = ApplicationSettings.Get_Retmax().ToString();
         }
-        
+
         #endregion
 
     }
