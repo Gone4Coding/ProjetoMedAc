@@ -37,7 +37,7 @@
             this.lb_dateBP = new System.Windows.Forms.Label();
             this.lb_date_o2 = new System.Windows.Forms.Label();
             this.lb_date_HR = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cb_speechActivation = new System.Windows.Forms.CheckBox();
             this.mainTabing = new System.Windows.Forms.TabControl();
             this.home = new System.Windows.Forms.TabPage();
             this.gb_user = new System.Windows.Forms.GroupBox();
@@ -85,6 +85,7 @@
             this.tb_nif = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tb_sns = new System.Windows.Forms.TextBox();
+            this.activity = new System.Windows.Forms.TabPage();
             this.medline = new System.Windows.Forms.TabPage();
             this.browser = new System.Windows.Forms.WebBrowser();
             this.panelURL = new System.Windows.Forms.Panel();
@@ -109,7 +110,6 @@
             this.lb_rate = new System.Windows.Forms.Label();
             this.rb_female = new System.Windows.Forms.RadioButton();
             this.rb_male = new System.Windows.Forms.RadioButton();
-            this.activity = new System.Windows.Forms.TabPage();
             this.mainTabing.SuspendLayout();
             this.home.SuspendLayout();
             this.gb_user.SuspendLayout();
@@ -226,18 +226,20 @@
             this.lb_date_HR.TabIndex = 6;
             this.lb_date_HR.Text = "Date_HR";
             // 
-            // checkBox1
+            // cb_speechActivation
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cb_speechActivation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 521);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(63, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Speech";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cb_speechActivation.AutoSize = true;
+            this.cb_speechActivation.Location = new System.Drawing.Point(12, 521);
+            this.cb_speechActivation.Name = "cb_speechActivation";
+            this.cb_speechActivation.Size = new System.Drawing.Size(69, 17);
+            this.cb_speechActivation.TabIndex = 7;
+            this.cb_speechActivation.Text = "Speech: ";
+            this.cb_speechActivation.UseVisualStyleBackColor = true;
+            this.cb_speechActivation.CheckedChanged += new System.EventHandler(this.cb_speechActivation_CheckedChanged);
+            this.cb_speechActivation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cb_speechActivation_MouseClick);
             // 
             // mainTabing
             // 
@@ -748,6 +750,15 @@
             this.tb_sns.Size = new System.Drawing.Size(227, 26);
             this.tb_sns.TabIndex = 51;
             // 
+            // activity
+            // 
+            this.activity.Location = new System.Drawing.Point(4, 29);
+            this.activity.Name = "activity";
+            this.activity.Size = new System.Drawing.Size(704, 474);
+            this.activity.TabIndex = 4;
+            this.activity.Text = "Activity";
+            this.activity.UseVisualStyleBackColor = true;
+            // 
             // medline
             // 
             this.medline.Controls.Add(this.browser);
@@ -1021,15 +1032,6 @@
             this.rb_male.Text = "Male";
             this.rb_male.UseVisualStyleBackColor = true;
             // 
-            // activity
-            // 
-            this.activity.Location = new System.Drawing.Point(4, 29);
-            this.activity.Name = "activity";
-            this.activity.Size = new System.Drawing.Size(704, 474);
-            this.activity.TabIndex = 4;
-            this.activity.Text = "Activity";
-            this.activity.UseVisualStyleBackColor = true;
-            // 
             // FormMyHealth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1037,7 +1039,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(730, 545);
             this.Controls.Add(this.mainTabing);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.cb_speechActivation);
             this.Name = "FormMyHealth";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyHealth";
@@ -1088,7 +1090,7 @@
         private System.Windows.Forms.Label lb_dateBP;
         private System.Windows.Forms.Label lb_date_o2;
         private System.Windows.Forms.Label lb_date_HR;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cb_speechActivation;
         private System.Windows.Forms.TabControl mainTabing;
         private System.Windows.Forms.TabPage home;
         private System.Windows.Forms.TabPage personalData;

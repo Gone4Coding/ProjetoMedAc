@@ -49,6 +49,9 @@ namespace MyHealth
         private bool setId = false;
         private bool goToMedlineQuestion = false;
 
+        private static string speechDeactivated = "Speech: Deactivated";
+        private static string speechSemiActive = "Speech: Active. Say \"Hello Alice to fully activate\"";
+        private static string speechFullyActive = "Speech: Active";
         #endregion
 
         #region General
@@ -69,6 +72,8 @@ namespace MyHealth
         private void MyHealth_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
+            cb_speechActivation.Text = speechDeactivated;
+            cb_speechActivation.ForeColor = Color.Firebrick;
             HideAll();
             HideLabels(false);
             gb_user.Location = new Point(192, 71);
@@ -127,97 +132,108 @@ namespace MyHealth
         {
             string speech = e.Result.Text;
 
-            #region Begin/End
-            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloAlice.ToString()) && !speechActive)
+            if (cb_speechActivation.Checked)
             {
-                speechActive = true;
-                checkBox1.Checked = true;
-                Speak("Hi.");
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Bye.ToString()))
-            {
-                speechActive = false;
-                checkBox1.Checked = false;
-            }
-            #endregion Begin/End
+                #region Begin/End
 
-            if (speechActive)
-            {
-                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Alice.ToString()))
-                    Speak("Yes?");
-
-                // Commands that starts with an S
-                if (speech.StartsWith("S")) CommandsWithS(speech);
-
-                #region "CLOSE" QUESTION
-                if (closeQuestion)
+                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.HelloAlice.ToString()) && !speechActive)
                 {
-                    if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Yes.ToString()))
+                    speechActive = true;
+                    cb_speechActivation.Text = speechFullyActive;
+                    cb_speechActivation.ForeColor = Color.ForestGreen;
+                    Speak("Hi.");
+                }
+                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Bye.ToString()))
+                {
+                    speechActive = false;
+                    cb_speechActivation.Text = speechSemiActive;
+                    cb_speechActivation.ForeColor = Color.Yellow;
+                }
+
+                #endregion Begin/End
+
+                if (speechActive)
+                {
+                    if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Alice.ToString()))
+                        Speak("Yes?");
+
+                    // Commands that starts with an S
+                    if (speech.StartsWith("S")) CommandsWithS(speech);
+
+                    #region "CLOSE" QUESTION
+
+                    if (closeQuestion)
                     {
-                        Close();
+                        if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Yes.ToString()))
+                        {
+                            Close();
+                        }
+                        else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.No.ToString()))
+                        {
+                            closeQuestion = false;
+                        }
+                        else
+                        {
+                            ChangeQuestionActive(true, Question.NULL);
+                        }
                     }
-                    else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.No.ToString()))
+
+                    #endregion "CLOSE" QUESTION
+
+                    #region "SET ID"/"CHANGE ID" QUESTION
+
+                    if (setId)
                     {
-                        closeQuestion = false;
+                        int sns;
+                        if (int.TryParse(speech, out sns))
+                        {
+                            Speak(sns.ToString());
+                        }
+                        else
+                        {
+                            Speak("That's not a number");
+                            setId = false;
+                        }
                     }
-                    else
+
+                    #endregion "SET ID"/"CHANGE ID" QUESTION
+
+                    #region GOTO MEDLINE
+
+                    if (goToMedlineQuestion)
                     {
-                        ChangeQuestionActive(true, Question.NULL);
+                        mainTabing.SelectedTab = medline;
                     }
-                }
-                #endregion "CLOSE" QUESTION
 
-                #region "SET ID"/"CHANGE ID" QUESTION
-                if (setId)
-                {
-                    int sns;
-                    if (int.TryParse(speech, out sns))
+                    #endregion
+
+                    if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.FindTerms.ToString()))
                     {
-                        Speak(sns.ToString());
+                        /*
+                         * Ask if user wants to go to MedLine
+                         * If yes => GO 
+                         */
+                        Speak("Do you want to search in MedLine?");
+                        ChangeQuestionActive(false, Question.GotoMedLine);
+
                     }
-                    else
+                    else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Close.ToString()))
                     {
-                        Speak("That's not a number");
-                        setId = false;
+                        Speak("You sure?");
+                        ChangeQuestionActive(false, Question.Close);
                     }
-                }
-                #endregion "SET ID"/"CHANGE ID" QUESTION
-
-                #region GOTO MEDLINE
-
-                if (goToMedlineQuestion)
-                {
-                    mainTabing.SelectedTab = medline;
-                }
-
-                #endregion
-
-                if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.FindTerms.ToString()))
-                {
-                    /*
-                     * Ask if user wants to go to MedLine
-                     * If yes => GO 
-                     */
-                    Speak("Do you want to search in MedLine?");
-                    ChangeQuestionActive(false, Question.GotoMedLine);
-
-                }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.Close.ToString()))
-                {
-                    Speak("You sure?");
-                    ChangeQuestionActive(false, Question.Close);
-                }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.GotoHome.ToString()))
-                {
-                    mainTabing.SelectedTab = home;
-                }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.GotoUserInformation.ToString()))
-                {
-                    mainTabing.SelectedTab = personalData;
-                }
-                else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.GotoConfigurations.ToString()))
-                {
-                    mainTabing.SelectedTab = configurations;
+                    else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.GotoHome.ToString()))
+                    {
+                        mainTabing.SelectedTab = home;
+                    }
+                    else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.GotoUserInformation.ToString()))
+                    {
+                        mainTabing.SelectedTab = personalData;
+                    }
+                    else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.GotoConfigurations.ToString()))
+                    {
+                        mainTabing.SelectedTab = configurations;
+                    }
                 }
             }
         }
@@ -641,6 +657,21 @@ namespace MyHealth
 
             }).Start();
         }
+        
+        private void cb_speechActivation_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (cb_speechActivation.Checked)
+            {
+                cb_speechActivation.Text = speechSemiActive;
+                cb_speechActivation.ForeColor = Color.DarkGoldenrod;
+            }
+            else
+            {
+                cb_speechActivation.Text = speechDeactivated;
+                cb_speechActivation.ForeColor = Color.Firebrick;
+            }
+        }
 
         #endregion
 
@@ -769,5 +800,6 @@ namespace MyHealth
 
         #endregion
 
+        
     }
 }
