@@ -21,6 +21,11 @@ namespace AlertSystem
 {
     public partial class FormAlertSystem : Form
     {
+        private static string OXYSAT = "Oxygen Saturation(%)";
+        private static string HRATE = "Heart Rate";
+        private static string DIASTOLIC = "Diastolic";
+        private static string SYSTOLIC = "Systolic";
+
         private ServiceHealthAlertClient client;
         private bool asc;
         private bool fromSelection;
@@ -311,7 +316,7 @@ namespace AlertSystem
                 Patient patientSelected = client.GetPatient(sns);
 
                 fillFields(patientSelected);
-               
+
 
             }
         }
@@ -470,7 +475,7 @@ namespace AlertSystem
                                 MessageBoxIcon.Information);
                             tabControlRecors.SelectedTab = tabPagePatients;
                             //fillFirstSelected(true);
-                            
+
                         }
 
 
@@ -1016,16 +1021,28 @@ namespace AlertSystem
 
         private void readRadioButtons(Patient patient)
         {
+            patientsRecordBloodPressure =
+                    new List<BloodPressure>(
+                        client.BloodPressureList(patient.Sns)
+                            .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                            .OrderByDescending(i => i.Date));
+
+            patientsRecordHeartRate =
+                    new List<HeartRate>(client.HeartRateList(patient.Sns)
+                        .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                        .OrderByDescending(i => i.Date));
+
+            patientsRecordOxySat =
+                   new List<OxygenSaturation>(
+                       client.OxygenSaturationList(patient.Sns)
+                           .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                           .OrderByDescending(i => i.Date));
 
             if (radioButtonBloodPressure.Checked)
             {
                 if (readDateTimeGraphics())
                 {
-                    patientsRecordBloodPressure =
-                    new List<BloodPressure>(
-                        client.BloodPressureList(patient.Sns)
-                            .Where(i => i.Date >= fromDate && i.Date <= toDate)
-                            .OrderByDescending(i => i.Date));
+
 
                     dataGridViewHistory.DataSource = patientsRecordBloodPressure;
                     dataGridViewHistory.RowHeadersVisible = false;
@@ -1044,10 +1061,6 @@ namespace AlertSystem
 
             if (radioButtonHeartRate.Checked)
             {
-                patientsRecordHeartRate =
-                    new List<HeartRate>(client.HeartRateList(patient.Sns)
-                        .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
-                        .OrderByDescending(i => i.Date));
 
                 dataGridViewHistory.DataSource = patientsRecordHeartRate;
                 dataGridViewHistory.RowHeadersVisible = false;
@@ -1057,12 +1070,6 @@ namespace AlertSystem
 
             if (radioButtonOxygenSat.Checked)
             {
-                patientsRecordOxySat =
-                    new List<OxygenSaturation>(
-                        client.OxygenSaturationList(patient.Sns)
-                            .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
-                            .OrderByDescending(i => i.Date));
-
                 dataGridViewHistory.DataSource = patientsRecordOxySat;
                 dataGridViewHistory.RowHeadersVisible = false;
                 dataGridViewHistory.Columns["PatientSNS"].Visible = false;
@@ -1111,22 +1118,154 @@ namespace AlertSystem
         }
         public void startGraphics()
         {
-
             chart1.Series.Clear();
             chart1.ChartAreas.Clear();
 
             chart1.ChartAreas.Add("area");
 
-            chart1.Series.Add("Diastolic");
-            chart1.Series.Add("Systolic");
+            List<string> horaBList = readValuesForBloodPressure();
+            List<string> horaHrateList = readValuesForHeartRate();
+            List<string> horaOxySatList = readValuesForOxySat();
 
-            chart1.Series["Diastolic"].Color = Color.Red;
-            chart1.Series["Systolic"].Color = Color.Blue;
+            List<int> totalValues = new List<int>();
+            if(horaBList != null)
+                totalValues.Add(horaBList.Count);
+            if (horaHrateList != null)
+                totalValues.Add(horaHrateList.Count);
+            if (horaOxySatList != null)
+                totalValues.Add(horaOxySatList.Count);
+
+            totalValues.Sort();
+
+            chart1.ChartAreas["area"].AxisX.Minimum = 1;
+            chart1.ChartAreas["area"].AxisX.Maximum = totalValues[0];
+            chart1.ChartAreas["area"].AxisX.Interval = 5;
+
+            chart1.ChartAreas["area"].AxisY.Maximum = 200;
+            chart1.ChartAreas["area"].AxisY.Interval = 10;
+            chart1.ChartAreas["area"].AxisY.Title = "#Value";
+            chart1.ChartAreas["area"].AxisX.Title = "Time(Minutes)";
+
+            chart1.ChartAreas["area"].BackColor = Color.White;
+            chart1.ChartAreas["area"].BackSecondaryColor = Color.LightBlue;
+            chart1.ChartAreas["area"].BackGradientStyle =
+                System.Windows.Forms.DataVisualization.Charting.GradientStyle.DiagonalRight;
+            chart1.ChartAreas["area"].AxisX.MajorGrid.LineColor = Color.LightSlateGray;
+            chart1.ChartAreas["area"].AxisY.MajorGrid.LineColor = Color.LightSteelBlue;
+
+        }
+        private List<string> readValuesForOxySat()
+        {
+            List<int> valoresOxy = new List<int>();
+            List<string> horaList = new List<string>();
+
+            chart1.Series.Add(OXYSAT);
+
+            chart1.Series[OXYSAT].Color = Color.Chartreuse;
+
+            if (patientsRecordOxySat != null)
+            {
+                List<OxygenSaturation> valores =
+                    patientsRecordOxySat.Where(i => i.Date >= fromDate && i.Date <= toDate)
+                        .OrderBy(i => i.Date)
+                        .ToList();
+
+                double valorMedioSat = 0;
+                int nrOfvalues = 0;
+
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    if (i > 0 && valores[i].Time.Minutes != valores[i - 1].Time.Minutes)
+                    {
+                        valorMedioSat = valorMedioSat / nrOfvalues;
+
+                        valoresOxy.Add(Convert.ToInt32(valorMedioSat));
+
+                        string[] hour = valores[i].Time.ToString().Split(':');
+                        horaList.Add(hour[0] + ":" + hour[1]);
+
+                        valorMedioSat = 0;
+
+                        nrOfvalues = 0;
+                        nrOfvalues++;
+                        valorMedioSat += valores[i].Saturation;
+                    }
+                    else
+                    {
+                        nrOfvalues++;
+                        valorMedioSat += valores[i].Saturation;
+                    }
+                }
+
+                chart1.Series[OXYSAT].Points.DataBindXY(horaList, valoresOxy);
+
+                chart1.Series[OXYSAT].ChartType =
+              System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                return horaList;
+            }
+            return null;
+        }
+        private List<string> readValuesForHeartRate()
+        {
+            List<int> valoresRate = new List<int>();
+            List<string> horaList = new List<string>();
+
+            chart1.Series.Add(HRATE);
+
+            chart1.Series[HRATE].Color = Color.Purple;
+
+            if (patientsRecordHeartRate != null)
+            {
+                List<HeartRate> valores =
+                    patientsRecordHeartRate.Where(i => i.Date >= fromDate && i.Date <= toDate)
+                        .OrderBy(i => i.Date)
+                        .ToList();
+
+                double valorMedioRate = 0;
+                int nrOfvalues = 0;
+
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    if (i > 0 && valores[i].Time.Minutes != valores[i - 1].Time.Minutes)
+                    {
+                        valorMedioRate = valorMedioRate / nrOfvalues;
+
+                        valoresRate.Add(Convert.ToInt32(valorMedioRate));
+
+                        string[] hour = valores[i].Time.ToString().Split(':');
+                        horaList.Add(hour[0] + ":" + hour[1]);
+
+                        valorMedioRate = 0;
+
+                        nrOfvalues = 0;
+                        nrOfvalues++;
+                        valorMedioRate += valores[i].Rate;
+                    }
+                    else
+                    {
+                        nrOfvalues++;
+                        valorMedioRate += valores[i].Rate;
+                    }
+                }
+
+                chart1.Series[HRATE].Points.DataBindXY(horaList, valoresRate);
+
+                chart1.Series[HRATE].ChartType =
+              System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                return horaList;
+            }
+            return null;
+        }
+        private List<string> readValuesForBloodPressure()
+        {
+            chart1.Series.Add(DIASTOLIC);
+            chart1.Series.Add(SYSTOLIC);
+
+            chart1.Series[DIASTOLIC].Color = Color.Red;
+            chart1.Series[SYSTOLIC].Color = Color.Blue;
 
             if (patientsRecordBloodPressure != null)
             {
-                DateTime interval = DateTime.Now.AddMinutes(-120);
-
                 List<BloodPressure> valores =
                     patientsRecordBloodPressure.Where(i => i.Date >= fromDate && i.Date <= toDate)
                         .OrderBy(i => i.Date)
@@ -1166,34 +1305,17 @@ namespace AlertSystem
                     }
                 }
 
-                chart1.ChartAreas["area"].AxisX.Minimum = 1;
-                chart1.ChartAreas["area"].AxisX.Maximum = horaList.Count;
-                chart1.ChartAreas["area"].AxisX.Interval = 2;
+                chart1.Series[DIASTOLIC].Points.DataBindXY(horaList, valoresDistolic);
+                chart1.Series[SYSTOLIC].Points.DataBindXY(horaList, valoresSystolic);
 
-                chart1.ChartAreas["area"].AxisY.Maximum = 250;
-                chart1.ChartAreas["area"].AxisY.Interval = 10;
-                chart1.ChartAreas["area"].AxisY.Title = "#Value";
-                chart1.ChartAreas["area"].AxisX.Title = "Time(Minutes)";
-
-                chart1.Series["Diastolic"].Points.DataBindXY(horaList, valoresDistolic);
-                chart1.Series["Systolic"].Points.DataBindXY(horaList, valoresSystolic);
-
-                chart1.ChartAreas["area"].BackColor = Color.White;
-                chart1.ChartAreas["area"].BackSecondaryColor = Color.LightBlue;
-                chart1.ChartAreas["area"].BackGradientStyle =
-                    System.Windows.Forms.DataVisualization.Charting.GradientStyle.DiagonalRight;
-                chart1.ChartAreas["area"].AxisX.MajorGrid.LineColor = Color.LightSlateGray;
-                chart1.ChartAreas["area"].AxisY.MajorGrid.LineColor = Color.LightSteelBlue;
-
-
-                chart1.Series["Diastolic"].ChartType =
-                    System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                chart1.Series["Systolic"].ChartType =
+                chart1.Series[DIASTOLIC].ChartType =
+               System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                chart1.Series[SYSTOLIC].ChartType =
                     System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
-
+                return horaList;
             }
-
+            return null;
         }
         #endregion
 
