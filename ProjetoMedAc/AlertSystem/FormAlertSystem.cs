@@ -32,10 +32,10 @@ namespace AlertSystem
         private List<BloodPressure> patientsRecordBloodPressure;
         private List<HeartRate> patientsRecordHeartRate;
         private List<OxygenSaturation> patientsRecordOxySat;
-
-        private Thread th;
-        private Thread th1;
-
+        private DateTime fromDate;
+        private DateTime toDate;
+        private int totalHours;
+        private int totalMinutes;
         public FormAlertSystem()
         {
 
@@ -43,31 +43,12 @@ namespace AlertSystem
             client = new ServiceHealthAlertClient();
 
         }
-        private void thread()
-        {
-            this.BeginInvoke(new MethodInvoker(delegate
-            {
-
-              
-                    patients = client.GetPatientList();
-                    //load(patientToEdit,false);
-                    if (patientOnMonitoring != null)
-                    {
-                        patientsRecordBloodPressure =
-                            new List<BloodPressure>(
-                                client.BloodPressureList(patientOnMonitoring.Sns)
-                                    .Where(x => x.Date >= DateTime.Now.AddMinutes(-120) && x.Date <= DateTime.Now)
-                                    .OrderByDescending(x => x.Date));
-                    }
-                    
-
-            }));
-
-        }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
+
             #region PatientsPage
+
             comboBoxGender.Items.Add("Female");
             comboBoxGender.Items.Add("Male");
 
@@ -82,19 +63,24 @@ namespace AlertSystem
 
             load(null, false);
 
-
             #endregion
 
             #region Monitoring
 
+            dateTimePickerFrom.Format = DateTimePickerFormat.Custom;
+            dateTimePickerFrom.CustomFormat = "MM / dd / yyyy hh: mm: ss";
 
+            dateTimePickerTO.Format = DateTimePickerFormat.Custom;
+            dateTimePickerTO.CustomFormat = "MM / dd / yyyy hh: mm: ss";
 
+            dateTimePickerFrom.Value = DateTime.Now.AddDays(-2).AddHours(2).AddMinutes(15);
+            dateTimePickerTO.Value = DateTime.Now;
             #endregion
 
-            //th = new Thread(new ThreadStart(thread));
-            //th.Start();
         }
+
         #region Eventos
+
         //      
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,6 +94,7 @@ namespace AlertSystem
         }
 
         #region PatientsTab
+
         private void toolStripButtonSearch_Click(object sender, EventArgs e)
         {
             if (validateSearch())
@@ -115,6 +102,7 @@ namespace AlertSystem
                 readSearch();
             }
         }
+
         private void dataGridViewPatients_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -129,6 +117,7 @@ namespace AlertSystem
                 Console.WriteLine(x.Message);
             }
         }
+
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
             bt_edit.Hide();
@@ -143,6 +132,7 @@ namespace AlertSystem
             clearFields();
             enableSearch(false);
         }
+
         private void bt_cancel_Click(object sender, EventArgs e)
         {
             load(null, false);
@@ -151,11 +141,13 @@ namespace AlertSystem
             errorProvider1.Clear();
             groupBoxPatientMonitoring.Show();
         }
+
         private void dateTimePicker_birthdate_ValueChanged(object sender, EventArgs e)
         {
             // dateTimePicker_birthdate.Value = DateTime.Now;
             dateTimePicker_birthdate.Format = DateTimePickerFormat.Short;
         }
+
         private void bt_edit_Click(object sender, EventArgs e)
         {
             enableTextBoxes(true);
@@ -166,6 +158,7 @@ namespace AlertSystem
             dataGridViewPatients.Enabled = false;
             enableSearch(false);
         }
+
         private void bt_save_Click(object sender, EventArgs e)
         {
             if (validateFields(true))
@@ -191,6 +184,7 @@ namespace AlertSystem
             }
 
         }
+
         private void bt_cancelEdit_Click(object sender, EventArgs e)
         {
             enableTextBoxes(false);
@@ -207,6 +201,7 @@ namespace AlertSystem
             load(p, false);
             enableSearch(true);
         }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (validateFields(false))
@@ -232,6 +227,7 @@ namespace AlertSystem
                 }
             }
         }
+
         private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             List<Patient> patients;
@@ -297,10 +293,12 @@ namespace AlertSystem
             }
 
         }
+
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
         {
             load(null, false);
         }
+
         private void dataGridViewPatients_SelectionChanged(object sender, EventArgs e)
         {
             fromSelection = false;
@@ -358,9 +356,11 @@ namespace AlertSystem
                 checkBoxPatientMonitoring.Checked = false;
             }
         }
+
         #endregion
 
         #region Monitoring
+
         private void radioButtonBloodPressure_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonBloodPressure.Checked)
@@ -378,6 +378,7 @@ namespace AlertSystem
             if (radioButtonOxygenSat.Checked)
                 readRadioButtons(patientOnMonitoring);
         }
+
         private void dataGridViewPatientsMonitor_SelectionChanged(object sender, EventArgs e)
         {
             fromSelection = false;
@@ -397,13 +398,19 @@ namespace AlertSystem
                 readRadioButtons(patientOnMonitoring);
             }
         }
+
         #endregion
+
         // 
+
         #endregion
 
         #region Metodos
+
         // 
+
         #region PatientsTab
+
         private void load(Patient p, bool monitoring)
         {
             try
@@ -487,6 +494,7 @@ namespace AlertSystem
                 this.Close();
             }
         }
+
         private void enableTextBoxes(bool estado)
         {
             tb_firstname.Enabled = estado;
@@ -506,6 +514,7 @@ namespace AlertSystem
             comboBoxCode.Enabled = estado;
             comboBoxEmergencyCode.Enabled = estado;
         }
+
         private void fillGridView(List<Patient> patients)
         {
 
@@ -539,6 +548,7 @@ namespace AlertSystem
             dataGridViewPatients.RowHeadersVisible = false;
 
         }
+
         private void fillFirstSelected(bool monitoring)
         {
             if (!monitoring)
@@ -562,6 +572,7 @@ namespace AlertSystem
                 }
             }
         }
+
         private void fillFields(Patient patient)
         {
             patientToEdit = patient;
@@ -584,7 +595,8 @@ namespace AlertSystem
             tb_weight.Text = patient.Weight.ToString();
             richTextBoxAlergies.Text = patient.Alergies;
             if (patient.EmergencyNumberCountryCode != null)
-                comboBoxEmergencyCode.Text = countries.First(i => i.CallingCodes == patient.EmergencyNumberCountryCode).ToString();
+                comboBoxEmergencyCode.Text =
+                    countries.First(i => i.CallingCodes == patient.EmergencyNumberCountryCode).ToString();
             if (patient.PhoneCountryCode != null)
                 comboBoxCode.Text = countries.First(i => i.CallingCodes == patient.PhoneCountryCode).ToString();
             readMonitoring(patient);
@@ -615,6 +627,7 @@ namespace AlertSystem
             comboBoxCode.DropDownWidth = 300;
             comboBoxEmergencyCode.DropDownWidth = 300;
         }
+
         private int getAge(DateTime dateOfBirth)
         {
             var today = DateTime.Today;
@@ -624,6 +637,7 @@ namespace AlertSystem
 
             return (a - b) / 10000;
         }
+
         private void clearFields()
         {
             tb_firstname.Clear();
@@ -643,12 +657,14 @@ namespace AlertSystem
             dateTimePicker_birthdate.Format = DateTimePickerFormat.Custom;
             dateTimePicker_birthdate.CustomFormat = " ";
         }
+
         private void enableSearch(bool estado)
         {
             toolStripComboBox.Enabled = estado;
             toolStripButtonSearch.Enabled = estado;
             toolStripTextBox.Enabled = estado;
         }
+
         private bool validateFields(bool fromEdition)
         {
             int errors = 0;
@@ -658,13 +674,16 @@ namespace AlertSystem
             Regex regexNif = new Regex(@"^[0-9]{9}$");
 
             Regex regexPhone = new Regex(@"^((\+351)?([1-9]{2}[0-9]{7})|(2[0-9]{8}))$");
-            Regex regexEmail = new Regex(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$");
+            Regex regexEmail =
+                new Regex(
+                    @"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$");
 
             List<Patient> listPatients = new List<Patient>(client.GetPatientList());
 
             if (tb_firstname.Text.Equals("") || tb_lastName.Text.Equals("") ||
                 dateTimePicker_birthdate.Format == DateTimePickerFormat.Custom || tb_nif.Text.Equals("") ||
-                tb_sns.Text.Equals("") || tb_emergencyContact.Text.Equals("") || comboBoxGender.SelectedIndex == -1 || comboBoxEmergencyCode.SelectedIndex == -1)
+                tb_sns.Text.Equals("") || tb_emergencyContact.Text.Equals("") || comboBoxGender.SelectedIndex == -1 ||
+                comboBoxEmergencyCode.SelectedIndex == -1)
             {
                 errors = 0;
 
@@ -775,6 +794,7 @@ namespace AlertSystem
             }
             return true;
         }
+
         private Patient readFields()
         {
             Patient p = new Patient();
@@ -876,7 +896,7 @@ namespace AlertSystem
                 else
                 {
                     MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
-                       MessageBoxIcon.Information);
+                        MessageBoxIcon.Information);
                 }
             }
 
@@ -891,18 +911,20 @@ namespace AlertSystem
                 else
                 {
                     MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
-                       MessageBoxIcon.Information);
+                        MessageBoxIcon.Information);
                 }
             }
 
             if (type.Equals("NAME"))
             {
                 string[] splited = toolStripTextBox.Text.Split(' ');
-                List<Patient> pByName = patients.Where(i => i.Name.Contains(splited[0]) || i.Surname.Contains(splited[1])).ToList();
+                List<Patient> pByName =
+                    patients.Where(i => i.Name.Contains(splited[0]) || i.Surname.Contains(splited[1])).ToList();
 
                 dataGridViewPatients.DataSource = pByName;
             }
         }
+
         private bool validateSearch()
         {
             if (toolStripTextBox.Text.Equals("") || toolStripComboBox.SelectedIndex == -1)
@@ -936,8 +958,8 @@ namespace AlertSystem
                     if (toolStripTextBox.Text.Length < 9 && isNumber(toolStripTextBox.Text))
                     {
                         MessageBox.Show("Introduce a number with 9 digits", "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
                         return false;
                     }
                 }
@@ -946,6 +968,7 @@ namespace AlertSystem
         }
 
         #endregion
+
         //
 
         #region Monitor
@@ -1025,8 +1048,9 @@ namespace AlertSystem
             if (radioButtonHeartRate.Checked)
             {
                 patientsRecordHeartRate =
-                    new List<HeartRate>(client.HeartRateList(patient.Sns).Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
-                                .OrderByDescending(i => i.Date));
+                    new List<HeartRate>(client.HeartRateList(patient.Sns)
+                        .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
+                        .OrderByDescending(i => i.Date));
 
                 dataGridViewHistory.DataSource = patientsRecordHeartRate;
                 dataGridViewHistory.RowHeadersVisible = false;
@@ -1038,8 +1062,9 @@ namespace AlertSystem
             {
                 patientsRecordOxySat =
                     new List<OxygenSaturation>(
-                        client.OxygenSaturationList(patient.Sns).Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
-                                .OrderByDescending(i => i.Date));
+                        client.OxygenSaturationList(patient.Sns)
+                            .Where(i => i.Date >= DateTime.Now.AddMinutes(-120) && i.Date <= DateTime.Now)
+                            .OrderByDescending(i => i.Date));
 
                 dataGridViewHistory.DataSource = patientsRecordOxySat;
                 dataGridViewHistory.RowHeadersVisible = false;
@@ -1050,148 +1075,102 @@ namespace AlertSystem
 
         }
 
-        public void startGraphics()
+        private bool readDateTimeGraphics()
         {
+            //totalHours = 0;
+            //totalMinutes = 0;
+            fromDate = dateTimePickerFrom.Value;
+            toDate = dateTimePickerTO.Value;
 
-            chart1.Series.Clear();
-            chart1.ChartAreas.Clear();
-            //Construção da àrea do gráfico
-            chart1.ChartAreas.Add("area");
-
-            // chart1.ChartAreas.Add("area2");
-            //chart1.Series[0].ChartArea = "area2";
-
-
-            // chart1.ChartAreas.Add("area2");
-            //chart1.Series[0].ChartArea = "area2";
-
-            //definição de duas séries para o gráfico
-            chart1.Series.Add("Diastolic");
-            chart1.Series.Add("Systolic");
-            //definição da cor de cada série
-            chart1.Series["Diastolic"].Color = Color.Red;
-            chart1.Series["Systolic"].Color = Color.Blue;
-            //chart1.Series["Diastolic"]["PixelPointWidth"] = "10";
-            //chart1.Series["Systolic"]["PixelPointWidth"] = "10";
-            //Pontos a aparecer no gráfico
-            if (patientsRecordBloodPressure != null)
+            if (fromDate > toDate)
             {
-                DateTime interval = DateTime.Now.AddMinutes(-120);
-
-                List<BloodPressure> valores =
-                    patientsRecordBloodPressure.Where(i => i.Date >= interval && i.Date <= DateTime.Now)
-                        .OrderBy(i => i.Date)
-                        .ToList();
-
-                chart1.ChartAreas["area"].AxisX.Minimum = 1;
-                chart1.ChartAreas["area"].AxisX.Maximum = 120;
-                chart1.ChartAreas["area"].AxisX.Interval = 2;
-
-                chart1.ChartAreas["area"].AxisY.Maximum = 250;
-                chart1.ChartAreas["area"].AxisY.Interval = 10;
-                chart1.ChartAreas["area"].AxisY.Title = "#Value";
-                chart1.ChartAreas["area"].AxisX.Title = "Time(Minutes)";
-
-                string[] hora = new string[120];
-                double[] valoresDistolic = new double[120];
-                double[] valoresSystolic = new double[120];
-
-                double valorMedioDistolic = 0;
-                double valorMedioSystolic = 0;
-                int nrOfvalues = 0;
-
-                string horaMedia = "";
-
-                for (int i = 0; i < 120; i++)
-                {
-                    if (i == 0)
-                    {
-                        string[] hour = interval.TimeOfDay.ToString().Split(':');
-                        hora[i] = hour[0] + ":" + hour[1];
-                    }
-                    else
-                    {
-                        string[] hour = interval.AddMinutes(i).TimeOfDay.ToString().Split(':');
-                        hora[i] = hour[0] + ":" + hour[1];
-                    }
-
-                }
-
-                for (int i = 0; i < valores.Count; i++)
-                {
-                    int position = 0;
-                    if (i > 0 && valores[i].Time.Minutes != valores[i - 1].Time.Minutes)
-                    {
-                        TimeSpan a = interval.TimeOfDay.Add(-valores[i - 1].Time);
-
-                        if (a.Hours < 0)
-                        {
-                            position = 59;
-                        }
-
-                        position += -(a.Minutes - 1);
-
-                        // position++;
-                        valorMedioDistolic = valorMedioDistolic / nrOfvalues;
-                        valorMedioSystolic = valorMedioSystolic / nrOfvalues;
-                        valoresDistolic[position] = valorMedioDistolic;
-                        valoresSystolic[position] = valorMedioSystolic;
-                        //hora[position] = valores[i].Time.ToString();
-                        valorMedioDistolic = 0;
-                        valorMedioSystolic = 0;
-                        nrOfvalues = 0;
-                        nrOfvalues++;
-                        valorMedioDistolic += valores[i].Diastolic;
-                        valorMedioSystolic += valores[i].Systolic;
-                    }
-                    else
-                    {
-                        nrOfvalues++;
-                        valorMedioDistolic += valores[i].Diastolic;
-                        valorMedioSystolic += valores[i].Systolic;
-                    }
-
-                    //int min = valores[i].Time.Minutes;
-                    //hora[i] = valores[i].Time.ToString();
-                    //valoresDistolic[i] = valores[i].Diastolic;
-                    //valoresSystolic[i] = valores[i].Systolic;                   
-                }
-
-                for (int x = 0; x < valoresDistolic.Length; x++)
-                {
-                    
-                    if (valoresDistolic[x] != 0 && valoresSystolic[x] != 0)
-                    {
-                        chart1.Series["Diastolic"].Points.AddXY(hora[x], valoresDistolic[x]);
-                        chart1.Series["Systolic"].Points.AddXY(hora[x], valoresSystolic[x]);
-                    }
-                }
-                //chart1.Series["Diastolic"].Points.DataBindXY(hora, valoresDistolic);
-                //chart1.Series["Systolic"].Points.DataBindXY(hora, valoresSystolic);
+                return false;
             }
 
+            //TimeSpan interval = toDate - fromDate;
 
-            chart1.ChartAreas["area"].BackColor = Color.White;
-            chart1.ChartAreas["area"].BackSecondaryColor = Color.LightBlue;
-            chart1.ChartAreas["area"].BackGradientStyle =
-                System.Windows.Forms.DataVisualization.Charting.GradientStyle.DiagonalRight;
+            //if (interval.Days > 0)
+            //{
+            //    totalHours += interval.Days*24;
+            //}
 
-            chart1.ChartAreas["area"].AxisX.MajorGrid.LineColor = Color.LightSlateGray;
-            chart1.ChartAreas["area"].AxisY.MajorGrid.LineColor = Color.LightSteelBlue;
+            //if (interval.Hours > 0)
+            //{
+            //    totalHours += interval.Hours;
+            //}
+
+            //if (interval.Minutes > 0)
+            //{
+            //    totalMinutes += interval.Minutes;
+            //}
+
+            //if (interval.Days < 1 && interval.Hours > 5)
+            //{
+
+            //}
 
 
-            chart1.Series["Diastolic"].ChartType =
-                System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart1.Series["Systolic"].ChartType =
-                System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
+            return true;
         }
+        public void startGraphics()
+        {
+            if (readDateTimeGraphics())
+            {
+                chart1.Series.Clear();
+                chart1.ChartAreas.Clear();
 
+                chart1.ChartAreas.Add("area");
+
+                chart1.Series.Add("Diastolic");
+                chart1.Series.Add("Systolic");
+
+                chart1.Series["Diastolic"].Color = Color.Red;
+                chart1.Series["Systolic"].Color = Color.Blue;
+
+                if (patientsRecordBloodPressure != null)
+                {
+                    DateTime interval = DateTime.Now.AddMinutes(-120);
+
+                    List<BloodPressure> valores =
+                        patientsRecordBloodPressure.Where(i => i.Date >= fromDate && i.Date <= toDate)
+                            .OrderBy(i => i.Date)
+                            .ToList();
+
+
+                    chart1.ChartAreas["area"].AxisX.Minimum = 1;
+                    chart1.ChartAreas["area"].AxisX.Maximum = 120;
+                    chart1.ChartAreas["area"].AxisX.Interval = 2;
+
+                    chart1.ChartAreas["area"].AxisY.Maximum = 250;
+                    chart1.ChartAreas["area"].AxisY.Interval = 10;
+                    chart1.ChartAreas["area"].AxisY.Title = "#Value";
+                    chart1.ChartAreas["area"].AxisX.Title = "Time(Minutes)";
+
+
+
+                    chart1.ChartAreas["area"].BackColor = Color.White;
+                    chart1.ChartAreas["area"].BackSecondaryColor = Color.LightBlue;
+                    chart1.ChartAreas["area"].BackGradientStyle =
+                        System.Windows.Forms.DataVisualization.Charting.GradientStyle.DiagonalRight;
+                    chart1.ChartAreas["area"].AxisX.MajorGrid.LineColor = Color.LightSlateGray;
+                    chart1.ChartAreas["area"].AxisY.MajorGrid.LineColor = Color.LightSteelBlue;
+
+
+                    chart1.Series["Diastolic"].ChartType =
+                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    chart1.Series["Systolic"].ChartType =
+                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Time range is invalid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         #endregion
 
         #endregion
-
-
-
     }
 }

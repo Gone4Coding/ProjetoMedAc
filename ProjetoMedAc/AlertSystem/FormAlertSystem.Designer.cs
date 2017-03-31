@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -40,8 +40,12 @@
             this.radioButtonHeartRate = new System.Windows.Forms.RadioButton();
             this.radioButtonBloodPressure = new System.Windows.Forms.RadioButton();
             this.groupBoxRecords = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.dateTimePickerTO = new System.Windows.Forms.DateTimePicker();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridViewHistory = new System.Windows.Forms.DataGridView();
+            this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.groupBoxAlerts = new System.Windows.Forms.GroupBox();
             this.dataGridViewAlerts = new System.Windows.Forms.DataGridView();
             this.groupBoxPatientSummary = new System.Windows.Forms.GroupBox();
@@ -177,7 +181,7 @@
             this.tabPage_viewRecords.Controls.Add(this.groupBox1Patients);
             this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 22);
             this.tabPage_viewRecords.Name = "tabPage_viewRecords";
-            this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_viewRecords.Size = new System.Drawing.Size(1403, 758);
             this.tabPage_viewRecords.TabIndex = 4;
             this.tabPage_viewRecords.Text = "View Records";
@@ -259,8 +263,12 @@
             this.groupBoxRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxRecords.Controls.Add(this.label25);
+            this.groupBoxRecords.Controls.Add(this.label24);
+            this.groupBoxRecords.Controls.Add(this.dateTimePickerTO);
             this.groupBoxRecords.Controls.Add(this.chart1);
             this.groupBoxRecords.Controls.Add(this.dataGridViewHistory);
+            this.groupBoxRecords.Controls.Add(this.dateTimePickerFrom);
             this.groupBoxRecords.Location = new System.Drawing.Point(247, 19);
             this.groupBoxRecords.Name = "groupBoxRecords";
             this.groupBoxRecords.Size = new System.Drawing.Size(865, 544);
@@ -268,16 +276,41 @@
             this.groupBoxRecords.TabStop = false;
             this.groupBoxRecords.Text = "Records";
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(426, 29);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(23, 13);
+            this.label25.TabIndex = 12;
+            this.label25.Text = "To:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(79, 30);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(33, 13);
+            this.label24.TabIndex = 11;
+            this.label24.Text = "From:";
+            // 
+            // dateTimePickerTO
+            // 
+            this.dateTimePickerTO.Location = new System.Drawing.Point(474, 23);
+            this.dateTimePickerTO.Name = "dateTimePickerTO";
+            this.dateTimePickerTO.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerTO.TabIndex = 10;
+            // 
             // chart1
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(19, 174);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(19, 193);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(829, 359);
+            this.chart1.Size = new System.Drawing.Size(829, 340);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             // 
@@ -294,13 +327,20 @@
             this.dataGridViewHistory.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHistory.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewHistory.Location = new System.Drawing.Point(19, 23);
+            this.dataGridViewHistory.Location = new System.Drawing.Point(19, 61);
             this.dataGridViewHistory.MultiSelect = false;
             this.dataGridViewHistory.Name = "dataGridViewHistory";
             this.dataGridViewHistory.ReadOnly = true;
             this.dataGridViewHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewHistory.Size = new System.Drawing.Size(829, 116);
             this.dataGridViewHistory.TabIndex = 7;
+            // 
+            // dateTimePickerFrom
+            // 
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(132, 23);
+            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFrom.TabIndex = 9;
             // 
             // groupBoxAlerts
             // 
@@ -705,7 +745,7 @@
             this.tabPagePatients.Controls.Add(this.groupBoxPatient);
             this.tabPagePatients.Location = new System.Drawing.Point(4, 22);
             this.tabPagePatients.Name = "tabPagePatients";
-            this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3);
             this.tabPagePatients.Size = new System.Drawing.Size(1403, 758);
             this.tabPagePatients.TabIndex = 2;
             this.tabPagePatients.Text = "Patients";
@@ -1383,7 +1423,7 @@
             // 
             this.tabPageConfigurations.Location = new System.Drawing.Point(4, 22);
             this.tabPageConfigurations.Name = "tabPageConfigurations";
-            this.tabPageConfigurations.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageConfigurations.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageConfigurations.Size = new System.Drawing.Size(1403, 758);
             this.tabPageConfigurations.TabIndex = 5;
             this.tabPageConfigurations.Text = "Configure Monitor";
@@ -1407,6 +1447,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBoxRecords.ResumeLayout(false);
+            this.groupBoxRecords.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).EndInit();
             this.groupBoxAlerts.ResumeLayout(false);
@@ -1545,6 +1586,10 @@
         public System.Windows.Forms.Button bt_cancelAdd;
         public System.Windows.Forms.Button bt_edit;
         public System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTO;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
     }
 }
 
