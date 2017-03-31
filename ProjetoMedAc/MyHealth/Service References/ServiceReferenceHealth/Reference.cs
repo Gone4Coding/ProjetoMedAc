@@ -619,6 +619,9 @@ namespace MyHealth.ServiceReferenceHealth {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyHealth.ServiceReferenceHealth.ConfigurationLimitType.Type ConfigurationTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MaximumCriticalValueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -630,9 +633,6 @@ namespace MyHealth.ServiceReferenceHealth {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MinimumValueField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -640,6 +640,19 @@ namespace MyHealth.ServiceReferenceHealth {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyHealth.ServiceReferenceHealth.ConfigurationLimitType.Type ConfigurationType {
+            get {
+                return this.ConfigurationTypeField;
+            }
+            set {
+                if ((this.ConfigurationTypeField.Equals(value) != true)) {
+                    this.ConfigurationTypeField = value;
+                    this.RaisePropertyChanged("ConfigurationType");
+                }
             }
         }
         
@@ -695,19 +708,6 @@ namespace MyHealth.ServiceReferenceHealth {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -716,25 +716,39 @@ namespace MyHealth.ServiceReferenceHealth {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="ConfigurationLimitType.Type", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+        public enum Type : int {
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            HR = 0,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            SPO2 = 1,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            BP = 2,
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EventType", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Event", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
     [System.SerializableAttribute()]
-    public partial class EventType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Event : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MyHealth.ServiceReferenceHealth.Event.Type EvenTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MaximumTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MinimumTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -743,6 +757,19 @@ namespace MyHealth.ServiceReferenceHealth {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MyHealth.ServiceReferenceHealth.Event.Type EvenType {
+            get {
+                return this.EvenTypeField;
+            }
+            set {
+                if ((this.EvenTypeField.Equals(value) != true)) {
+                    this.EvenTypeField = value;
+                    this.RaisePropertyChanged("EvenType");
+                }
             }
         }
         
@@ -772,19 +799,6 @@ namespace MyHealth.ServiceReferenceHealth {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -792,6 +806,26 @@ namespace MyHealth.ServiceReferenceHealth {
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="Event.Type", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+        public enum Type : int {
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ECA = 0,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ECC = 1,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ECI = 2,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            EAC = 3,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            EAI = 4,
         }
     }
     
@@ -965,10 +999,10 @@ namespace MyHealth.ServiceReferenceHealth {
         System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.BloodPressure[]> BloodPressureListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitResponse")]
-        MyHealth.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(string type);
+        MyHealth.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitResponse")]
-        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(string type);
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitListResponse")]
         MyHealth.ServiceReferenceHealth.ConfigurationLimitType[] GetConfigurationLimitList();
@@ -995,22 +1029,40 @@ namespace MyHealth.ServiceReferenceHealth {
         System.Threading.Tasks.Task<bool> DeleteConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertEventResponse")]
-        bool InsertEvent(MyHealth.ServiceReferenceHealth.EventType eventType);
+        bool InsertEvent(MyHealth.ServiceReferenceHealth.Event eventType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertEventResponse")]
-        System.Threading.Tasks.Task<bool> InsertEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType);
+        System.Threading.Tasks.Task<bool> InsertEventAsync(MyHealth.ServiceReferenceHealth.Event eventType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateEventResponse")]
-        bool UpdateEvent(MyHealth.ServiceReferenceHealth.EventType eventType);
+        bool UpdateEvent(MyHealth.ServiceReferenceHealth.Event eventType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/UpdateEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/UpdateEventResponse")]
-        System.Threading.Tasks.Task<bool> UpdateEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType);
+        System.Threading.Tasks.Task<bool> UpdateEventAsync(MyHealth.ServiceReferenceHealth.Event eventType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteEventResponse")]
-        bool DeleteEvent(MyHealth.ServiceReferenceHealth.EventType eventType);
+        bool DeleteEvent(MyHealth.ServiceReferenceHealth.Event eventType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteEventResponse")]
-        System.Threading.Tasks.Task<bool> DeleteEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType);
+        System.Threading.Tasks.Task<bool> DeleteEventAsync(MyHealth.ServiceReferenceHealth.Event eventType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturation", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationResponse")]
+        MyHealth.ServiceReferenceHealth.OxygenSaturation[] GetWarningListOxygenSaturation(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturation", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationResponse")]
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.OxygenSaturation[]> GetWarningListOxygenSaturationAsync(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressure", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureResponse")]
+        MyHealth.ServiceReferenceHealth.BloodPressure[] GetWarningListBloodPressure(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressure", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureResponse")]
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.BloodPressure[]> GetWarningListBloodPressureAsync(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRate", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateResponse")]
+        MyHealth.ServiceReferenceHealth.HeartRate[] GetWarningListHeartRate(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRate", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateResponse")]
+        System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.HeartRate[]> GetWarningListHeartRateAsync(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1104,11 +1156,11 @@ namespace MyHealth.ServiceReferenceHealth {
             return base.Channel.BloodPressureListAsync(sns);
         }
         
-        public MyHealth.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(string type) {
+        public MyHealth.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(MyHealth.ServiceReferenceHealth.ConfigurationLimitType type) {
             return base.Channel.GetConfigurationLimit(type);
         }
         
-        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(string type) {
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(MyHealth.ServiceReferenceHealth.ConfigurationLimitType type) {
             return base.Channel.GetConfigurationLimitAsync(type);
         }
         
@@ -1144,28 +1196,52 @@ namespace MyHealth.ServiceReferenceHealth {
             return base.Channel.DeleteConfigurationLimitAsync(configurationLimitType);
         }
         
-        public bool InsertEvent(MyHealth.ServiceReferenceHealth.EventType eventType) {
+        public bool InsertEvent(MyHealth.ServiceReferenceHealth.Event eventType) {
             return base.Channel.InsertEvent(eventType);
         }
         
-        public System.Threading.Tasks.Task<bool> InsertEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType) {
+        public System.Threading.Tasks.Task<bool> InsertEventAsync(MyHealth.ServiceReferenceHealth.Event eventType) {
             return base.Channel.InsertEventAsync(eventType);
         }
         
-        public bool UpdateEvent(MyHealth.ServiceReferenceHealth.EventType eventType) {
+        public bool UpdateEvent(MyHealth.ServiceReferenceHealth.Event eventType) {
             return base.Channel.UpdateEvent(eventType);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType) {
+        public System.Threading.Tasks.Task<bool> UpdateEventAsync(MyHealth.ServiceReferenceHealth.Event eventType) {
             return base.Channel.UpdateEventAsync(eventType);
         }
         
-        public bool DeleteEvent(MyHealth.ServiceReferenceHealth.EventType eventType) {
+        public bool DeleteEvent(MyHealth.ServiceReferenceHealth.Event eventType) {
             return base.Channel.DeleteEvent(eventType);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteEventAsync(MyHealth.ServiceReferenceHealth.EventType eventType) {
+        public System.Threading.Tasks.Task<bool> DeleteEventAsync(MyHealth.ServiceReferenceHealth.Event eventType) {
             return base.Channel.DeleteEventAsync(eventType);
+        }
+        
+        public MyHealth.ServiceReferenceHealth.OxygenSaturation[] GetWarningListOxygenSaturation(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListOxygenSaturation(type, dataInicio, dataFim);
+        }
+        
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.OxygenSaturation[]> GetWarningListOxygenSaturationAsync(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListOxygenSaturationAsync(type, dataInicio, dataFim);
+        }
+        
+        public MyHealth.ServiceReferenceHealth.BloodPressure[] GetWarningListBloodPressure(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListBloodPressure(type, dataInicio, dataFim);
+        }
+        
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.BloodPressure[]> GetWarningListBloodPressureAsync(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListBloodPressureAsync(type, dataInicio, dataFim);
+        }
+        
+        public MyHealth.ServiceReferenceHealth.HeartRate[] GetWarningListHeartRate(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListHeartRate(type, dataInicio, dataFim);
+        }
+        
+        public System.Threading.Tasks.Task<MyHealth.ServiceReferenceHealth.HeartRate[]> GetWarningListHeartRateAsync(MyHealth.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListHeartRateAsync(type, dataInicio, dataFim);
         }
     }
 }

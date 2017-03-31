@@ -6,6 +6,7 @@ using System.Speech.Recognition;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using MyHealth.AppSettings;
 
 namespace MyHealth.VoiceRecognition
 {
@@ -63,6 +64,12 @@ namespace MyHealth.VoiceRecognition
             foreach (Code code in Enum.GetValues(typeof(Code)))
             {
                 comms.Add(ToString(code));
+            }
+
+            List<string> termsList = ApplicationSettings.Get_Terms();
+            foreach (string term in termsList)
+            {
+                comms.Add(term);
             }
 
             Choices choices = new Choices();

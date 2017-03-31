@@ -139,6 +139,24 @@
   <wsdl:message name="IServiceHealthAlert_DeleteEvent_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEventResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListOxygenSaturation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListOxygenSaturation" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListOxygenSaturation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListOxygenSaturationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListBloodPressure_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListBloodPressure" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListBloodPressure_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListBloodPressureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListHeartRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListHeartRate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListHeartRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListHeartRateResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceHealth">
     <wsdl:operation name="TestConnection">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/TestConnection" message="tns:IServiceHealth_TestConnection_InputMessage" />
@@ -229,6 +247,18 @@
     <wsdl:operation name="DeleteEvent">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteEvent" message="tns:IServiceHealthAlert_DeleteEvent_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteEventResponse" message="tns:IServiceHealthAlert_DeleteEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListOxygenSaturation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturation" message="tns:IServiceHealthAlert_GetWarningListOxygenSaturation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationResponse" message="tns:IServiceHealthAlert_GetWarningListOxygenSaturation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListBloodPressure">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressure" message="tns:IServiceHealthAlert_GetWarningListBloodPressure_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureResponse" message="tns:IServiceHealthAlert_GetWarningListBloodPressure_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListHeartRate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRate" message="tns:IServiceHealthAlert_GetWarningListHeartRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateResponse" message="tns:IServiceHealthAlert_GetWarningListHeartRate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceHealth" type="tns:IServiceHealth">
@@ -427,6 +457,33 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteEvent">
       <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListOxygenSaturation">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListBloodPressure">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListHeartRate">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -77,26 +77,44 @@
   <xs:element name="ArrayOfBloodPressure" nillable="true" type="tns:ArrayOfBloodPressure" />
   <xs:complexType name="ConfigurationLimitType">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ConfigurationType" type="tns:ConfigurationLimitType.Type" />
       <xs:element minOccurs="0" name="MaximumCriticalValue" type="xs:int" />
       <xs:element minOccurs="0" name="MaximumValue" type="xs:int" />
       <xs:element minOccurs="0" name="MinimumCriticalValue" type="xs:int" />
       <xs:element minOccurs="0" name="MinimumValue" type="xs:int" />
-      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ConfigurationLimitType" nillable="true" type="tns:ConfigurationLimitType" />
+  <xs:simpleType name="ConfigurationLimitType.Type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HR" />
+      <xs:enumeration value="SPO2" />
+      <xs:enumeration value="BP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConfigurationLimitType.Type" nillable="true" type="tns:ConfigurationLimitType.Type" />
   <xs:complexType name="ArrayOfConfigurationLimitType">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ConfigurationLimitType" nillable="true" type="tns:ConfigurationLimitType" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfConfigurationLimitType" nillable="true" type="tns:ArrayOfConfigurationLimitType" />
-  <xs:complexType name="EventType">
+  <xs:complexType name="Event">
     <xs:sequence>
+      <xs:element minOccurs="0" name="EvenType" type="tns:Event.Type" />
       <xs:element minOccurs="0" name="MaximumTime" type="xs:int" />
       <xs:element minOccurs="0" name="MinimumTime" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="EventType" nillable="true" type="tns:EventType" />
+  <xs:element name="Event" nillable="true" type="tns:Event" />
+  <xs:simpleType name="Event.Type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ECA" />
+      <xs:enumeration value="ECC" />
+      <xs:enumeration value="ECI" />
+      <xs:enumeration value="EAC" />
+      <xs:enumeration value="EAI" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Event.Type" nillable="true" type="tns:Event.Type" />
 </xs:schema>

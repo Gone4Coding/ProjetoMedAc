@@ -5,4 +5,7 @@
   <medlineURL>https://wsearch.nlm.nih.gov/ws/</medlineURL>
   <DLLRate>3000</DLLRate>
   <retmax>14</retmax>
+  <terms>
+    
+  </terms>
 </settings>
