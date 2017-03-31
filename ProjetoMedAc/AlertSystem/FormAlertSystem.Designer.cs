@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -40,6 +40,10 @@
             this.radioButtonHeartRate = new System.Windows.Forms.RadioButton();
             this.radioButtonBloodPressure = new System.Windows.Forms.RadioButton();
             this.groupBoxRecords = new System.Windows.Forms.GroupBox();
+            this.checkBoxValues = new System.Windows.Forms.CheckBox();
+            this.comboBoxChartType = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.bt_OK = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.dateTimePickerTO = new System.Windows.Forms.DateTimePicker();
@@ -49,25 +53,17 @@
             this.groupBoxAlerts = new System.Windows.Forms.GroupBox();
             this.dataGridViewAlerts = new System.Windows.Forms.DataGridView();
             this.groupBoxPatientSummary = new System.Windows.Forms.GroupBox();
-            this.textBoxGender = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
-            this.richTextBox1Alergies = new System.Windows.Forms.RichTextBox();
-            this.textBoxPhoneNumber = new System.Windows.Forms.TextBox();
             this.textBoxWeight = new System.Windows.Forms.TextBox();
             this.textBoxSNS = new System.Windows.Forms.TextBox();
             this.textBoxAge = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.textBoxheight = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
-            this.textBoxEmergencyContact = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.toolStripMonitor = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonRefreshMonitor = new System.Windows.Forms.ToolStripButton();
@@ -80,7 +76,6 @@
             this.checkBoxWarning = new System.Windows.Forms.CheckBox();
             this.checkBoxNormal = new System.Windows.Forms.CheckBox();
             this.checkBoxCritical = new System.Windows.Forms.CheckBox();
-            this.dataGridViewPatientsMonitor = new System.Windows.Forms.DataGridView();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.toolStripPatients = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
@@ -157,7 +152,6 @@
             this.toolStripMonitor.SuspendLayout();
             this.groupBox1Patients.SuspendLayout();
             this.groupBoxFilters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientsMonitor)).BeginInit();
             this.tabPagePatients.SuspendLayout();
             this.toolStripPatients.SuspendLayout();
             this.groupBoxPatients.SuspendLayout();
@@ -182,7 +176,7 @@
             this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 22);
             this.tabPage_viewRecords.Name = "tabPage_viewRecords";
             this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_viewRecords.Size = new System.Drawing.Size(1403, 758);
+            this.tabPage_viewRecords.Size = new System.Drawing.Size(1577, 758);
             this.tabPage_viewRecords.TabIndex = 4;
             this.tabPage_viewRecords.Text = "View Records";
             this.tabPage_viewRecords.UseVisualStyleBackColor = true;
@@ -197,7 +191,7 @@
             this.groupBoxActivitie.Controls.Add(this.groupBoxAlerts);
             this.groupBoxActivitie.Location = new System.Drawing.Point(270, 186);
             this.groupBoxActivitie.Name = "groupBoxActivitie";
-            this.groupBoxActivitie.Size = new System.Drawing.Size(1127, 569);
+            this.groupBoxActivitie.Size = new System.Drawing.Size(1301, 569);
             this.groupBoxActivitie.TabIndex = 7;
             this.groupBoxActivitie.TabStop = false;
             this.groupBoxActivitie.Text = "Patient Activity";
@@ -263,6 +257,10 @@
             this.groupBoxRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxRecords.Controls.Add(this.checkBoxValues);
+            this.groupBoxRecords.Controls.Add(this.comboBoxChartType);
+            this.groupBoxRecords.Controls.Add(this.label26);
+            this.groupBoxRecords.Controls.Add(this.bt_OK);
             this.groupBoxRecords.Controls.Add(this.label25);
             this.groupBoxRecords.Controls.Add(this.label24);
             this.groupBoxRecords.Controls.Add(this.dateTimePickerTO);
@@ -271,32 +269,68 @@
             this.groupBoxRecords.Controls.Add(this.dateTimePickerFrom);
             this.groupBoxRecords.Location = new System.Drawing.Point(247, 19);
             this.groupBoxRecords.Name = "groupBoxRecords";
-            this.groupBoxRecords.Size = new System.Drawing.Size(865, 544);
+            this.groupBoxRecords.Size = new System.Drawing.Size(1039, 544);
             this.groupBoxRecords.TabIndex = 7;
             this.groupBoxRecords.TabStop = false;
             this.groupBoxRecords.Text = "Records";
             // 
+            // checkBoxValues
+            // 
+            this.checkBoxValues.AutoSize = true;
+            this.checkBoxValues.Location = new System.Drawing.Point(932, 63);
+            this.checkBoxValues.Name = "checkBoxValues";
+            this.checkBoxValues.Size = new System.Drawing.Size(87, 17);
+            this.checkBoxValues.TabIndex = 16;
+            this.checkBoxValues.Text = "Show values";
+            this.checkBoxValues.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxChartType
+            // 
+            this.comboBoxChartType.FormattingEnabled = true;
+            this.comboBoxChartType.Location = new System.Drawing.Point(936, 26);
+            this.comboBoxChartType.Name = "comboBoxChartType";
+            this.comboBoxChartType.Size = new System.Drawing.Size(83, 21);
+            this.comboBoxChartType.TabIndex = 15;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(868, 29);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(62, 13);
+            this.label26.TabIndex = 14;
+            this.label26.Text = "Chart Type:";
+            // 
+            // bt_OK
+            // 
+            this.bt_OK.Location = new System.Drawing.Point(627, 21);
+            this.bt_OK.Name = "bt_OK";
+            this.bt_OK.Size = new System.Drawing.Size(75, 23);
+            this.bt_OK.TabIndex = 13;
+            this.bt_OK.Text = "OK";
+            this.bt_OK.UseVisualStyleBackColor = true;
+            // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(426, 29);
+            this.label25.Location = new System.Drawing.Point(359, 30);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(23, 13);
+            this.label25.Size = new System.Drawing.Size(29, 13);
             this.label25.TabIndex = 12;
-            this.label25.Text = "To:";
+            this.label25.Text = "End:";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(79, 30);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(33, 13);
+            this.label24.Size = new System.Drawing.Size(37, 13);
             this.label24.TabIndex = 11;
-            this.label24.Text = "From:";
+            this.label24.Text = "Begin:";
             // 
             // dateTimePickerTO
             // 
-            this.dateTimePickerTO.Location = new System.Drawing.Point(474, 23);
+            this.dateTimePickerTO.Location = new System.Drawing.Point(407, 24);
             this.dateTimePickerTO.Name = "dateTimePickerTO";
             this.dateTimePickerTO.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerTO.TabIndex = 10;
@@ -306,11 +340,11 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(19, 193);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(829, 340);
+            this.chart1.Size = new System.Drawing.Size(1003, 340);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             // 
@@ -332,7 +366,7 @@
             this.dataGridViewHistory.Name = "dataGridViewHistory";
             this.dataGridViewHistory.ReadOnly = true;
             this.dataGridViewHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewHistory.Size = new System.Drawing.Size(829, 116);
+            this.dataGridViewHistory.Size = new System.Drawing.Size(857, 116);
             this.dataGridViewHistory.TabIndex = 7;
             // 
             // dateTimePickerFrom
@@ -381,41 +415,24 @@
             this.groupBoxPatientSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxPatientSummary.Controls.Add(this.textBoxGender);
             this.groupBoxPatientSummary.Controls.Add(this.label42);
-            this.groupBoxPatientSummary.Controls.Add(this.richTextBox1Alergies);
-            this.groupBoxPatientSummary.Controls.Add(this.textBoxPhoneNumber);
             this.groupBoxPatientSummary.Controls.Add(this.textBoxWeight);
             this.groupBoxPatientSummary.Controls.Add(this.textBoxSNS);
             this.groupBoxPatientSummary.Controls.Add(this.textBoxAge);
             this.groupBoxPatientSummary.Controls.Add(this.label38);
-            this.groupBoxPatientSummary.Controls.Add(this.label31);
             this.groupBoxPatientSummary.Controls.Add(this.textBoxheight);
-            this.groupBoxPatientSummary.Controls.Add(this.label37);
             this.groupBoxPatientSummary.Controls.Add(this.textBoxFirstName);
-            this.groupBoxPatientSummary.Controls.Add(this.textBoxEmergencyContact);
-            this.groupBoxPatientSummary.Controls.Add(this.label32);
             this.groupBoxPatientSummary.Controls.Add(this.label40);
             this.groupBoxPatientSummary.Controls.Add(this.label29);
             this.groupBoxPatientSummary.Controls.Add(this.label30);
             this.groupBoxPatientSummary.Controls.Add(this.textBoxLastName);
-            this.groupBoxPatientSummary.Controls.Add(this.label35);
             this.groupBoxPatientSummary.Controls.Add(this.label41);
             this.groupBoxPatientSummary.Location = new System.Drawing.Point(268, 46);
             this.groupBoxPatientSummary.Name = "groupBoxPatientSummary";
-            this.groupBoxPatientSummary.Size = new System.Drawing.Size(1127, 121);
+            this.groupBoxPatientSummary.Size = new System.Drawing.Size(1301, 66);
             this.groupBoxPatientSummary.TabIndex = 6;
             this.groupBoxPatientSummary.TabStop = false;
             this.groupBoxPatientSummary.Text = "Patient Summary";
-            // 
-            // textBoxGender
-            // 
-            this.textBoxGender.Enabled = false;
-            this.textBoxGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxGender.Location = new System.Drawing.Point(678, 76);
-            this.textBoxGender.Name = "textBoxGender";
-            this.textBoxGender.Size = new System.Drawing.Size(86, 17);
-            this.textBoxGender.TabIndex = 98;
             // 
             // label42
             // 
@@ -427,30 +444,11 @@
             this.label42.TabIndex = 78;
             this.label42.Text = "First Name";
             // 
-            // richTextBox1Alergies
-            // 
-            this.richTextBox1Alergies.Enabled = false;
-            this.richTextBox1Alergies.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1Alergies.Location = new System.Drawing.Point(770, 17);
-            this.richTextBox1Alergies.Name = "richTextBox1Alergies";
-            this.richTextBox1Alergies.Size = new System.Drawing.Size(262, 87);
-            this.richTextBox1Alergies.TabIndex = 95;
-            this.richTextBox1Alergies.Text = "";
-            // 
-            // textBoxPhoneNumber
-            // 
-            this.textBoxPhoneNumber.Enabled = false;
-            this.textBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPhoneNumber.Location = new System.Drawing.Point(473, 49);
-            this.textBoxPhoneNumber.Name = "textBoxPhoneNumber";
-            this.textBoxPhoneNumber.Size = new System.Drawing.Size(151, 17);
-            this.textBoxPhoneNumber.TabIndex = 72;
-            // 
             // textBoxWeight
             // 
             this.textBoxWeight.Enabled = false;
             this.textBoxWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWeight.Location = new System.Drawing.Point(282, 76);
+            this.textBoxWeight.Location = new System.Drawing.Point(1189, 26);
             this.textBoxWeight.Name = "textBoxWeight";
             this.textBoxWeight.Size = new System.Drawing.Size(45, 17);
             this.textBoxWeight.TabIndex = 97;
@@ -459,7 +457,7 @@
             // 
             this.textBoxSNS.Enabled = false;
             this.textBoxSNS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSNS.Location = new System.Drawing.Point(473, 26);
+            this.textBoxSNS.Location = new System.Drawing.Point(424, 26);
             this.textBoxSNS.Name = "textBoxSNS";
             this.textBoxSNS.Size = new System.Drawing.Size(151, 17);
             this.textBoxSNS.TabIndex = 71;
@@ -468,7 +466,7 @@
             // 
             this.textBoxAge.Enabled = false;
             this.textBoxAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAge.Location = new System.Drawing.Point(82, 76);
+            this.textBoxAge.Location = new System.Drawing.Point(989, 26);
             this.textBoxAge.Name = "textBoxAge";
             this.textBoxAge.Size = new System.Drawing.Size(45, 17);
             this.textBoxAge.TabIndex = 96;
@@ -483,34 +481,14 @@
             this.label38.TabIndex = 82;
             this.label38.Text = "SNS";
             // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(720, 17);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(44, 13);
-            this.label31.TabIndex = 89;
-            this.label31.Text = "Alergies";
-            // 
             // textBoxheight
             // 
             this.textBoxheight.Enabled = false;
             this.textBoxheight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxheight.Location = new System.Drawing.Point(177, 76);
+            this.textBoxheight.Location = new System.Drawing.Point(1084, 26);
             this.textBoxheight.Name = "textBoxheight";
             this.textBoxheight.Size = new System.Drawing.Size(45, 17);
             this.textBoxheight.TabIndex = 76;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(389, 53);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(78, 13);
-            this.label37.TabIndex = 83;
-            this.label37.Text = "Phone Number";
             // 
             // textBoxFirstName
             // 
@@ -521,30 +499,11 @@
             this.textBoxFirstName.Size = new System.Drawing.Size(301, 17);
             this.textBoxFirstName.TabIndex = 68;
             // 
-            // textBoxEmergencyContact
-            // 
-            this.textBoxEmergencyContact.Enabled = false;
-            this.textBoxEmergencyContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmergencyContact.Location = new System.Drawing.Point(473, 76);
-            this.textBoxEmergencyContact.Name = "textBoxEmergencyContact";
-            this.textBoxEmergencyContact.Size = new System.Drawing.Size(151, 17);
-            this.textBoxEmergencyContact.TabIndex = 74;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(630, 80);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(42, 13);
-            this.label32.TabIndex = 88;
-            this.label32.Text = "Gender";
-            // 
             // label40
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(50, 80);
+            this.label40.Location = new System.Drawing.Point(957, 30);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(26, 13);
             this.label40.TabIndex = 80;
@@ -554,7 +513,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(235, 80);
+            this.label29.Location = new System.Drawing.Point(1142, 30);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(41, 13);
             this.label29.TabIndex = 92;
@@ -564,7 +523,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(133, 80);
+            this.label30.Location = new System.Drawing.Point(1040, 30);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(38, 13);
             this.label30.TabIndex = 90;
@@ -574,26 +533,16 @@
             // 
             this.textBoxLastName.Enabled = false;
             this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLastName.Location = new System.Drawing.Point(82, 49);
+            this.textBoxLastName.Location = new System.Drawing.Point(645, 26);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(301, 17);
             this.textBoxLastName.TabIndex = 69;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(367, 80);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(100, 13);
-            this.label35.TabIndex = 85;
-            this.label35.Text = "Emergency Contact";
             // 
             // label41
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(21, 53);
+            this.label41.Location = new System.Drawing.Point(581, 30);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(58, 13);
             this.label41.TabIndex = 79;
@@ -612,7 +561,7 @@
             this.toolStripButtonSearchMonitor});
             this.toolStripMonitor.Location = new System.Drawing.Point(3, 3);
             this.toolStripMonitor.Name = "toolStripMonitor";
-            this.toolStripMonitor.Size = new System.Drawing.Size(1397, 40);
+            this.toolStripMonitor.Size = new System.Drawing.Size(1571, 40);
             this.toolStripMonitor.TabIndex = 4;
             this.toolStripMonitor.Text = "toolStrip1";
             // 
@@ -659,10 +608,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1Patients.AutoSize = true;
             this.groupBox1Patients.Controls.Add(this.groupBoxFilters);
-            this.groupBox1Patients.Controls.Add(this.dataGridViewPatientsMonitor);
             this.groupBox1Patients.Location = new System.Drawing.Point(8, 46);
             this.groupBox1Patients.Name = "groupBox1Patients";
-            this.groupBox1Patients.Size = new System.Drawing.Size(635, 703);
+            this.groupBox1Patients.Size = new System.Drawing.Size(253, 703);
             this.groupBox1Patients.TabIndex = 3;
             this.groupBox1Patients.TabStop = false;
             this.groupBox1Patients.Text = "Active Patients";
@@ -715,29 +663,6 @@
             this.checkBoxCritical.Text = "Critical";
             this.checkBoxCritical.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewPatientsMonitor
-            // 
-            this.dataGridViewPatientsMonitor.AllowUserToAddRows = false;
-            this.dataGridViewPatientsMonitor.AllowUserToDeleteRows = false;
-            this.dataGridViewPatientsMonitor.AllowUserToOrderColumns = true;
-            this.dataGridViewPatientsMonitor.AllowUserToResizeColumns = false;
-            this.dataGridViewPatientsMonitor.AllowUserToResizeRows = false;
-            this.dataGridViewPatientsMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewPatientsMonitor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewPatientsMonitor.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridViewPatientsMonitor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatientsMonitor.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewPatientsMonitor.Location = new System.Drawing.Point(6, 151);
-            this.dataGridViewPatientsMonitor.MultiSelect = false;
-            this.dataGridViewPatientsMonitor.Name = "dataGridViewPatientsMonitor";
-            this.dataGridViewPatientsMonitor.ReadOnly = true;
-            this.dataGridViewPatientsMonitor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatientsMonitor.Size = new System.Drawing.Size(235, 541);
-            this.dataGridViewPatientsMonitor.TabIndex = 2;
-            this.dataGridViewPatientsMonitor.SelectionChanged += new System.EventHandler(this.dataGridViewPatientsMonitor_SelectionChanged);
-            // 
             // tabPagePatients
             // 
             this.tabPagePatients.Controls.Add(this.toolStripPatients);
@@ -746,7 +671,7 @@
             this.tabPagePatients.Location = new System.Drawing.Point(4, 22);
             this.tabPagePatients.Name = "tabPagePatients";
             this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePatients.Size = new System.Drawing.Size(1403, 758);
+            this.tabPagePatients.Size = new System.Drawing.Size(1577, 758);
             this.tabPagePatients.TabIndex = 2;
             this.tabPagePatients.Text = "Patients";
             this.tabPagePatients.UseVisualStyleBackColor = true;
@@ -766,7 +691,7 @@
             this.toolStripButtonSearch});
             this.toolStripPatients.Location = new System.Drawing.Point(3, 3);
             this.toolStripPatients.Name = "toolStripPatients";
-            this.toolStripPatients.Size = new System.Drawing.Size(1397, 40);
+            this.toolStripPatients.Size = new System.Drawing.Size(1571, 40);
             this.toolStripPatients.TabIndex = 3;
             this.toolStripPatients.Text = "toolStrip1";
             // 
@@ -1415,7 +1340,7 @@
             this.tabControlRecors.Location = new System.Drawing.Point(0, 0);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
-            this.tabControlRecors.Size = new System.Drawing.Size(1411, 784);
+            this.tabControlRecors.Size = new System.Drawing.Size(1585, 784);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
             // 
@@ -1424,7 +1349,7 @@
             this.tabPageConfigurations.Location = new System.Drawing.Point(4, 22);
             this.tabPageConfigurations.Name = "tabPageConfigurations";
             this.tabPageConfigurations.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfigurations.Size = new System.Drawing.Size(1403, 758);
+            this.tabPageConfigurations.Size = new System.Drawing.Size(1577, 758);
             this.tabPageConfigurations.TabIndex = 5;
             this.tabPageConfigurations.Text = "Configure Monitor";
             this.tabPageConfigurations.UseVisualStyleBackColor = true;
@@ -1433,7 +1358,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1411, 785);
+            this.ClientSize = new System.Drawing.Size(1585, 785);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAlertSystem";
@@ -1459,7 +1384,6 @@
             this.groupBox1Patients.ResumeLayout(false);
             this.groupBoxFilters.ResumeLayout(false);
             this.groupBoxFilters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientsMonitor)).EndInit();
             this.tabPagePatients.ResumeLayout(false);
             this.tabPagePatients.PerformLayout();
             this.toolStripPatients.ResumeLayout(false);
@@ -1517,16 +1441,6 @@
         private System.Windows.Forms.GroupBox groupBox1Patients;
         private System.Windows.Forms.GroupBox groupBoxFilters;
         private System.Windows.Forms.GroupBox groupBoxActivitie;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label38;
         private System.Windows.Forms.CheckBox checkBoxPatientMonitoring;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
@@ -1557,17 +1471,6 @@
         public System.Windows.Forms.TextBox tb_nif;
         public System.Windows.Forms.TextBox tb_lastName;
         public System.Windows.Forms.TextBox tb_firstname;
-        public System.Windows.Forms.GroupBox groupBoxPatientSummary;
-        public System.Windows.Forms.DataGridView dataGridViewPatientsMonitor;
-        public System.Windows.Forms.TextBox textBoxWeight;
-        public System.Windows.Forms.TextBox textBoxAge;
-        public System.Windows.Forms.TextBox textBoxFirstName;
-        public System.Windows.Forms.TextBox textBoxLastName;
-        public System.Windows.Forms.TextBox textBoxEmergencyContact;
-        public System.Windows.Forms.TextBox textBoxheight;
-        public System.Windows.Forms.TextBox textBoxSNS;
-        public System.Windows.Forms.TextBox textBoxPhoneNumber;
-        public System.Windows.Forms.TextBox textBoxGender;
         public System.Windows.Forms.GroupBox groupBoxPatientMonitoring;
         public System.Windows.Forms.CheckBox checkBoxWarning;
         public System.Windows.Forms.CheckBox checkBoxCritical;
@@ -1580,7 +1483,6 @@
         public System.Windows.Forms.RadioButton radioButtonBloodPressure;
         public System.Windows.Forms.DataGridView dataGridViewHistory;
         public System.Windows.Forms.DataGridView dataGridViewAlerts;
-        public System.Windows.Forms.RichTextBox richTextBox1Alergies;
         public System.Windows.Forms.Button bt_save;
         public System.Windows.Forms.Button bt_cancelEdit;
         public System.Windows.Forms.Button bt_cancelAdd;
@@ -1590,6 +1492,23 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.DateTimePicker dateTimePickerTO;
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
+        private System.Windows.Forms.Button bt_OK;
+        private System.Windows.Forms.CheckBox checkBoxValues;
+        private System.Windows.Forms.ComboBox comboBoxChartType;
+        private System.Windows.Forms.Label label26;
+        public System.Windows.Forms.GroupBox groupBoxPatientSummary;
+        private System.Windows.Forms.Label label42;
+        public System.Windows.Forms.TextBox textBoxWeight;
+        public System.Windows.Forms.TextBox textBoxSNS;
+        public System.Windows.Forms.TextBox textBoxAge;
+        private System.Windows.Forms.Label label38;
+        public System.Windows.Forms.TextBox textBoxheight;
+        public System.Windows.Forms.TextBox textBoxFirstName;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        public System.Windows.Forms.TextBox textBoxLastName;
+        private System.Windows.Forms.Label label41;
     }
 }
 
