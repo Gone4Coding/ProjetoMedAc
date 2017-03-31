@@ -90,6 +90,7 @@ namespace AlertSystem
                 load(patientToEdit, true);
 
                 radioButtonBloodPressure.Checked = true;
+                readRadioButtons(patientOnMonitoring);
                 startGraphics();
             }
         }
@@ -310,6 +311,7 @@ namespace AlertSystem
                 Patient patientSelected = client.GetPatient(sns);
 
                 fillFields(patientSelected);
+               
 
             }
         }
@@ -464,10 +466,11 @@ namespace AlertSystem
                         }
                         else
                         {
+                            MessageBox.Show("Patient is not active on monitoring!", "INFO", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                             tabControlRecors.SelectedTab = tabPagePatients;
                             //fillFirstSelected(true);
-                            MessageBox.Show("Patient is not active on monitoring!", "INFO", MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);                           
+                            
                         }
 
 
