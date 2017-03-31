@@ -102,10 +102,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.AlertType.datasource">
+    <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.BloodPressure.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.BloodPressure.datasource">
+    <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.ConfigurationLimitType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.HeartRate.datasource">

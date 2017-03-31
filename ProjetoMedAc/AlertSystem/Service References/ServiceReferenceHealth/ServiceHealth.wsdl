@@ -7,11 +7,23 @@
       <xsd:import schemaLocation="http://localhost:54135/ServiceHealth.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IServiceHealth_TestConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnection" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_TestConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnectionResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceHealth_ValidatePatient_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidatePatient" />
   </wsdl:message>
   <wsdl:message name="IServiceHealth_ValidatePatient_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidatePatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_ValidatePatientState_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidatePatientState" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealth_ValidatePatientState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidatePatientStateResponse" />
   </wsdl:message>
   <wsdl:message name="IServiceHealth_InsertHeartRateRecord_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertHeartRateRecord" />
@@ -79,40 +91,84 @@
   <wsdl:message name="IServiceHealthAlert_BloodPressureList_OutputMessage">
     <wsdl:part name="parameters" element="tns:BloodPressureListResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_GetAlert_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAlert" />
+  <wsdl:message name="IServiceHealthAlert_GetConfigurationLimit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationLimit" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_GetAlert_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAlertResponse" />
+  <wsdl:message name="IServiceHealthAlert_GetConfigurationLimit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationLimitResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_GetAlertList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAlertList" />
+  <wsdl:message name="IServiceHealthAlert_GetConfigurationLimitList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationLimitList" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_GetAlertList_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAlertListResponse" />
+  <wsdl:message name="IServiceHealthAlert_GetConfigurationLimitList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationLimitListResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_InsertAlert_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertAlert" />
+  <wsdl:message name="IServiceHealthAlert_InsertConfigurationLimit_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertConfigurationLimit" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_InsertAlert_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertAlertResponse" />
+  <wsdl:message name="IServiceHealthAlert_InsertConfigurationLimit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertConfigurationLimitResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_UpdateAlert_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateAlert" />
+  <wsdl:message name="IServiceHealthAlert_UpdateConfigurationLimit_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateConfigurationLimit" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_UpdateAlert_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateAlertResponse" />
+  <wsdl:message name="IServiceHealthAlert_UpdateConfigurationLimit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateConfigurationLimitResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_DeleteAlert_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAlert" />
+  <wsdl:message name="IServiceHealthAlert_DeleteConfigurationLimit_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConfigurationLimit" />
   </wsdl:message>
-  <wsdl:message name="IServiceHealthAlert_DeleteAlert_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteAlertResponse" />
+  <wsdl:message name="IServiceHealthAlert_DeleteConfigurationLimit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConfigurationLimitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertEvent" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_InsertEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdateEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEvent" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_UpdateEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeleteEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEvent" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_DeleteEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListOxygenSaturation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListOxygenSaturation" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListOxygenSaturation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListOxygenSaturationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListBloodPressure_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListBloodPressure" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListBloodPressure_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListBloodPressureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListHeartRate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListHeartRate" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetWarningListHeartRate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarningListHeartRateResponse" />
   </wsdl:message>
   <wsdl:portType name="IServiceHealth">
+    <wsdl:operation name="TestConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/TestConnection" message="tns:IServiceHealth_TestConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/TestConnectionResponse" message="tns:IServiceHealth_TestConnection_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ValidatePatient">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatient" message="tns:IServiceHealth_ValidatePatient_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatientResponse" message="tns:IServiceHealth_ValidatePatient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePatientState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatientState" message="tns:IServiceHealth_ValidatePatientState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealth/ValidatePatientStateResponse" message="tns:IServiceHealth_ValidatePatientState_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertHeartRateRecord">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealth/InsertHeartRateRecord" message="tns:IServiceHealth_InsertHeartRateRecord_InputMessage" />
@@ -160,31 +216,73 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/BloodPressureList" message="tns:IServiceHealthAlert_BloodPressureList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/BloodPressureListResponse" message="tns:IServiceHealthAlert_BloodPressureList_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAlert">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlert" message="tns:IServiceHealthAlert_GetAlert_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlertResponse" message="tns:IServiceHealthAlert_GetAlert_OutputMessage" />
+    <wsdl:operation name="GetConfigurationLimit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit" message="tns:IServiceHealthAlert_GetConfigurationLimit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitResponse" message="tns:IServiceHealthAlert_GetConfigurationLimit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAlertList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlertList" message="tns:IServiceHealthAlert_GetAlertList_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetAlertListResponse" message="tns:IServiceHealthAlert_GetAlertList_OutputMessage" />
+    <wsdl:operation name="GetConfigurationLimitList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitList" message="tns:IServiceHealthAlert_GetConfigurationLimitList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitListResponse" message="tns:IServiceHealthAlert_GetConfigurationLimitList_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertAlert">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertAlert" message="tns:IServiceHealthAlert_InsertAlert_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertAlertResponse" message="tns:IServiceHealthAlert_InsertAlert_OutputMessage" />
+    <wsdl:operation name="InsertConfigurationLimit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertConfigurationLimit" message="tns:IServiceHealthAlert_InsertConfigurationLimit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertConfigurationLimitResponse" message="tns:IServiceHealthAlert_InsertConfigurationLimit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateAlert">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateAlert" message="tns:IServiceHealthAlert_UpdateAlert_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateAlertResponse" message="tns:IServiceHealthAlert_UpdateAlert_OutputMessage" />
+    <wsdl:operation name="UpdateConfigurationLimit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateConfigurationLimit" message="tns:IServiceHealthAlert_UpdateConfigurationLimit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateConfigurationLimitResponse" message="tns:IServiceHealthAlert_UpdateConfigurationLimit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteAlert">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteAlert" message="tns:IServiceHealthAlert_DeleteAlert_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteAlertResponse" message="tns:IServiceHealthAlert_DeleteAlert_OutputMessage" />
+    <wsdl:operation name="DeleteConfigurationLimit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimit" message="tns:IServiceHealthAlert_DeleteConfigurationLimit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimitResponse" message="tns:IServiceHealthAlert_DeleteConfigurationLimit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertEvent" message="tns:IServiceHealthAlert_InsertEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertEventResponse" message="tns:IServiceHealthAlert_InsertEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateEvent" message="tns:IServiceHealthAlert_UpdateEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/UpdateEventResponse" message="tns:IServiceHealthAlert_UpdateEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteEvent" message="tns:IServiceHealthAlert_DeleteEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteEventResponse" message="tns:IServiceHealthAlert_DeleteEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListOxygenSaturation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturation" message="tns:IServiceHealthAlert_GetWarningListOxygenSaturation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationResponse" message="tns:IServiceHealthAlert_GetWarningListOxygenSaturation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListBloodPressure">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressure" message="tns:IServiceHealthAlert_GetWarningListBloodPressure_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureResponse" message="tns:IServiceHealthAlert_GetWarningListBloodPressure_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListHeartRate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRate" message="tns:IServiceHealthAlert_GetWarningListHeartRate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateResponse" message="tns:IServiceHealthAlert_GetWarningListHeartRate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceHealth" type="tns:IServiceHealth">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestConnection">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealth/TestConnection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ValidatePatient">
       <soap:operation soapAction="http://tempuri.org/IServiceHealth/ValidatePatient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePatientState">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealth/ValidatePatientState" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -294,8 +392,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAlert">
-      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetAlert" style="document" />
+    <wsdl:operation name="GetConfigurationLimit">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -303,8 +401,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAlertList">
-      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetAlertList" style="document" />
+    <wsdl:operation name="GetConfigurationLimitList">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -312,8 +410,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertAlert">
-      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/InsertAlert" style="document" />
+    <wsdl:operation name="InsertConfigurationLimit">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/InsertConfigurationLimit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -321,8 +419,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateAlert">
-      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/UpdateAlert" style="document" />
+    <wsdl:operation name="UpdateConfigurationLimit">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/UpdateConfigurationLimit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -330,8 +428,62 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteAlert">
-      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteAlert" style="document" />
+    <wsdl:operation name="DeleteConfigurationLimit">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertEvent">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/InsertEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvent">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/UpdateEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListOxygenSaturation">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListBloodPressure">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarningListHeartRate">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

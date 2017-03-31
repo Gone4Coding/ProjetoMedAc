@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:54135/ServiceHealth.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew" />
+  <xs:element name="TestConnection">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestConnectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TestConnectionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ValidatePatient">
     <xs:complexType>
       <xs:sequence>
@@ -12,6 +24,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="ValidatePatientResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidatePatientState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sns" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidatePatientStateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ValidatePatientStateResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -168,71 +194,161 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAlert">
+  <xs:element name="GetConfigurationLimit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q12:ConfigurationLimitType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAlertResponse">
+  <xs:element name="GetConfigurationLimitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetAlertResult" nillable="true" type="q12:AlertType" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetConfigurationLimitResult" nillable="true" type="q13:ConfigurationLimitType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAlertList">
+  <xs:element name="GetConfigurationLimitList">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAlertListResponse">
+  <xs:element name="GetConfigurationLimitListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetAlertListResult" nillable="true" type="q13:ArrayOfAlertType" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetConfigurationLimitListResult" nillable="true" type="q14:ArrayOfConfigurationLimitType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="InsertAlert">
+  <xs:element name="InsertConfigurationLimit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="alertType" nillable="true" type="q14:AlertType" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="configurationLimitType" nillable="true" type="q15:ConfigurationLimitType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="InsertAlertResponse">
+  <xs:element name="InsertConfigurationLimitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="InsertAlertResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="InsertConfigurationLimitResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateAlert">
+  <xs:element name="UpdateConfigurationLimit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="alertType" nillable="true" type="q15:AlertType" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="configurationLimitType" nillable="true" type="q16:ConfigurationLimitType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateAlertResponse">
+  <xs:element name="UpdateConfigurationLimitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateAlertResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="UpdateConfigurationLimitResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteAlert">
+  <xs:element name="DeleteConfigurationLimit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="alertType" nillable="true" type="q16:AlertType" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="configurationLimitType" nillable="true" type="q17:ConfigurationLimitType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DeleteAlertResponse">
+  <xs:element name="DeleteConfigurationLimitResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteAlertResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="DeleteConfigurationLimitResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q18:Event" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertEventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertEventResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q19:Event" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateEventResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q20:Event" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteEventResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteEventResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWarningListOxygenSaturation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q21:Event" />
+        <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWarningListOxygenSaturationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListOxygenSaturationResult" nillable="true" type="q22:ArrayOfOxygenSaturation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWarningListBloodPressure">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q23:Event" />
+        <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWarningListBloodPressureResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListBloodPressureResult" nillable="true" type="q24:ArrayOfBloodPressure" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWarningListHeartRate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q25:Event" />
+        <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWarningListHeartRateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListHeartRateResult" nillable="true" type="q26:ArrayOfHeartRate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
