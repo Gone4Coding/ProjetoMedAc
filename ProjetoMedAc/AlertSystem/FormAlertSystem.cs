@@ -1116,6 +1116,24 @@ namespace AlertSystem
 
             return true;
         }
+
+        private void checkBoxValues_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxValues.Checked)
+            {
+                chart1.Series[DIASTOLIC].IsValueShownAsLabel = true;
+                chart1.Series[SYSTOLIC].IsValueShownAsLabel = true;
+                chart1.Series[HRATE].IsValueShownAsLabel = true;
+                chart1.Series[OXYSAT].IsValueShownAsLabel = true;
+            }
+            else
+            {
+                chart1.Series[DIASTOLIC].IsValueShownAsLabel = false;
+                chart1.Series[SYSTOLIC].IsValueShownAsLabel = false;
+                chart1.Series[HRATE].IsValueShownAsLabel = false;
+                chart1.Series[OXYSAT].IsValueShownAsLabel = false;
+            }
+        }
         public void startGraphics()
         {
             chart1.Series.Clear();
@@ -1285,8 +1303,8 @@ namespace AlertSystem
                     {
                         valorMedioDistolic = valorMedioDistolic / nrOfvalues;
                         valorMedioSystolic = valorMedioSystolic / nrOfvalues;
-                        valoresDistolic.Add(valorMedioDistolic);
-                        valoresSystolic.Add(valorMedioSystolic);
+                        valoresDistolic.Add(Convert.ToInt32(valorMedioDistolic));
+                        valoresSystolic.Add(Convert.ToInt32(valorMedioSystolic));
                         string[] hour = valores[i].Time.ToString().Split(':');
                         horaList.Add(hour[0] + ":" + hour[1]);
 
@@ -1317,8 +1335,15 @@ namespace AlertSystem
             }
             return null;
         }
+
         #endregion
 
         #endregion
+
+        private void toolStripButtonExport_Click(object sender, EventArgs e)
+        {
+            string file = Application.StartupPath + "/grafico.png";
+            chart1.SaveImage(file, System.Drawing.Imaging.ImageFormat.Png);
+        }
     }
 }

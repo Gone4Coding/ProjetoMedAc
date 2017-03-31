@@ -133,6 +133,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.textBoxheight = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
+            this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -279,8 +280,7 @@
             // 
             // checkBoxValues
             // 
-            this.checkBoxValues.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxValues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxValues.AutoSize = true;
             this.checkBoxValues.Location = new System.Drawing.Point(1376, 75);
             this.checkBoxValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -289,11 +289,11 @@
             this.checkBoxValues.TabIndex = 16;
             this.checkBoxValues.Text = "Show values";
             this.checkBoxValues.UseVisualStyleBackColor = true;
+            this.checkBoxValues.CheckedChanged += new System.EventHandler(this.checkBoxValues_CheckedChanged);
             // 
             // comboBoxChartType
             // 
-            this.comboBoxChartType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxChartType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxChartType.FormattingEnabled = true;
             this.comboBoxChartType.Location = new System.Drawing.Point(1415, 23);
             this.comboBoxChartType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -303,8 +303,7 @@
             // 
             // label26
             // 
-            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(1319, 26);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -358,10 +357,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(25, 238);
+            this.chart1.Location = new System.Drawing.Point(8, 226);
             this.chart1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(1492, 500);
+            this.chart1.Size = new System.Drawing.Size(1471, 512);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             // 
@@ -461,94 +460,94 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(29, 34);
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(8, 27);
             this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(57, 13);
+            this.label42.Size = new System.Drawing.Size(101, 24);
             this.label42.TabIndex = 78;
             this.label42.Text = "First Name";
             // 
             // textBoxWeight
             // 
             this.textBoxWeight.Enabled = false;
-            this.textBoxWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWeight.Location = new System.Drawing.Point(1585, 32);
+            this.textBoxWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxWeight.Location = new System.Drawing.Point(1784, 25);
             this.textBoxWeight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.Size = new System.Drawing.Size(59, 17);
+            this.textBoxWeight.Size = new System.Drawing.Size(59, 29);
             this.textBoxWeight.TabIndex = 97;
             // 
             // textBoxSNS
             // 
             this.textBoxSNS.Enabled = false;
-            this.textBoxSNS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSNS.Location = new System.Drawing.Point(565, 32);
+            this.textBoxSNS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSNS.Location = new System.Drawing.Point(620, 25);
             this.textBoxSNS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxSNS.Name = "textBoxSNS";
-            this.textBoxSNS.Size = new System.Drawing.Size(200, 17);
+            this.textBoxSNS.Size = new System.Drawing.Size(200, 29);
             this.textBoxSNS.TabIndex = 71;
             // 
             // textBoxAge
             // 
             this.textBoxAge.Enabled = false;
-            this.textBoxAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAge.Location = new System.Drawing.Point(1319, 32);
+            this.textBoxAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAge.Location = new System.Drawing.Point(1448, 25);
             this.textBoxAge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.Size = new System.Drawing.Size(59, 17);
+            this.textBoxAge.Size = new System.Drawing.Size(59, 29);
             this.textBoxAge.TabIndex = 96;
             // 
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(519, 34);
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(551, 27);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(29, 13);
+            this.label38.Size = new System.Drawing.Size(48, 24);
             this.label38.TabIndex = 82;
             this.label38.Text = "SNS";
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.Enabled = false;
-            this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFirstName.Location = new System.Drawing.Point(109, 32);
+            this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFirstName.Location = new System.Drawing.Point(130, 25);
             this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(400, 17);
+            this.textBoxFirstName.Size = new System.Drawing.Size(400, 29);
             this.textBoxFirstName.TabIndex = 68;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(1276, 37);
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(1382, 27);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(26, 13);
+            this.label40.Size = new System.Drawing.Size(45, 24);
             this.label40.TabIndex = 80;
             this.label40.Text = "Age";
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Enabled = false;
-            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLastName.Location = new System.Drawing.Point(860, 32);
+            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLastName.Location = new System.Drawing.Point(961, 25);
             this.textBoxLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(400, 17);
+            this.textBoxLastName.Size = new System.Drawing.Size(400, 29);
             this.textBoxLastName.TabIndex = 69;
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(775, 37);
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(841, 27);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(58, 13);
+            this.label41.Size = new System.Drawing.Size(99, 24);
             this.label41.TabIndex = 79;
             this.label41.Text = "Last Name";
             // 
@@ -562,7 +561,8 @@
             this.toolStripSeparator4,
             this.toolStripTextBoxMonitor,
             this.toolStripComboBoxmonitor,
-            this.toolStripButtonSearchMonitor});
+            this.toolStripButtonSearchMonitor,
+            this.toolStripButtonExport});
             this.toolStripMonitor.Location = new System.Drawing.Point(4, 4);
             this.toolStripMonitor.Name = "toolStripMonitor";
             this.toolStripMonitor.Size = new System.Drawing.Size(2097, 49);
@@ -1357,34 +1357,44 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(1523, 37);
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(1694, 27);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(41, 13);
+            this.label29.Size = new System.Drawing.Size(69, 24);
             this.label29.TabIndex = 92;
             this.label29.Text = "Weight";
             // 
             // textBoxheight
             // 
             this.textBoxheight.Enabled = false;
-            this.textBoxheight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxheight.Location = new System.Drawing.Point(1445, 32);
+            this.textBoxheight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxheight.Location = new System.Drawing.Point(1614, 25);
             this.textBoxheight.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxheight.Name = "textBoxheight";
-            this.textBoxheight.Size = new System.Drawing.Size(59, 17);
+            this.textBoxheight.Size = new System.Drawing.Size(59, 29);
             this.textBoxheight.TabIndex = 76;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(1387, 37);
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(1528, 27);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(38, 13);
+            this.label30.Size = new System.Drawing.Size(65, 24);
             this.label30.TabIndex = 90;
             this.label30.Text = "Height";
+            // 
+            // toolStripButtonExport
+            // 
+            this.toolStripButtonExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonExport.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonExport.Image")));
+            this.toolStripButtonExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonExport.Name = "toolStripButtonExport";
+            this.toolStripButtonExport.Size = new System.Drawing.Size(23, 46);
+            this.toolStripButtonExport.Text = "Export Graphic to PNG file";
+            this.toolStripButtonExport.Click += new System.EventHandler(this.toolStripButtonExport_Click);
             // 
             // FormAlertSystem
             // 
@@ -1533,6 +1543,7 @@
         public System.Windows.Forms.TextBox textBoxheight;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ToolStripButton toolStripButtonExport;
     }
 }
 
