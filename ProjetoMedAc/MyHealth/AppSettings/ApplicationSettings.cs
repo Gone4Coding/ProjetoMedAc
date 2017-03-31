@@ -12,13 +12,6 @@ namespace MyHealth.AppSettings
         private static XmlDocument doc = new XmlDocument();
         private static string settingsFile = @"../../AppSettings/AppSettings.xml";
 
-        private static int patient_Id;
-        private static string gender_Voice;
-        private static int voice_Rate;
-        private static string medLine_URL;
-        private static int dLL_Rate;
-        private static int retmax;
-
         public static void Set_Patient_Id(int value)
         {
             doc.Load(settingsFile);
@@ -32,7 +25,9 @@ namespace MyHealth.AppSettings
         {
             doc.Load(settingsFile);
             XmlNode patientNode = doc.SelectSingleNode("/settings/patientId");
-            return (patientNode == null || patientNode.InnerText.Equals("")) ? 0 : Convert.ToInt32(patientNode.InnerText);
+            return (patientNode == null || patientNode.InnerText.Equals(""))
+                ? 0
+                : Convert.ToInt32(patientNode.InnerText);
         }
 
         public static void Set_Gender_Voice(string value)
@@ -64,7 +59,9 @@ namespace MyHealth.AppSettings
         {
             doc.Load(settingsFile);
             XmlNode voiceRateNode = doc.SelectSingleNode("/settings/voiceRate");
-            return (voiceRateNode == null || voiceRateNode.InnerText.Equals("")) ? 0 : Convert.ToInt32(voiceRateNode.InnerText);
+            return (voiceRateNode == null || voiceRateNode.InnerText.Equals(""))
+                ? 0
+                : Convert.ToInt32(voiceRateNode.InnerText);
         }
 
         public static void Set_MedLine_URL(string value)
@@ -115,6 +112,25 @@ namespace MyHealth.AppSettings
             return (retmaxNode == null || retmaxNode.InnerText.Equals("")) ? 0 : Convert.ToInt32(retmaxNode.InnerText);
         }
 
+        public static void Set_Terms(List<string> termsList)
+        {
+            doc.Load(settingsFile);
+            XmlNode termsNode = doc.SelectSingleNode("/settings/terms");
+            if (termsNode != null)
+                foreach (string term in termsList)
+                {
+                    termsNode.InnerText = term + "\n";
+                }
+            doc.Save(settingsFile);
+        }
+
+        public static List<string> Get_Terms()
+        {
+            doc.Load(settingsFile);
+            XmlNode termsNode = doc.SelectSingleNode("/settings/terms");
+            return (termsNode != null ) ? termsNode.InnerText.Split('\n').ToList() : null;
+        }
 
     }
 }
+

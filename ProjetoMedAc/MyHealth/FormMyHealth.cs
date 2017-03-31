@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using System.Speech.Recognition;
@@ -8,6 +10,7 @@ using System.Threading;
 using System.Xml;
 using MyHealth.ServiceReferenceHealth;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Input;
 using MyHealth.AppSettings;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
@@ -76,7 +79,6 @@ namespace MyHealth
             cb_speechActivation.ForeColor = Color.Firebrick;
             HideAll();
             HideLabels(false);
-            gb_user.Location = new Point(192, 71);
             tb_patientSNS.Text = ApplicationSettings.Get_Patient_Id().ToString();
         }
 
@@ -340,10 +342,13 @@ namespace MyHealth
 
         private void EveryThingOk()
         {
-            MoveGroupBoxUser();
+            //MoveGroupBoxUser();
             gb_monitoringParametrs.Visible = true;
-            gb_physiologicDataNormal.Visible = true;
+            gb_BloodPressure.Visible = true;
+            gb_HeatRate.Visible = true;
+            gb_Saturation.Visible = true;
             lb_userName.Visible = true;
+            lb_userAge.Visible = true;
 
             foreach (TabPage tabPage in mainTabing.TabPages)
             {
@@ -354,16 +359,19 @@ namespace MyHealth
         private void WrongUser()
         {
             gb_monitoringParametrs.Visible = false;
-            gb_physiologicDataNormal.Visible = false;
             lb_userName.Visible = false;
+            lb_userAge.Visible = false;
         }
 
         private void HideAll()
         {
             lb_userName.Visible = false;
+            lb_userAge.Visible = false;
             lb_serviceError.Visible = false;
             gb_monitoringParametrs.Visible = false;
-            gb_physiologicDataNormal.Visible = false;
+            gb_BloodPressure.Visible = false;
+            gb_HeatRate.Visible = false;
+            gb_Saturation.Visible = false;
 
             foreach (TabPage tabPage in mainTabing.TabPages)
             {
@@ -387,11 +395,37 @@ namespace MyHealth
             lb_userName.Visible = visible;
         }
 
+        private void bt_BPActivation_Click(object sender, EventArgs e)
+        {
+            bloodPressure_checked = !bloodPressure_checked;
+            ActivateBloodPressureMonitoring(bloodPressure_checked);
+        }
+
+        private void bt_satActivation_Click(object sender, EventArgs e)
+        {
+            saturation_checked = !saturation_checked;
+            ActivateSaturationMonitoring(saturation_checked);
+        }
+
+        private void bt_HRActivation_Click(object sender, EventArgs e)
+        {
+            heartRate_checked = !heartRate_checked;
+            ActivateHeartRateMonitoring(heartRate_checked);
+        }
+
         private void ActivateHeartRateMonitoring(bool check)
         {
             if (!check) lb_dataHR.Text = "";
-            cb_heartRate.Checked = check;
-            heartRate_checked = check;
+            if (check)
+            {
+                bt_HRActivation.Text = "Active";
+                bt_HRActivation.ForeColor = Color.LimeGreen;
+            }
+            else
+            {
+                bt_HRActivation.Text = "Deactive";
+                bt_HRActivation.ForeColor = Color.Firebrick;
+            }
             lb_date_HR.Visible = check;
             lb_date_HR.Text = "Receiving...";
             lb_dataHR.Visible = check;
@@ -403,8 +437,16 @@ namespace MyHealth
         private void ActivateSaturationMonitoring(bool check)
         {
             if (!check) lb_dataSPO2.Text = "";
-            cb_saturations.Checked = check;
-            saturation_checked = check;
+            if (check)
+            {
+                bt_satActivation.Text = "Active";
+                bt_satActivation.ForeColor = Color.LimeGreen;
+            }
+            else
+            {
+                bt_satActivation.Text = "Deactive";
+                bt_satActivation.ForeColor = Color.Firebrick;
+            }
             lb_date_o2.Visible = check;
             lb_date_o2.Text = "Receiving...";
             lb_dataSPO2.Visible = check;
@@ -416,8 +458,16 @@ namespace MyHealth
         private void ActivateBloodPressureMonitoring(bool check)
         {
             if (!check) lb_dataBP.Text = "";
-            cb_bloodPressure.Checked = check;
-            bloodPressure_checked = check;
+            if (check)
+            {
+                bt_BPActivation.Text = "Active";
+                bt_BPActivation.ForeColor = Color.LimeGreen;
+            }
+            else
+            {
+                bt_BPActivation.Text = "Deactive";
+                bt_BPActivation.ForeColor = Color.Firebrick;
+            }
             lb_dateBP.Visible = check;
             lb_dateBP.Text = "Receiving...";
             lb_dataBP.Visible = check;
@@ -596,67 +646,52 @@ namespace MyHealth
 
         }
 
-        private void cb_bloodPressure_MouseClick(object sender, MouseEventArgs e)
-        {
-            ActivateBloodPressureMonitoring(cb_bloodPressure.Checked);
-        }
+        //private void MoveGroupBoxUser()
+        //{
+        //    Control destination = new Control();
+        //    destination.Location = new Point(6, 6);
 
-        private void cb_saturations_MouseClick(object sender, MouseEventArgs e)
-        {
-            ActivateSaturationMonitoring(cb_saturations.Checked);
-        }
+        //    SlideToDestination(destination, gb_user, 2, null);
+        //}
 
-        private void cb_heartRate_MouseClick(object sender, MouseEventArgs e)
-        {
-            ActivateHeartRateMonitoring(cb_heartRate.Checked);
-        }
+        //private void SlideToDestination(Control destination, Control control, int delay, Action onFinish)
+        //{
+        //    new Task(() =>
+        //    {
+        //        int directionX = destination.Left > control.Left ? 1 : -1;
+        //        int directionY = destination.Bottom > control.Top ? 1 : -1;
 
-        private void MoveGroupBoxUser()
-        {
-            Control destination = new Control();
-            destination.Location = new Point(6, 6);
+        //        while (control.Left != destination.Left || control.Top != destination.Bottom)
+        //        {
+        //            try
+        //            {
+        //                if (control.Left != destination.Left)
+        //                {
+        //                    this.Invoke((Action)delegate ()
+        //                    {
+        //                        control.Left += directionX;
+        //                    });
+        //                }
+        //                if (control.Top != destination.Bottom)
+        //                {
+        //                    this.Invoke((Action)delegate ()
+        //                    {
+        //                        control.Top += directionY;
+        //                    });
+        //                }
+        //                Thread.Sleep(delay);
+        //            }
+        //            catch
+        //            {
+        //                // form could be disposed
+        //                break;
+        //            }
+        //        }
 
-            SlideToDestination(destination, gb_user, 2, null);
-        }
+        //        if (onFinish != null) onFinish();
 
-        private void SlideToDestination(Control destination, Control control, int delay, Action onFinish)
-        {
-            new Task(() =>
-            {
-                int directionX = destination.Left > control.Left ? 1 : -1;
-                int directionY = destination.Bottom > control.Top ? 1 : -1;
-
-                while (control.Left != destination.Left || control.Top != destination.Bottom)
-                {
-                    try
-                    {
-                        if (control.Left != destination.Left)
-                        {
-                            this.Invoke((Action)delegate ()
-                            {
-                                control.Left += directionX;
-                            });
-                        }
-                        if (control.Top != destination.Bottom)
-                        {
-                            this.Invoke((Action)delegate ()
-                            {
-                                control.Top += directionY;
-                            });
-                        }
-                        Thread.Sleep(delay);
-                    }
-                    catch
-                    {
-                        // form could be disposed
-                        break;
-                    }
-                }
-
-                if (onFinish != null) onFinish();
-
-            }).Start();
-        }
+        //    }).Start();
+        //}
         
         private void cb_speechActivation_CheckedChanged(object sender, EventArgs e)
         {
@@ -682,6 +717,12 @@ namespace MyHealth
             tb_firstname.Text = patient.Name;
             tb_lastName.Text = patient.Surname;
             lb_userName.Text = patient.Name + " " + patient.Surname;
+            int age = DateTime.Now.Year - patient.BirthDate.Year;
+            if (patient.BirthDate.Month > DateTime.Now.Month)
+            {
+                age--;
+            }
+            lb_userAge.Text = age.ToString();
             dateTimePicker_birthdate.Value = patient.BirthDate;
             tb_nif.Text = patient.Nif.ToString();
             tb_sns.Text = patient.Sns.ToString();
@@ -766,6 +807,8 @@ namespace MyHealth
                     MessageBoxIcon.Exclamation);
             }
 
+            List<string> termsList = rtb_terms.Text.Split('\n').ToList();
+            ApplicationSettings.Set_Terms(termsList);
         }
 
         private void bt_cancel_Click(object sender, EventArgs e)
@@ -796,6 +839,12 @@ namespace MyHealth
                 numberRatingDLL.Value = Convert.ToDecimal(ApplicationSettings.Get_DLL_Rate());
 
             tb_retmax.Text = ApplicationSettings.Get_Retmax().ToString();
+
+            List<string> termsList = ApplicationSettings.Get_Terms();
+            foreach (string term in termsList)
+            {
+                rtb_terms.Text = term + "\n";
+            }
         }
 
         #endregion
