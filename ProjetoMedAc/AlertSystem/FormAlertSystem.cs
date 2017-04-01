@@ -67,6 +67,10 @@ namespace AlertSystem
             //toolStripTextBox.Width = 500;
 
             load(null, false);
+            if (patients.Count == 0)
+            {
+                toolStripButtonAdd_Click(sender,e);
+            }
 
             #endregion
 
@@ -89,14 +93,21 @@ namespace AlertSystem
         //      
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
+            try
             {
-                load(patientToEdit, true);
+                if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
+                {
+                    load(patientToEdit, true);
 
-                radioButtonBloodPressure.Checked = true;
-                readRadioButtons(patientOnMonitoring);
-                startGraphics();
+                    radioButtonBloodPressure.Checked = true;
+                    readRadioButtons(patientOnMonitoring);
+                    startGraphics();
+                }
+            }
+            catch (NullReferenceException x)
+            {
+                MessageBox.Show("First, you have to add a Patient to the system, and then you can monitorize it", "INFO",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -462,7 +473,7 @@ namespace AlertSystem
                     }
                     else
                     {
-
+                        
                         if (p.Ativo)
                         {
                             fillMonitorPatientInfo(p);
@@ -491,6 +502,7 @@ namespace AlertSystem
                 //MessageBox.Show("SEE YOU LATER ALIGATOR", "BYE BYE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 this.Close();
             }
+           
         }
 
         private void enableTextBoxes(bool estado)
@@ -1021,6 +1033,7 @@ namespace AlertSystem
 
         private void readRadioButtons(Patient patient)
         {
+            
             patientsRecordBloodPressure =
                     new List<BloodPressure>(
                         client.BloodPressureList(patient.Sns)
@@ -1119,19 +1132,27 @@ namespace AlertSystem
 
         private void checkBoxValues_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxValues.Checked)
+            try
             {
-                chart1.Series[DIASTOLIC].IsValueShownAsLabel = true;
-                chart1.Series[SYSTOLIC].IsValueShownAsLabel = true;
-                chart1.Series[HRATE].IsValueShownAsLabel = true;
-                chart1.Series[OXYSAT].IsValueShownAsLabel = true;
+                if (checkBoxValues.Checked)
+                {
+                    chart1.Series[DIASTOLIC].IsValueShownAsLabel = true;
+                    chart1.Series[SYSTOLIC].IsValueShownAsLabel = true;
+                    chart1.Series[HRATE].IsValueShownAsLabel = true;
+                    chart1.Series[OXYSAT].IsValueShownAsLabel = true;
+                }
+                else
+                {
+                    chart1.Series[DIASTOLIC].IsValueShownAsLabel = false;
+                    chart1.Series[SYSTOLIC].IsValueShownAsLabel = false;
+                    chart1.Series[HRATE].IsValueShownAsLabel = false;
+                    chart1.Series[OXYSAT].IsValueShownAsLabel = false;
+                }
             }
-            else
+            catch (ArgumentException a)
             {
-                chart1.Series[DIASTOLIC].IsValueShownAsLabel = false;
-                chart1.Series[SYSTOLIC].IsValueShownAsLabel = false;
-                chart1.Series[HRATE].IsValueShownAsLabel = false;
-                chart1.Series[OXYSAT].IsValueShownAsLabel = false;
+                MessageBox.Show("No graphic", "INFO",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         public void startGraphics()
