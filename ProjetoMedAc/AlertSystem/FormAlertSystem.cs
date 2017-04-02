@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using AlertSystem.ServiceReferenceHealth;
 
 
@@ -98,6 +99,13 @@ namespace AlertSystem
             comboBoxChartType.Items.Add(COLUMNS);
             comboBoxChartType.Items.Add(POINTS);
 
+            checkBoxDiastolicSeries.Text = DIASTOLIC;
+            checkBoxSystolicSeries.Text = SYSTOLIC;
+            checkBoxHeartRateSeries.Text = HRATE;
+            checkBoxOxySatSeries.Text = OXYSAT;
+
+            checkBoxesChecked(true);
+
             #endregion
         }
 
@@ -108,6 +116,7 @@ namespace AlertSystem
             {
                 if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
                 {
+
                     load(patientToEdit, true);
                     radioButtonBloodPressure.Checked = true;
                     firstTime = false;
@@ -340,8 +349,6 @@ namespace AlertSystem
                 Patient patientSelected = client.GetPatient(sns);
 
                 fillFields(patientSelected);
-
-
             }
         }
 
@@ -410,8 +417,21 @@ namespace AlertSystem
 
         private void toolStripButtonExport_Click(object sender, EventArgs e)
         {
-            string file = Application.StartupPath + "/grafico.png";
-            chart1.SaveImage(file, System.Drawing.Imaging.ImageFormat.Png);
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = ".PNG | *.png";
+            saveFileDialog1.Title = "Save Graphic Image";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {              
+                System.IO.FileStream fs =
+                   (System.IO.FileStream)saveFileDialog1.OpenFile();             
+                chart1.SaveImage(fs, System.Drawing.Imaging.ImageFormat.Png);
+
+                fs.Close();
+                MessageBox.Show("File saved!\n" + fs.Name, "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
         private void bt_OK_Click(object sender, EventArgs e)
@@ -431,6 +451,83 @@ namespace AlertSystem
         {
             FormSearch search = new FormSearch();
             search.ShowDialog();
+            Patient patientSearch = search.getPatientSearched();
+            if (patientSearch != null)
+            {
+                patientOnMonitoring = patientSearch;
+                load(patientOnMonitoring, true);
+                //radioButtonBloodPressure.Checked = true;
+                firstTime = false;
+                readRadioButtons(patientOnMonitoring);
+                startGraphics();
+                readComboChartTyper();
+            }
+        }
+
+        private void checkBoxesChecked(bool state)
+        {
+            checkBoxDiastolicSeries.Checked = state;
+            checkBoxSystolicSeries.Checked = state;
+            checkBoxHeartRateSeries.Checked = state;
+            checkBoxOxySatSeries.Checked = state;
+
+        }
+
+
+        private void checkBoxDiastolicSeries_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxDiastolicSeries.Checked)
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
+            else
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
+        }
+
+        private void checkBoxSystolicSeries_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSystolicSeries.Checked)
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
+            else
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
+        }
+
+        private void checkBoxHeartRateSeries_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxHeartRateSeries.Checked)
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
+            else
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
+        }
+
+        private void checkBoxOxySatSeries_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxOxySatSeries.Checked)
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
+            else
+            {
+                startGraphics();
+                readComboChartTyper();
+            }
         }
         #endregion
 
@@ -606,6 +703,8 @@ namespace AlertSystem
                 comboBoxCode.Text = countries.First(i => i.CallingCodes == patient.PhoneCountryCode).ToString();
             readMonitoring(patient);
             // fillMonitorPatientInfo(patient);
+
+
         }
 
         private void fillComboBoxCountries()
@@ -979,37 +1078,34 @@ namespace AlertSystem
         private void fillMonitorPatientInfo(Patient patient)
         {
             patientOnMonitoring = patient;
-            textBoxFirstName.Text = patient.Name;
-            textBoxLastName.Text = patient.Surname;
-            textBoxSNS.Text = patient.Sns.ToString();
-            textBoxAge.Text = getAge(patient.BirthDate).ToString();
-            tb_phone.Text = patient.Phone.ToString();
-            textBoxheight.Text = patient.Height.ToString();
-            textBoxWeight.Text = patient.Weight.ToString();
+            toolStripPatientLabel.Text = "PATIENT: " + patientOnMonitoring.Name + " " + patientOnMonitoring.Surname + " SNS: " +
+                                         patientOnMonitoring.Sns + " AGE: " +
+                                         getAge(patientOnMonitoring.BirthDate).ToString();
         }
         private void readRadioButtons(Patient patient)
-        {           
+        {
             patientsRecordBloodPressure =
                     new List<BloodPressure>(
                         client.BloodPressureList(patient.Sns)
-                            .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                            .Where(i => i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) >= fromDate && i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) <= toDate)
                             .OrderByDescending(i => i.Date));
 
             patientsRecordHeartRate =
                     new List<HeartRate>(client.HeartRateList(patient.Sns)
-                        .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                        .Where(i => i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) >= fromDate && i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) <= toDate)
                         .OrderByDescending(i => i.Date));
 
             patientsRecordOxySat =
                    new List<OxygenSaturation>(
                        client.OxygenSaturationList(patient.Sns)
-                           .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                           .Where(i => i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) >= fromDate && i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) <= toDate)
                            .OrderByDescending(i => i.Date));
 
             Event d = new Event();
             d.EvenType = Event.Type.ECA;
-           
-            warningListBloodPressure = new List<BloodPressure>(client.GetWarningListBloodPressure(d, fromDate,toDate));
+
+            warningListBloodPressure = new List<BloodPressure>(client.GetWarningListBloodPressure(d, fromDate, toDate).Where(i => i.PatientSNS == patient.Sns
+                ).OrderByDescending(i => i.Date));
 
             if (radioButtonBloodPressure.Checked)
             {
@@ -1105,19 +1201,44 @@ namespace AlertSystem
         {
             try
             {
+                bool sDiastolic = false;
+                bool sSystolic = false;
+                bool sHrate = false;
+                bool sOxySat = false;
+
+                foreach (Series a in chart1.Series)
+                {
+                    if (a.Name.Equals(DIASTOLIC))
+                        sDiastolic = true;
+                    if (a.Name.Equals(SYSTOLIC))
+                        sSystolic = true;
+                    if (a.Name.Equals(HRATE))
+                        sHrate = true;
+                    if (a.Name.Equals(OXYSAT))
+                        sOxySat = true;
+                }
+
                 if (checkBoxValues.Checked)
                 {
-                    chart1.Series[DIASTOLIC].IsValueShownAsLabel = true;
-                    chart1.Series[SYSTOLIC].IsValueShownAsLabel = true;
-                    chart1.Series[HRATE].IsValueShownAsLabel = true;
-                    chart1.Series[OXYSAT].IsValueShownAsLabel = true;
+                    if (sDiastolic)
+                        chart1.Series[DIASTOLIC].IsValueShownAsLabel = true;
+                    if (sSystolic)
+                        chart1.Series[SYSTOLIC].IsValueShownAsLabel = true;
+                    if (sHrate)
+                        chart1.Series[HRATE].IsValueShownAsLabel = true;
+                    if (sOxySat)
+                        chart1.Series[OXYSAT].IsValueShownAsLabel = true;
                 }
                 else
                 {
-                    chart1.Series[DIASTOLIC].IsValueShownAsLabel = false;
-                    chart1.Series[SYSTOLIC].IsValueShownAsLabel = false;
-                    chart1.Series[HRATE].IsValueShownAsLabel = false;
-                    chart1.Series[OXYSAT].IsValueShownAsLabel = false;
+                    if (sDiastolic)
+                        chart1.Series[DIASTOLIC].IsValueShownAsLabel = false;
+                    if (sSystolic)
+                        chart1.Series[SYSTOLIC].IsValueShownAsLabel = false;
+                    if (sHrate)
+                        chart1.Series[HRATE].IsValueShownAsLabel = false;
+                    if (sOxySat)
+                        chart1.Series[OXYSAT].IsValueShownAsLabel = false;
                 }
             }
             catch (ArgumentException a)
@@ -1132,23 +1253,35 @@ namespace AlertSystem
             chart1.ChartAreas.Clear();
 
             chart1.ChartAreas.Add(AREA1);
-
-            List<string> horaBList = readValuesForBloodPressure();
-            List<string> horaHrateList = readValuesForHeartRate();
-            List<string> horaOxySatList = readValuesForOxySat();
-
             List<int> totalValues = new List<int>();
-            if (horaBList != null)
-                totalValues.Add(horaBList.Count);
-            if (horaHrateList != null)
-                totalValues.Add(horaHrateList.Count);
-            if (horaOxySatList != null)
-                totalValues.Add(horaOxySatList.Count);
+            if (checkBoxSystolicSeries.Checked && checkBoxDiastolicSeries.Checked)
+            {
+                List<string> horaBList = readValuesForBloodPressure();
 
+                if (horaBList != null)
+                    totalValues.Add(horaBList.Count);
+            }
+
+            if (checkBoxHeartRateSeries.Checked)
+            {
+                List<string> horaHrateList = readValuesForHeartRate();
+                if (horaHrateList != null)
+                    totalValues.Add(horaHrateList.Count);
+
+            }
+
+            if (checkBoxOxySatSeries.Checked)
+            {
+                List<string> horaOxySatList = readValuesForOxySat();
+                if (horaOxySatList != null)
+                    totalValues.Add(horaOxySatList.Count);
+
+            }
             totalValues.Sort();
 
             chart1.ChartAreas[AREA1].AxisX.Minimum = 1;
-            chart1.ChartAreas[AREA1].AxisX.Maximum = totalValues[0];
+            if (totalValues.Count > 0)
+                chart1.ChartAreas[AREA1].AxisX.Maximum = totalValues[0];
             chart1.ChartAreas[AREA1].AxisX.Interval = 1;
 
             chart1.ChartAreas[AREA1].AxisY.Maximum = 200;
@@ -1176,7 +1309,7 @@ namespace AlertSystem
             if (patientsRecordOxySat != null)
             {
                 List<OxygenSaturation> valores =
-                    patientsRecordOxySat.Where(i => i.Date >= fromDate && i.Date <= toDate)
+                    patientsRecordOxySat.Where(i => i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) >= fromDate && i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) <= toDate)
                         .OrderBy(i => i.Date)
                         .ToList();
 
@@ -1224,7 +1357,7 @@ namespace AlertSystem
             if (patientsRecordHeartRate != null)
             {
                 List<HeartRate> valores =
-                    patientsRecordHeartRate.Where(i => i.Date >= fromDate && i.Date <= toDate)
+                    patientsRecordHeartRate.Where(i => i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) >= fromDate && i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) <= toDate)
                         .OrderBy(i => i.Date)
                         .ToList();
 
@@ -1270,7 +1403,7 @@ namespace AlertSystem
             if (patientsRecordBloodPressure != null)
             {
                 List<BloodPressure> valores =
-                    patientsRecordBloodPressure.Where(i => i.Date >= fromDate && i.Date <= toDate)
+                    patientsRecordBloodPressure.Where(i => i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) >= fromDate && i.Date.AddHours(i.Time.Hours).AddMinutes(i.Time.Minutes).AddSeconds(i.Time.Seconds) <= toDate)
                         .OrderBy(i => i.Date)
                         .ToList();
 
@@ -1316,43 +1449,90 @@ namespace AlertSystem
         }
         private void readComboChartTyper()
         {
+            bool sDiastolic = false;
+            bool sSystolic = false;
+            bool sHrate = false;
+            bool sOxySat = false;
+
+            foreach (Series a in chart1.Series)
+            {
+                if (a.Name.Equals(DIASTOLIC))
+                    sDiastolic = true;
+                if (a.Name.Equals(SYSTOLIC))
+                    sSystolic = true;
+                if (a.Name.Equals(HRATE))
+                    sHrate = true;
+                if (a.Name.Equals(OXYSAT))
+                    sOxySat = true;
+            }
+
             switch (comboBoxChartType.Text)
             {
                 case LINES:
-                    chart1.Series[DIASTOLIC].ChartType =
-              System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                    chart1.Series[SYSTOLIC].ChartType =
-                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-                    chart1.Series[HRATE].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-                    chart1.Series[OXYSAT].ChartType =
-                  System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    if (sDiastolic)
+                    {
+                        chart1.Series[DIASTOLIC].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    }
+                    if (sSystolic)
+                    {
+                        chart1.Series[SYSTOLIC].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    }
+                    if (sHrate)
+                    {
+                        chart1.Series[HRATE].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    }
+                    if (sOxySat)
+                    {
+                        chart1.Series[OXYSAT].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    }
                     break;
                 case POINTS:
-                    chart1.Series[DIASTOLIC].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-                    chart1.Series[SYSTOLIC].ChartType =
-                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-
-                    chart1.Series[HRATE].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-
-                    chart1.Series[OXYSAT].ChartType =
-                 System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                    if (sDiastolic)
+                    {
+                        chart1.Series[DIASTOLIC].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                    }
+                    if (sSystolic)
+                    {
+                        chart1.Series[SYSTOLIC].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                    }
+                    if (sHrate)
+                    {
+                        chart1.Series[HRATE].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                    }
+                    if (sOxySat)
+                    {
+                        chart1.Series[OXYSAT].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                    }
                     break;
                 case COLUMNS:
-                    chart1.Series[DIASTOLIC].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-                    chart1.Series[SYSTOLIC].ChartType =
-                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-
-                    chart1.Series[HRATE].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-
-                    chart1.Series[OXYSAT].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                    if (sDiastolic)
+                    {
+                        chart1.Series[DIASTOLIC].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                    }
+                    if (sSystolic)
+                    {
+                        chart1.Series[SYSTOLIC].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                    }
+                    if (sHrate)
+                    {
+                        chart1.Series[HRATE].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                    }
+                    if (sOxySat)
+                    {
+                        chart1.Series[OXYSAT].ChartType =
+                            System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                    }
                     break;
             }
         }
@@ -1364,5 +1544,7 @@ namespace AlertSystem
         {
             labelTime.Text = DateTime.Now.ToLongTimeString();
         }
+
+
     }
 }

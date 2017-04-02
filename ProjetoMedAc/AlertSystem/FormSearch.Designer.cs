@@ -28,39 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewHistory = new System.Windows.Forms.DataGridView();
+            this.dataGridViewActivePatients = new System.Windows.Forms.DataGridView();
             this.groupBoxPatientsList = new System.Windows.Forms.GroupBox();
             this.groupBoxFilters = new System.Windows.Forms.GroupBox();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivePatients)).BeginInit();
             this.groupBoxPatientsList.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridViewHistory
+            // dataGridViewActivePatients
             // 
-            this.dataGridViewHistory.AllowUserToAddRows = false;
-            this.dataGridViewHistory.AllowUserToDeleteRows = false;
-            this.dataGridViewHistory.AllowUserToOrderColumns = true;
-            this.dataGridViewHistory.AllowUserToResizeColumns = false;
-            this.dataGridViewHistory.AllowUserToResizeRows = false;
-            this.dataGridViewHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewActivePatients.AllowUserToAddRows = false;
+            this.dataGridViewActivePatients.AllowUserToDeleteRows = false;
+            this.dataGridViewActivePatients.AllowUserToOrderColumns = true;
+            this.dataGridViewActivePatients.AllowUserToResizeColumns = false;
+            this.dataGridViewActivePatients.AllowUserToResizeRows = false;
+            this.dataGridViewActivePatients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewHistory.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHistory.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewHistory.Location = new System.Drawing.Point(6, 19);
-            this.dataGridViewHistory.MultiSelect = false;
-            this.dataGridViewHistory.Name = "dataGridViewHistory";
-            this.dataGridViewHistory.ReadOnly = true;
-            this.dataGridViewHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewHistory.Size = new System.Drawing.Size(491, 270);
-            this.dataGridViewHistory.TabIndex = 8;
+            this.dataGridViewActivePatients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewActivePatients.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewActivePatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewActivePatients.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewActivePatients.Location = new System.Drawing.Point(6, 19);
+            this.dataGridViewActivePatients.MultiSelect = false;
+            this.dataGridViewActivePatients.Name = "dataGridViewActivePatients";
+            this.dataGridViewActivePatients.ReadOnly = true;
+            this.dataGridViewActivePatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewActivePatients.Size = new System.Drawing.Size(491, 270);
+            this.dataGridViewActivePatients.TabIndex = 8;
+            this.dataGridViewActivePatients.SelectionChanged += new System.EventHandler(this.dataGridViewActivePatients_SelectionChanged);
             // 
             // groupBoxPatientsList
             // 
-            this.groupBoxPatientsList.Controls.Add(this.dataGridViewHistory);
+            this.groupBoxPatientsList.Controls.Add(this.dataGridViewActivePatients);
             this.groupBoxPatientsList.Location = new System.Drawing.Point(12, 92);
             this.groupBoxPatientsList.Name = "groupBoxPatientsList";
             this.groupBoxPatientsList.Size = new System.Drawing.Size(503, 300);
@@ -85,6 +86,7 @@
             this.buttonOk.TabIndex = 11;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // buttonCancel
             // 
@@ -110,7 +112,7 @@
             this.ShowIcon = false;
             this.Text = "Search";
             this.Load += new System.EventHandler(this.FormSearch_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivePatients)).EndInit();
             this.groupBoxPatientsList.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -118,7 +120,7 @@
 
         #endregion
 
-        public System.Windows.Forms.DataGridView dataGridViewHistory;
+        public System.Windows.Forms.DataGridView dataGridViewActivePatients;
         private System.Windows.Forms.GroupBox groupBoxPatientsList;
         private System.Windows.Forms.GroupBox groupBoxFilters;
         private System.Windows.Forms.Button buttonOk;
