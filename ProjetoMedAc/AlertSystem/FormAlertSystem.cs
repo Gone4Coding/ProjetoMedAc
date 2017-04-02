@@ -53,7 +53,8 @@ namespace AlertSystem
 
             InitializeComponent();
             client = new ServiceHealthAlertClient();
-
+            timer1.Start();
+            timer1.Interval = 1000;
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -113,6 +114,7 @@ namespace AlertSystem
                     readRadioButtons(patientOnMonitoring);
                     startGraphics();
                     comboBoxChartType.SelectedIndex = 0;
+                    readComboChartTyper();
                 }
             }
             catch (NullReferenceException x)
@@ -417,49 +419,12 @@ namespace AlertSystem
             readDateTimeGraphics();
             readRadioButtons(patientOnMonitoring);
             startGraphics();
+            readComboChartTyper();
         }
 
         private void comboBoxChartType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBoxChartType.Text)
-            {
-                case LINES:
-                    chart1.Series[DIASTOLIC].ChartType =
-              System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                    chart1.Series[SYSTOLIC].ChartType =
-                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-                    chart1.Series[HRATE].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-                    chart1.Series[OXYSAT].ChartType =
-                  System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                    break;
-                case POINTS:
-                    chart1.Series[DIASTOLIC].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-                    chart1.Series[SYSTOLIC].ChartType =
-                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-
-                    chart1.Series[HRATE].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-
-                    chart1.Series[OXYSAT].ChartType =
-                 System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-                    break;
-                case COLUMNS:
-                    chart1.Series[DIASTOLIC].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-                    chart1.Series[SYSTOLIC].ChartType =
-                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-
-                    chart1.Series[HRATE].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-
-                    chart1.Series[OXYSAT].ChartType =
-             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-                    break;
-            }
+            readComboChartTyper();
         }
 
         private void toolStripButtonSearchMonitor_Click(object sender, EventArgs e)
@@ -1023,8 +988,7 @@ namespace AlertSystem
             textBoxWeight.Text = patient.Weight.ToString();
         }
         private void readRadioButtons(Patient patient)
-        {
-           
+        {           
             patientsRecordBloodPressure =
                     new List<BloodPressure>(
                         client.BloodPressureList(patient.Sns)
@@ -1042,7 +1006,10 @@ namespace AlertSystem
                            .Where(i => i.Date >= fromDate && i.Date <= toDate)
                            .OrderByDescending(i => i.Date));
 
-            warningListBloodPressure = new List<BloodPressure>(client.GetWarningListBloodPressure(, fromDate,toDate));
+            Event d = new Event();
+            d.EvenType = Event.Type.ECA;
+           
+            warningListBloodPressure = new List<BloodPressure>(client.GetWarningListBloodPressure(d, fromDate,toDate));
 
             if (radioButtonBloodPressure.Checked)
             {
@@ -1052,9 +1019,10 @@ namespace AlertSystem
                     dataGridViewHistory.RowHeadersVisible = false;
                     dataGridViewHistory.Columns["PatientSNS"].Visible = false;
 
-                    //chart1.Titles.Clear();
-                    //chart1.Titles.Add("Blood Pressure");
-                    startGraphics();
+                    dataGridViewAlerts.DataSource = warningListBloodPressure;
+                    dataGridViewAlerts.RowHeadersVisible = false;
+                    dataGridViewAlerts.Columns["PatientSNS"].Visible = false;
+                    dataGridViewAlerts.Columns["Date"].Width = 75;
 
                     if (patientsRecordBloodPressure.Count == 0 && !firstTime)
                     {
@@ -1346,10 +1314,55 @@ namespace AlertSystem
             }
             return null;
         }
+        private void readComboChartTyper()
+        {
+            switch (comboBoxChartType.Text)
+            {
+                case LINES:
+                    chart1.Series[DIASTOLIC].ChartType =
+              System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    chart1.Series[SYSTOLIC].ChartType =
+                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
+                    chart1.Series[HRATE].ChartType =
+             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+                    chart1.Series[OXYSAT].ChartType =
+                  System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    break;
+                case POINTS:
+                    chart1.Series[DIASTOLIC].ChartType =
+             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                    chart1.Series[SYSTOLIC].ChartType =
+                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+
+                    chart1.Series[HRATE].ChartType =
+             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+
+                    chart1.Series[OXYSAT].ChartType =
+                 System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                    break;
+                case COLUMNS:
+                    chart1.Series[DIASTOLIC].ChartType =
+             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                    chart1.Series[SYSTOLIC].ChartType =
+                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+
+                    chart1.Series[HRATE].ChartType =
+             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+
+                    chart1.Series[OXYSAT].ChartType =
+             System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                    break;
+            }
+        }
         #endregion
 
         #endregion
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            labelTime.Text = DateTime.Now.ToLongTimeString();
+        }
     }
 }
