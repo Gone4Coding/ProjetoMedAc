@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -45,12 +45,13 @@
             this.label25 = new System.Windows.Forms.Label();
             this.bt_OK = new System.Windows.Forms.Button();
             this.groupBoxRecords = new System.Windows.Forms.GroupBox();
-            this.checkBoxSplit = new System.Windows.Forms.CheckBox();
-            this.pictureBoxMonitoring = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBoxDiastolicSeries = new System.Windows.Forms.CheckBox();
+            this.checkBoxSystolicSeries = new System.Windows.Forms.CheckBox();
             this.checkBoxOxySatSeries = new System.Windows.Forms.CheckBox();
             this.checkBoxHeartRateSeries = new System.Windows.Forms.CheckBox();
-            this.checkBoxSystolicSeries = new System.Windows.Forms.CheckBox();
-            this.checkBoxDiastolicSeries = new System.Windows.Forms.CheckBox();
+            this.checkBoxSplit = new System.Windows.Forms.CheckBox();
+            this.pictureBoxMonitoring = new System.Windows.Forms.PictureBox();
             this.checkBoxValues = new System.Windows.Forms.CheckBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridViewHistory = new System.Windows.Forms.DataGridView();
@@ -58,11 +59,11 @@
             this.label26 = new System.Windows.Forms.Label();
             this.groupBoxAlerts = new System.Windows.Forms.GroupBox();
             this.pictureBoxAlerts = new System.Windows.Forms.PictureBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonECI = new System.Windows.Forms.RadioButton();
+            this.radioButtonEAI = new System.Windows.Forms.RadioButton();
+            this.radioButtonECA = new System.Windows.Forms.RadioButton();
+            this.radioButtonECC = new System.Windows.Forms.RadioButton();
+            this.radioButtonEAC = new System.Windows.Forms.RadioButton();
             this.dataGridViewAlerts = new System.Windows.Forms.DataGridView();
             this.toolStripMonitor = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonRefreshMonitor = new System.Windows.Forms.ToolStripButton();
@@ -136,13 +137,13 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFilters)).BeginInit();
             this.groupBoxRecords.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMonitoring)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
@@ -160,7 +161,6 @@
             this.tabControlRecors.SuspendLayout();
             this.tabPageStatistics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -320,25 +320,43 @@
             this.groupBoxRecords.TabStop = false;
             this.groupBoxRecords.Text = "Records";
             // 
-            // checkBoxSplit
+            // panel2
             // 
-            this.checkBoxSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxSplit.AutoSize = true;
-            this.checkBoxSplit.Location = new System.Drawing.Point(749, 69);
-            this.checkBoxSplit.Name = "checkBoxSplit";
-            this.checkBoxSplit.Size = new System.Drawing.Size(78, 17);
-            this.checkBoxSplit.TabIndex = 22;
-            this.checkBoxSplit.Text = "Split Series";
-            this.checkBoxSplit.UseVisualStyleBackColor = true;
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.checkBoxDiastolicSeries);
+            this.panel2.Controls.Add(this.checkBoxSystolicSeries);
+            this.panel2.Controls.Add(this.checkBoxOxySatSeries);
+            this.panel2.Controls.Add(this.checkBoxHeartRateSeries);
+            this.panel2.Location = new System.Drawing.Point(853, 19);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 117);
+            this.panel2.TabIndex = 23;
             // 
-            // pictureBoxMonitoring
+            // checkBoxDiastolicSeries
             // 
-            this.pictureBoxMonitoring.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMonitoring.Image")));
-            this.pictureBoxMonitoring.Location = new System.Drawing.Point(13, 19);
-            this.pictureBoxMonitoring.Name = "pictureBoxMonitoring";
-            this.pictureBoxMonitoring.Size = new System.Drawing.Size(71, 67);
-            this.pictureBoxMonitoring.TabIndex = 21;
-            this.pictureBoxMonitoring.TabStop = false;
+            this.checkBoxDiastolicSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxDiastolicSeries.AutoSize = true;
+            this.checkBoxDiastolicSeries.Location = new System.Drawing.Point(17, 32);
+            this.checkBoxDiastolicSeries.Name = "checkBoxDiastolicSeries";
+            this.checkBoxDiastolicSeries.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxDiastolicSeries.TabIndex = 17;
+            this.checkBoxDiastolicSeries.UseVisualStyleBackColor = true;
+            this.checkBoxDiastolicSeries.CheckedChanged += new System.EventHandler(this.checkBoxDiastolicSeries_CheckedChanged);
+            // 
+            // checkBoxSystolicSeries
+            // 
+            this.checkBoxSystolicSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxSystolicSeries.AutoSize = true;
+            this.checkBoxSystolicSeries.Location = new System.Drawing.Point(17, 49);
+            this.checkBoxSystolicSeries.Name = "checkBoxSystolicSeries";
+            this.checkBoxSystolicSeries.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxSystolicSeries.TabIndex = 18;
+            this.checkBoxSystolicSeries.UseVisualStyleBackColor = true;
+            this.checkBoxSystolicSeries.CheckedChanged += new System.EventHandler(this.checkBoxSystolicSeries_CheckedChanged);
             // 
             // checkBoxOxySatSeries
             // 
@@ -366,31 +384,25 @@
             this.checkBoxHeartRateSeries.UseVisualStyleBackColor = true;
             this.checkBoxHeartRateSeries.CheckedChanged += new System.EventHandler(this.checkBoxHeartRateSeries_CheckedChanged);
             // 
-            // checkBoxSystolicSeries
+            // checkBoxSplit
             // 
-            this.checkBoxSystolicSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxSystolicSeries.AutoSize = true;
-            this.checkBoxSystolicSeries.Location = new System.Drawing.Point(17, 49);
-            this.checkBoxSystolicSeries.Name = "checkBoxSystolicSeries";
-            this.checkBoxSystolicSeries.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxSystolicSeries.TabIndex = 18;
-            this.checkBoxSystolicSeries.UseVisualStyleBackColor = true;
-            this.checkBoxSystolicSeries.CheckedChanged += new System.EventHandler(this.checkBoxSystolicSeries_CheckedChanged);
+            this.checkBoxSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxSplit.AutoSize = true;
+            this.checkBoxSplit.Location = new System.Drawing.Point(749, 69);
+            this.checkBoxSplit.Name = "checkBoxSplit";
+            this.checkBoxSplit.Size = new System.Drawing.Size(78, 17);
+            this.checkBoxSplit.TabIndex = 22;
+            this.checkBoxSplit.Text = "Split Series";
+            this.checkBoxSplit.UseVisualStyleBackColor = true;
             // 
-            // checkBoxDiastolicSeries
+            // pictureBoxMonitoring
             // 
-            this.checkBoxDiastolicSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxDiastolicSeries.AutoSize = true;
-            this.checkBoxDiastolicSeries.Location = new System.Drawing.Point(17, 32);
-            this.checkBoxDiastolicSeries.Name = "checkBoxDiastolicSeries";
-            this.checkBoxDiastolicSeries.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxDiastolicSeries.TabIndex = 17;
-            this.checkBoxDiastolicSeries.UseVisualStyleBackColor = true;
-            this.checkBoxDiastolicSeries.CheckedChanged += new System.EventHandler(this.checkBoxDiastolicSeries_CheckedChanged);
+            this.pictureBoxMonitoring.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMonitoring.Image")));
+            this.pictureBoxMonitoring.Location = new System.Drawing.Point(13, 19);
+            this.pictureBoxMonitoring.Name = "pictureBoxMonitoring";
+            this.pictureBoxMonitoring.Size = new System.Drawing.Size(71, 67);
+            this.pictureBoxMonitoring.TabIndex = 21;
+            this.pictureBoxMonitoring.TabStop = false;
             // 
             // checkBoxValues
             // 
@@ -409,8 +421,8 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend7.Name = "Legend1";
-            this.chart1.Legends.Add(legend7);
+            legend5.Name = "Legend1";
+            this.chart1.Legends.Add(legend5);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1069, 426);
@@ -464,11 +476,11 @@
             this.groupBoxAlerts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxAlerts.Controls.Add(this.pictureBoxAlerts);
-            this.groupBoxAlerts.Controls.Add(this.radioButton5);
-            this.groupBoxAlerts.Controls.Add(this.radioButton4);
-            this.groupBoxAlerts.Controls.Add(this.radioButton3);
-            this.groupBoxAlerts.Controls.Add(this.radioButton2);
-            this.groupBoxAlerts.Controls.Add(this.radioButton1);
+            this.groupBoxAlerts.Controls.Add(this.radioButtonECI);
+            this.groupBoxAlerts.Controls.Add(this.radioButtonEAI);
+            this.groupBoxAlerts.Controls.Add(this.radioButtonECA);
+            this.groupBoxAlerts.Controls.Add(this.radioButtonECC);
+            this.groupBoxAlerts.Controls.Add(this.radioButtonEAC);
             this.groupBoxAlerts.Controls.Add(this.dataGridViewAlerts);
             this.groupBoxAlerts.Location = new System.Drawing.Point(6, 105);
             this.groupBoxAlerts.Name = "groupBoxAlerts";
@@ -486,60 +498,65 @@
             this.pictureBoxAlerts.TabIndex = 22;
             this.pictureBoxAlerts.TabStop = false;
             // 
-            // radioButton5
+            // radioButtonECI
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(137, 119);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(85, 17);
-            this.radioButton5.TabIndex = 11;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "radioButton5";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButtonECI.AutoSize = true;
+            this.radioButtonECI.Location = new System.Drawing.Point(137, 119);
+            this.radioButtonECI.Name = "radioButtonECI";
+            this.radioButtonECI.Size = new System.Drawing.Size(111, 17);
+            this.radioButtonECI.TabIndex = 11;
+            this.radioButtonECI.TabStop = true;
+            this.radioButtonECI.Text = "Intermittent Critical";
+            this.radioButtonECI.UseVisualStyleBackColor = true;
+            this.radioButtonECI.CheckedChanged += new System.EventHandler(this.radioButtonECI_CheckedChanged);
             // 
-            // radioButton4
+            // radioButtonEAI
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(137, 96);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
-            this.radioButton4.TabIndex = 10;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButtonEAI.AutoSize = true;
+            this.radioButtonEAI.Location = new System.Drawing.Point(137, 96);
+            this.radioButtonEAI.Name = "radioButtonEAI";
+            this.radioButtonEAI.Size = new System.Drawing.Size(120, 17);
+            this.radioButtonEAI.TabIndex = 10;
+            this.radioButtonEAI.TabStop = true;
+            this.radioButtonEAI.Text = "Intermittent Warning";
+            this.radioButtonEAI.UseVisualStyleBackColor = true;
+            this.radioButtonEAI.CheckedChanged += new System.EventHandler(this.radioButtonEAI_CheckedChanged);
             // 
-            // radioButton3
+            // radioButtonECA
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(11, 142);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 9;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButtonECA.AutoSize = true;
+            this.radioButtonECA.Location = new System.Drawing.Point(11, 142);
+            this.radioButtonECA.Name = "radioButtonECA";
+            this.radioButtonECA.Size = new System.Drawing.Size(100, 17);
+            this.radioButtonECA.TabIndex = 9;
+            this.radioButtonECA.TabStop = true;
+            this.radioButtonECA.Text = "AnyTime Critical";
+            this.radioButtonECA.UseVisualStyleBackColor = true;
+            this.radioButtonECA.CheckedChanged += new System.EventHandler(this.radioButtonECA_CheckedChanged);
             // 
-            // radioButton2
+            // radioButtonECC
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(11, 119);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 8;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButtonECC.AutoSize = true;
+            this.radioButtonECC.Location = new System.Drawing.Point(11, 119);
+            this.radioButtonECC.Name = "radioButtonECC";
+            this.radioButtonECC.Size = new System.Drawing.Size(112, 17);
+            this.radioButtonECC.TabIndex = 8;
+            this.radioButtonECC.TabStop = true;
+            this.radioButtonECC.Text = "Continuous Critical";
+            this.radioButtonECC.UseVisualStyleBackColor = true;
+            this.radioButtonECC.CheckedChanged += new System.EventHandler(this.radioButtonECC_CheckedChanged);
             // 
-            // radioButton1
+            // radioButtonEAC
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(11, 96);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButtonEAC.AutoSize = true;
+            this.radioButtonEAC.Location = new System.Drawing.Point(11, 96);
+            this.radioButtonEAC.Name = "radioButtonEAC";
+            this.radioButtonEAC.Size = new System.Drawing.Size(121, 17);
+            this.radioButtonEAC.TabIndex = 7;
+            this.radioButtonEAC.TabStop = true;
+            this.radioButtonEAC.Text = "Continuous Warning";
+            this.radioButtonEAC.UseVisualStyleBackColor = true;
+            this.radioButtonEAC.CheckedChanged += new System.EventHandler(this.radioButtonEAC_CheckedChanged);
             // 
             // dataGridViewAlerts
             // 
@@ -1348,18 +1365,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.checkBoxDiastolicSeries);
-            this.panel2.Controls.Add(this.checkBoxSystolicSeries);
-            this.panel2.Controls.Add(this.checkBoxOxySatSeries);
-            this.panel2.Controls.Add(this.checkBoxHeartRateSeries);
-            this.panel2.Location = new System.Drawing.Point(853, 19);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 117);
-            this.panel2.TabIndex = 23;
-            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1379,6 +1384,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFilters)).EndInit();
             this.groupBoxRecords.ResumeLayout(false);
             this.groupBoxRecords.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMonitoring)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).EndInit();
@@ -1403,8 +1410,6 @@
             this.tabControlRecors.ResumeLayout(false);
             this.tabPageStatistics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1502,11 +1507,11 @@
         private System.Windows.Forms.CheckBox checkBoxOxySatSeries;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButtonECI;
+        private System.Windows.Forms.RadioButton radioButtonEAI;
+        private System.Windows.Forms.RadioButton radioButtonECA;
+        private System.Windows.Forms.RadioButton radioButtonECC;
+        private System.Windows.Forms.RadioButton radioButtonEAC;
         private System.Windows.Forms.PictureBox pictureBoxMonitoring;
         private System.Windows.Forms.PictureBox pictureBoxAlerts;
         private System.Windows.Forms.PictureBox pictureBoxStats;
