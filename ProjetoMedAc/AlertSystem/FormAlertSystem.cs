@@ -1295,7 +1295,8 @@ namespace AlertSystem
                 chart1.ChartAreas[AREA1].AxisX.Minimum = 1;
                 if (totalValues.Count > 0)
                     chart1.ChartAreas[AREA1].AxisX.Maximum = totalValues.Last();
-                chart1.ChartAreas[AREA1].AxisX.Interval = 1;
+                //chart1.ChartAreas[AREA1].AxisX.Interval = 1;
+                chart1.ChartAreas[AREA1].AxisX.LabelStyle.ForeColor = Color.Red;
 
                 chart1.ChartAreas[AREA1].AxisY.Maximum = 200;
                 chart1.ChartAreas[AREA1].AxisY.Interval = 10;
@@ -1687,7 +1688,6 @@ namespace AlertSystem
             labelTime.Text = DateTime.Now.ToLongTimeString();
         }
 
-
-
+       
     }
 }
