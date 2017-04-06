@@ -524,7 +524,7 @@ namespace MyHealth
         private void StartMonitoring()
         {
             int rate = ApplicationSettings.Get_DLL_Rate();
-            dll.Initialize(DataParser, rate, bloodPressure_checked, saturation_checked, heartRate_checked);
+            dll.InitializeWithAlerts(DataParser, rate, bloodPressure_checked, saturation_checked, heartRate_checked);
         }
 
         private void DataParser(string message)
