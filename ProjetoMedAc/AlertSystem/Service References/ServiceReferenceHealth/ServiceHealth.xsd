@@ -117,4 +117,50 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="Event.Type" nillable="true" type="tns:Event.Type" />
+  <xs:complexType name="ArrayOfOxygenSaturationWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OxygenSaturationWarning" nillable="true" type="tns:OxygenSaturationWarning" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOxygenSaturationWarning" nillable="true" type="tns:ArrayOfOxygenSaturationWarning" />
+  <xs:complexType name="OxygenSaturationWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EvenType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PatientSNS" type="xs:int" />
+      <xs:element minOccurs="0" name="Saturation" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OxygenSaturationWarning" nillable="true" type="tns:OxygenSaturationWarning" />
+  <xs:complexType name="ArrayOfBloodPressureWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BloodPressureWarning" nillable="true" type="tns:BloodPressureWarning" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBloodPressureWarning" nillable="true" type="tns:ArrayOfBloodPressureWarning" />
+  <xs:complexType name="BloodPressureWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Diastolic" type="xs:int" />
+      <xs:element minOccurs="0" name="EvenType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PatientSNS" type="xs:int" />
+      <xs:element minOccurs="0" name="Systolic" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BloodPressureWarning" nillable="true" type="tns:BloodPressureWarning" />
+  <xs:complexType name="ArrayOfHeartRateWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeartRateWarning" nillable="true" type="tns:HeartRateWarning" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHeartRateWarning" nillable="true" type="tns:ArrayOfHeartRateWarning" />
+  <xs:complexType name="HeartRateWarning">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EvenType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PatientSNS" type="xs:int" />
+      <xs:element minOccurs="0" name="Rate" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeartRateWarning" nillable="true" type="tns:HeartRateWarning" />
 </xs:schema>

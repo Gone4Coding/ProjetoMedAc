@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -137,7 +137,9 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.radioButtonAll = new System.Windows.Forms.RadioButton();
+            this.labelResultsAlerts = new System.Windows.Forms.Label();
+            this.labelResultsRecords = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -306,6 +308,7 @@
             this.groupBoxRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxRecords.Controls.Add(this.labelResultsRecords);
             this.groupBoxRecords.Controls.Add(this.panel2);
             this.groupBoxRecords.Controls.Add(this.checkBoxSplit);
             this.groupBoxRecords.Controls.Add(this.pictureBoxMonitoring);
@@ -422,8 +425,8 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1069, 426);
@@ -476,6 +479,8 @@
             // 
             this.groupBoxAlerts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxAlerts.Controls.Add(this.labelResultsAlerts);
+            this.groupBoxAlerts.Controls.Add(this.radioButtonAll);
             this.groupBoxAlerts.Controls.Add(this.pictureBoxAlerts);
             this.groupBoxAlerts.Controls.Add(this.radioButtonECI);
             this.groupBoxAlerts.Controls.Add(this.radioButtonEAI);
@@ -502,24 +507,24 @@
             // radioButtonECI
             // 
             this.radioButtonECI.AutoSize = true;
-            this.radioButtonECI.Location = new System.Drawing.Point(137, 119);
+            this.radioButtonECI.Location = new System.Drawing.Point(156, 119);
             this.radioButtonECI.Name = "radioButtonECI";
-            this.radioButtonECI.Size = new System.Drawing.Size(111, 17);
+            this.radioButtonECI.Size = new System.Drawing.Size(134, 17);
             this.radioButtonECI.TabIndex = 11;
             this.radioButtonECI.TabStop = true;
-            this.radioButtonECI.Text = "Intermittent Critical";
+            this.radioButtonECI.Text = "Intermittent Critical(ECI)";
             this.radioButtonECI.UseVisualStyleBackColor = true;
             this.radioButtonECI.CheckedChanged += new System.EventHandler(this.radioButtonECI_CheckedChanged);
             // 
             // radioButtonEAI
             // 
             this.radioButtonEAI.AutoSize = true;
-            this.radioButtonEAI.Location = new System.Drawing.Point(137, 96);
+            this.radioButtonEAI.Location = new System.Drawing.Point(156, 96);
             this.radioButtonEAI.Name = "radioButtonEAI";
-            this.radioButtonEAI.Size = new System.Drawing.Size(120, 17);
+            this.radioButtonEAI.Size = new System.Drawing.Size(143, 17);
             this.radioButtonEAI.TabIndex = 10;
             this.radioButtonEAI.TabStop = true;
-            this.radioButtonEAI.Text = "Intermittent Warning";
+            this.radioButtonEAI.Text = "Intermittent Warning(EAI)";
             this.radioButtonEAI.UseVisualStyleBackColor = true;
             this.radioButtonEAI.CheckedChanged += new System.EventHandler(this.radioButtonEAI_CheckedChanged);
             // 
@@ -528,10 +533,10 @@
             this.radioButtonECA.AutoSize = true;
             this.radioButtonECA.Location = new System.Drawing.Point(11, 142);
             this.radioButtonECA.Name = "radioButtonECA";
-            this.radioButtonECA.Size = new System.Drawing.Size(100, 17);
+            this.radioButtonECA.Size = new System.Drawing.Size(127, 17);
             this.radioButtonECA.TabIndex = 9;
             this.radioButtonECA.TabStop = true;
-            this.radioButtonECA.Text = "AnyTime Critical";
+            this.radioButtonECA.Text = "AnyTime Critical(ECA)";
             this.radioButtonECA.UseVisualStyleBackColor = true;
             this.radioButtonECA.CheckedChanged += new System.EventHandler(this.radioButtonECA_CheckedChanged);
             // 
@@ -540,10 +545,10 @@
             this.radioButtonECC.AutoSize = true;
             this.radioButtonECC.Location = new System.Drawing.Point(11, 119);
             this.radioButtonECC.Name = "radioButtonECC";
-            this.radioButtonECC.Size = new System.Drawing.Size(112, 17);
+            this.radioButtonECC.Size = new System.Drawing.Size(139, 17);
             this.radioButtonECC.TabIndex = 8;
             this.radioButtonECC.TabStop = true;
-            this.radioButtonECC.Text = "Continuous Critical";
+            this.radioButtonECC.Text = "Continuous Critical(ECC)";
             this.radioButtonECC.UseVisualStyleBackColor = true;
             this.radioButtonECC.CheckedChanged += new System.EventHandler(this.radioButtonECC_CheckedChanged);
             // 
@@ -552,10 +557,10 @@
             this.radioButtonEAC.AutoSize = true;
             this.radioButtonEAC.Location = new System.Drawing.Point(11, 96);
             this.radioButtonEAC.Name = "radioButtonEAC";
-            this.radioButtonEAC.Size = new System.Drawing.Size(121, 17);
+            this.radioButtonEAC.Size = new System.Drawing.Size(148, 17);
             this.radioButtonEAC.TabIndex = 7;
             this.radioButtonEAC.TabStop = true;
-            this.radioButtonEAC.Text = "Continuous Warning";
+            this.radioButtonEAC.Text = "Continuous Warning(EAC)";
             this.radioButtonEAC.UseVisualStyleBackColor = true;
             this.radioButtonEAC.CheckedChanged += new System.EventHandler(this.radioButtonEAC_CheckedChanged);
             // 
@@ -580,7 +585,7 @@
             this.dataGridViewAlerts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAlerts.Size = new System.Drawing.Size(293, 403);
             this.dataGridViewAlerts.TabIndex = 6;
-        
+            this.dataGridViewAlerts.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewAlerts_ColumnHeaderMouseClick);
             // 
             // toolStripMonitor
             // 
@@ -1367,9 +1372,36 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // backgroundWorker1
+            // radioButtonAll
             // 
-           
+            this.radioButtonAll.AutoSize = true;
+            this.radioButtonAll.Location = new System.Drawing.Point(11, 73);
+            this.radioButtonAll.Name = "radioButtonAll";
+            this.radioButtonAll.Size = new System.Drawing.Size(36, 17);
+            this.radioButtonAll.TabIndex = 23;
+            this.radioButtonAll.TabStop = true;
+            this.radioButtonAll.Text = "All";
+            this.radioButtonAll.UseVisualStyleBackColor = true;
+            this.radioButtonAll.CheckedChanged += new System.EventHandler(this.radioButtonAll_CheckedChanged);
+            // 
+            // labelResultsAlerts
+            // 
+            this.labelResultsAlerts.AutoSize = true;
+            this.labelResultsAlerts.Location = new System.Drawing.Point(240, 146);
+            this.labelResultsAlerts.Name = "labelResultsAlerts";
+            this.labelResultsAlerts.Size = new System.Drawing.Size(48, 13);
+            this.labelResultsAlerts.TabIndex = 24;
+            this.labelResultsAlerts.Text = "Results :";
+            // 
+            // labelResultsRecords
+            // 
+            this.labelResultsRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelResultsRecords.AutoSize = true;
+            this.labelResultsRecords.Location = new System.Drawing.Point(613, 123);
+            this.labelResultsRecords.Name = "labelResultsRecords";
+            this.labelResultsRecords.Size = new System.Drawing.Size(48, 13);
+            this.labelResultsRecords.TabIndex = 25;
+            this.labelResultsRecords.Text = "Results :";
             // 
             // FormAlertSystem
             // 
@@ -1528,7 +1560,9 @@
         private System.Windows.Forms.ToolStripLabel toolStripPatientLabel;
         private System.Windows.Forms.CheckBox checkBoxSplit;
         private System.Windows.Forms.Panel panel2;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.RadioButton radioButtonAll;
+        private System.Windows.Forms.Label labelResultsRecords;
+        private System.Windows.Forms.Label labelResultsAlerts;
     }
 }
 
