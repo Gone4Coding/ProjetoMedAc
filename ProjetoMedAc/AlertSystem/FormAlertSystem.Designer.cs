@@ -51,7 +51,6 @@
             this.checkBoxSystolicSeries = new System.Windows.Forms.CheckBox();
             this.checkBoxOxySatSeries = new System.Windows.Forms.CheckBox();
             this.checkBoxHeartRateSeries = new System.Windows.Forms.CheckBox();
-            this.checkBoxSplit = new System.Windows.Forms.CheckBox();
             this.pictureBoxMonitoring = new System.Windows.Forms.PictureBox();
             this.checkBoxValues = new System.Windows.Forms.CheckBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -140,6 +139,9 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBoxLast3Days = new System.Windows.Forms.GroupBox();
+            this.groupBoxInterval = new System.Windows.Forms.GroupBox();
+            this.groupBoxGlobal = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -178,7 +180,7 @@
             this.tabPage_viewRecords.Location = new System.Drawing.Point(4, 22);
             this.tabPage_viewRecords.Name = "tabPage_viewRecords";
             this.tabPage_viewRecords.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_viewRecords.Size = new System.Drawing.Size(1418, 739);
+            this.tabPage_viewRecords.Size = new System.Drawing.Size(1349, 695);
             this.tabPage_viewRecords.TabIndex = 4;
             this.tabPage_viewRecords.Text = "View Records";
             this.tabPage_viewRecords.UseVisualStyleBackColor = true;
@@ -310,7 +312,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxRecords.Controls.Add(this.labelResultsRecords);
             this.groupBoxRecords.Controls.Add(this.panel2);
-            this.groupBoxRecords.Controls.Add(this.checkBoxSplit);
             this.groupBoxRecords.Controls.Add(this.pictureBoxMonitoring);
             this.groupBoxRecords.Controls.Add(this.checkBoxValues);
             this.groupBoxRecords.Controls.Add(this.chart1);
@@ -398,17 +399,6 @@
             this.checkBoxHeartRateSeries.UseVisualStyleBackColor = true;
             this.checkBoxHeartRateSeries.CheckedChanged += new System.EventHandler(this.checkBoxHeartRateSeries_CheckedChanged);
             // 
-            // checkBoxSplit
-            // 
-            this.checkBoxSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxSplit.AutoSize = true;
-            this.checkBoxSplit.Location = new System.Drawing.Point(749, 69);
-            this.checkBoxSplit.Name = "checkBoxSplit";
-            this.checkBoxSplit.Size = new System.Drawing.Size(78, 17);
-            this.checkBoxSplit.TabIndex = 22;
-            this.checkBoxSplit.Text = "Split Series";
-            this.checkBoxSplit.UseVisualStyleBackColor = true;
-            // 
             // pictureBoxMonitoring
             // 
             this.pictureBoxMonitoring.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMonitoring.Image")));
@@ -463,6 +453,7 @@
             this.dataGridViewHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewHistory.Size = new System.Drawing.Size(501, 117);
             this.dataGridViewHistory.TabIndex = 7;
+            this.dataGridViewHistory.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewHistory_ColumnHeaderMouseClick);
             // 
             // comboBoxChartType
             // 
@@ -632,7 +623,7 @@
             this.toolStripPatientLabel});
             this.toolStripMonitor.Location = new System.Drawing.Point(3, 3);
             this.toolStripMonitor.Name = "toolStripMonitor";
-            this.toolStripMonitor.Size = new System.Drawing.Size(1412, 40);
+            this.toolStripMonitor.Size = new System.Drawing.Size(1343, 40);
             this.toolStripMonitor.TabIndex = 4;
             this.toolStripMonitor.Text = "toolStrip1";
             // 
@@ -1370,11 +1361,14 @@
             // 
             // tabPageStatistics
             // 
+            this.tabPageStatistics.Controls.Add(this.groupBoxGlobal);
+            this.tabPageStatistics.Controls.Add(this.groupBoxInterval);
+            this.tabPageStatistics.Controls.Add(this.groupBoxLast3Days);
             this.tabPageStatistics.Controls.Add(this.pictureBoxStats);
             this.tabPageStatistics.Location = new System.Drawing.Point(4, 22);
             this.tabPageStatistics.Name = "tabPageStatistics";
             this.tabPageStatistics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStatistics.Size = new System.Drawing.Size(1418, 739);
+            this.tabPageStatistics.Size = new System.Drawing.Size(1349, 695);
             this.tabPageStatistics.TabIndex = 5;
             this.tabPageStatistics.Text = "Statistics";
             this.tabPageStatistics.UseVisualStyleBackColor = true;
@@ -1402,6 +1396,33 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // groupBoxLast3Days
+            // 
+            this.groupBoxLast3Days.Location = new System.Drawing.Point(204, 30);
+            this.groupBoxLast3Days.Name = "groupBoxLast3Days";
+            this.groupBoxLast3Days.Size = new System.Drawing.Size(1004, 138);
+            this.groupBoxLast3Days.TabIndex = 23;
+            this.groupBoxLast3Days.TabStop = false;
+            this.groupBoxLast3Days.Text = "Last 3 Days";
+            // 
+            // groupBoxInterval
+            // 
+            this.groupBoxInterval.Location = new System.Drawing.Point(204, 174);
+            this.groupBoxInterval.Name = "groupBoxInterval";
+            this.groupBoxInterval.Size = new System.Drawing.Size(1004, 138);
+            this.groupBoxInterval.TabIndex = 24;
+            this.groupBoxInterval.TabStop = false;
+            this.groupBoxInterval.Text = "Interval";
+            // 
+            // groupBoxGlobal
+            // 
+            this.groupBoxGlobal.Location = new System.Drawing.Point(204, 318);
+            this.groupBoxGlobal.Name = "groupBoxGlobal";
+            this.groupBoxGlobal.Size = new System.Drawing.Size(1004, 138);
+            this.groupBoxGlobal.TabIndex = 24;
+            this.groupBoxGlobal.TabStop = false;
+            this.groupBoxGlobal.Text = "Global";
             // 
             // FormAlertSystem
             // 
@@ -1558,11 +1579,13 @@
         public System.Windows.Forms.RadioButton radioButtonHeartRate;
         public System.Windows.Forms.RadioButton radioButtonBloodPressure;
         private System.Windows.Forms.ToolStripLabel toolStripPatientLabel;
-        private System.Windows.Forms.CheckBox checkBoxSplit;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton radioButtonAll;
         private System.Windows.Forms.Label labelResultsRecords;
         private System.Windows.Forms.Label labelResultsAlerts;
+        private System.Windows.Forms.GroupBox groupBoxGlobal;
+        private System.Windows.Forms.GroupBox groupBoxInterval;
+        private System.Windows.Forms.GroupBox groupBoxLast3Days;
     }
 }
 

@@ -123,6 +123,7 @@ namespace AlertSystem
             {
                 if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
                 {
+                    dataGridViewAlerts.DataSource = null;
                     load(patientToEdit, true);
                     if (patientToEdit.Ativo)
                     {
@@ -130,6 +131,7 @@ namespace AlertSystem
                         firstTime = false;
                         radioButtonAll.Checked = true;
                         readRadioButtons(patientOnMonitoring);
+                        readRadioButtonsAlerts(patientOnMonitoring,eventType);
                         startGraphics();
                         comboBoxChartType.SelectedIndex = 0;
                         readComboChartTyper();
@@ -284,7 +286,7 @@ namespace AlertSystem
             {
                 case 10:
                     if (!asc)
-                    {                       
+                    {
                         fillGridView(patients.OrderBy(i => i.Name).ToList());
                         asc = true;
                     }
@@ -463,7 +465,7 @@ namespace AlertSystem
                 patientOnMonitoring = patientSearch;
                 load(patientOnMonitoring, true);
                 firstTime = false;
-                radioButtonEAC.Checked = true;
+                radioButtonAll.Checked = true;
                 readRadioButtons(patientOnMonitoring);
                 startGraphics();
                 readComboChartTyper();
@@ -586,7 +588,7 @@ namespace AlertSystem
             }
         }
         private void dataGridViewAlerts_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {          
+        {
             switch (e.ColumnIndex)
             {
                 case 0:
@@ -594,7 +596,7 @@ namespace AlertSystem
                     {
                         if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
                         {
-                           
+
                             dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
@@ -674,7 +676,7 @@ namespace AlertSystem
                 case 1:
                     if (!asc)
                     {
-                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked )
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
                         {
                             dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Diastolic).ToList();
                             setGridViewAlerts();
@@ -770,14 +772,14 @@ namespace AlertSystem
                         {
                             dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.Rate).ToList();
                             setGridViewAlerts();
-                        }                    
+                        }
 
                         if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
                         {
                             dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.Saturation).ToList();
                             setGridViewAlerts();
                         }
-                  
+
                         asc = true;
                     }
                     else
@@ -1900,7 +1902,7 @@ namespace AlertSystem
         }
         private void readRadioButtonsAlerts(Patient patient, Event typeEvent)
         {
-        
+
             if (radioButtonBloodPressure.Checked)
             {
                 if (radioButtonAll.Checked)
@@ -1993,7 +1995,7 @@ namespace AlertSystem
                 dataGridViewAlerts.Columns["Date"].Width = 125;
             }
         }
-     
+
         #endregion
 
         #endregion
@@ -2007,5 +2009,117 @@ namespace AlertSystem
             return client;
         }
 
+        private void dataGridViewHistory_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    if (!asc)
+                    {
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordBloodPressure.OrderBy(i => i.Date).ToList();
+                        }
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordHeartRate.OrderBy(i => i.Date).ToList();
+                        }
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordOxySat.OrderBy(i => i.Date).ToList();
+                        }
+                        asc = true;
+                    }
+                    else
+                    {
+
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordBloodPressure.OrderByDescending(i => i.Date).ToList();
+                        }
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordHeartRate.OrderByDescending(
+                                i => i.Date).ToList();
+                        }
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordOxySat.OrderByDescending(i => i.Date).ToList();
+                        }
+
+                        asc = false;
+                    }
+                    break;
+
+                case 1:
+                    if (!asc)
+                    {
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordBloodPressure.OrderBy(i => i.Diastolic).ToList();
+                        }
+                       
+                        asc = true;
+                    }
+                    else
+                    {
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordBloodPressure.OrderByDescending(i => i.Diastolic).ToList();
+                        }
+                     
+                      
+                        asc = false;
+                    }
+                    break;
+                case 2:
+                    if (!asc)
+                    {
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordHeartRate.OrderBy(i => i.Rate).ToList();
+                        }
+
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewHistory.DataSource =
+                                patientsRecordOxySat.OrderBy(i => i.Saturation).ToList();
+                        }
+                        asc = true;
+                    }
+                    else
+                    {
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordHeartRate.OrderByDescending(i => i.Rate).ToList();
+                        }
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewHistory.DataSource =
+                                patientsRecordOxySat.OrderByDescending(i => i.Saturation).ToList();
+                        }
+                        asc = false;
+                    }
+                    break;
+                case 3:
+                    if (!asc)
+                    {
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordBloodPressure.OrderBy(i => i.Systolic).ToList();
+                        }
+                        asc = true;
+                    }
+                    else
+                    {
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewHistory.DataSource = patientsRecordBloodPressure.OrderByDescending(i => i.Systolic).ToList();
+                        }
+                        asc = false;
+                    }
+                    break;
+            }
+        }
     }
 }
