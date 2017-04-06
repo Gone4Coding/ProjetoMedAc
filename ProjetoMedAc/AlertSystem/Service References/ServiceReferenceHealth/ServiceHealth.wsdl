@@ -121,6 +121,12 @@
   <wsdl:message name="IServiceHealthAlert_DeleteConfigurationLimit_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteConfigurationLimitResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetEventList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceHealthAlert_GetEventList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventListResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceHealthAlert_InsertEvent_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertEvent" />
   </wsdl:message>
@@ -253,6 +259,10 @@
     <wsdl:operation name="DeleteConfigurationLimit">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimit" message="tns:IServiceHealthAlert_DeleteConfigurationLimit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimitResponse" message="tns:IServiceHealthAlert_DeleteConfigurationLimit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetEventList" message="tns:IServiceHealthAlert_GetEventList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceHealthAlert/GetEventListResponse" message="tns:IServiceHealthAlert_GetEventList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertEvent">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceHealthAlert/InsertEvent" message="tns:IServiceHealthAlert_InsertEvent_InputMessage" />
@@ -460,6 +470,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteConfigurationLimit">
       <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventList">
+      <soap:operation soapAction="http://tempuri.org/IServiceHealthAlert/GetEventList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -99,6 +99,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfConfigurationLimitType" nillable="true" type="tns:ArrayOfConfigurationLimitType" />
+  <xs:complexType name="ArrayOfEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Event" nillable="true" type="tns:Event" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEvent" nillable="true" type="tns:ArrayOfEvent" />
   <xs:complexType name="Event">
     <xs:sequence>
       <xs:element minOccurs="0" name="EvenType" type="tns:Event.Type" />
