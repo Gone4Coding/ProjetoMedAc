@@ -75,6 +75,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfBloodPressure" nillable="true" type="tns:ArrayOfBloodPressure" />
+  <xs:simpleType name="ConfigurationLimitType.Type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HR" />
+      <xs:enumeration value="SPO2" />
+      <xs:enumeration value="BP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConfigurationLimitType.Type" nillable="true" type="tns:ConfigurationLimitType.Type" />
   <xs:complexType name="ConfigurationLimitType">
     <xs:sequence>
       <xs:element minOccurs="0" name="ConfigurationType" type="tns:ConfigurationLimitType.Type" />
@@ -85,14 +93,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ConfigurationLimitType" nillable="true" type="tns:ConfigurationLimitType" />
-  <xs:simpleType name="ConfigurationLimitType.Type">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="HR" />
-      <xs:enumeration value="SPO2" />
-      <xs:enumeration value="BP" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ConfigurationLimitType.Type" nillable="true" type="tns:ConfigurationLimitType.Type" />
   <xs:complexType name="ArrayOfConfigurationLimitType">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ConfigurationLimitType" nillable="true" type="tns:ConfigurationLimitType" />

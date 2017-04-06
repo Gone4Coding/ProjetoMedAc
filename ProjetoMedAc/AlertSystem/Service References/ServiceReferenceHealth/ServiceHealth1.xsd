@@ -197,7 +197,7 @@
   <xs:element name="GetConfigurationLimit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q12:ConfigurationLimitType" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" type="q12:ConfigurationLimitType.Type" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

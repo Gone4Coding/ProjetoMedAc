@@ -1294,10 +1294,10 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressure>> BloodPressureListAsync(int sns);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitResponse")]
-        AlertSystem.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType type);
+        AlertSystem.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType.Type type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitResponse")]
-        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType type);
+        System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType.Type type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetConfigurationLimitListResponse")]
         System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitList();
@@ -1475,11 +1475,11 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.BloodPressureListAsync(sns);
         }
         
-        public AlertSystem.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType type) {
+        public AlertSystem.ServiceReferenceHealth.ConfigurationLimitType GetConfigurationLimit(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType.Type type) {
             return base.Channel.GetConfigurationLimit(type);
         }
         
-        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType type) {
+        public System.Threading.Tasks.Task<AlertSystem.ServiceReferenceHealth.ConfigurationLimitType> GetConfigurationLimitAsync(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType.Type type) {
             return base.Channel.GetConfigurationLimitAsync(type);
         }
         
