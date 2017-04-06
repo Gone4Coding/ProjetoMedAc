@@ -120,6 +120,9 @@
     <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.ConfigurationLimitType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.Event.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceReferenceHealth\AlertSystem.ServiceReferenceHealth.HeartRate.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

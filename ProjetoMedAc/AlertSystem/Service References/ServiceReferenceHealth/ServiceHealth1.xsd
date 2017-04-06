@@ -262,10 +262,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetEventList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEventListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetEventListResult" nillable="true" type="q18:ArrayOfEvent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="InsertEvent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q18:Event" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q19:Event" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -279,7 +291,7 @@
   <xs:element name="UpdateEvent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q19:Event" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q20:Event" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -293,7 +305,7 @@
   <xs:element name="DeleteEvent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q20:Event" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="eventType" nillable="true" type="q21:Event" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -307,7 +319,7 @@
   <xs:element name="GetWarningListOxygenSaturation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q21:Event" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q22:Event" />
         <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
         <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
       </xs:sequence>
@@ -316,14 +328,14 @@
   <xs:element name="GetWarningListOxygenSaturationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListOxygenSaturationResult" nillable="true" type="q22:ArrayOfOxygenSaturation" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListOxygenSaturationResult" nillable="true" type="q23:ArrayOfOxygenSaturation" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetWarningListBloodPressure">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q23:Event" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q24:Event" />
         <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
         <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
       </xs:sequence>
@@ -332,14 +344,14 @@
   <xs:element name="GetWarningListBloodPressureResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListBloodPressureResult" nillable="true" type="q24:ArrayOfBloodPressure" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListBloodPressureResult" nillable="true" type="q25:ArrayOfBloodPressure" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetWarningListHeartRate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q25:Event" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="type" nillable="true" type="q26:Event" />
         <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
         <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
       </xs:sequence>
@@ -348,7 +360,7 @@
   <xs:element name="GetWarningListHeartRateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListHeartRateResult" nillable="true" type="q26:ArrayOfHeartRate" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListHeartRateResult" nillable="true" type="q27:ArrayOfHeartRate" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -357,14 +369,14 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
         <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="patient" nillable="true" type="q27:Patient" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="patient" nillable="true" type="q28:Patient" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetWarningListOxygenSaturationALLResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListOxygenSaturationALLResult" nillable="true" type="q28:ArrayOfOxygenSaturationWarning" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListOxygenSaturationALLResult" nillable="true" type="q29:ArrayOfOxygenSaturationWarning" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -373,14 +385,14 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
         <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="patient" nillable="true" type="q29:Patient" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="patient" nillable="true" type="q30:Patient" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetWarningListBloodPressureALLResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListBloodPressureALLResult" nillable="true" type="q30:ArrayOfBloodPressureWarning" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListBloodPressureALLResult" nillable="true" type="q31:ArrayOfBloodPressureWarning" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -389,14 +401,14 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="dataInicio" type="xs:dateTime" />
         <xs:element minOccurs="0" name="dataFim" type="xs:dateTime" />
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="patient" nillable="true" type="q31:Patient" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="patient" nillable="true" type="q32:Patient" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetWarningListHeartRateALLResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListHeartRateALLResult" nillable="true" type="q32:ArrayOfHeartRateWarning" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/ServiceLayerNew" minOccurs="0" name="GetWarningListHeartRateALLResult" nillable="true" type="q33:ArrayOfHeartRateWarning" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

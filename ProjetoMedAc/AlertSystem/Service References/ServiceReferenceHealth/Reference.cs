@@ -1323,6 +1323,12 @@ namespace AlertSystem.ServiceReferenceHealth {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimit", ReplyAction="http://tempuri.org/IServiceHealthAlert/DeleteConfigurationLimitResponse")]
         System.Threading.Tasks.Task<bool> DeleteConfigurationLimitAsync(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetEventList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetEventListResponse")]
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Event> GetEventList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetEventList", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetEventListResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Event>> GetEventListAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/InsertEvent", ReplyAction="http://tempuri.org/IServiceHealthAlert/InsertEventResponse")]
         bool InsertEvent(AlertSystem.ServiceReferenceHealth.Event eventType);
         
@@ -1507,6 +1513,14 @@ namespace AlertSystem.ServiceReferenceHealth {
         
         public System.Threading.Tasks.Task<bool> DeleteConfigurationLimitAsync(AlertSystem.ServiceReferenceHealth.ConfigurationLimitType configurationLimitType) {
             return base.Channel.DeleteConfigurationLimitAsync(configurationLimitType);
+        }
+        
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Event> GetEventList() {
+            return base.Channel.GetEventList();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.Event>> GetEventListAsync() {
+            return base.Channel.GetEventListAsync();
         }
         
         public bool InsertEvent(AlertSystem.ServiceReferenceHealth.Event eventType) {
