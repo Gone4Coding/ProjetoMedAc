@@ -586,9 +586,7 @@ namespace AlertSystem
             }
         }
         private void dataGridViewAlerts_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-           
+        {          
             switch (e.ColumnIndex)
             {
                 case 0:
@@ -675,18 +673,84 @@ namespace AlertSystem
                 case 1:
                     if (!asc)
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Gender));
-                        fillGridView(patients);
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Diastolic);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderBy(i => i.Diastolic);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.Rate);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderBy(i => i.Rate);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.Saturation);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderBy(i => i.Saturation);
+                            setGridViewAlerts();
+                        }
                         asc = true;
                     }
                     else
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Gender));
-                        fillGridView(patients);
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Diastolic);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderByDescending(i => i.Diastolic);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderByDescending(i => i.Rate);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderByDescending(i => i.Rate);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderByDescending(i => i.Saturation);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderByDescending(i => i.Saturation);
+                            setGridViewAlerts();
+                        }
                         asc = false;
                     }
                     break;
-                case 14:
+                case 2:
                     if (!asc)
                     {
                         patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Sns));
@@ -717,7 +781,9 @@ namespace AlertSystem
             }
         }
         #endregion
+
         #endregion
+
         #region Metodos
         #region PatientsTab
         private void load(Patient p, bool monitoring)
