@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,15 +32,19 @@ namespace AlertSystem
         private int eciMin;
         private int eciMax;
         private ServiceHealthAlertClient client;
+        private List<Event> eventsList;
 
         public FormConfigurations()
         {
-            this.client = FormAlertSystem.GetClient();
+            this.client = new ServiceHealthAlertClient();
             InitializeComponent();
         }
 
         private void FormConfigurations_Load(object sender, EventArgs e)
         {
+            pbar_saving.Visible = true;
+            pbar_saving.Maximum = 7;
+            pbar_saving.Step = 1;
             FillValues();
         }
 
@@ -46,7 +52,61 @@ namespace AlertSystem
         {
             if (ValdiadeParameters())
             {
-                //ConfigurationLimitType bp = client.GetConfigurationLimit(ConfigurationLimitType.Type.BP);
+                ConfigurationLimitType bp = client.GetConfigurationLimit(ConfigurationLimitType.Type.BP);
+                bp.MinimumValue = bpNormalDiastolic;
+                bp.MaximumValue = bpNormalSystolic;
+                bp.MinimumCriticalValue = bpAnyTimeDiastolic;
+                bp.MaximumCriticalValue = bpAnyTimeSystolic;
+
+                client.UpdateConfigurationLimit(bp);
+
+                pbar_saving.PerformStep();
+
+                ConfigurationLimitType sat = client.GetConfigurationLimit(ConfigurationLimitType.Type.SPO2);
+                sat.MinimumValue = satNormal;
+                sat.MaximumValue = 100;
+                sat.MinimumCriticalValue = satAnyTime;
+                sat.MaximumCriticalValue = 100;
+
+                client.UpdateConfigurationLimit(sat);
+
+                pbar_saving.PerformStep();
+                
+                ConfigurationLimitType hr = client.GetConfigurationLimit(ConfigurationLimitType.Type.HR);
+                hr.MinimumValue = rateNormalMin;
+                hr.MaximumValue = rateNormalMax;
+                hr.MinimumCriticalValue = rateAnyTimeMin;
+                hr.MaximumCriticalValue = rateAnyTimeMax;
+
+                client.UpdateConfigurationLimit(hr);
+
+                pbar_saving.PerformStep();
+
+                Event eventAC = eventsList.FirstOrDefault(i => i.EvenType == Event.Type.EAC);
+                eventAC.MinimumTime = eac;
+                client.UpdateEvent(eventAC);
+
+                pbar_saving.PerformStep();
+
+                Event eventAI = eventsList.FirstOrDefault(i => i.EvenType == Event.Type.EAI);
+                eventAI.MinimumTime = eaiMin;
+                eventAI.MaximumTime = eaiMax;
+                client.UpdateEvent(eventAI);
+
+                pbar_saving.PerformStep();
+                
+                Event eventCC = eventsList.FirstOrDefault(i => i.EvenType == Event.Type.ECC);
+                eventCC.MinimumTime = ecc;
+                client.UpdateEvent(eventCC);
+
+                pbar_saving.PerformStep();
+
+                Event eventCI = eventsList.FirstOrDefault(i => i.EvenType == Event.Type.ECI);
+                eventCI.MinimumTime = eciMin;
+                eventCI.MaximumTime = eciMax;
+                client.UpdateEvent(eventCI);
+
+                pbar_saving.PerformStep();
 
             }
         }
@@ -59,7 +119,7 @@ namespace AlertSystem
         private void FillValues()
         {
             List<ConfigurationLimitType> configurationLimitList = client.GetConfigurationLimitList();
-            List<Event> eventsList = client.GetEventList();
+            eventsList = client.GetEventList();
 
             foreach (ConfigurationLimitType limitType in configurationLimitList)
             {
@@ -115,8 +175,8 @@ namespace AlertSystem
         {
             bpNormalDiastolic = Convert.ToInt32(numbNormalDiastolic.Value);
             bpNormalSystolic = Convert.ToInt32(numbNormalSystolic.Value);
-            bpAnyTimeDiastolic = Convert.ToInt32(numbAnyTimeDiastolic);
-            bpAnyTimeSystolic = Convert.ToInt32(numbAnyTimeSystolic);
+            bpAnyTimeDiastolic = Convert.ToInt32(numbAnyTimeDiastolic.Value);
+            bpAnyTimeSystolic = Convert.ToInt32(numbAnyTimeSystolic.Value);
             satNormal = Convert.ToInt32(numbNormalSaturation.Value);
             satAnyTime = Convert.ToInt32(numbAnyTimeSaturation.Value);
             rateNormalMin = Convert.ToInt32(numbNormalRateMin.Value);

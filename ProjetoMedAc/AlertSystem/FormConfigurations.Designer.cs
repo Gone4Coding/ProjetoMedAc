@@ -94,6 +94,7 @@
             this.tipIntermittentMax = new System.Windows.Forms.ToolTip(this.components);
             this.bt_cancel = new System.Windows.Forms.Button();
             this.bt_save = new System.Windows.Forms.Button();
+            this.pbar_saving = new System.Windows.Forms.ProgressBar();
             this.gb_physiologicLimits.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numbAnyTimeSaturation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numbAnyTimeRateMax)).BeginInit();
@@ -776,11 +777,19 @@
             this.bt_save.UseVisualStyleBackColor = true;
             this.bt_save.Click += new System.EventHandler(this.bt_save_Click);
             // 
+            // pbar_saving
+            // 
+            this.pbar_saving.Location = new System.Drawing.Point(12, 469);
+            this.pbar_saving.Name = "pbar_saving";
+            this.pbar_saving.Size = new System.Drawing.Size(499, 28);
+            this.pbar_saving.TabIndex = 3;
+            // 
             // FormConfigurations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 509);
+            this.Controls.Add(this.pbar_saving);
             this.Controls.Add(this.bt_save);
             this.Controls.Add(this.bt_cancel);
             this.Controls.Add(this.gb_evetTypes);
@@ -881,5 +890,6 @@
         private System.Windows.Forms.ToolTip tipIntermittentMax;
         private System.Windows.Forms.Button bt_cancel;
         private System.Windows.Forms.Button bt_save;
+        private System.Windows.Forms.ProgressBar pbar_saving;
     }
 }
