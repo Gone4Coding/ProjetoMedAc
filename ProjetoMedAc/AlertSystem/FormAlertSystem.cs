@@ -594,37 +594,38 @@ namespace AlertSystem
                     {
                         if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Date);
+                           
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonBloodPressure.Checked)
+                        if (radioButtonBloodPressure.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderBy(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderBy(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonHeartRate.Checked)
+                        if (radioButtonHeartRate.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderBy(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderBy(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonOxygenSat.Checked)
+                        if (radioButtonOxygenSat.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderBy(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderBy(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
                         asc = true;
@@ -633,37 +634,37 @@ namespace AlertSystem
                     {
                         if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonBloodPressure.Checked)
+                        if (radioButtonBloodPressure.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderByDescending(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderByDescending(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHRALL.OrderByDescending(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderByDescending(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonHeartRate.Checked)
+                        if (radioButtonHeartRate.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderByDescending(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderByDescending(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderByDescending(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderByDescending(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonOxygenSat.Checked)
+                        if (radioButtonOxygenSat.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderByDescending(i => i.Date);
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderByDescending(i => i.Date).ToList();
                             setGridViewAlerts();
                         }
                         //fiquei aqui
@@ -673,39 +674,39 @@ namespace AlertSystem
                 case 1:
                     if (!asc)
                     {
-                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked )
                         {
-                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Diastolic);
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Diastolic).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonBloodPressure.Checked)
+                        if (radioButtonBloodPressure.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderBy(i => i.Diastolic);
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderBy(i => i.Diastolic).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.Rate);
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.EvenType).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonHeartRate.Checked)
+                        if (radioButtonHeartRate.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderBy(i => i.Rate);
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderBy(i => i.Rate).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.Saturation);
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.EvenType).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonOxygenSat.Checked)
+                        if (radioButtonOxygenSat.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderBy(i => i.Saturation);
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderBy(i => i.Saturation).ToList();
                             setGridViewAlerts();
                         }
                         asc = true;
@@ -714,37 +715,37 @@ namespace AlertSystem
                     {
                         if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Diastolic);
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Diastolic).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonBloodPressure.Checked)
+                        if (radioButtonBloodPressure.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderByDescending(i => i.Diastolic);
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderByDescending(i => i.Diastolic).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHRALL.OrderByDescending(i => i.Rate);
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderByDescending(i => i.EvenType).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonHeartRate.Checked)
+                        if (radioButtonHeartRate.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderByDescending(i => i.Rate);
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderByDescending(i => i.Rate).ToList();
                             setGridViewAlerts();
                         }
 
                         if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderByDescending(i => i.Saturation);
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderByDescending(i => i.EvenType).ToList();
                             setGridViewAlerts();
                         }
 
-                        if (radioButtonOxygenSat.Checked)
+                        if (radioButtonOxygenSat.Checked && !radioButtonAll.Checked)
                         {
-                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderByDescending(i => i.Saturation);
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderByDescending(i => i.Saturation).ToList();
                             setGridViewAlerts();
                         }
                         asc = false;
@@ -753,28 +754,78 @@ namespace AlertSystem
                 case 2:
                     if (!asc)
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Sns));
-                        fillGridView(patients);
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Systolic).ToList();
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonBloodPressure.Checked && !radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderBy(i => i.Systolic).ToList();
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.Rate).ToList();
+                            setGridViewAlerts();
+                        }                    
+
+                        if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.Saturation).ToList();
+                            setGridViewAlerts();
+                        }
+                  
                         asc = true;
                     }
                     else
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Sns));
-                        fillGridView(patients);
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Systolic).ToList();
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonBloodPressure.Checked && !radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderByDescending(i => i.Systolic).ToList();
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderByDescending(i => i.Rate).ToList();
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderByDescending(i => i.Saturation).ToList();
+                            setGridViewAlerts();
+                        }
+
                         asc = false;
                     }
                     break;
-                case 15:
+                case 3:
                     if (!asc)
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Surname));
-                        fillGridView(patients);
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Systolic).ToList();
+                            setGridViewAlerts();
+                        }
                         asc = true;
                     }
                     else
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Surname));
-                        fillGridView(patients);
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Systolic).ToList();
+                            setGridViewAlerts();
+                        }
                         asc = false;
                     }
                     break;
@@ -1849,6 +1900,7 @@ namespace AlertSystem
         }
         private void readRadioButtonsAlerts(Patient patient, Event typeEvent)
         {
+        
             if (radioButtonBloodPressure.Checked)
             {
                 if (radioButtonAll.Checked)
