@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -45,6 +45,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.bt_OK = new System.Windows.Forms.Button();
             this.groupBoxRecords = new System.Windows.Forms.GroupBox();
+            this.labelResultsRecords = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.checkBoxDiastolicSeries = new System.Windows.Forms.CheckBox();
             this.checkBoxSystolicSeries = new System.Windows.Forms.CheckBox();
@@ -58,6 +59,8 @@
             this.comboBoxChartType = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBoxAlerts = new System.Windows.Forms.GroupBox();
+            this.labelResultsAlerts = new System.Windows.Forms.Label();
+            this.radioButtonAll = new System.Windows.Forms.RadioButton();
             this.pictureBoxAlerts = new System.Windows.Forms.PictureBox();
             this.radioButtonECI = new System.Windows.Forms.RadioButton();
             this.radioButtonEAI = new System.Windows.Forms.RadioButton();
@@ -137,9 +140,6 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.radioButtonAll = new System.Windows.Forms.RadioButton();
-            this.labelResultsAlerts = new System.Windows.Forms.Label();
-            this.labelResultsRecords = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -324,6 +324,16 @@
             this.groupBoxRecords.TabStop = false;
             this.groupBoxRecords.Text = "Records";
             // 
+            // labelResultsRecords
+            // 
+            this.labelResultsRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelResultsRecords.AutoSize = true;
+            this.labelResultsRecords.Location = new System.Drawing.Point(613, 123);
+            this.labelResultsRecords.Name = "labelResultsRecords";
+            this.labelResultsRecords.Size = new System.Drawing.Size(48, 13);
+            this.labelResultsRecords.TabIndex = 25;
+            this.labelResultsRecords.Text = "Results :";
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -425,8 +435,8 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1069, 426);
@@ -494,6 +504,27 @@
             this.groupBoxAlerts.TabIndex = 1;
             this.groupBoxAlerts.TabStop = false;
             this.groupBoxAlerts.Text = "Alerts";
+            // 
+            // labelResultsAlerts
+            // 
+            this.labelResultsAlerts.AutoSize = true;
+            this.labelResultsAlerts.Location = new System.Drawing.Point(240, 146);
+            this.labelResultsAlerts.Name = "labelResultsAlerts";
+            this.labelResultsAlerts.Size = new System.Drawing.Size(48, 13);
+            this.labelResultsAlerts.TabIndex = 24;
+            this.labelResultsAlerts.Text = "Results :";
+            // 
+            // radioButtonAll
+            // 
+            this.radioButtonAll.AutoSize = true;
+            this.radioButtonAll.Location = new System.Drawing.Point(11, 73);
+            this.radioButtonAll.Name = "radioButtonAll";
+            this.radioButtonAll.Size = new System.Drawing.Size(36, 17);
+            this.radioButtonAll.TabIndex = 23;
+            this.radioButtonAll.TabStop = true;
+            this.radioButtonAll.Text = "All";
+            this.radioButtonAll.UseVisualStyleBackColor = true;
+            this.radioButtonAll.CheckedChanged += new System.EventHandler(this.radioButtonAll_CheckedChanged);
             // 
             // pictureBoxAlerts
             // 
@@ -664,7 +695,7 @@
             this.tabPagePatients.Location = new System.Drawing.Point(4, 22);
             this.tabPagePatients.Name = "tabPagePatients";
             this.tabPagePatients.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePatients.Size = new System.Drawing.Size(1418, 739);
+            this.tabPagePatients.Size = new System.Drawing.Size(1349, 695);
             this.tabPagePatients.TabIndex = 2;
             this.tabPagePatients.Text = "Patients";
             this.tabPagePatients.UseVisualStyleBackColor = true;
@@ -684,7 +715,7 @@
             this.toolStripButtonSearch});
             this.toolStripPatients.Location = new System.Drawing.Point(3, 3);
             this.toolStripPatients.Name = "toolStripPatients";
-            this.toolStripPatients.Size = new System.Drawing.Size(1412, 40);
+            this.toolStripPatients.Size = new System.Drawing.Size(1343, 40);
             this.toolStripPatients.TabIndex = 3;
             this.toolStripPatients.Text = "toolStrip1";
             // 
@@ -754,7 +785,7 @@
             this.groupBoxPatients.Controls.Add(this.dataGridViewPatients);
             this.groupBoxPatients.Location = new System.Drawing.Point(8, 43);
             this.groupBoxPatients.Name = "groupBoxPatients";
-            this.groupBoxPatients.Size = new System.Drawing.Size(500, 693);
+            this.groupBoxPatients.Size = new System.Drawing.Size(500, 681);
             this.groupBoxPatients.TabIndex = 2;
             this.groupBoxPatients.TabStop = false;
             this.groupBoxPatients.Text = "Patients";
@@ -795,7 +826,7 @@
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 619);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 607);
             this.dataGridViewPatients.TabIndex = 2;
             this.dataGridViewPatients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_CellMouseDoubleClick);
             this.dataGridViewPatients.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_ColumnHeaderMouseClick);
@@ -814,7 +845,7 @@
             this.groupBoxPatient.Controls.Add(this.panelInfoPatient);
             this.groupBoxPatient.Location = new System.Drawing.Point(512, 43);
             this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Size = new System.Drawing.Size(877, 680);
+            this.groupBoxPatient.Size = new System.Drawing.Size(808, 636);
             this.groupBoxPatient.TabIndex = 1;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient Info";
@@ -825,7 +856,7 @@
             this.bt_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save.Image = ((System.Drawing.Image)(resources.GetObject("bt_save.Image")));
             this.bt_save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_save.Location = new System.Drawing.Point(170, 550);
+            this.bt_save.Location = new System.Drawing.Point(170, 506);
             this.bt_save.Name = "bt_save";
             this.bt_save.Size = new System.Drawing.Size(114, 105);
             this.bt_save.TabIndex = 6;
@@ -840,7 +871,7 @@
             this.bt_cancelEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelEdit.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelEdit.Image")));
             this.bt_cancelEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelEdit.Location = new System.Drawing.Point(724, 550);
+            this.bt_cancelEdit.Location = new System.Drawing.Point(655, 506);
             this.bt_cancelEdit.Name = "bt_cancelEdit";
             this.bt_cancelEdit.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelEdit.TabIndex = 5;
@@ -855,7 +886,7 @@
             this.bt_cancelAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_cancelAdd.Image = ((System.Drawing.Image)(resources.GetObject("bt_cancelAdd.Image")));
             this.bt_cancelAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_cancelAdd.Location = new System.Drawing.Point(724, 550);
+            this.bt_cancelAdd.Location = new System.Drawing.Point(655, 506);
             this.bt_cancelAdd.Name = "bt_cancelAdd";
             this.bt_cancelAdd.Size = new System.Drawing.Size(117, 105);
             this.bt_cancelAdd.TabIndex = 4;
@@ -870,7 +901,7 @@
             this.bt_edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_edit.Image = ((System.Drawing.Image)(resources.GetObject("bt_edit.Image")));
             this.bt_edit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_edit.Location = new System.Drawing.Point(33, 550);
+            this.bt_edit.Location = new System.Drawing.Point(33, 506);
             this.bt_edit.Name = "bt_edit";
             this.bt_edit.Size = new System.Drawing.Size(114, 105);
             this.bt_edit.TabIndex = 3;
@@ -885,7 +916,7 @@
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonAdd.Image")));
             this.buttonAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAdd.Location = new System.Drawing.Point(32, 550);
+            this.buttonAdd.Location = new System.Drawing.Point(32, 506);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(183, 105);
             this.buttonAdd.TabIndex = 2;
@@ -936,9 +967,9 @@
             this.panelInfoPatient.Controls.Add(this.tb_nif);
             this.panelInfoPatient.Controls.Add(this.tb_lastName);
             this.panelInfoPatient.Controls.Add(this.tb_firstname);
-            this.panelInfoPatient.Location = new System.Drawing.Point(45, 19);
+            this.panelInfoPatient.Location = new System.Drawing.Point(11, 19);
             this.panelInfoPatient.Name = "panelInfoPatient";
-            this.panelInfoPatient.Size = new System.Drawing.Size(796, 531);
+            this.panelInfoPatient.Size = new System.Drawing.Size(796, 487);
             this.panelInfoPatient.TabIndex = 1;
             // 
             // label21
@@ -1333,7 +1364,7 @@
             this.tabControlRecors.Location = new System.Drawing.Point(2, 1);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
-            this.tabControlRecors.Size = new System.Drawing.Size(1426, 765);
+            this.tabControlRecors.Size = new System.Drawing.Size(1357, 721);
             this.tabControlRecors.TabIndex = 0;
             this.tabControlRecors.SelectedIndexChanged += new System.EventHandler(this.tabControlRecors_SelectedIndexChanged);
             // 
@@ -1362,7 +1393,7 @@
             this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTime.AutoSize = true;
             this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTime.Location = new System.Drawing.Point(1345, 767);
+            this.labelTime.Location = new System.Drawing.Point(1276, 723);
             this.labelTime.Name = "labelTime";
             this.labelTime.Size = new System.Drawing.Size(43, 16);
             this.labelTime.TabIndex = 1;
@@ -1372,42 +1403,11 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // radioButtonAll
-            // 
-            this.radioButtonAll.AutoSize = true;
-            this.radioButtonAll.Location = new System.Drawing.Point(11, 73);
-            this.radioButtonAll.Name = "radioButtonAll";
-            this.radioButtonAll.Size = new System.Drawing.Size(36, 17);
-            this.radioButtonAll.TabIndex = 23;
-            this.radioButtonAll.TabStop = true;
-            this.radioButtonAll.Text = "All";
-            this.radioButtonAll.UseVisualStyleBackColor = true;
-            this.radioButtonAll.CheckedChanged += new System.EventHandler(this.radioButtonAll_CheckedChanged);
-            // 
-            // labelResultsAlerts
-            // 
-            this.labelResultsAlerts.AutoSize = true;
-            this.labelResultsAlerts.Location = new System.Drawing.Point(240, 146);
-            this.labelResultsAlerts.Name = "labelResultsAlerts";
-            this.labelResultsAlerts.Size = new System.Drawing.Size(48, 13);
-            this.labelResultsAlerts.TabIndex = 24;
-            this.labelResultsAlerts.Text = "Results :";
-            // 
-            // labelResultsRecords
-            // 
-            this.labelResultsRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelResultsRecords.AutoSize = true;
-            this.labelResultsRecords.Location = new System.Drawing.Point(613, 123);
-            this.labelResultsRecords.Name = "labelResultsRecords";
-            this.labelResultsRecords.Size = new System.Drawing.Size(48, 13);
-            this.labelResultsRecords.TabIndex = 25;
-            this.labelResultsRecords.Text = "Results :";
-            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1431, 785);
+            this.ClientSize = new System.Drawing.Size(1362, 741);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.tabControlRecors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

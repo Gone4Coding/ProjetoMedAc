@@ -36,7 +36,7 @@ namespace AlertSystem
         private const string AREA1 = "area";
         private const string AREA2 = "area2";
 
-        private ServiceHealthAlertClient client;
+        private static ServiceHealthAlertClient client;
         private List<Countries.Country> countries;
         private List<Patient> patients;
         private Patient patientToEdit;
@@ -1884,6 +1884,10 @@ namespace AlertSystem
             labelTime.Text = DateTime.Now.ToLongTimeString();
         }
 
-       
+        public static ServiceHealthAlertClient GetClient()
+        {
+            return client;
+        }
+
     }
 }
