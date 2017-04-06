@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -137,6 +137,7 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -421,8 +422,8 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1069, 426);
@@ -579,6 +580,7 @@
             this.dataGridViewAlerts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAlerts.Size = new System.Drawing.Size(293, 403);
             this.dataGridViewAlerts.TabIndex = 6;
+        
             // 
             // toolStripMonitor
             // 
@@ -1365,6 +1367,10 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // backgroundWorker1
+            // 
+           
+            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1522,6 +1528,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripPatientLabel;
         private System.Windows.Forms.CheckBox checkBoxSplit;
         private System.Windows.Forms.Panel panel2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
