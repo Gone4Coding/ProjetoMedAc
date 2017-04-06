@@ -829,6 +829,301 @@ namespace AlertSystem.ServiceReferenceHealth {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OxygenSaturationWarning", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.SerializableAttribute()]
+    public partial class OxygenSaturationWarning : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EvenTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PatientSNSField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SaturationField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EvenType {
+            get {
+                return this.EvenTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EvenTypeField, value) != true)) {
+                    this.EvenTypeField = value;
+                    this.RaisePropertyChanged("EvenType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PatientSNS {
+            get {
+                return this.PatientSNSField;
+            }
+            set {
+                if ((this.PatientSNSField.Equals(value) != true)) {
+                    this.PatientSNSField = value;
+                    this.RaisePropertyChanged("PatientSNS");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Saturation {
+            get {
+                return this.SaturationField;
+            }
+            set {
+                if ((this.SaturationField.Equals(value) != true)) {
+                    this.SaturationField = value;
+                    this.RaisePropertyChanged("Saturation");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BloodPressureWarning", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.SerializableAttribute()]
+    public partial class BloodPressureWarning : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DiastolicField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EvenTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PatientSNSField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SystolicField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Diastolic {
+            get {
+                return this.DiastolicField;
+            }
+            set {
+                if ((this.DiastolicField.Equals(value) != true)) {
+                    this.DiastolicField = value;
+                    this.RaisePropertyChanged("Diastolic");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EvenType {
+            get {
+                return this.EvenTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EvenTypeField, value) != true)) {
+                    this.EvenTypeField = value;
+                    this.RaisePropertyChanged("EvenType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PatientSNS {
+            get {
+                return this.PatientSNSField;
+            }
+            set {
+                if ((this.PatientSNSField.Equals(value) != true)) {
+                    this.PatientSNSField = value;
+                    this.RaisePropertyChanged("PatientSNS");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Systolic {
+            get {
+                return this.SystolicField;
+            }
+            set {
+                if ((this.SystolicField.Equals(value) != true)) {
+                    this.SystolicField = value;
+                    this.RaisePropertyChanged("Systolic");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HeartRateWarning", Namespace="http://schemas.datacontract.org/2004/07/ServiceLayerNew")]
+    [System.SerializableAttribute()]
+    public partial class HeartRateWarning : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EvenTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PatientSNSField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EvenType {
+            get {
+                return this.EvenTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EvenTypeField, value) != true)) {
+                    this.EvenTypeField = value;
+                    this.RaisePropertyChanged("EvenType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PatientSNS {
+            get {
+                return this.PatientSNSField;
+            }
+            set {
+                if ((this.PatientSNSField.Equals(value) != true)) {
+                    this.PatientSNSField = value;
+                    this.RaisePropertyChanged("PatientSNS");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Rate {
+            get {
+                return this.RateField;
+            }
+            set {
+                if ((this.RateField.Equals(value) != true)) {
+                    this.RateField = value;
+                    this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReferenceHealth.IServiceHealth")]
     public interface IServiceHealth {
@@ -1063,6 +1358,24 @@ namespace AlertSystem.ServiceReferenceHealth {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRate", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate>> GetWarningListHeartRateAsync(AlertSystem.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALLResponse")]
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning> GetWarningListOxygenSaturationALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALLResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning>> GetWarningListOxygenSaturationALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALLResponse")]
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning> GetWarningListBloodPressureALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALLResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning>> GetWarningListBloodPressureALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALLResponse")]
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning> GetWarningListHeartRateALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALLResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning>> GetWarningListHeartRateALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1242,6 +1555,30 @@ namespace AlertSystem.ServiceReferenceHealth {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate>> GetWarningListHeartRateAsync(AlertSystem.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim) {
             return base.Channel.GetWarningListHeartRateAsync(type, dataInicio, dataFim);
+        }
+        
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning> GetWarningListOxygenSaturationALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.GetWarningListOxygenSaturationALL(dataInicio, dataFim, patient);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning>> GetWarningListOxygenSaturationALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.GetWarningListOxygenSaturationALLAsync(dataInicio, dataFim, patient);
+        }
+        
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning> GetWarningListBloodPressureALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.GetWarningListBloodPressureALL(dataInicio, dataFim, patient);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning>> GetWarningListBloodPressureALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.GetWarningListBloodPressureALLAsync(dataInicio, dataFim, patient);
+        }
+        
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning> GetWarningListHeartRateALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.GetWarningListHeartRateALL(dataInicio, dataFim, patient);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning>> GetWarningListHeartRateALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
+            return base.Channel.GetWarningListHeartRateALLAsync(dataInicio, dataFim, patient);
         }
     }
 }

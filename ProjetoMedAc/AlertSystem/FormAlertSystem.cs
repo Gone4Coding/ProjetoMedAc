@@ -32,6 +32,7 @@ namespace AlertSystem
         private const string COLUMNS = "Columns";
         private const string cPATIENTSNS = "PatientSNS";
         private const string TIME = "Time";
+        private const string RESULTS = "Results: ";
         private const string AREA1 = "area";
         private const string AREA2 = "area2";
 
@@ -46,6 +47,9 @@ namespace AlertSystem
         private List<BloodPressure> warningListBloodPressure;
         private List<HeartRate> warningListHeartRate;
         private List<OxygenSaturation> warningListOxygenSaturation;
+        private List<BloodPressureWarning> warningListBPALL;
+        private List<HeartRateWarning> warningListHRALL;
+        private List<OxygenSaturationWarning> warningListOXYSATALL;
         private DateTime fromDate;
         private DateTime toDate;
         private bool asc;
@@ -124,7 +128,7 @@ namespace AlertSystem
                     {
                         radioButtonBloodPressure.Checked = true;
                         firstTime = false;
-                        radioButtonEAC.Checked = true;
+                        radioButtonAll.Checked = true;
                         readRadioButtons(patientOnMonitoring);
                         startGraphics();
                         comboBoxChartType.SelectedIndex = 0;
@@ -276,63 +280,53 @@ namespace AlertSystem
 
         private void dataGridViewPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            List<Patient> patients;
-
             switch (e.ColumnIndex)
             {
+                case 10:
+                    if (!asc)
+                    {                       
+                        fillGridView(patients.OrderBy(i => i.Name).ToList());
+                        asc = true;
+                    }
+                    else
+                    {
+                        fillGridView(patients.OrderByDescending(i => i.Name).ToList());
+                        asc = false;
+                    }
+                    break;
                 case 8:
                     if (!asc)
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Name));
-                        fillGridView(patients);
+                        fillGridView(patients.OrderBy(i => i.Gender).ToList());
                         asc = true;
                     }
                     else
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Name));
-                        fillGridView(patients);
+                        fillGridView(patients.OrderByDescending(i => i.Gender).ToList());
                         asc = false;
                     }
                     break;
-                case 9:
+                case 14:
                     if (!asc)
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Nif));
-                        fillGridView(patients);
+                        fillGridView(patients.OrderBy(i => i.Sns).ToList());
                         asc = true;
                     }
                     else
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Nif));
-                        fillGridView(patients);
+                        fillGridView(patients.OrderByDescending(i => i.Sns).ToList());
                         asc = false;
                     }
                     break;
-                case 11:
+                case 15:
                     if (!asc)
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Sns));
-                        fillGridView(patients);
+                        fillGridView(patients.OrderBy(i => i.Surname).ToList());
                         asc = true;
                     }
                     else
                     {
-                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Sns));
-                        fillGridView(patients);
-                        asc = false;
-                    }
-                    break;
-                case 12:
-                    if (!asc)
-                    {
-                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Surname));
-                        fillGridView(patients);
-                        asc = true;
-                    }
-                    else
-                    {
-                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Surname));
-                        fillGridView(patients);
+                        fillGridView(patients.OrderByDescending(i => i.Surname).ToList());
                         asc = false;
                     }
                     break;
@@ -584,6 +578,144 @@ namespace AlertSystem
                 readRadioButtonsAlerts(patientOnMonitoring, eventType);
             }
         }
+        private void radioButtonAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonAll.Checked)
+            {
+                readRadioButtonsAlerts(patientOnMonitoring, eventType);
+            }
+        }
+        private void dataGridViewAlerts_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+           
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    if (!asc)
+                    {
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderBy(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderBy(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderBy(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderBy(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderBy(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderBy(i => i.Date);
+                            setGridViewAlerts();
+                        }
+                        asc = true;
+                    }
+                    else
+                    {
+                        if (radioButtonBloodPressure.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBPALL.OrderByDescending(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonBloodPressure.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListBloodPressure.OrderByDescending(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHRALL.OrderByDescending(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonHeartRate.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListHeartRate.OrderByDescending(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked && radioButtonAll.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOXYSATALL.OrderByDescending(i => i.Date);
+                            setGridViewAlerts();
+                        }
+
+                        if (radioButtonOxygenSat.Checked)
+                        {
+                            dataGridViewAlerts.DataSource = warningListOxygenSaturation.OrderByDescending(i => i.Date);
+                            setGridViewAlerts();
+                        }
+                        //fiquei aqui
+                        asc = false;
+                    }
+                    break;
+                case 1:
+                    if (!asc)
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Gender));
+                        fillGridView(patients);
+                        asc = true;
+                    }
+                    else
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Gender));
+                        fillGridView(patients);
+                        asc = false;
+                    }
+                    break;
+                case 14:
+                    if (!asc)
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Sns));
+                        fillGridView(patients);
+                        asc = true;
+                    }
+                    else
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Sns));
+                        fillGridView(patients);
+                        asc = false;
+                    }
+                    break;
+                case 15:
+                    if (!asc)
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderBy(i => i.Surname));
+                        fillGridView(patients);
+                        asc = true;
+                    }
+                    else
+                    {
+                        patients = new List<Patient>(client.GetPatientList().OrderByDescending(i => i.Surname));
+                        fillGridView(patients);
+                        asc = false;
+                    }
+                    break;
+            }
+        }
         #endregion
         #endregion
         #region Metodos
@@ -680,8 +812,6 @@ namespace AlertSystem
                     dataGridViewPatients.Columns[i].Visible = false;
                 }
             }
-
-
 
             foreach (DataGridViewRow row in dataGridViewPatients.Rows)
             {
@@ -1144,43 +1274,60 @@ namespace AlertSystem
                     dataGridViewHistory.Columns[cPATIENTSNS].Visible = false;
                     dataGridViewHistory.Columns[TIME].Visible = false;
 
+                    labelResultsRecords.Text = RESULTS + patientsRecordBloodPressure.Count;
+
                     if (patientsRecordBloodPressure.Count == 0 && !firstTime)
                     {
-                        MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("No results for timeline selected!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Time range is invalid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Timeline selected is invalid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
 
             if (radioButtonHeartRate.Checked)
             {
-
-                dataGridViewHistory.DataSource = patientsRecordHeartRate;
-                dataGridViewHistory.RowHeadersVisible = false;
-                dataGridViewHistory.Columns[cPATIENTSNS].Visible = false;
-                dataGridViewHistory.Columns[TIME].Visible = false;
-
-                if (patientsRecordHeartRate.Count == 0)
+                if (readDateTimeGraphics())
                 {
-                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridViewHistory.DataSource = patientsRecordHeartRate;
+                    dataGridViewHistory.RowHeadersVisible = false;
+                    dataGridViewHistory.Columns[cPATIENTSNS].Visible = false;
+                    dataGridViewHistory.Columns[TIME].Visible = false;
+
+                    labelResultsRecords.Text = RESULTS + patientsRecordHeartRate.Count;
+                    if (patientsRecordHeartRate.Count == 0)
+                    {
+                        MessageBox.Show("No results for timeline selected!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Timeline selected is invalid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
 
             if (radioButtonOxygenSat.Checked)
             {
-                dataGridViewHistory.DataSource = patientsRecordOxySat;
-                dataGridViewHistory.RowHeadersVisible = false;
-                dataGridViewHistory.Columns[cPATIENTSNS].Visible = false;
-                dataGridViewHistory.Columns[TIME].Visible = false;
-
-                if (patientsRecordOxySat.Count == 0)
+                if (readDateTimeGraphics())
                 {
-                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridViewHistory.DataSource = patientsRecordOxySat;
+                    dataGridViewHistory.RowHeadersVisible = false;
+                    dataGridViewHistory.Columns[cPATIENTSNS].Visible = false;
+                    dataGridViewHistory.Columns[TIME].Visible = false;
+
+                    labelResultsRecords.Text = RESULTS + patientsRecordOxySat.Count;
+                    if (patientsRecordOxySat.Count == 0)
+                    {
+                        MessageBox.Show("No results for timeline selected!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Timeline selected is invalid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
 
@@ -1636,50 +1783,99 @@ namespace AlertSystem
         }
         private void readRadioButtonsAlerts(Patient patient, Event typeEvent)
         {
-
             if (radioButtonBloodPressure.Checked)
             {
+                if (radioButtonAll.Checked)
+                {
+                    warningListBPALL =
+                        new List<BloodPressureWarning>(client.GetWarningListBloodPressureALL(fromDate, toDate,
+                            patientOnMonitoring).OrderByDescending(i => i.Date));
 
-                warningListBloodPressure =
-                    new List<BloodPressure>(client.GetWarningListBloodPressure(typeEvent, fromDate, toDate)
-                        .Where(i => i.PatientSNS == patient.Sns
-                        ).OrderByDescending(i => i.Date));
+                    dataGridViewAlerts.DataSource = warningListBPALL;
+                    setGridViewAlerts();
 
-                dataGridViewAlerts.DataSource = warningListBloodPressure;
-                dataGridViewAlerts.RowHeadersVisible = false;
-                dataGridViewAlerts.Columns[cPATIENTSNS].Visible = false;
-                dataGridViewAlerts.Columns[TIME].Visible = false;
-                dataGridViewAlerts.Columns["Date"].Width = 125;
+                    labelResultsAlerts.Text = RESULTS + warningListBPALL.Count;
+                }
+                else
+                {
+                    warningListBloodPressure =
+                   new List<BloodPressure>(client.GetWarningListBloodPressure(typeEvent, fromDate, toDate)
+                       .Where(i => i.PatientSNS == patient.Sns
+                       ).OrderByDescending(i => i.Date));
+
+                    dataGridViewAlerts.DataSource = warningListBloodPressure;
+                    setGridViewAlerts();
+
+                    labelResultsAlerts.Text = RESULTS + warningListBloodPressure.Count;
+                }
             }
 
             if (radioButtonHeartRate.Checked)
             {
-                warningListHeartRate =
-                    new List<HeartRate>(client.GetWarningListHeartRate(typeEvent, fromDate, toDate)
-                        .Where(i => i.PatientSNS == patient.Sns
-                        ).OrderByDescending(i => i.Date));
+                if (radioButtonAll.Checked)
+                {
+                    warningListHRALL =
+                        new List<HeartRateWarning>(client.GetWarningListHeartRateALL(fromDate, toDate,
+                            patientOnMonitoring).OrderByDescending(i => i.Date));
 
-                dataGridViewAlerts.DataSource = warningListHeartRate;
-                dataGridViewAlerts.RowHeadersVisible = false;
-                dataGridViewAlerts.Columns[cPATIENTSNS].Visible = false;
-                dataGridViewAlerts.Columns[TIME].Visible = false;
-                dataGridViewAlerts.Columns["Date"].Width = 125;
+                    dataGridViewAlerts.DataSource = warningListHRALL;
+                    setGridViewAlerts();
+
+                    labelResultsAlerts.Text = RESULTS + warningListHRALL.Count;
+                }
+                else
+                {
+                    warningListHeartRate =
+                        new List<HeartRate>(client.GetWarningListHeartRate(typeEvent, fromDate, toDate)
+                            .Where(i => i.PatientSNS == patient.Sns
+                            ).OrderByDescending(i => i.Date));
+
+                    dataGridViewAlerts.DataSource = warningListHeartRate;
+                    setGridViewAlerts();
+
+                    labelResultsAlerts.Text = RESULTS + warningListHeartRate.Count;
+                }
             }
 
             if (radioButtonOxygenSat.Checked)
             {
-                warningListOxygenSaturation =
-                    new List<OxygenSaturation>(client.GetWarningListOxygenSaturation(typeEvent, fromDate, toDate)
-                        .Where(i => i.PatientSNS == patient.Sns
-                        ).OrderByDescending(i => i.Date));
+                if (radioButtonAll.Checked)
+                {
+                    warningListOXYSATALL =
+                        new List<OxygenSaturationWarning>(client.GetWarningListOxygenSaturationALL(fromDate, toDate,
+                            patientOnMonitoring).OrderByDescending(i => i.Date));
 
-                dataGridViewAlerts.DataSource = warningListOxygenSaturation;
-                dataGridViewAlerts.RowHeadersVisible = false;
+                    dataGridViewAlerts.DataSource = warningListOXYSATALL;
+                    setGridViewAlerts();
+
+                    labelResultsAlerts.Text = RESULTS + warningListOXYSATALL.Count;
+                }
+                else
+                {
+                    warningListOxygenSaturation =
+                        new List<OxygenSaturation>(client.GetWarningListOxygenSaturation(typeEvent, fromDate, toDate)
+                            .Where(i => i.PatientSNS == patient.Sns
+                            ).OrderByDescending(i => i.Date));
+
+                    dataGridViewAlerts.DataSource = warningListOxygenSaturation;
+                    setGridViewAlerts();
+
+                    labelResultsAlerts.Text = RESULTS + warningListOxygenSaturation.Count;
+                }
+            }
+        }
+
+        private void setGridViewAlerts()
+        {
+            dataGridViewAlerts.RowHeadersVisible = false;
+            if (!radioButtonAll.Checked)
+            {
                 dataGridViewAlerts.Columns[cPATIENTSNS].Visible = false;
                 dataGridViewAlerts.Columns[TIME].Visible = false;
                 dataGridViewAlerts.Columns["Date"].Width = 125;
             }
         }
+     
         #endregion
 
         #endregion
