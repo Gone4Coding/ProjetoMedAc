@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -74,6 +74,7 @@
             this.toolStripButtonSearchMonitor = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripPatientLabel = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.toolStripPatients = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
@@ -136,12 +137,66 @@
             this.tb_firstname = new System.Windows.Forms.TextBox();
             this.tabControlRecors = new System.Windows.Forms.TabControl();
             this.tabPageStatistics = new System.Windows.Forms.TabPage();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelPatientOnStats = new System.Windows.Forms.ToolStripLabel();
+            this.groupBoxGlobal = new System.Windows.Forms.GroupBox();
+            this.labelGlobalOxyMean = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.labelGlobalHrMean = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.labelGlobalBPMean = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.labelGlobalOxyMin = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.labelGlobalHrMin = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.labelGlobalBPMin = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.labelGlobalOxyMax = new System.Windows.Forms.Label();
+            this.labelGlobalBPMax = new System.Windows.Forms.Label();
+            this.labelGlobalHrMax = new System.Windows.Forms.Label();
+            this.groupBoxInterval = new System.Windows.Forms.GroupBox();
+            this.labelIntervalOxyMean = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.labelIntervalHrMean = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.labelIntervalBPMean = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.labelIntervalOxyMin = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.labelIntervalHrMin = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.labelIntervalBPMin = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.labelIntervalOxyMax = new System.Windows.Forms.Label();
+            this.dateTimePickerFromStats = new System.Windows.Forms.DateTimePicker();
+            this.labelIntervalHrMax = new System.Windows.Forms.Label();
+            this.dateTimePickerToStats = new System.Windows.Forms.DateTimePicker();
+            this.labelIntervalBPMax = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.buttonOk = new System.Windows.Forms.Button();
+            this.groupBoxLast3Days = new System.Windows.Forms.GroupBox();
+            this.labelLast3daysOxyMean = new System.Windows.Forms.Label();
+            this.labelLast3daysHrMean = new System.Windows.Forms.Label();
+            this.labelLast3daysBPMean = new System.Windows.Forms.Label();
+            this.labelLast3daysOxyMin = new System.Windows.Forms.Label();
+            this.labelLast3daysHrMin = new System.Windows.Forms.Label();
+            this.labelLast3daysBPMin = new System.Windows.Forms.Label();
+            this.labelLast3daysOxyMax = new System.Windows.Forms.Label();
+            this.labelLast3daysHrMax = new System.Windows.Forms.Label();
+            this.labelLast3daysBPmax = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBoxLast3Days = new System.Windows.Forms.GroupBox();
-            this.groupBoxInterval = new System.Windows.Forms.GroupBox();
-            this.groupBoxGlobal = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -165,6 +220,10 @@
             this.groupBoxPatientMonitoring.SuspendLayout();
             this.tabControlRecors.SuspendLayout();
             this.tabPageStatistics.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.groupBoxGlobal.SuspendLayout();
+            this.groupBoxInterval.SuspendLayout();
+            this.groupBoxLast3Days.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).BeginInit();
             this.SuspendLayout();
             // 
@@ -425,8 +484,8 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1069, 426);
@@ -615,6 +674,7 @@
             this.toolStripMonitor.BackColor = System.Drawing.Color.Silver;
             this.toolStripMonitor.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripMonitor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonSettings,
             this.toolStripButtonRefreshMonitor,
             this.toolStripSeparator4,
             this.toolStripTextBoxMonitor,
@@ -677,6 +737,16 @@
             this.toolStripPatientLabel.Size = new System.Drawing.Size(142, 37);
             this.toolStripPatientLabel.Text = "toolStripLabel1";
             this.toolStripPatientLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // toolStripButtonSettings
+            // 
+            this.toolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSettings.Image")));
+            this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSettings.Name = "toolStripButtonSettings";
+            this.toolStripButtonSettings.Size = new System.Drawing.Size(23, 37);
+            this.toolStripButtonSettings.Text = "Settings";
+            this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
             // 
             // tabPagePatients
             // 
@@ -1361,6 +1431,7 @@
             // 
             // tabPageStatistics
             // 
+            this.tabPageStatistics.Controls.Add(this.toolStrip1);
             this.tabPageStatistics.Controls.Add(this.groupBoxGlobal);
             this.tabPageStatistics.Controls.Add(this.groupBoxInterval);
             this.tabPageStatistics.Controls.Add(this.groupBoxLast3Days);
@@ -1373,10 +1444,573 @@
             this.tabPageStatistics.Text = "Statistics";
             this.tabPageStatistics.UseVisualStyleBackColor = true;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Silver;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox1,
+            this.toolStripButton2,
+            this.toolStripLabelPatientOnStats});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1343, 40);
+            this.toolStrip1.TabIndex = 25;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(0, 40);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 37);
+            this.toolStripButton2.Text = "Search Patient";
+            // 
+            // toolStripLabelPatientOnStats
+            // 
+            this.toolStripLabelPatientOnStats.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripLabelPatientOnStats.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.toolStripLabelPatientOnStats.Name = "toolStripLabelPatientOnStats";
+            this.toolStripLabelPatientOnStats.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.toolStripLabelPatientOnStats.Size = new System.Drawing.Size(142, 37);
+            this.toolStripLabelPatientOnStats.Text = "toolStripLabel1";
+            this.toolStripLabelPatientOnStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // groupBoxGlobal
+            // 
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalOxyMean);
+            this.groupBoxGlobal.Controls.Add(this.label44);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalHrMean);
+            this.groupBoxGlobal.Controls.Add(this.label45);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalBPMean);
+            this.groupBoxGlobal.Controls.Add(this.label46);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalOxyMin);
+            this.groupBoxGlobal.Controls.Add(this.label37);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalHrMin);
+            this.groupBoxGlobal.Controls.Add(this.label34);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalBPMin);
+            this.groupBoxGlobal.Controls.Add(this.label31);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalOxyMax);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalBPMax);
+            this.groupBoxGlobal.Controls.Add(this.labelGlobalHrMax);
+            this.groupBoxGlobal.Location = new System.Drawing.Point(214, 425);
+            this.groupBoxGlobal.Name = "groupBoxGlobal";
+            this.groupBoxGlobal.Size = new System.Drawing.Size(1004, 151);
+            this.groupBoxGlobal.TabIndex = 24;
+            this.groupBoxGlobal.TabStop = false;
+            this.groupBoxGlobal.Text = "Global";
+            // 
+            // labelGlobalOxyMean
+            // 
+            this.labelGlobalOxyMean.AutoSize = true;
+            this.labelGlobalOxyMean.Location = new System.Drawing.Point(820, 112);
+            this.labelGlobalOxyMean.Name = "labelGlobalOxyMean";
+            this.labelGlobalOxyMean.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalOxyMean.TabIndex = 64;
+            this.labelGlobalOxyMean.Text = "label65";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(67, 112);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(94, 13);
+            this.label44.TabIndex = 41;
+            this.label44.Text = "Oxygen Saturation";
+            // 
+            // labelGlobalHrMean
+            // 
+            this.labelGlobalHrMean.AutoSize = true;
+            this.labelGlobalHrMean.Location = new System.Drawing.Point(820, 87);
+            this.labelGlobalHrMean.Name = "labelGlobalHrMean";
+            this.labelGlobalHrMean.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalHrMean.TabIndex = 63;
+            this.labelGlobalHrMean.Text = "label66";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(67, 87);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(59, 13);
+            this.label45.TabIndex = 40;
+            this.label45.Text = "Heart Rate";
+            // 
+            // labelGlobalBPMean
+            // 
+            this.labelGlobalBPMean.AutoSize = true;
+            this.labelGlobalBPMean.Location = new System.Drawing.Point(820, 61);
+            this.labelGlobalBPMean.Name = "labelGlobalBPMean";
+            this.labelGlobalBPMean.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalBPMean.TabIndex = 62;
+            this.labelGlobalBPMean.Text = "label67";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(67, 61);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(78, 13);
+            this.label46.TabIndex = 39;
+            this.label46.Text = "Blood Pressure";
+            // 
+            // labelGlobalOxyMin
+            // 
+            this.labelGlobalOxyMin.AutoSize = true;
+            this.labelGlobalOxyMin.Location = new System.Drawing.Point(543, 112);
+            this.labelGlobalOxyMin.Name = "labelGlobalOxyMin";
+            this.labelGlobalOxyMin.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalOxyMin.TabIndex = 61;
+            this.labelGlobalOxyMin.Text = "label68";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(807, 36);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(69, 13);
+            this.label37.TabIndex = 35;
+            this.label37.Text = "Mean Values";
+            // 
+            // labelGlobalHrMin
+            // 
+            this.labelGlobalHrMin.AutoSize = true;
+            this.labelGlobalHrMin.Location = new System.Drawing.Point(543, 87);
+            this.labelGlobalHrMin.Name = "labelGlobalHrMin";
+            this.labelGlobalHrMin.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalHrMin.TabIndex = 60;
+            this.labelGlobalHrMin.Text = "label69";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(525, 27);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(83, 13);
+            this.label34.TabIndex = 34;
+            this.label34.Text = "Minimum Values";
+            // 
+            // labelGlobalBPMin
+            // 
+            this.labelGlobalBPMin.AutoSize = true;
+            this.labelGlobalBPMin.Location = new System.Drawing.Point(543, 61);
+            this.labelGlobalBPMin.Name = "labelGlobalBPMin";
+            this.labelGlobalBPMin.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalBPMin.TabIndex = 59;
+            this.labelGlobalBPMin.Text = "label70";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(256, 27);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(86, 13);
+            this.label31.TabIndex = 28;
+            this.label31.Text = "Maximum Values";
+            // 
+            // labelGlobalOxyMax
+            // 
+            this.labelGlobalOxyMax.AutoSize = true;
+            this.labelGlobalOxyMax.Location = new System.Drawing.Point(280, 112);
+            this.labelGlobalOxyMax.Name = "labelGlobalOxyMax";
+            this.labelGlobalOxyMax.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalOxyMax.TabIndex = 58;
+            this.labelGlobalOxyMax.Text = "label71";
+            // 
+            // labelGlobalBPMax
+            // 
+            this.labelGlobalBPMax.AutoSize = true;
+            this.labelGlobalBPMax.Location = new System.Drawing.Point(280, 61);
+            this.labelGlobalBPMax.Name = "labelGlobalBPMax";
+            this.labelGlobalBPMax.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalBPMax.TabIndex = 56;
+            this.labelGlobalBPMax.Text = "label73";
+            // 
+            // labelGlobalHrMax
+            // 
+            this.labelGlobalHrMax.AutoSize = true;
+            this.labelGlobalHrMax.Location = new System.Drawing.Point(280, 87);
+            this.labelGlobalHrMax.Name = "labelGlobalHrMax";
+            this.labelGlobalHrMax.Size = new System.Drawing.Size(41, 13);
+            this.labelGlobalHrMax.TabIndex = 57;
+            this.labelGlobalHrMax.Text = "label72";
+            // 
+            // groupBoxInterval
+            // 
+            this.groupBoxInterval.Controls.Add(this.labelIntervalOxyMean);
+            this.groupBoxInterval.Controls.Add(this.label41);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalHrMean);
+            this.groupBoxInterval.Controls.Add(this.label36);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalBPMean);
+            this.groupBoxInterval.Controls.Add(this.label42);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalOxyMin);
+            this.groupBoxInterval.Controls.Add(this.label33);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalHrMin);
+            this.groupBoxInterval.Controls.Add(this.label43);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalBPMin);
+            this.groupBoxInterval.Controls.Add(this.label30);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalOxyMax);
+            this.groupBoxInterval.Controls.Add(this.dateTimePickerFromStats);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalHrMax);
+            this.groupBoxInterval.Controls.Add(this.dateTimePickerToStats);
+            this.groupBoxInterval.Controls.Add(this.labelIntervalBPMax);
+            this.groupBoxInterval.Controls.Add(this.label27);
+            this.groupBoxInterval.Controls.Add(this.label28);
+            this.groupBoxInterval.Controls.Add(this.buttonOk);
+            this.groupBoxInterval.Location = new System.Drawing.Point(214, 244);
+            this.groupBoxInterval.Name = "groupBoxInterval";
+            this.groupBoxInterval.Size = new System.Drawing.Size(1004, 175);
+            this.groupBoxInterval.TabIndex = 24;
+            this.groupBoxInterval.TabStop = false;
+            this.groupBoxInterval.Text = "Interval";
+            // 
+            // labelIntervalOxyMean
+            // 
+            this.labelIntervalOxyMean.AutoSize = true;
+            this.labelIntervalOxyMean.Location = new System.Drawing.Point(820, 129);
+            this.labelIntervalOxyMean.Name = "labelIntervalOxyMean";
+            this.labelIntervalOxyMean.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalOxyMean.TabIndex = 55;
+            this.labelIntervalOxyMean.Text = "label56";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(67, 129);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(94, 13);
+            this.label41.TabIndex = 41;
+            this.label41.Text = "Oxygen Saturation";
+            // 
+            // labelIntervalHrMean
+            // 
+            this.labelIntervalHrMean.AutoSize = true;
+            this.labelIntervalHrMean.Location = new System.Drawing.Point(820, 104);
+            this.labelIntervalHrMean.Name = "labelIntervalHrMean";
+            this.labelIntervalHrMean.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalHrMean.TabIndex = 54;
+            this.labelIntervalHrMean.Text = "label57";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(807, 48);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(69, 13);
+            this.label36.TabIndex = 34;
+            this.label36.Text = "Mean Values";
+            // 
+            // labelIntervalBPMean
+            // 
+            this.labelIntervalBPMean.AutoSize = true;
+            this.labelIntervalBPMean.Location = new System.Drawing.Point(820, 78);
+            this.labelIntervalBPMean.Name = "labelIntervalBPMean";
+            this.labelIntervalBPMean.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalBPMean.TabIndex = 53;
+            this.labelIntervalBPMean.Text = "label58";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(67, 104);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(59, 13);
+            this.label42.TabIndex = 40;
+            this.label42.Text = "Heart Rate";
+            // 
+            // labelIntervalOxyMin
+            // 
+            this.labelIntervalOxyMin.AutoSize = true;
+            this.labelIntervalOxyMin.Location = new System.Drawing.Point(543, 129);
+            this.labelIntervalOxyMin.Name = "labelIntervalOxyMin";
+            this.labelIntervalOxyMin.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalOxyMin.TabIndex = 52;
+            this.labelIntervalOxyMin.Text = "label59";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(525, 48);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(83, 13);
+            this.label33.TabIndex = 33;
+            this.label33.Text = "Minimum Values";
+            // 
+            // labelIntervalHrMin
+            // 
+            this.labelIntervalHrMin.AutoSize = true;
+            this.labelIntervalHrMin.Location = new System.Drawing.Point(543, 104);
+            this.labelIntervalHrMin.Name = "labelIntervalHrMin";
+            this.labelIntervalHrMin.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalHrMin.TabIndex = 51;
+            this.labelIntervalHrMin.Text = "label60";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(67, 78);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(78, 13);
+            this.label43.TabIndex = 39;
+            this.label43.Text = "Blood Pressure";
+            // 
+            // labelIntervalBPMin
+            // 
+            this.labelIntervalBPMin.AutoSize = true;
+            this.labelIntervalBPMin.Location = new System.Drawing.Point(543, 78);
+            this.labelIntervalBPMin.Name = "labelIntervalBPMin";
+            this.labelIntervalBPMin.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalBPMin.TabIndex = 50;
+            this.labelIntervalBPMin.Text = "label61";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(256, 48);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(86, 13);
+            this.label30.TabIndex = 27;
+            this.label30.Text = "Maximum Values";
+            // 
+            // labelIntervalOxyMax
+            // 
+            this.labelIntervalOxyMax.AutoSize = true;
+            this.labelIntervalOxyMax.Location = new System.Drawing.Point(280, 129);
+            this.labelIntervalOxyMax.Name = "labelIntervalOxyMax";
+            this.labelIntervalOxyMax.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalOxyMax.TabIndex = 49;
+            this.labelIntervalOxyMax.Text = "label62";
+            // 
+            // dateTimePickerFromStats
+            // 
+            this.dateTimePickerFromStats.Location = new System.Drawing.Point(221, 19);
+            this.dateTimePickerFromStats.Name = "dateTimePickerFromStats";
+            this.dateTimePickerFromStats.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFromStats.TabIndex = 14;
+            // 
+            // labelIntervalHrMax
+            // 
+            this.labelIntervalHrMax.AutoSize = true;
+            this.labelIntervalHrMax.Location = new System.Drawing.Point(280, 104);
+            this.labelIntervalHrMax.Name = "labelIntervalHrMax";
+            this.labelIntervalHrMax.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalHrMax.TabIndex = 48;
+            this.labelIntervalHrMax.Text = "label63";
+            // 
+            // dateTimePickerToStats
+            // 
+            this.dateTimePickerToStats.Location = new System.Drawing.Point(496, 19);
+            this.dateTimePickerToStats.Name = "dateTimePickerToStats";
+            this.dateTimePickerToStats.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerToStats.TabIndex = 15;
+            // 
+            // labelIntervalBPMax
+            // 
+            this.labelIntervalBPMax.AutoSize = true;
+            this.labelIntervalBPMax.Location = new System.Drawing.Point(280, 78);
+            this.labelIntervalBPMax.Name = "labelIntervalBPMax";
+            this.labelIntervalBPMax.Size = new System.Drawing.Size(41, 13);
+            this.labelIntervalBPMax.TabIndex = 47;
+            this.labelIntervalBPMax.Text = "label64";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(168, 19);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(37, 13);
+            this.label27.TabIndex = 16;
+            this.label27.Text = "Begin:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(448, 19);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(29, 13);
+            this.label28.TabIndex = 17;
+            this.label28.Text = "End:";
+            // 
+            // buttonOk
+            // 
+            this.buttonOk.Location = new System.Drawing.Point(716, 19);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(75, 23);
+            this.buttonOk.TabIndex = 18;
+            this.buttonOk.Text = "OK";
+            this.buttonOk.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxLast3Days
+            // 
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysOxyMean);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysHrMean);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysBPMean);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysOxyMin);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysHrMin);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysBPMin);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysOxyMax);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysHrMax);
+            this.groupBoxLast3Days.Controls.Add(this.labelLast3daysBPmax);
+            this.groupBoxLast3Days.Controls.Add(this.label40);
+            this.groupBoxLast3Days.Controls.Add(this.label39);
+            this.groupBoxLast3Days.Controls.Add(this.label38);
+            this.groupBoxLast3Days.Controls.Add(this.label35);
+            this.groupBoxLast3Days.Controls.Add(this.label32);
+            this.groupBoxLast3Days.Controls.Add(this.label29);
+            this.groupBoxLast3Days.Location = new System.Drawing.Point(214, 86);
+            this.groupBoxLast3Days.Name = "groupBoxLast3Days";
+            this.groupBoxLast3Days.Size = new System.Drawing.Size(1004, 152);
+            this.groupBoxLast3Days.TabIndex = 23;
+            this.groupBoxLast3Days.TabStop = false;
+            this.groupBoxLast3Days.Text = "Last 3 Days";
+            // 
+            // labelLast3daysOxyMean
+            // 
+            this.labelLast3daysOxyMean.AutoSize = true;
+            this.labelLast3daysOxyMean.Location = new System.Drawing.Point(820, 113);
+            this.labelLast3daysOxyMean.Name = "labelLast3daysOxyMean";
+            this.labelLast3daysOxyMean.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysOxyMean.TabIndex = 46;
+            this.labelLast3daysOxyMean.Text = "label53";
+            // 
+            // labelLast3daysHrMean
+            // 
+            this.labelLast3daysHrMean.AutoSize = true;
+            this.labelLast3daysHrMean.Location = new System.Drawing.Point(820, 88);
+            this.labelLast3daysHrMean.Name = "labelLast3daysHrMean";
+            this.labelLast3daysHrMean.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysHrMean.TabIndex = 45;
+            this.labelLast3daysHrMean.Text = "label54";
+            // 
+            // labelLast3daysBPMean
+            // 
+            this.labelLast3daysBPMean.AutoSize = true;
+            this.labelLast3daysBPMean.Location = new System.Drawing.Point(820, 62);
+            this.labelLast3daysBPMean.Name = "labelLast3daysBPMean";
+            this.labelLast3daysBPMean.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysBPMean.TabIndex = 44;
+            this.labelLast3daysBPMean.Text = "label55";
+            // 
+            // labelLast3daysOxyMin
+            // 
+            this.labelLast3daysOxyMin.AutoSize = true;
+            this.labelLast3daysOxyMin.Location = new System.Drawing.Point(543, 113);
+            this.labelLast3daysOxyMin.Name = "labelLast3daysOxyMin";
+            this.labelLast3daysOxyMin.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysOxyMin.TabIndex = 43;
+            this.labelLast3daysOxyMin.Text = "label50";
+            // 
+            // labelLast3daysHrMin
+            // 
+            this.labelLast3daysHrMin.AutoSize = true;
+            this.labelLast3daysHrMin.Location = new System.Drawing.Point(543, 88);
+            this.labelLast3daysHrMin.Name = "labelLast3daysHrMin";
+            this.labelLast3daysHrMin.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysHrMin.TabIndex = 42;
+            this.labelLast3daysHrMin.Text = "label51";
+            // 
+            // labelLast3daysBPMin
+            // 
+            this.labelLast3daysBPMin.AutoSize = true;
+            this.labelLast3daysBPMin.Location = new System.Drawing.Point(543, 62);
+            this.labelLast3daysBPMin.Name = "labelLast3daysBPMin";
+            this.labelLast3daysBPMin.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysBPMin.TabIndex = 41;
+            this.labelLast3daysBPMin.Text = "label52";
+            // 
+            // labelLast3daysOxyMax
+            // 
+            this.labelLast3daysOxyMax.AutoSize = true;
+            this.labelLast3daysOxyMax.Location = new System.Drawing.Point(280, 113);
+            this.labelLast3daysOxyMax.Name = "labelLast3daysOxyMax";
+            this.labelLast3daysOxyMax.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysOxyMax.TabIndex = 40;
+            this.labelLast3daysOxyMax.Text = "label49";
+            // 
+            // labelLast3daysHrMax
+            // 
+            this.labelLast3daysHrMax.AutoSize = true;
+            this.labelLast3daysHrMax.Location = new System.Drawing.Point(280, 88);
+            this.labelLast3daysHrMax.Name = "labelLast3daysHrMax";
+            this.labelLast3daysHrMax.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysHrMax.TabIndex = 39;
+            this.labelLast3daysHrMax.Text = "label48";
+            // 
+            // labelLast3daysBPmax
+            // 
+            this.labelLast3daysBPmax.AutoSize = true;
+            this.labelLast3daysBPmax.Location = new System.Drawing.Point(280, 62);
+            this.labelLast3daysBPmax.Name = "labelLast3daysBPmax";
+            this.labelLast3daysBPmax.Size = new System.Drawing.Size(41, 13);
+            this.labelLast3daysBPmax.TabIndex = 26;
+            this.labelLast3daysBPmax.Text = "label47";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(67, 113);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(94, 13);
+            this.label40.TabIndex = 38;
+            this.label40.Text = "Oxygen Saturation";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(67, 88);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(59, 13);
+            this.label39.TabIndex = 37;
+            this.label39.Text = "Heart Rate";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(67, 62);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(78, 13);
+            this.label38.TabIndex = 36;
+            this.label38.Text = "Blood Pressure";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(807, 25);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(69, 13);
+            this.label35.TabIndex = 32;
+            this.label35.Text = "Mean Values";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(525, 25);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(83, 13);
+            this.label32.TabIndex = 29;
+            this.label32.Text = "Minimum Values";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(256, 25);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(86, 13);
+            this.label29.TabIndex = 26;
+            this.label29.Text = "Maximum Values";
+            // 
             // pictureBoxStats
             // 
             this.pictureBoxStats.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxStats.Image")));
-            this.pictureBoxStats.Location = new System.Drawing.Point(46, 30);
+            this.pictureBoxStats.Location = new System.Drawing.Point(56, 86);
             this.pictureBoxStats.Name = "pictureBoxStats";
             this.pictureBoxStats.Size = new System.Drawing.Size(69, 69);
             this.pictureBoxStats.TabIndex = 22;
@@ -1396,33 +2030,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // groupBoxLast3Days
-            // 
-            this.groupBoxLast3Days.Location = new System.Drawing.Point(204, 30);
-            this.groupBoxLast3Days.Name = "groupBoxLast3Days";
-            this.groupBoxLast3Days.Size = new System.Drawing.Size(1004, 138);
-            this.groupBoxLast3Days.TabIndex = 23;
-            this.groupBoxLast3Days.TabStop = false;
-            this.groupBoxLast3Days.Text = "Last 3 Days";
-            // 
-            // groupBoxInterval
-            // 
-            this.groupBoxInterval.Location = new System.Drawing.Point(204, 174);
-            this.groupBoxInterval.Name = "groupBoxInterval";
-            this.groupBoxInterval.Size = new System.Drawing.Size(1004, 138);
-            this.groupBoxInterval.TabIndex = 24;
-            this.groupBoxInterval.TabStop = false;
-            this.groupBoxInterval.Text = "Interval";
-            // 
-            // groupBoxGlobal
-            // 
-            this.groupBoxGlobal.Location = new System.Drawing.Point(204, 318);
-            this.groupBoxGlobal.Name = "groupBoxGlobal";
-            this.groupBoxGlobal.Size = new System.Drawing.Size(1004, 138);
-            this.groupBoxGlobal.TabIndex = 24;
-            this.groupBoxGlobal.TabStop = false;
-            this.groupBoxGlobal.Text = "Global";
             // 
             // FormAlertSystem
             // 
@@ -1468,6 +2075,14 @@
             this.groupBoxPatientMonitoring.PerformLayout();
             this.tabControlRecors.ResumeLayout(false);
             this.tabPageStatistics.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.groupBoxGlobal.ResumeLayout(false);
+            this.groupBoxGlobal.PerformLayout();
+            this.groupBoxInterval.ResumeLayout(false);
+            this.groupBoxInterval.PerformLayout();
+            this.groupBoxLast3Days.ResumeLayout(false);
+            this.groupBoxLast3Days.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1586,6 +2201,61 @@
         private System.Windows.Forms.GroupBox groupBoxGlobal;
         private System.Windows.Forms.GroupBox groupBoxInterval;
         private System.Windows.Forms.GroupBox groupBoxLast3Days;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelPatientOnStats;
+        private System.Windows.Forms.Label labelGlobalOxyMean;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label labelGlobalHrMean;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label labelGlobalBPMean;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label labelGlobalOxyMin;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label labelGlobalHrMin;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label labelGlobalBPMin;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label labelGlobalOxyMax;
+        private System.Windows.Forms.Label labelGlobalBPMax;
+        private System.Windows.Forms.Label labelGlobalHrMax;
+        private System.Windows.Forms.Label labelIntervalOxyMean;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label labelIntervalHrMean;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label labelIntervalBPMean;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label labelIntervalOxyMin;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label labelIntervalHrMin;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label labelIntervalBPMin;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label labelIntervalOxyMax;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFromStats;
+        private System.Windows.Forms.Label labelIntervalHrMax;
+        private System.Windows.Forms.DateTimePicker dateTimePickerToStats;
+        private System.Windows.Forms.Label labelIntervalBPMax;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button buttonOk;
+        private System.Windows.Forms.Label labelLast3daysOxyMean;
+        private System.Windows.Forms.Label labelLast3daysHrMean;
+        private System.Windows.Forms.Label labelLast3daysBPMean;
+        private System.Windows.Forms.Label labelLast3daysOxyMin;
+        private System.Windows.Forms.Label labelLast3daysHrMin;
+        private System.Windows.Forms.Label labelLast3daysBPMin;
+        private System.Windows.Forms.Label labelLast3daysOxyMax;
+        private System.Windows.Forms.Label labelLast3daysHrMax;
+        private System.Windows.Forms.Label labelLast3daysBPmax;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
     }
 }
 
