@@ -6,12 +6,7 @@ using System.Net;
 using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
-using System.Threading;
-using System.Xml;
 using MyHealth.ServiceReferenceHealth;
-using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Windows.Input;
 using MyHealth.AppSettings;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
@@ -29,16 +24,11 @@ namespace MyHealth
         private SpeechRecognitionEngine sReconEngine;
         private PhysiologicParametersDll.PhysiologicParametersDll dll;
         private string queryForMedline = @"query?db=healthTopics&term=";
-        private Image success;
-        private Image error;
+        private Image success, error;
 
         private Patient patient;
-        private bool bloodPressure_checked;
-        private bool saturation_checked;
-        private bool heartRate_checked;
-
-        private bool speechActive = false;
-        private bool serviceActive = false;
+        private bool bloodPressure_checked, saturation_checked, heartRate_checked;
+        private bool speechActive, serviceActive = false;
 
         private enum Question
         {
@@ -48,9 +38,7 @@ namespace MyHealth
             NULL
         }
 
-        private bool closeQuestion = false;
-        private bool setId = false;
-        private bool goToMedlineQuestion = false;
+        private bool closeQuestion, setId, goToMedlineQuestion = false;
 
         private static string speechDeactivated = "Speech: Deactivated";
         private static string speechSemiActive = "Speech: Active. Say \"Hello Alice to fully activate\"";
@@ -82,10 +70,143 @@ namespace MyHealth
             tb_patientSNS.Text = ApplicationSettings.Get_Patient_Id().ToString();
         }
 
-        private void MyHealth_FormClosing(object sender, FormClosingEventArgs e)
+        private void CommandsWithS(string speech)
         {
-            dll.Stop();
-            dll = null;
+            #region Monitoring Related
+
+            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartMonitoring.ToString()))
+            {
+                ActivateHeartRateMonitoring(true);
+                ActivateSaturationMonitoring(true);
+                ActivateBloodPressureMonitoring(true);
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopMonitoring.ToString()))
+            {
+                ActivateHeartRateMonitoring(false);
+                ActivateSaturationMonitoring(false);
+                ActivateBloodPressureMonitoring(false);
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartBloodPressure.ToString()))
+            {
+                ActivateBloodPressureMonitoring(true);
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopBloodPressure.ToString()))
+            {
+                ActivateBloodPressureMonitoring(false);
+
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartHeartRate.ToString()))
+            {
+                ActivateHeartRateMonitoring(true);
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopHeartRate.ToString()))
+            {
+                ActivateHeartRateMonitoring(false);
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartOxygenSaturation.ToString()))
+            {
+                ActivateSaturationMonitoring(true);
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopOxygenSaturation.ToString()))
+            {
+                ActivateSaturationMonitoring(false);
+            }
+            #endregion
+            else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.SetId.ToString())
+                      || speech.Contains(VoiceRecognition.VoiceRecognition.Code.ChangeId.ToString()))
+            {
+                //TODO MUDAR SNS
+                Speak("Tell me the number.");
+                ChangeQuestionActive(false, Question.SetId);
+            }
+            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.SearchInMedline.ToString()))
+            {
+                //TODO ABRIR O FORM PARA PROCURAR NO MEDLINE
+                mainTabing.SelectedTab = medline;
+            }
+            else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.Search.ToString()))
+            {
+                if (mainTabing.SelectedTab == medline)
+                {
+                    string terms = speech.Replace(VoiceRecognition.VoiceRecognition.Code.Search.ToString(), "");
+
+                    UseBrowser(terms);
+                    goToMedlineQuestion = false;
+                }
+                else
+                {
+                    Speak("Do you want to search in MedLine?");
+                    ChangeQuestionActive(false, Question.GotoMedLine);
+                }
+            }
+        }
+
+        private void Speak(string phrase)
+        {
+            string genderProperties = Properties.Settings.Default.Gender_Voice;
+            VoiceGender gender = (genderProperties.Equals("Male")) ? VoiceGender.Male : VoiceGender.Female;
+
+            int rate = Properties.Settings.Default.Voice_Rate;
+
+            pBuilder.ClearContent();
+            pBuilder.AppendText(phrase);
+            synth.SelectVoiceByHints(gender, VoiceAge.Adult);
+            synth.Rate = rate;
+            synth.SpeakAsync(pBuilder);
+        }
+
+        private void ServiceNotAvailable(bool firstTime)
+        {
+            lb_serviceError.Visible = true;
+
+            foreach (TabPage tabPage in mainTabing.TabPages)
+            {
+                if (tabPage != home)
+                    tabPage.Enabled = false;
+            }
+
+            if (!firstTime)
+                MessageBox.Show("The Service is Not Active", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+        }
+
+        private void EveryThingOk()
+        {
+            gb_monitoringParametrs.Visible = true;
+            gb_BloodPressure.Visible = true;
+            gb_HeatRate.Visible = true;
+            gb_Saturation.Visible = true;
+            lb_userName.Visible = true;
+            lb_userAge.Visible = true;
+
+            foreach (TabPage tabPage in mainTabing.TabPages)
+            {
+                tabPage.Enabled = true;
+            }
+        }
+
+        private void WrongUser()
+        {
+            gb_monitoringParametrs.Visible = false;
+            lb_userName.Visible = false;
+            lb_userAge.Visible = false;
+        }
+
+        private void HideAll()
+        {
+            lb_userName.Visible = false;
+            lb_userAge.Visible = false;
+            lb_serviceError.Visible = false;
+            gb_monitoringParametrs.Visible = false;
+            gb_BloodPressure.Visible = false;
+            gb_HeatRate.Visible = false;
+            gb_Saturation.Visible = false;
+
+            foreach (TabPage tabPage in mainTabing.TabPages)
+            {
+                if (tabPage != home)
+                    tabPage.Enabled = false;
+            }
         }
 
         private void InitializeSpeech()
@@ -96,6 +217,12 @@ namespace MyHealth
             sReconEngine.SpeechRecognized += Srecon_SpeechRecognized;
         }
 
+        private void MyHealth_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dll.Stop();
+            dll = null;
+        }
+    
         private void ChangeQuestionActive(bool allFalse, Question question)
         {
             if (allFalse)
@@ -239,147 +366,7 @@ namespace MyHealth
                 }
             }
         }
-
-        private void CommandsWithS(string speech)
-        {
-            #region Monitoring Related
-
-            if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartMonitoring.ToString()))
-            {
-                ActivateHeartRateMonitoring(true);
-                ActivateSaturationMonitoring(true);
-                ActivateBloodPressureMonitoring(true);
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopMonitoring.ToString()))
-            {
-                ActivateHeartRateMonitoring(false);
-                ActivateSaturationMonitoring(false);
-                ActivateBloodPressureMonitoring(false);
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartBloodPressure.ToString()))
-            {
-                ActivateBloodPressureMonitoring(true);
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopBloodPressure.ToString()))
-            {
-                ActivateBloodPressureMonitoring(false);
-
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartHeartRate.ToString()))
-            {
-                ActivateHeartRateMonitoring(true);
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopHeartRate.ToString()))
-            {
-                ActivateHeartRateMonitoring(false);
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StartOxygenSaturation.ToString()))
-            {
-                ActivateSaturationMonitoring(true);
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.StopOxygenSaturation.ToString()))
-            {
-                ActivateSaturationMonitoring(false);
-            }
-            #endregion
-            else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.SetId.ToString())
-                      || speech.Contains(VoiceRecognition.VoiceRecognition.Code.ChangeId.ToString()))
-            {
-                //TODO MUDAR SNS
-                Speak("Tell me the number.");
-                ChangeQuestionActive(false, Question.SetId);
-            }
-            else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.SearchInMedline.ToString()))
-            {
-                //TODO ABRIR O FORM PARA PROCURAR NO MEDLINE
-                mainTabing.SelectedTab = medline;
-            }
-            else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.Search.ToString()))
-            {
-                if (mainTabing.SelectedTab == medline)
-                {
-                    string terms = speech.Replace(VoiceRecognition.VoiceRecognition.Code.Search.ToString(), "");
-
-                    UseBrowser(terms);
-                    goToMedlineQuestion = false;
-                }
-                else
-                {
-                    Speak("Do you want to search in MedLine?");
-                    ChangeQuestionActive(false, Question.GotoMedLine);
-                }
-            }
-        }
-
-        private void Speak(string phrase)
-        {
-            string genderProperties = Properties.Settings.Default.Gender_Voice;
-            VoiceGender gender = (genderProperties.Equals("Male")) ? VoiceGender.Male : VoiceGender.Female;
-
-            int rate = Properties.Settings.Default.Voice_Rate;
-
-            pBuilder.ClearContent();
-            pBuilder.AppendText(phrase);
-            synth.SelectVoiceByHints(gender, VoiceAge.Adult);
-            synth.Rate = rate;
-            synth.SpeakAsync(pBuilder);
-        }
-
-        private void ServiceNotAvailable(bool firstTime)
-        {
-            lb_serviceError.Visible = true;
-
-            foreach (TabPage tabPage in mainTabing.TabPages)
-            {
-                if (tabPage != home)
-                    tabPage.Enabled = false;
-            }
-
-            if (!firstTime)
-                MessageBox.Show("The Service is Not Active", "Warning", MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
-        }
-
-        private void EveryThingOk()
-        {
-            //MoveGroupBoxUser();
-            gb_monitoringParametrs.Visible = true;
-            gb_BloodPressure.Visible = true;
-            gb_HeatRate.Visible = true;
-            gb_Saturation.Visible = true;
-            lb_userName.Visible = true;
-            lb_userAge.Visible = true;
-
-            foreach (TabPage tabPage in mainTabing.TabPages)
-            {
-                tabPage.Enabled = true;
-            }
-        }
-
-        private void WrongUser()
-        {
-            gb_monitoringParametrs.Visible = false;
-            lb_userName.Visible = false;
-            lb_userAge.Visible = false;
-        }
-
-        private void HideAll()
-        {
-            lb_userName.Visible = false;
-            lb_userAge.Visible = false;
-            lb_serviceError.Visible = false;
-            gb_monitoringParametrs.Visible = false;
-            gb_BloodPressure.Visible = false;
-            gb_HeatRate.Visible = false;
-            gb_Saturation.Visible = false;
-
-            foreach (TabPage tabPage in mainTabing.TabPages)
-            {
-                if (tabPage != home)
-                    tabPage.Enabled = false;
-            }
-        }
-
+        
         #endregion General
 
         #region TabHome
@@ -394,25 +381,7 @@ namespace MyHealth
             lb_dataSPO2.Visible = visible;
             lb_userName.Visible = visible;
         }
-
-        private void bt_BPActivation_Click(object sender, EventArgs e)
-        {
-            bloodPressure_checked = !bloodPressure_checked;
-            ActivateBloodPressureMonitoring(bloodPressure_checked);
-        }
-
-        private void bt_satActivation_Click(object sender, EventArgs e)
-        {
-            saturation_checked = !saturation_checked;
-            ActivateSaturationMonitoring(saturation_checked);
-        }
-
-        private void bt_HRActivation_Click(object sender, EventArgs e)
-        {
-            heartRate_checked = !heartRate_checked;
-            ActivateHeartRateMonitoring(heartRate_checked);
-        }
-
+        
         private void ActivateHeartRateMonitoring(bool check)
         {
             if (!check) lb_dataHR.Text = "";
@@ -475,52 +444,7 @@ namespace MyHealth
             pb_successErrorBP.Visible = check;
             StartMonitoring();
         }
-
-        private void bt_insert_Click(object sender, EventArgs e)
-        {
-            int sns;
-            if (int.TryParse(tb_patientSNS.Text, out sns))
-            {
-                try
-                {
-                    if (!clientHealth.ValidatePatient(sns))
-                    {
-                        MessageBox.Show("The SNS is not valid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        WrongUser();
-                    }
-                    else
-                    {
-                        if (clientHealth.ValidatePatientState(sns))
-                        {
-                            ApplicationSettings.Set_Patient_Id(sns);
-                            patient = clientHealthAlert.GetPatient(sns);
-                            FillUserInfo();
-                            serviceActive = true;
-
-                            EveryThingOk();
-                            InitializeSpeech();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Currently You Are Not Being Monitored.\nTalk to your physician", "Warning",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            WrongUser();
-                        }
-
-                    }
-                }
-                catch (Exception)
-                {
-                    ServiceNotAvailable(false);
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Wrong format!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
+        
         private void StartMonitoring()
         {
             int rate = ApplicationSettings.Get_DLL_Rate();
@@ -643,56 +567,71 @@ namespace MyHealth
                 }
 
             }));
-
         }
 
-        //private void MoveGroupBoxUser()
-        //{
-        //    Control destination = new Control();
-        //    destination.Location = new Point(6, 6);
+        private void bt_insert_Click(object sender, EventArgs e)
+        {
+            int sns;
+            if (int.TryParse(tb_patientSNS.Text, out sns))
+            {
+                try
+                {
+                    if (!clientHealth.ValidatePatient(sns))
+                    {
+                        MessageBox.Show("The SNS is not valid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        WrongUser();
+                    }
+                    else
+                    {
+                        if (clientHealth.ValidatePatientState(sns))
+                        {
+                            ApplicationSettings.Set_Patient_Id(sns);
+                            patient = clientHealthAlert.GetPatient(sns);
+                            FillUserInfo();
+                            serviceActive = true;
 
-        //    SlideToDestination(destination, gb_user, 2, null);
-        //}
+                            EveryThingOk();
+                            InitializeSpeech();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Currently You Are Not Being Monitored.\nTalk to your physician", "Warning",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            WrongUser();
+                        }
 
-        //private void SlideToDestination(Control destination, Control control, int delay, Action onFinish)
-        //{
-        //    new Task(() =>
-        //    {
-        //        int directionX = destination.Left > control.Left ? 1 : -1;
-        //        int directionY = destination.Bottom > control.Top ? 1 : -1;
+                    }
+                }
+                catch (Exception)
+                {
+                    ServiceNotAvailable(false);
+                }
 
-        //        while (control.Left != destination.Left || control.Top != destination.Bottom)
-        //        {
-        //            try
-        //            {
-        //                if (control.Left != destination.Left)
-        //                {
-        //                    this.Invoke((Action)delegate ()
-        //                    {
-        //                        control.Left += directionX;
-        //                    });
-        //                }
-        //                if (control.Top != destination.Bottom)
-        //                {
-        //                    this.Invoke((Action)delegate ()
-        //                    {
-        //                        control.Top += directionY;
-        //                    });
-        //                }
-        //                Thread.Sleep(delay);
-        //            }
-        //            catch
-        //            {
-        //                // form could be disposed
-        //                break;
-        //            }
-        //        }
+            }
+            else
+            {
+                MessageBox.Show("Wrong format!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
 
-        //        if (onFinish != null) onFinish();
+        private void bt_BPActivation_Click(object sender, EventArgs e)
+        {
+            bloodPressure_checked = !bloodPressure_checked;
+            ActivateBloodPressureMonitoring(bloodPressure_checked);
+        }
 
-        //    }).Start();
-        //}
-        
+        private void bt_satActivation_Click(object sender, EventArgs e)
+        {
+            saturation_checked = !saturation_checked;
+            ActivateSaturationMonitoring(saturation_checked);
+        }
+
+        private void bt_HRActivation_Click(object sender, EventArgs e)
+        {
+            heartRate_checked = !heartRate_checked;
+            ActivateHeartRateMonitoring(heartRate_checked);
+        }
+
         private void cb_speechActivation_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -706,6 +645,12 @@ namespace MyHealth
                 cb_speechActivation.Text = speechDeactivated;
                 cb_speechActivation.ForeColor = Color.Firebrick;
             }
+        }
+
+        private void tb_patientSNS_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                bt_insert_Click(sender, e);
         }
 
         #endregion
@@ -729,7 +674,7 @@ namespace MyHealth
             tb_phone.Text = patient.Phone.ToString();
             tb_email.Text = patient.Email;
             richTextBox_address.Text = patient.Adress;
-            comboBoxGender.Text = patient.Gender;
+            tb_gender.Text = patient.Gender;
             tb_emergencyContactName.Text = patient.EmergencyName;
             tb_emergencyContactNum.Text = patient.EmergencyNumber.ToString();
             tb_height.Text = patient.Height.ToString();
@@ -741,12 +686,7 @@ namespace MyHealth
         #endregion
 
         #region TabMedLine
-
-        private void bt_searchMedLine_Click(object sender, EventArgs e)
-        {
-            Navigate();
-        }
-
+        
         private void Navigate()
         {
             string terms = tb_url.Text;
@@ -776,9 +716,37 @@ namespace MyHealth
                 Navigate();
         }
 
+        private void bt_searchMedLine_Click(object sender, EventArgs e)
+        {
+            Navigate();
+        }
+
         #endregion TabMedLine
 
         #region TabConfiguration
+
+        private void RetreivePropertiesInfo()
+        {
+            tb_urlMedline.Text = ApplicationSettings.Get_MedLine_URL();
+
+            if (ApplicationSettings.Get_Gender_Voice().Equals("Male"))
+                rb_male.Checked = true;
+            else
+                rb_female.Checked = true;
+
+            numberRatingVoice.Value = ApplicationSettings.Get_Voice_Rate();
+
+            if (ApplicationSettings.Get_DLL_Rate() >= 3000)
+                numberRatingDLL.Value = Convert.ToDecimal(ApplicationSettings.Get_DLL_Rate());
+
+            tb_retmax.Text = ApplicationSettings.Get_Retmax().ToString();
+
+            List<string> termsList = ApplicationSettings.Get_Terms();
+            foreach (string term in termsList)
+            {
+                rtb_terms.Text = term + "\n";
+            }
+        }
 
         private void bt_save_Click(object sender, EventArgs e)
         {
@@ -824,31 +792,7 @@ namespace MyHealth
             }
         }
 
-        private void RetreivePropertiesInfo()
-        {
-            tb_urlMedline.Text = ApplicationSettings.Get_MedLine_URL();
+        #endregion TabConfiguration
 
-            if (ApplicationSettings.Get_Gender_Voice().Equals("Male"))
-                rb_male.Checked = true;
-            else
-                rb_female.Checked = true;
-
-            numberRatingVoice.Value = ApplicationSettings.Get_Voice_Rate();
-
-            if (ApplicationSettings.Get_DLL_Rate() >= 3000)
-                numberRatingDLL.Value = Convert.ToDecimal(ApplicationSettings.Get_DLL_Rate());
-
-            tb_retmax.Text = ApplicationSettings.Get_Retmax().ToString();
-
-            List<string> termsList = ApplicationSettings.Get_Terms();
-            foreach (string term in termsList)
-            {
-                rtb_terms.Text = term + "\n";
-            }
-        }
-
-        #endregion
-
-        
     }
 }

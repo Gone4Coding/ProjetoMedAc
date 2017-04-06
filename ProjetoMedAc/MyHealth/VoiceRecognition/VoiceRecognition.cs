@@ -69,7 +69,8 @@ namespace MyHealth.VoiceRecognition
             List<string> termsList = ApplicationSettings.Get_Terms();
             foreach (string term in termsList)
             {
-                comms.Add(term);
+                if(!term.Equals(""))
+                    comms.Add(term);
             }
 
             Choices choices = new Choices();
