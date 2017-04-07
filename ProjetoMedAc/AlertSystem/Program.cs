@@ -17,6 +17,7 @@ namespace AlertSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormAlertSystem());
+            //Application.Run(new FormConfigurations());
         }
     }
 }
