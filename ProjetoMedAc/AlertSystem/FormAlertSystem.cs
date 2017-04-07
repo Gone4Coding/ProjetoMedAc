@@ -2139,7 +2139,7 @@ namespace AlertSystem
             fromDateStats = dateTimePickerFromStats.Value;
             toDateStats = dateTimePickerToStats.Value;
 
-            if (fromDate > toDate)
+            if (fromDateStats > toDateStats)
             {
                 return false;
             }
@@ -2225,7 +2225,7 @@ namespace AlertSystem
             {
                 labelLast3daysHrMax.Text = last3daysHR.Max(i => i.Rate) + HR;
                 labelLast3daysHrMin.Text = last3daysHR.Min(i => i.Rate) + HR;
-                labelLast3daysHrMean.Text = last3daysHR.Average(i => i.Rate) + HR;
+                labelLast3daysHrMean.Text = Convert.ToInt32(last3daysHR.Average(i => i.Rate)) + HR;
             }
             else
             {
@@ -2237,7 +2237,7 @@ namespace AlertSystem
             {
                 labelLast3daysOxyMax.Text = last3daysOS.Max(i => i.Saturation) + OS;
                 labelLast3daysOxyMin.Text = last3daysOS.Min(i => i.Saturation) + OS;
-                labelLast3daysOxyMean.Text = last3daysOS.Average(i => i.Saturation) + OS;
+                labelLast3daysOxyMean.Text = Convert.ToInt32(last3daysOS.Average(i => i.Saturation)) + OS;
             }
             else
             {
@@ -2245,6 +2245,8 @@ namespace AlertSystem
                 labelLast3daysOxyMin.Text = NOVALUES;
                 labelLast3daysOxyMean.Text = NOVALUES;
             }
+
+            loadStatisticsTimeLine();
            
         }
 
@@ -2259,35 +2261,55 @@ namespace AlertSystem
 
                 if (intervalBP.Count > 0)
                 {
-                    //label
+                    labelIntervalBPMax.Text = intervalBP.Max(i => i.Diastolic) + "/" + intervalBP.Max(i => i.Systolic) +
+                                           BP;
+                    labelIntervalBPMin.Text = intervalBP.Min(i => i.Diastolic) + "/" + intervalBP.Min(i => i.Systolic) +
+                                           BP;
+                    labelIntervalBPMean.Text = Convert.ToInt32(intervalBP.Average(i => i.Diastolic)) + "/" +
+                                            Convert.ToInt32(intervalBP.Average(i => i.Systolic)) + BP;
                 }
                 else
                 {
-                    
+                    labelIntervalBPMax.Text = NOVALUES;
+                    labelIntervalBPMin.Text = NOVALUES;
+                    labelIntervalBPMean.Text = NOVALUES;
                 }
 
                 if (intervalHR.Count > 0)
                 {
-
+                    labelIntervalHrMax.Text = intervalHR.Max(i => i.Rate) + HR;
+                    labelIntervalHrMin.Text = intervalHR.Min(i => i.Rate) + HR;
+                    labelIntervalHrMean.Text = Convert.ToInt32(intervalHR.Average(i => i.Rate)) + HR;
                 }
                 else
                 {
-                    
+                    labelIntervalHrMax.Text = NOVALUES;
+                        labelIntervalHrMin.Text = NOVALUES;
+                            labelIntervalHrMean.Text = NOVALUES;
                 }
 
                 if (intervalOS.Count > 0)
                 {
-
+                    labelIntervalOxyMax.Text = intervalOS.Max(i => i.Saturation) + OS;
+                    labelIntervalOxyMin.Text = intervalOS.Min(i => i.Saturation) + OS;
+                    labelIntervalOxyMean.Text = Convert.ToInt32(intervalOS.Average(i => i.Saturation)) + OS;
                 }
                 else
                 {
-                    
+                    labelIntervalOxyMax.Text = NOVALUES;
+                    labelIntervalOxyMin.Text = NOVALUES;
+                    labelIntervalOxyMean.Text = NOVALUES;
                 }
             }
             else
             {
                 MessageBox.Show("Timeline selected is invalid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            loadStatisticsTimeLine();
         }
         #endregion
 
@@ -2302,6 +2324,6 @@ namespace AlertSystem
             return client;
         }
 
-
+       
     }
 }
