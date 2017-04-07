@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -147,7 +147,6 @@
             this.labelGlobalHrMean = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.labelGlobalBPMean = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
             this.labelGlobalOxyMin = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.labelGlobalHrMin = new System.Windows.Forms.Label();
@@ -167,7 +166,6 @@
             this.labelIntervalOxyMin = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.labelIntervalHrMin = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
             this.labelIntervalBPMin = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.labelIntervalOxyMax = new System.Windows.Forms.Label();
@@ -196,8 +194,10 @@
             this.label29 = new System.Windows.Forms.Label();
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.labelTimeline = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -486,8 +486,8 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1014, 396);
@@ -1488,12 +1488,12 @@
             // 
             // groupBoxGlobal
             // 
+            this.groupBoxGlobal.Controls.Add(this.label46);
             this.groupBoxGlobal.Controls.Add(this.labelGlobalOxyMean);
             this.groupBoxGlobal.Controls.Add(this.label44);
             this.groupBoxGlobal.Controls.Add(this.labelGlobalHrMean);
             this.groupBoxGlobal.Controls.Add(this.label45);
             this.groupBoxGlobal.Controls.Add(this.labelGlobalBPMean);
-            this.groupBoxGlobal.Controls.Add(this.label46);
             this.groupBoxGlobal.Controls.Add(this.labelGlobalOxyMin);
             this.groupBoxGlobal.Controls.Add(this.label37);
             this.groupBoxGlobal.Controls.Add(this.labelGlobalHrMin);
@@ -1554,15 +1554,6 @@
             this.labelGlobalBPMean.Size = new System.Drawing.Size(41, 13);
             this.labelGlobalBPMean.TabIndex = 62;
             this.labelGlobalBPMean.Text = "label67";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(67, 61);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(78, 13);
-            this.label46.TabIndex = 39;
-            this.label46.Text = "Blood Pressure";
             // 
             // labelGlobalOxyMin
             // 
@@ -1647,6 +1638,7 @@
             // 
             // groupBoxInterval
             // 
+            this.groupBoxInterval.Controls.Add(this.label43);
             this.groupBoxInterval.Controls.Add(this.labelIntervalOxyMean);
             this.groupBoxInterval.Controls.Add(this.label41);
             this.groupBoxInterval.Controls.Add(this.labelIntervalHrMean);
@@ -1656,7 +1648,6 @@
             this.groupBoxInterval.Controls.Add(this.labelIntervalOxyMin);
             this.groupBoxInterval.Controls.Add(this.label33);
             this.groupBoxInterval.Controls.Add(this.labelIntervalHrMin);
-            this.groupBoxInterval.Controls.Add(this.label43);
             this.groupBoxInterval.Controls.Add(this.labelIntervalBPMin);
             this.groupBoxInterval.Controls.Add(this.label30);
             this.groupBoxInterval.Controls.Add(this.labelIntervalOxyMax);
@@ -1754,15 +1745,6 @@
             this.labelIntervalHrMin.Size = new System.Drawing.Size(41, 13);
             this.labelIntervalHrMin.TabIndex = 51;
             this.labelIntervalHrMin.Text = "label60";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(67, 78);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(78, 13);
-            this.label43.TabIndex = 39;
-            this.label43.Text = "Blood Pressure";
             // 
             // labelIntervalBPMin
             // 
@@ -1978,9 +1960,9 @@
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(67, 62);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(78, 13);
+            this.label38.Size = new System.Drawing.Size(107, 13);
             this.label38.TabIndex = 36;
-            this.label38.Text = "Blood Pressure";
+            this.label38.Text = "Blood Pressure (D/S)";
             // 
             // label35
             // 
@@ -2029,9 +2011,9 @@
             this.labelTime.TabIndex = 1;
             this.labelTime.Text = "Time";
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // labelTimeline
             // 
@@ -2042,6 +2024,24 @@
             this.labelTimeline.Size = new System.Drawing.Size(74, 17);
             this.labelTimeline.TabIndex = 12;
             this.labelTimeline.Text = "Timeline:";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(67, 78);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(107, 13);
+            this.label43.TabIndex = 47;
+            this.label43.Text = "Blood Pressure (D/S)";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(67, 61);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(107, 13);
+            this.label46.TabIndex = 56;
+            this.label46.Text = "Blood Pressure (D/S)";
             // 
             // FormAlertSystem
             // 
@@ -2193,7 +2193,7 @@
         private System.Windows.Forms.CheckBox checkBoxDiastolicSeries;
         private System.Windows.Forms.CheckBox checkBoxOxySatSeries;
         private System.Windows.Forms.Label labelTime;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.RadioButton radioButtonECI;
         private System.Windows.Forms.RadioButton radioButtonEAI;
         private System.Windows.Forms.RadioButton radioButtonECA;
@@ -2223,7 +2223,6 @@
         private System.Windows.Forms.Label labelGlobalHrMean;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label labelGlobalBPMean;
-        private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label labelGlobalOxyMin;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label labelGlobalHrMin;
@@ -2242,7 +2241,6 @@
         private System.Windows.Forms.Label labelIntervalOxyMin;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label labelIntervalHrMin;
-        private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label labelIntervalBPMin;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label labelIntervalOxyMax;
@@ -2270,6 +2268,8 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
         private System.Windows.Forms.Label labelTimeline;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label43;
     }
 }
 
