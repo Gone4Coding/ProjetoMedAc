@@ -37,6 +37,7 @@ namespace AlertSystem
         private const string BP = " mmHg";
         private const string HR = " bpm";
         private const string OS = " %";
+        private const string NOVALUES = "No Values";
 
         private static ServiceHealthAlertClient client;
         private List<Countries.Country> countries;
@@ -2156,18 +2157,138 @@ namespace AlertSystem
             patientsRecordBloodPressure = new List<BloodPressure>(client.BloodPressureList(patientOnStats.Sns).OrderBy(i => i.Diastolic));
             patientsRecordHeartRate = new List<HeartRate>(client.HeartRateList(patientOnStats.Sns));
             patientsRecordOxySat = new List<OxygenSaturation>(client.OxygenSaturationList(patientOnStats.Sns));
+            if (patientsRecordBloodPressure.Count > 0)
+            {
+                labelGlobalBPMax.Text = patientsRecordBloodPressure.Max(i => i.Diastolic) + "/" +
+                                        patientsRecordBloodPressure.Max(i => i.Systolic) + BP;
+                labelGlobalBPMin.Text = patientsRecordBloodPressure.Min(i => i.Diastolic) + "/" +
+                                        patientsRecordBloodPressure.Min(i => i.Systolic) + BP;
+                labelGlobalBPMean.Text = Convert.ToInt32(patientsRecordBloodPressure.Average(i => i.Diastolic)) + "/" +
+                                         Convert.ToInt32(patientsRecordBloodPressure.Average(i => i.Systolic)) + BP;
+            }
+            else
+            {
+                labelGlobalBPMax.Text = NOVALUES;
+                labelGlobalBPMin.Text = NOVALUES;
+                labelGlobalBPMean.Text = NOVALUES;
+            }
 
-            labelGlobalBPMax.Text = patientsRecordBloodPressure.Max(i => i.Diastolic) + "/" + patientsRecordBloodPressure.Max(i => i.Systolic) + BP;
-            labelGlobalBPMin.Text = patientsRecordBloodPressure.Min(i => i.Diastolic) + "/" + patientsRecordBloodPressure.Min(i => i.Systolic) + BP;
-            labelGlobalBPMean.Text = Convert.ToInt32(patientsRecordBloodPressure.Average(i => i.Diastolic)) + "/" + Convert.ToInt32(patientsRecordBloodPressure.Average(i => i.Systolic)) + BP;
-            labelGlobalHrMax.Text = patientsRecordHeartRate.Max(i => i.Rate) + HR;
-            labelGlobalHrMin.Text = patientsRecordHeartRate.Min(i => i.Rate) + HR;
-            labelGlobalHrMean.Text = patientsRecordHeartRate.Average(i => i.Rate) + HR;
-            labelGlobalOxyMax.Text = patientsRecordOxySat.Max(i => i.Saturation) + OS;
-            labelGlobalOxyMin.Text = patientsRecordOxySat.Min(i => i.Saturation) + OS;
-            labelGlobalOxyMean.Text = patientsRecordOxySat.Average(i => i.Saturation) + OS;
+            if (patientsRecordHeartRate.Count > 0)
+            {
+                labelGlobalHrMax.Text = patientsRecordHeartRate.Max(i => i.Rate) + HR;
+                labelGlobalHrMin.Text = patientsRecordHeartRate.Min(i => i.Rate) + HR;
+                labelGlobalHrMean.Text = Convert.ToInt32(patientsRecordHeartRate.Average(i => i.Rate)) + HR;
+            }
+            else
+            {
+                labelGlobalHrMax.Text =NOVALUES;
+                labelGlobalHrMin.Text = NOVALUES;
+                labelGlobalHrMean.Text = NOVALUES;
+            }
+
+            if (patientsRecordOxySat.Count > 0)
+            {
+                labelGlobalOxyMax.Text = patientsRecordOxySat.Max(i => i.Saturation) + OS;
+                labelGlobalOxyMin.Text = patientsRecordOxySat.Min(i => i.Saturation) + OS;
+                labelGlobalOxyMean.Text = Convert.ToInt32(patientsRecordOxySat.Average(i => i.Saturation)) + OS;
+
+            }
+            else
+            {
+                labelGlobalOxyMax.Text = NOVALUES;
+                labelGlobalOxyMin.Text = NOVALUES;
+                labelGlobalOxyMean.Text = NOVALUES;
+            }
+
+            //last 3 days 
+
+            List<BloodPressure> last3daysBP = patientsRecordBloodPressure.Where(i => i.Date >= DateTime.Now.AddDays(-3)).ToList();
+            List<HeartRate> last3daysHR = patientsRecordHeartRate.Where(i => i.Date >= DateTime.Now.AddDays(-3)).ToList();
+            List<OxygenSaturation> last3daysOS = patientsRecordOxySat.Where(i => i.Date >= DateTime.Now.AddDays(-3)).ToList();
+
+            if (last3daysBP.Count > 0)
+            {
+                labelLast3daysBPmax.Text = last3daysBP.Max(i => i.Diastolic) + "/" + last3daysBP.Max(i => i.Systolic) +
+                                           BP;
+                labelLast3daysBPMin.Text = last3daysBP.Min(i => i.Diastolic) + "/" + last3daysBP.Min(i => i.Systolic) +
+                                           BP;
+                labelLast3daysBPMean.Text = Convert.ToInt32(last3daysBP.Average(i => i.Diastolic)) + "/" +
+                                            Convert.ToInt32(last3daysBP.Average(i => i.Systolic)) + BP;
+            }
+            else
+            {
+                labelLast3daysBPmax.Text =  NOVALUES;
+                labelLast3daysBPMin.Text = NOVALUES;
+                labelLast3daysBPMean.Text =  NOVALUES;
+            }
+            if (last3daysHR.Count > 0)
+            {
+                labelLast3daysHrMax.Text = last3daysHR.Max(i => i.Rate) + HR;
+                labelLast3daysHrMin.Text = last3daysHR.Min(i => i.Rate) + HR;
+                labelLast3daysHrMean.Text = last3daysHR.Average(i => i.Rate) + HR;
+            }
+            else
+            {
+                labelLast3daysHrMax.Text = NOVALUES;
+                labelLast3daysHrMin.Text = NOVALUES;
+                labelLast3daysHrMean.Text = NOVALUES;
+            }
+            if (last3daysOS.Count > 0)
+            {
+                labelLast3daysOxyMax.Text = last3daysOS.Max(i => i.Saturation) + OS;
+                labelLast3daysOxyMin.Text = last3daysOS.Min(i => i.Saturation) + OS;
+                labelLast3daysOxyMean.Text = last3daysOS.Average(i => i.Saturation) + OS;
+            }
+            else
+            {
+                labelLast3daysOxyMax.Text = NOVALUES;
+                labelLast3daysOxyMin.Text = NOVALUES;
+                labelLast3daysOxyMean.Text = NOVALUES;
+            }
+           
         }
 
+        private void loadStatisticsTimeLine()
+        {
+            if (readTimeStats())
+            {
+                List<BloodPressure> intervalBP =
+                    patientsRecordBloodPressure.Where(i => i.Date >= fromDateStats && i.Date <= toDateStats).ToList();
+                List<HeartRate> intervalHR = patientsRecordHeartRate.Where(i => i.Date >= fromDateStats && i.Date <= toDateStats).ToList();
+                List<OxygenSaturation> intervalOS = patientsRecordOxySat.Where(i => i.Date >= fromDateStats && i.Date <= toDateStats).ToList();
+
+                if (intervalBP.Count > 0)
+                {
+                    //label
+                }
+                else
+                {
+                    
+                }
+
+                if (intervalHR.Count > 0)
+                {
+
+                }
+                else
+                {
+                    
+                }
+
+                if (intervalOS.Count > 0)
+                {
+
+                }
+                else
+                {
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show("Timeline selected is invalid", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         #endregion
 
         #endregion
