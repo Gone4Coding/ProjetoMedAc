@@ -34,7 +34,9 @@ namespace AlertSystem
         private const string TIME = "Time";
         private const string RESULTS = "Results: ";
         private const string AREA1 = "area";
-        private const string AREA2 = "area2";
+        private const string BP = " mmHg";
+        private const string HR = " bpm";
+        private const string OS = " %";
 
         private static ServiceHealthAlertClient client;
         private List<Countries.Country> countries;
@@ -65,8 +67,8 @@ namespace AlertSystem
             InitializeComponent();
             client = new ServiceHealthAlertClient();
             eventType = new Event();
-            timer1.Start();
-            timer1.Interval = 1000;
+            timer.Start();
+            timer.Interval = 1000;
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -118,6 +120,19 @@ namespace AlertSystem
             checkBoxesChecked(true);
 
             #endregion
+
+            #region Statistics
+
+            dateTimePickerFromStats.Format = DateTimePickerFormat.Custom;
+            dateTimePickerFromStats.CustomFormat = "dd / MM / yyyy HH: mm: ss";
+
+            dateTimePickerToStats.Format = DateTimePickerFormat.Custom;
+            dateTimePickerToStats.CustomFormat = "dd / MM / yyyy HH: mm: ss";
+
+            dateTimePickerFromStats.Value = DateTime.Now.AddDays(-1);
+            dateTimePickerToStats.Value = DateTime.Now;
+
+            #endregion
         }
         #region Eventos
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,7 +149,7 @@ namespace AlertSystem
                         firstTime = false;
                         radioButtonAll.Checked = true;
                         readRadioButtons(patientOnMonitoring);
-                        readRadioButtonsAlerts(patientOnMonitoring,eventType);
+                        readRadioButtonsAlerts(patientOnMonitoring, eventType);
                         startGraphics();
                         comboBoxChartType.SelectedIndex = 0;
                         readComboChartTyper();
@@ -1581,18 +1596,6 @@ namespace AlertSystem
             }
             return true;
         }
-
-        private bool readTimeStats()
-        {
-            fromDateStats = dateTimePickerFromStats.Value;
-            toDateStats = dateTimePickerToStats.Value;
-
-            if (fromDate > toDate)
-            {
-                return false;
-            }
-            return true;
-        }
         private void checkBoxValues_CheckedChanged(object sender, EventArgs e)
         {
             readCheckBoxValue();
@@ -2114,7 +2117,6 @@ namespace AlertSystem
                 }
             }
         }
-
         private void setGridViewAlerts()
         {
             dataGridViewAlerts.RowHeadersVisible = false;
@@ -2126,20 +2128,44 @@ namespace AlertSystem
             }
         }
 
+
+
+        #endregion
+
+        #region Statistics
+        private bool readTimeStats()
+        {
+            fromDateStats = dateTimePickerFromStats.Value;
+            toDateStats = dateTimePickerToStats.Value;
+
+            if (fromDate > toDate)
+            {
+                return false;
+            }
+            return true;
+        }
         private void loadStatistics()
         {
             toolStripLabelPatientOnStats.Text = "PATIENT: " + patientOnStats.Name + " " + patientOnStats.Surname + " SNS: " +
                                         patientOnStats.Sns + " AGE: " +
                                         getAge(patientOnStats.BirthDate);
+
+            
             //global
 
-            patientsRecordBloodPressure = new List<BloodPressure>(client.BloodPressureList(patientOnStats.Sns).OrderBy(i=> i.Diastolic));
+            patientsRecordBloodPressure = new List<BloodPressure>(client.BloodPressureList(patientOnStats.Sns).OrderBy(i => i.Diastolic));
             patientsRecordHeartRate = new List<HeartRate>(client.HeartRateList(patientOnStats.Sns));
             patientsRecordOxySat = new List<OxygenSaturation>(client.OxygenSaturationList(patientOnStats.Sns));
 
-            labelGlobalBPMax.Text = patientsRecordBloodPressure.Max(i => i.Diastolic).ToString();
-            labelGlobalBPMin.Text = patientsRecordBloodPressure.First().Diastolic.ToString();
-            //labelGlobalBPMean.Text = patientsRecordBloodPressure
+            labelGlobalBPMax.Text = patientsRecordBloodPressure.Max(i => i.Diastolic) + "/" + patientsRecordBloodPressure.Max(i => i.Systolic) + BP;
+            labelGlobalBPMin.Text = patientsRecordBloodPressure.Min(i => i.Diastolic) + "/" + patientsRecordBloodPressure.Min(i => i.Systolic) + BP;
+            labelGlobalBPMean.Text = Convert.ToInt32(patientsRecordBloodPressure.Average(i => i.Diastolic)) + "/" + Convert.ToInt32(patientsRecordBloodPressure.Average(i => i.Systolic)) + BP;
+            labelGlobalHrMax.Text = patientsRecordHeartRate.Max(i => i.Rate) + HR;
+            labelGlobalHrMin.Text = patientsRecordHeartRate.Min(i => i.Rate) + HR;
+            labelGlobalHrMean.Text = patientsRecordHeartRate.Average(i => i.Rate) + HR;
+            labelGlobalOxyMax.Text = patientsRecordOxySat.Max(i => i.Saturation) + OS;
+            labelGlobalOxyMin.Text = patientsRecordOxySat.Min(i => i.Saturation) + OS;
+            labelGlobalOxyMean.Text = patientsRecordOxySat.Average(i => i.Saturation) + OS;
         }
 
         #endregion
@@ -2155,6 +2181,6 @@ namespace AlertSystem
             return client;
         }
 
-       
+
     }
 }
