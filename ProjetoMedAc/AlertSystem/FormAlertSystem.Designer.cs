@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -68,13 +68,13 @@
             this.radioButtonEAC = new System.Windows.Forms.RadioButton();
             this.dataGridViewAlerts = new System.Windows.Forms.DataGridView();
             this.toolStripMonitor = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefreshMonitor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxMonitor = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonSearchMonitor = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripPatientLabel = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.toolStripPatients = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAdd = new System.Windows.Forms.ToolStripButton();
@@ -197,6 +197,7 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.labelTimeline = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -249,6 +250,7 @@
             this.groupBoxActivitie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxActivitie.Controls.Add(this.labelTimeline);
             this.groupBoxActivitie.Controls.Add(this.groupBox1);
             this.groupBoxActivitie.Controls.Add(this.groupBoxRecords);
             this.groupBoxActivitie.Controls.Add(this.groupBoxAlerts);
@@ -484,11 +486,11 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(1069, 426);
+            this.chart1.Size = new System.Drawing.Size(1014, 396);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             // 
@@ -664,7 +666,7 @@
             this.dataGridViewAlerts.Name = "dataGridViewAlerts";
             this.dataGridViewAlerts.ReadOnly = true;
             this.dataGridViewAlerts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAlerts.Size = new System.Drawing.Size(293, 403);
+            this.dataGridViewAlerts.Size = new System.Drawing.Size(293, 373);
             this.dataGridViewAlerts.TabIndex = 6;
             this.dataGridViewAlerts.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewAlerts_ColumnHeaderMouseClick);
             // 
@@ -686,6 +688,16 @@
             this.toolStripMonitor.Size = new System.Drawing.Size(1343, 40);
             this.toolStripMonitor.TabIndex = 4;
             this.toolStripMonitor.Text = "toolStrip1";
+            // 
+            // toolStripButtonSettings
+            // 
+            this.toolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSettings.Image")));
+            this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSettings.Name = "toolStripButtonSettings";
+            this.toolStripButtonSettings.Size = new System.Drawing.Size(23, 37);
+            this.toolStripButtonSettings.Text = "Settings";
+            this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
             // 
             // toolStripButtonRefreshMonitor
             // 
@@ -737,16 +749,6 @@
             this.toolStripPatientLabel.Size = new System.Drawing.Size(142, 37);
             this.toolStripPatientLabel.Text = "toolStripLabel1";
             this.toolStripPatientLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // toolStripButtonSettings
-            // 
-            this.toolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSettings.Image")));
-            this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSettings.Name = "toolStripButtonSettings";
-            this.toolStripButtonSettings.Size = new System.Drawing.Size(23, 37);
-            this.toolStripButtonSettings.Text = "Settings";
-            this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
             // 
             // tabPagePatients
             // 
@@ -887,7 +889,7 @@
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 607);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(440, 597);
             this.dataGridViewPatients.TabIndex = 2;
             this.dataGridViewPatients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_CellMouseDoubleClick);
             this.dataGridViewPatients.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewPatients_ColumnHeaderMouseClick);
@@ -2031,6 +2033,16 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // labelTimeline
+            // 
+            this.labelTimeline.AutoSize = true;
+            this.labelTimeline.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.labelTimeline.Location = new System.Drawing.Point(425, 87);
+            this.labelTimeline.Name = "labelTimeline";
+            this.labelTimeline.Size = new System.Drawing.Size(74, 17);
+            this.labelTimeline.TabIndex = 12;
+            this.labelTimeline.Text = "Timeline:";
+            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2045,6 +2057,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tabPage_viewRecords.ResumeLayout(false);
             this.groupBoxActivitie.ResumeLayout(false);
+            this.groupBoxActivitie.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFilters)).EndInit();
@@ -2256,6 +2269,7 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
+        private System.Windows.Forms.Label labelTimeline;
     }
 }
 

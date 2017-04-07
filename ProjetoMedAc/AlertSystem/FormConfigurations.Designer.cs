@@ -794,6 +794,7 @@
             this.Controls.Add(this.bt_cancel);
             this.Controls.Add(this.gb_evetTypes);
             this.Controls.Add(this.gb_physiologicLimits);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormConfigurations";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
