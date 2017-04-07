@@ -54,7 +54,19 @@ namespace MyHealth.VoiceRecognition
             SetId,
 
             // Commands With Y
-            Yes
+            Yes,
+
+            // Numbers
+            Zero,
+            One,
+            Two,
+            Three,
+            Four, 
+            Five, 
+            Six,
+            Seven,
+            Eigth,
+            Nine
         }
         
         public static Grammar GetGrammar()
@@ -69,8 +81,10 @@ namespace MyHealth.VoiceRecognition
             List<string> termsList = ApplicationSettings.Get_Terms();
             foreach (string term in termsList)
             {
-                if(!term.Equals(""))
-                    comms.Add(term);
+                if (!term.Equals(""))
+                {
+                    comms.Add("Search " + term);
+                }
             }
 
             Choices choices = new Choices();

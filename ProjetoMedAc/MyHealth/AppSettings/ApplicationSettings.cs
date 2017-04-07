@@ -117,11 +117,16 @@ namespace MyHealth.AppSettings
             doc.Load(settingsFile);
             XmlNode termsNode = doc.SelectSingleNode("/settings/terms");
             if (termsNode != null)
+            {
+                string terms = "";
                 foreach (string term in termsList)
                 {
-                    termsNode.InnerText = term + "\n";
+                    terms += term.Replace(@"\s+", "") + "\n";
                 }
-            doc.Save(settingsFile);
+
+                termsNode.InnerText = terms;
+                doc.Save(settingsFile);
+            }
         }
 
         public static List<string> Get_Terms()

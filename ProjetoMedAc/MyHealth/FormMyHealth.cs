@@ -33,12 +33,11 @@ namespace MyHealth
         private enum Question
         {
             Close,
-            SetId,
             GotoMedLine,
             NULL
         }
 
-        private bool closeQuestion, setId, goToMedlineQuestion = false;
+        private bool closeQuestion, goToMedlineQuestion = false;
 
         private static string speechDeactivated = "Speech: Deactivated";
         private static string speechSemiActive = "Speech: Active. Say \"Hello Alice to fully activate\"";
@@ -115,9 +114,8 @@ namespace MyHealth
             else if (speech.Contains(VoiceRecognition.VoiceRecognition.Code.SetId.ToString())
                       || speech.Contains(VoiceRecognition.VoiceRecognition.Code.ChangeId.ToString()))
             {
-                //TODO MUDAR SNS
-                Speak("Tell me the number.");
-                ChangeQuestionActive(false, Question.SetId);
+                tb_patientSNS.Focus();
+                Speak("Now, please type the number because I'm too stupid to understand numbers");
             }
             else if (speech.Equals(VoiceRecognition.VoiceRecognition.Code.SearchInMedline.ToString()))
             {
@@ -129,6 +127,8 @@ namespace MyHealth
                 if (mainTabing.SelectedTab == medline)
                 {
                     string terms = speech.Replace(VoiceRecognition.VoiceRecognition.Code.Search.ToString(), "");
+
+                    tb_url.Text = terms;
 
                     UseBrowser(terms);
                     goToMedlineQuestion = false;
@@ -228,7 +228,6 @@ namespace MyHealth
             if (allFalse)
             {
                 closeQuestion = false;
-                setId = false;
                 goToMedlineQuestion = false;
 
                 return;
@@ -238,19 +237,11 @@ namespace MyHealth
             {
                 case Question.Close:
                     closeQuestion = true;
-                    setId = false;
                     goToMedlineQuestion = false;
                     break;
-
-                case Question.SetId:
-                    closeQuestion = false;
-                    setId = true;
-                    goToMedlineQuestion = false;
-
-                    break;
+                    
                 case Question.GotoMedLine:
                     closeQuestion = false;
-                    setId = false;
                     goToMedlineQuestion = true;
                     break;
             }
@@ -308,24 +299,6 @@ namespace MyHealth
                     }
 
                     #endregion "CLOSE" QUESTION
-
-                    #region "SET ID"/"CHANGE ID" QUESTION
-
-                    if (setId)
-                    {
-                        int sns;
-                        if (int.TryParse(speech, out sns))
-                        {
-                            Speak(sns.ToString());
-                        }
-                        else
-                        {
-                            Speak("That's not a number");
-                            setId = false;
-                        }
-                    }
-
-                    #endregion "SET ID"/"CHANGE ID" QUESTION
 
                     #region GOTO MEDLINE
 
@@ -742,9 +715,10 @@ namespace MyHealth
             tb_retmax.Text = ApplicationSettings.Get_Retmax().ToString();
 
             List<string> termsList = ApplicationSettings.Get_Terms();
+            rtb_terms.Text = "";
             foreach (string term in termsList)
             {
-                rtb_terms.Text = term + "\n";
+                rtb_terms.Text += term + "\n";
             }
         }
 
