@@ -546,7 +546,7 @@ namespace MyHealth
 
         private void bt_insert_Click(object sender, EventArgs e)
         {
-            MyHealth_Load(sender, e);
+           // MyHealth_Load(sender, e);
             int sns;
             if (int.TryParse(tb_patientSNS.Text, out sns))
             {

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -55,6 +55,9 @@
             this.pictureBoxMonitoring = new System.Windows.Forms.PictureBox();
             this.checkBoxValues = new System.Windows.Forms.CheckBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.contextMenuStripGraphic = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportTopngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewHistory = new System.Windows.Forms.DataGridView();
             this.comboBoxChartType = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -196,10 +199,8 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuStripGraphic = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportTopngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerPatientsTab = new System.Windows.Forms.Timer(this.components);
+            this.checkBoxRealTime = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -209,6 +210,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMonitoring)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.contextMenuStripGraphic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
             this.groupBoxAlerts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlerts)).BeginInit();
@@ -228,7 +230,6 @@
             this.groupBoxInterval.SuspendLayout();
             this.groupBoxLast3Days.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).BeginInit();
-            this.contextMenuStripGraphic.SuspendLayout();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -276,6 +277,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBoxRealTime);
             this.groupBox1.Controls.Add(this.radioButtonOxygenSat);
             this.groupBox1.Controls.Add(this.radioButtonHeartRate);
             this.groupBox1.Controls.Add(this.radioButtonBloodPressure);
@@ -343,6 +345,8 @@
             this.dateTimePickerFrom.Name = "dateTimePickerFrom";
             this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFrom.TabIndex = 9;
+            this.dateTimePickerFrom.ValueChanged += new System.EventHandler(this.dateTimePickerFrom_ValueChanged);
+            this.dateTimePickerFrom.DropDown += new System.EventHandler(this.dateTimePickerFrom_DropDown);
             // 
             // dateTimePickerTO
             // 
@@ -350,6 +354,8 @@
             this.dateTimePickerTO.Name = "dateTimePickerTO";
             this.dateTimePickerTO.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerTO.TabIndex = 10;
+            this.dateTimePickerTO.ValueChanged += new System.EventHandler(this.dateTimePickerTO_ValueChanged);
+            this.dateTimePickerTO.DropDown += new System.EventHandler(this.dateTimePickerTO_DropDown);
             // 
             // label24
             // 
@@ -500,13 +506,34 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart1.ContextMenuStrip = this.contextMenuStripGraphic;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1014, 396);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
+            // 
+            // contextMenuStripGraphic
+            // 
+            this.contextMenuStripGraphic.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.exportTopngToolStripMenuItem});
+            this.contextMenuStripGraphic.Name = "contextMenuStripGraphic";
+            this.contextMenuStripGraphic.Size = new System.Drawing.Size(149, 48);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // exportTopngToolStripMenuItem
+            // 
+            this.exportTopngToolStripMenuItem.Name = "exportTopngToolStripMenuItem";
+            this.exportTopngToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.exportTopngToolStripMenuItem.Text = "Export to .png";
+            this.exportTopngToolStripMenuItem.Click += new System.EventHandler(this.exportTopngToolStripMenuItem_Click);
             // 
             // dataGridViewHistory
             // 
@@ -2032,30 +2059,20 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // contextMenuStripGraphic
-            // 
-            this.contextMenuStripGraphic.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.exportTopngToolStripMenuItem});
-            this.contextMenuStripGraphic.Name = "contextMenuStripGraphic";
-            this.contextMenuStripGraphic.Size = new System.Drawing.Size(149, 48);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            // 
-            // exportTopngToolStripMenuItem
-            // 
-            this.exportTopngToolStripMenuItem.Name = "exportTopngToolStripMenuItem";
-            this.exportTopngToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.exportTopngToolStripMenuItem.Text = "Export to .png";
-            this.exportTopngToolStripMenuItem.Click += new System.EventHandler(this.exportTopngToolStripMenuItem_Click);
-            // 
             // timerPatientsTab
             // 
-          
+            this.timerPatientsTab.Tick += new System.EventHandler(this.timerPatientsTab_Tick);
+            // 
+            // checkBoxRealTime
+            // 
+            this.checkBoxRealTime.AutoSize = true;
+            this.checkBoxRealTime.Location = new System.Drawing.Point(1065, 24);
+            this.checkBoxRealTime.Name = "checkBoxRealTime";
+            this.checkBoxRealTime.Size = new System.Drawing.Size(74, 17);
+            this.checkBoxRealTime.TabIndex = 27;
+            this.checkBoxRealTime.Text = "Real Time";
+            this.checkBoxRealTime.UseVisualStyleBackColor = true;
+            this.checkBoxRealTime.CheckedChanged += new System.EventHandler(this.checkBoxRealTime_CheckedChanged);
             // 
             // FormAlertSystem
             // 
@@ -2081,6 +2098,7 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMonitoring)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.contextMenuStripGraphic.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).EndInit();
             this.groupBoxAlerts.ResumeLayout(false);
             this.groupBoxAlerts.PerformLayout();
@@ -2111,7 +2129,6 @@
             this.groupBoxLast3Days.ResumeLayout(false);
             this.groupBoxLast3Days.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).EndInit();
-            this.contextMenuStripGraphic.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2287,6 +2304,7 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportTopngToolStripMenuItem;
         private System.Windows.Forms.Timer timerPatientsTab;
+        private System.Windows.Forms.CheckBox checkBoxRealTime;
     }
 }
 

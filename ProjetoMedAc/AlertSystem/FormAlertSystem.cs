@@ -68,10 +68,9 @@ namespace AlertSystem
             InitializeComponent();
             client = new ServiceHealthAlertClient();
             eventType = new Event();
-            timer.Start();
-            timer.Interval = 1000;
+            timer.Interval = 5000;   
             timerPatientsTab.Start();
-            timerPatientsTab.Interval = 10000;
+            timerPatientsTab.Interval = 1000;
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -144,7 +143,7 @@ namespace AlertSystem
             {
                 if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
                 {
-                    dataGridViewAlerts.DataSource = null;
+                    checkBoxRealTime.Checked = true;
                     load(patientToEdit, true);
                     if (patientToEdit.Ativo)
                     {
@@ -468,7 +467,6 @@ namespace AlertSystem
                 fs.Close();
                 MessageBox.Show("File saved!\n" + fs.Name, "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
         private void exportTopngToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -476,6 +474,7 @@ namespace AlertSystem
         }
         private void bt_OK_Click(object sender, EventArgs e)
         {
+            checkBoxRealTime.Checked = false;
             readDateTimeGraphics();
             readRadioButtons(patientOnMonitoring,false);
             readRadioButtonsAlerts(patientOnMonitoring, eventType);
@@ -2336,11 +2335,11 @@ namespace AlertSystem
         #endregion
         private void timer1_Tick(object sender, EventArgs e)
         {
-            labelTime.Text = DateTime.Now.ToLongTimeString();
-
+       
             if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
             {
                 readDateTimeGraphics();
+                toDate = DateTime.Now;
                 readRadioButtons(patientOnMonitoring,true);
                 readRadioButtonsAlerts(patientOnMonitoring, eventType);
                 startGraphics();
@@ -2368,6 +2367,46 @@ namespace AlertSystem
             }
         }
 
-       
+        private void checkBoxRealTime_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxRealTime.Checked)
+            {
+                timer.Start();
+            }
+            else
+            {
+                timer.Stop();
+            }
+        }
+
+        private void dateTimePickerTO_ValueChanged(object sender, EventArgs e)
+        {
+            timer.Stop();
+            checkBoxRealTime.Checked = false;
+        }
+
+        private void dateTimePickerFrom_ValueChanged(object sender, EventArgs e)
+        {
+            timer.Stop();
+            checkBoxRealTime.Checked = false;
+        }
+
+        private void dateTimePickerTO_DropDown(object sender, EventArgs e)
+        {
+            timer.Stop();
+            checkBoxRealTime.Checked = false;
+        }
+
+        private void dateTimePickerFrom_DropDown(object sender, EventArgs e)
+        {
+            timer.Stop();
+            checkBoxRealTime.Checked = false;
+        }
+
+        private void timerPatientsTab_Tick(object sender, EventArgs e)
+        {
+            labelTime.Text = DateTime.Now.ToLongTimeString();
+
+        }
     }
 }
