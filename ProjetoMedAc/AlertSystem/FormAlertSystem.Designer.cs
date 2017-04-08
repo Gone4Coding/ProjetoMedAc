@@ -198,11 +198,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
-            this.labelTime = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.timerPatientsTab = new System.Windows.Forms.Timer(this.components);
             this.tabPageAlerts = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBoxAlertsALL = new System.Windows.Forms.GroupBox();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -210,6 +206,10 @@
             this.dataGridViewOXYALL = new System.Windows.Forms.DataGridView();
             this.dataGridViewHRALL = new System.Windows.Forms.DataGridView();
             this.dataGridViewBPALL = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelTime = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timerPatientsTab = new System.Windows.Forms.Timer(this.components);
             this.timerAlerts = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
@@ -241,11 +241,11 @@
             this.groupBoxLast3Days.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).BeginInit();
             this.tabPageAlerts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxAlertsALL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOXYALL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHRALL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBPALL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -2072,25 +2072,6 @@
             this.pictureBoxStats.TabIndex = 22;
             this.pictureBoxStats.TabStop = false;
             // 
-            // labelTime
-            // 
-            this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTime.AutoSize = true;
-            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTime.Location = new System.Drawing.Point(1276, 723);
-            this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(43, 16);
-            this.labelTime.TabIndex = 1;
-            this.labelTime.Text = "Time";
-            // 
-            // timer
-            // 
-            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timerPatientsTab
-            // 
-            this.timerPatientsTab.Tick += new System.EventHandler(this.timerPatientsTab_Tick);
-            // 
             // tabPageAlerts
             // 
             this.tabPageAlerts.Controls.Add(this.groupBoxAlertsALL);
@@ -2102,15 +2083,6 @@
             this.tabPageAlerts.TabIndex = 6;
             this.tabPageAlerts.Text = "Alerts";
             this.tabPageAlerts.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(29, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(68, 67);
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBoxAlertsALL
             // 
@@ -2221,9 +2193,37 @@
             this.dataGridViewBPALL.Size = new System.Drawing.Size(361, 503);
             this.dataGridViewBPALL.TabIndex = 13;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(29, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 67);
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelTime
+            // 
+            this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTime.AutoSize = true;
+            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTime.Location = new System.Drawing.Point(1276, 723);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(43, 16);
+            this.labelTime.TabIndex = 1;
+            this.labelTime.Text = "Time";
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerPatientsTab
+            // 
+            this.timerPatientsTab.Tick += new System.EventHandler(this.timerPatientsTab_Tick);
+            // 
             // timerAlerts
             // 
-            this.timerAlerts.Interval = 10000;
+            this.timerAlerts.Interval = 1000;
             this.timerAlerts.Tick += new System.EventHandler(this.timerAlerts_Tick);
             // 
             // FormAlertSystem
@@ -2282,12 +2282,12 @@
             this.groupBoxLast3Days.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).EndInit();
             this.tabPageAlerts.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBoxAlertsALL.ResumeLayout(false);
             this.groupBoxAlertsALL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOXYALL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHRALL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBPALL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

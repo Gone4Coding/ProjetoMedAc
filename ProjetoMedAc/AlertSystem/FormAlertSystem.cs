@@ -54,6 +54,9 @@ namespace AlertSystem
         private List<BloodPressureWarning> warningListBPALL;
         private List<HeartRateWarning> warningListHRALL;
         private List<OxygenSaturationWarning> warningListOXYSATALL;
+        List<BloodPressureWarning> bpall;
+        List<HeartRateWarning> hrall ;
+        List<OxygenSaturationWarning> oxyall ;
         private DateTime fromDate;
         private DateTime toDate;
         private DateTime fromDateStats;
@@ -62,6 +65,7 @@ namespace AlertSystem
         private bool fromSelection;
         private bool firstTime;
         private Event eventType;
+        private Thread alertsTh;
         public FormAlertSystem()
         {
 
@@ -71,6 +75,19 @@ namespace AlertSystem
             timer.Interval = 10000;   
             timerPatientsTab.Start();
             timerPatientsTab.Interval = 1000;
+            alertsTh = new Thread(alertsThr);
+            alertsTh.Start();
+                   
+        }
+
+        private void alertsThr()
+        {
+            while (true)
+            {
+                bpall = client.GetWarningListBloodPressureALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i => i.Date).ToList();
+                hrall = client.GetWarningListHeartRateALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i => i.Date).ToList();
+                oxyall = client.GetWarningListOxygenSaturationALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i => i.Date).ToList();
+            }
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -119,7 +136,7 @@ namespace AlertSystem
             checkBoxOxySatSeries.Text = OXYSAT;
 
             checkBoxesChecked(true);
-
+           
             #endregion
 
             #region Statistics
@@ -168,7 +185,7 @@ namespace AlertSystem
                 if (tabControlRecors.SelectedTab.Text.Equals("Alerts"))
                 {
                     timerAlerts.Start();
-                    fillGridsAlerts();
+                   // fillGridsAlerts();
                 }
             }
             catch (NullReferenceException x)
@@ -2341,9 +2358,7 @@ namespace AlertSystem
 
         private void fillGridsAlerts()
         {
-            List<BloodPressureWarning> bpall = client.GetWarningListBloodPressureALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i=> i.Date).ToList();
-            List<HeartRateWarning> hrall = client.GetWarningListHeartRateALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i => i.Date).ToList();
-            List<OxygenSaturationWarning> oxyall = client.GetWarningListOxygenSaturationALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i => i.Date).ToList();
+            
             dataGridViewBPALL.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
             dataGridViewHRALL.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
             dataGridViewOXYALL.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
