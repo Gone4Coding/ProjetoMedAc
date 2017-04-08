@@ -106,17 +106,39 @@ namespace AlertSystem
                         .ToList();
             }
         }
-        private void thAlertsWarnings()
+    
+        
+        private void thAlertsGraphic()
         {
             int x = 0;
             while (x == 0)
             {
                 if (patientOnMonitoring != null)
-                {              
+                {
+
+                    patientsRecordBloodPressure =
+                       new List<BloodPressure>(
+                           client.BloodPressureList(patientOnMonitoring.Sns)
+                               .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                               .OrderByDescending(i => i.Date));                  
+
+                 
+
+                    patientsRecordHeartRate =
+                            new List<HeartRate>(client.HeartRateList(patientOnMonitoring.Sns)
+                                .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                                .OrderByDescending(i => i.Date));
+
+                    patientsRecordOxySat =
+                        new List<OxygenSaturation>(
+                            client.OxygenSaturationList(patientOnMonitoring.Sns)
+                                .Where(i => i.Date >= fromDate && i.Date <= toDate)
+                                .OrderByDescending(i => i.Date));
+
                     warningListBloodPressure =
-                     new List<BloodPressure>(client.GetWarningListBloodPressure(eventType, fromDate, toDate)
-                         .Where(i => i.PatientSNS == patientOnMonitoring.Sns
-                         ).OrderByDescending(i => i.Date));
+                    new List<BloodPressure>(client.GetWarningListBloodPressure(eventType, fromDate, toDate)
+                        .Where(i => i.PatientSNS == patientOnMonitoring.Sns
+                        ).OrderByDescending(i => i.Date));
 
 
                     warningListBPALL =
@@ -150,46 +172,6 @@ namespace AlertSystem
                             .Where(i => i.PatientSNS == patientOnMonitoring.Sns
                             ).OrderByDescending(i => i.Date));
 
-                }
-
-                if (test)
-                {
-                    x = 0;
-
-                }
-                else
-                {
-                    x++;
-
-                }
-            }
-        }
-        private void thAlertsGraphic()
-        {
-            int x = 0;
-            while (x == 0)
-            {
-                if (patientOnMonitoring != null)
-                {
-
-                    patientsRecordBloodPressure =
-                       new List<BloodPressure>(
-                           client.BloodPressureList(patientOnMonitoring.Sns)
-                               .Where(i => i.Date >= fromDate && i.Date <= toDate)
-                               .OrderByDescending(i => i.Date));                  
-
-                 
-
-                    patientsRecordHeartRate =
-                            new List<HeartRate>(client.HeartRateList(patientOnMonitoring.Sns)
-                                .Where(i => i.Date >= fromDate && i.Date <= toDate)
-                                .OrderByDescending(i => i.Date));
-
-                    patientsRecordOxySat =
-                        new List<OxygenSaturation>(
-                            client.OxygenSaturationList(patientOnMonitoring.Sns)
-                                .Where(i => i.Date >= fromDate && i.Date <= toDate)
-                                .OrderByDescending(i => i.Date));
                 }
 
 
@@ -271,7 +253,7 @@ namespace AlertSystem
             Thread.Sleep(1000);
 
             test = true;
-            y = new Thread(thAlertsWarnings
+            y = new Thread(thAlertsGraphic
                 );
             y.Start();
             Thread xd = new Thread(thAlertsGraphic
