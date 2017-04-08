@@ -155,6 +155,7 @@ namespace AlertSystem
                         comboBoxChartType.SelectedIndex = 0;
                         readComboChartTyper();
                         readCheckBoxValue();
+                        labelTimeline.Text = "Timeline: "+fromDate + " ----> " + toDate;
                     }
                 }
 
@@ -467,6 +468,10 @@ namespace AlertSystem
             }
 
         }
+        private void exportTopngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonExport_Click(sender, e);
+        }
         private void bt_OK_Click(object sender, EventArgs e)
         {
             readDateTimeGraphics();
@@ -474,6 +479,7 @@ namespace AlertSystem
             readRadioButtonsAlerts(patientOnMonitoring, eventType);
             startGraphics();
             readComboChartTyper();
+            labelTimeline.Text = "Timeline: " + fromDate + " ----> " + toDate;
         }
         private void comboBoxChartType_SelectedIndexChanged(object sender, EventArgs e)
         {

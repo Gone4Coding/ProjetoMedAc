@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -70,8 +70,6 @@
             this.dataGridViewAlerts = new System.Windows.Forms.DataGridView();
             this.toolStripMonitor = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonRefreshMonitor = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxMonitor = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonSearchMonitor = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
@@ -198,6 +196,9 @@
             this.pictureBoxStats = new System.Windows.Forms.PictureBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStripGraphic = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportTopngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -226,6 +227,7 @@
             this.groupBoxInterval.SuspendLayout();
             this.groupBoxLast3Days.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).BeginInit();
+            this.contextMenuStripGraphic.SuspendLayout();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -496,8 +498,9 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            this.chart1.ContextMenuStrip = this.contextMenuStripGraphic;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1014, 396);
@@ -687,8 +690,6 @@
             this.toolStripMonitor.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripMonitor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSettings,
-            this.toolStripButtonRefreshMonitor,
-            this.toolStripSeparator4,
             this.toolStripTextBoxMonitor,
             this.toolStripButtonSearchMonitor,
             this.toolStripButtonExport,
@@ -708,21 +709,6 @@
             this.toolStripButtonSettings.Size = new System.Drawing.Size(23, 37);
             this.toolStripButtonSettings.Text = "Settings";
             this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
-            // 
-            // toolStripButtonRefreshMonitor
-            // 
-            this.toolStripButtonRefreshMonitor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRefreshMonitor.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRefreshMonitor.Image")));
-            this.toolStripButtonRefreshMonitor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRefreshMonitor.Name = "toolStripButtonRefreshMonitor";
-            this.toolStripButtonRefreshMonitor.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripButtonRefreshMonitor.Size = new System.Drawing.Size(30, 37);
-            this.toolStripButtonRefreshMonitor.Text = "Refresh Patient List";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 40);
             // 
             // toolStripTextBoxMonitor
             // 
@@ -1103,7 +1089,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(101, 386);
+            this.label20.Location = new System.Drawing.Point(660, 79);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(14, 18);
             this.label20.TabIndex = 67;
@@ -1172,7 +1158,7 @@
             // richTextBoxAlergies
             // 
             this.richTextBoxAlergies.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxAlergies.Location = new System.Drawing.Point(286, 474);
+            this.richTextBoxAlergies.Location = new System.Drawing.Point(286, 376);
             this.richTextBoxAlergies.Name = "richTextBoxAlergies";
             this.richTextBoxAlergies.Size = new System.Drawing.Size(301, 87);
             this.richTextBoxAlergies.TabIndex = 59;
@@ -1192,16 +1178,16 @@
             this.comboBoxGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGender.FormattingEnabled = true;
-            this.comboBoxGender.Location = new System.Drawing.Point(286, 376);
+            this.comboBoxGender.Location = new System.Drawing.Point(682, 79);
             this.comboBoxGender.Name = "comboBoxGender";
-            this.comboBoxGender.Size = new System.Drawing.Size(120, 28);
+            this.comboBoxGender.Size = new System.Drawing.Size(108, 28);
             this.comboBoxGender.TabIndex = 57;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(33, 446);
+            this.label14.Location = new System.Drawing.Point(592, 141);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(66, 22);
             this.label14.TabIndex = 56;
@@ -1210,16 +1196,16 @@
             // tb_weight
             // 
             this.tb_weight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_weight.Location = new System.Drawing.Point(286, 442);
+            this.tb_weight.Location = new System.Drawing.Point(682, 138);
             this.tb_weight.Name = "tb_weight";
-            this.tb_weight.Size = new System.Drawing.Size(120, 26);
+            this.tb_weight.Size = new System.Drawing.Size(108, 26);
             this.tb_weight.TabIndex = 55;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(33, 414);
+            this.label13.Location = new System.Drawing.Point(593, 114);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(62, 22);
             this.label13.TabIndex = 54;
@@ -1229,7 +1215,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(33, 477);
+            this.label12.Location = new System.Drawing.Point(33, 379);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(75, 22);
             this.label12.TabIndex = 53;
@@ -1239,7 +1225,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(33, 382);
+            this.label11.Location = new System.Drawing.Point(593, 84);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 22);
             this.label11.TabIndex = 52;
@@ -1357,9 +1343,9 @@
             // tb_height
             // 
             this.tb_height.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_height.Location = new System.Drawing.Point(286, 410);
+            this.tb_height.Location = new System.Drawing.Point(682, 109);
             this.tb_height.Name = "tb_height";
-            this.tb_height.Size = new System.Drawing.Size(120, 26);
+            this.tb_height.Size = new System.Drawing.Size(108, 26);
             this.tb_height.TabIndex = 40;
             // 
             // tb_emergencyContactName
@@ -2044,6 +2030,27 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // contextMenuStripGraphic
+            // 
+            this.contextMenuStripGraphic.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.exportTopngToolStripMenuItem});
+            this.contextMenuStripGraphic.Name = "contextMenuStripGraphic";
+            this.contextMenuStripGraphic.Size = new System.Drawing.Size(149, 48);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // exportTopngToolStripMenuItem
+            // 
+            this.exportTopngToolStripMenuItem.Name = "exportTopngToolStripMenuItem";
+            this.exportTopngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportTopngToolStripMenuItem.Text = "Export to .png";
+            this.exportTopngToolStripMenuItem.Click += new System.EventHandler(this.exportTopngToolStripMenuItem_Click);
+            // 
             // FormAlertSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2098,6 +2105,7 @@
             this.groupBoxLast3Days.ResumeLayout(false);
             this.groupBoxLast3Days.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).EndInit();
+            this.contextMenuStripGraphic.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2135,8 +2143,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage_viewRecords;
         private System.Windows.Forms.ToolStrip toolStripMonitor;
-        private System.Windows.Forms.ToolStripButton toolStripButtonRefreshMonitor;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxMonitor;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearchMonitor;
         private System.Windows.Forms.GroupBox groupBoxActivitie;
@@ -2271,6 +2277,9 @@
         private System.Windows.Forms.Label labelTimeline;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripGraphic;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportTopngToolStripMenuItem;
     }
 }
 
