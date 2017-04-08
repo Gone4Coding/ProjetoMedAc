@@ -436,7 +436,7 @@ namespace AlertSystem
                     {
                         readMonitoring(patientToEdit);
                         load(patientToEdit, false);
-                        MessageBox.Show("Patient inactive on monitoring","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        MessageBox.Show("Patient active on monitoring","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
             }
