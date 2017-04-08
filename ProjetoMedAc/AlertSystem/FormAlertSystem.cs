@@ -245,7 +245,7 @@ namespace AlertSystem
 
                 if (!res)
                 {
-                    MessageBox.Show("erro");
+                    MessageBox.Show("Error","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -253,7 +253,7 @@ namespace AlertSystem
                     bt_edit.Enabled = true;
                     bt_save.Enabled = false;
                     bt_cancelEdit.Hide();
-                    MessageBox.Show("suss");
+                    MessageBox.Show("Sucess","Sucess",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
                     load(p, false);
                 }
@@ -288,7 +288,7 @@ namespace AlertSystem
 
                 if (!res)
                 {
-                    MessageBox.Show("erro");
+                    MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -389,13 +389,13 @@ namespace AlertSystem
 
                     if (!res)
                     {
-                        MessageBox.Show("erro");
+                        MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
                         readMonitoring(patientToEdit);
                         load(patientToEdit, false);
-                        MessageBox.Show("MONITORIZAÇAO DESATIVADA ");
+                        MessageBox.Show("Patient inactive on monitoring","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
                 else
@@ -405,13 +405,13 @@ namespace AlertSystem
 
                     if (!res)
                     {
-                        MessageBox.Show("erro");
+                        MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
                         readMonitoring(patientToEdit);
                         load(patientToEdit, false);
-                        MessageBox.Show("SOB MONITORIZAÇAO");
+                        MessageBox.Show("Patient inactive on monitoring","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
             }
