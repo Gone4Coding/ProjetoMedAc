@@ -211,6 +211,8 @@ namespace MyHealth
 
         private void InitializeSpeech()
         {
+            sReconEngine.RecognizeAsyncStop();
+            sReconEngine.UnloadAllGrammars();
             sReconEngine.LoadGrammar(VoiceRecognition.VoiceRecognition.GetGrammar());
             sReconEngine.SetInputToDefaultAudioDevice();
             sReconEngine.RecognizeAsync(RecognizeMode.Multiple);
@@ -544,6 +546,7 @@ namespace MyHealth
 
         private void bt_insert_Click(object sender, EventArgs e)
         {
+            MyHealth_Load(sender, e);
             int sns;
             if (int.TryParse(tb_patientSNS.Text, out sns))
             {
@@ -575,7 +578,7 @@ namespace MyHealth
 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     ServiceNotAvailable(false);
                 }
