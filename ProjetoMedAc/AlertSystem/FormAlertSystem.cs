@@ -68,7 +68,7 @@ namespace AlertSystem
             InitializeComponent();
             client = new ServiceHealthAlertClient();
             eventType = new Event();
-            timer.Interval = 5000;   
+            timer.Interval = 10000;   
             timerPatientsTab.Start();
             timerPatientsTab.Interval = 1000;
         }
@@ -87,8 +87,7 @@ namespace AlertSystem
             toolStripComboBox.Items.Add("NIF");
 
             toolStripComboBox.SelectedIndex = 0;
-            //toolStripTextBox.Width = 500;
-
+ 
             load(null, false);
             if (patients?.Count == 0)
             {
@@ -139,6 +138,7 @@ namespace AlertSystem
         #region Eventos
         private void tabControlRecors_SelectedIndexChanged(object sender, EventArgs e)
         {
+            timerAlerts.Stop();
             try
             {
                 if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
@@ -163,6 +163,12 @@ namespace AlertSystem
                 if (tabControlRecors.SelectedTab.Text.Equals("Statistics"))
                 {
                     loadStatistics();
+                }
+
+                if (tabControlRecors.SelectedTab.Text.Equals("Alerts"))
+                {
+                    timerAlerts.Start();
+                    fillGridsAlerts();
                 }
             }
             catch (NullReferenceException x)
@@ -498,6 +504,7 @@ namespace AlertSystem
                 firstTime = false;
                 radioButtonAll.Checked = true;
                 readRadioButtons(patientOnMonitoring,false);
+                readRadioButtonsAlerts(patientOnMonitoring,eventType);
                 startGraphics();
                 readComboChartTyper();
 
@@ -1070,7 +1077,7 @@ namespace AlertSystem
         }
         private void fillGridView(List<Patient> patients)
         {
-
+            dataGridViewPatients.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
             dataGridViewPatients.DataSource = patients;
 
 
@@ -1538,7 +1545,7 @@ namespace AlertSystem
                        client.OxygenSaturationList(patient.Sns)
                            .Where(i => i.Date >= fromDate && i.Date <= toDate)
                            .OrderByDescending(i => i.Date));
-
+            dataGridViewHistory.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
             if (radioButtonBloodPressure.Checked)
             {
                 if (readDateTimeGraphics())
@@ -2061,8 +2068,8 @@ namespace AlertSystem
                 if (radioButtonAll.Checked)
                 {
                     warningListBPALL =
-                        new List<BloodPressureWarning>(client.GetWarningListBloodPressureALL(fromDate, toDate,
-                            patientOnMonitoring).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
+                        new List<BloodPressureWarning>(client.GetWarningListBloodPressureALL(fromDate, toDate
+                            ).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
 
                     dataGridViewAlerts.DataSource = warningListBPALL;
                     setGridViewAlerts();
@@ -2088,8 +2095,8 @@ namespace AlertSystem
                 if (radioButtonAll.Checked)
                 {
                     warningListHRALL =
-                        new List<HeartRateWarning>(client.GetWarningListHeartRateALL(fromDate, toDate,
-                            patientOnMonitoring).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
+                        new List<HeartRateWarning>(client.GetWarningListHeartRateALL(fromDate, toDate
+                            ).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
 
                     dataGridViewAlerts.DataSource = warningListHRALL;
                     setGridViewAlerts();
@@ -2115,8 +2122,8 @@ namespace AlertSystem
                 if (radioButtonAll.Checked)
                 {
                     warningListOXYSATALL =
-                        new List<OxygenSaturationWarning>(client.GetWarningListOxygenSaturationALL(fromDate, toDate,
-                            patientOnMonitoring).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
+                        new List<OxygenSaturationWarning>(client.GetWarningListOxygenSaturationALL(fromDate, toDate
+                            ).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
 
                     dataGridViewAlerts.DataSource = warningListOXYSATALL;
                     setGridViewAlerts();
@@ -2330,6 +2337,101 @@ namespace AlertSystem
         }
         #endregion
 
+        #region Alerts
+
+        private void fillGridsAlerts()
+        {
+            List<BloodPressureWarning> bpall = client.GetWarningListBloodPressureALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i=> i.Date).ToList();
+            List<HeartRateWarning> hrall = client.GetWarningListHeartRateALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i => i.Date).ToList();
+            List<OxygenSaturationWarning> oxyall = client.GetWarningListOxygenSaturationALL(DateTime.Now.AddHours(-2), DateTime.Now).OrderByDescending(i => i.Date).ToList();
+            dataGridViewBPALL.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+            dataGridViewHRALL.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+            dataGridViewOXYALL.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+            dataGridViewBPALL.DataSource = bpall;
+            dataGridViewHRALL.DataSource = hrall;
+            dataGridViewOXYALL.DataSource = oxyall;
+            dataGridViewBPALL.RowHeadersVisible = false;
+            dataGridViewHRALL.RowHeadersVisible = false;
+            dataGridViewOXYALL.RowHeadersVisible = false;
+            dataGridViewBPALL.Columns["Date"].Width = 100;
+            dataGridViewHRALL.Columns["Date"].Width = 100;
+            dataGridViewOXYALL.Columns["Date"].Width = 100;
+
+            foreach (DataGridViewRow row in dataGridViewBPALL.Rows)
+            {
+                if (row.Cells["EvenType"].Value.Equals("ECA"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+                if (row.Cells["EvenType"].Value.Equals("ECI"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.OrangeRed;
+                }
+                if (row.Cells["EvenType"].Value.Equals("ECC"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.DarkOrange;
+                }
+                if (row.Cells["EvenType"].Value.Equals("EAI"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Orange;
+                }
+                if (row.Cells["EvenType"].Value.Equals("EAC"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridViewHRALL.Rows)
+            {
+                if (row.Cells["EvenType"].Value.Equals("ECA"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+                if (row.Cells["EvenType"].Value.Equals("ECI"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.OrangeRed;
+                }
+                if (row.Cells["EvenType"].Value.Equals("ECC"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.DarkOrange;
+                }
+                if (row.Cells["EvenType"].Value.Equals("EAI"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Orange;
+                }
+                if (row.Cells["EvenType"].Value.Equals("EAC"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridViewOXYALL.Rows)
+            {
+                if (row.Cells["EvenType"].Value.Equals("ECA"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+                if (row.Cells["EvenType"].Value.Equals("ECI"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.OrangeRed;
+                }
+                if (row.Cells["EvenType"].Value.Equals("ECC"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.DarkOrange;
+                }
+                if (row.Cells["EvenType"].Value.Equals("EAI"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Orange;
+                }
+                if (row.Cells["EvenType"].Value.Equals("EAC"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }
+
+        }
+
+        #endregion
         #endregion
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -2405,6 +2507,14 @@ namespace AlertSystem
         {
             labelTime.Text = DateTime.Now.ToLongTimeString();
 
+        }
+
+        private void timerAlerts_Tick(object sender, EventArgs e)
+        {
+            if (tabControlRecors.SelectedTab.Text.Equals("Alerts"))
+            {
+                fillGridsAlerts();
+            }
         }
     }
 }

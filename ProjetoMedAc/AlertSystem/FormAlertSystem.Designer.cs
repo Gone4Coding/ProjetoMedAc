@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
             this.groupBoxActivitie = new System.Windows.Forms.GroupBox();
             this.labelTimeline = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxRealTime = new System.Windows.Forms.CheckBox();
             this.radioButtonOxygenSat = new System.Windows.Forms.RadioButton();
             this.radioButtonHeartRate = new System.Windows.Forms.RadioButton();
             this.radioButtonBloodPressure = new System.Windows.Forms.RadioButton();
@@ -200,7 +201,16 @@
             this.labelTime = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.timerPatientsTab = new System.Windows.Forms.Timer(this.components);
-            this.checkBoxRealTime = new System.Windows.Forms.CheckBox();
+            this.tabPageAlerts = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBoxAlertsALL = new System.Windows.Forms.GroupBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.dataGridViewOXYALL = new System.Windows.Forms.DataGridView();
+            this.dataGridViewHRALL = new System.Windows.Forms.DataGridView();
+            this.dataGridViewBPALL = new System.Windows.Forms.DataGridView();
+            this.timerAlerts = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -230,6 +240,12 @@
             this.groupBoxInterval.SuspendLayout();
             this.groupBoxLast3Days.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).BeginInit();
+            this.tabPageAlerts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBoxAlertsALL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOXYALL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHRALL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBPALL)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -293,6 +309,17 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filters";
+            // 
+            // checkBoxRealTime
+            // 
+            this.checkBoxRealTime.AutoSize = true;
+            this.checkBoxRealTime.Location = new System.Drawing.Point(1065, 24);
+            this.checkBoxRealTime.Name = "checkBoxRealTime";
+            this.checkBoxRealTime.Size = new System.Drawing.Size(74, 17);
+            this.checkBoxRealTime.TabIndex = 27;
+            this.checkBoxRealTime.Text = "Real Time";
+            this.checkBoxRealTime.UseVisualStyleBackColor = true;
+            this.checkBoxRealTime.CheckedChanged += new System.EventHandler(this.checkBoxRealTime_CheckedChanged);
             // 
             // radioButtonOxygenSat
             // 
@@ -506,8 +533,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart1.ContextMenuStrip = this.contextMenuStripGraphic;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1014, 396);
@@ -1448,6 +1475,7 @@
             this.tabControlRecors.Controls.Add(this.tabPagePatients);
             this.tabControlRecors.Controls.Add(this.tabPage_viewRecords);
             this.tabControlRecors.Controls.Add(this.tabPageStatistics);
+            this.tabControlRecors.Controls.Add(this.tabPageAlerts);
             this.tabControlRecors.Location = new System.Drawing.Point(2, 1);
             this.tabControlRecors.Name = "tabControlRecors";
             this.tabControlRecors.SelectedIndex = 0;
@@ -2063,16 +2091,140 @@
             // 
             this.timerPatientsTab.Tick += new System.EventHandler(this.timerPatientsTab_Tick);
             // 
-            // checkBoxRealTime
+            // tabPageAlerts
             // 
-            this.checkBoxRealTime.AutoSize = true;
-            this.checkBoxRealTime.Location = new System.Drawing.Point(1065, 24);
-            this.checkBoxRealTime.Name = "checkBoxRealTime";
-            this.checkBoxRealTime.Size = new System.Drawing.Size(74, 17);
-            this.checkBoxRealTime.TabIndex = 27;
-            this.checkBoxRealTime.Text = "Real Time";
-            this.checkBoxRealTime.UseVisualStyleBackColor = true;
-            this.checkBoxRealTime.CheckedChanged += new System.EventHandler(this.checkBoxRealTime_CheckedChanged);
+            this.tabPageAlerts.Controls.Add(this.groupBoxAlertsALL);
+            this.tabPageAlerts.Controls.Add(this.pictureBox1);
+            this.tabPageAlerts.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAlerts.Name = "tabPageAlerts";
+            this.tabPageAlerts.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAlerts.Size = new System.Drawing.Size(1349, 695);
+            this.tabPageAlerts.TabIndex = 6;
+            this.tabPageAlerts.Text = "Alerts";
+            this.tabPageAlerts.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(29, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(68, 67);
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBoxAlertsALL
+            // 
+            this.groupBoxAlertsALL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxAlertsALL.Controls.Add(this.label49);
+            this.groupBoxAlertsALL.Controls.Add(this.label48);
+            this.groupBoxAlertsALL.Controls.Add(this.label47);
+            this.groupBoxAlertsALL.Controls.Add(this.dataGridViewOXYALL);
+            this.groupBoxAlertsALL.Controls.Add(this.dataGridViewHRALL);
+            this.groupBoxAlertsALL.Controls.Add(this.dataGridViewBPALL);
+            this.groupBoxAlertsALL.Location = new System.Drawing.Point(132, 30);
+            this.groupBoxAlertsALL.Name = "groupBoxAlertsALL";
+            this.groupBoxAlertsALL.Size = new System.Drawing.Size(1199, 647);
+            this.groupBoxAlertsALL.TabIndex = 24;
+            this.groupBoxAlertsALL.TabStop = false;
+            this.groupBoxAlertsALL.Text = "Last 2 Hours";
+            // 
+            // label49
+            // 
+            this.label49.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(786, 53);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(94, 13);
+            this.label49.TabIndex = 18;
+            this.label49.Text = "Oxygen Saturation";
+            // 
+            // label48
+            // 
+            this.label48.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(419, 53);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(59, 13);
+            this.label48.TabIndex = 17;
+            this.label48.Text = "Heart Rate";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(52, 53);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(78, 13);
+            this.label47.TabIndex = 16;
+            this.label47.Text = "Blood Pressure";
+            // 
+            // dataGridViewOXYALL
+            // 
+            this.dataGridViewOXYALL.AllowUserToAddRows = false;
+            this.dataGridViewOXYALL.AllowUserToDeleteRows = false;
+            this.dataGridViewOXYALL.AllowUserToOrderColumns = true;
+            this.dataGridViewOXYALL.AllowUserToResizeColumns = false;
+            this.dataGridViewOXYALL.AllowUserToResizeRows = false;
+            this.dataGridViewOXYALL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewOXYALL.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewOXYALL.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewOXYALL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOXYALL.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewOXYALL.Location = new System.Drawing.Point(789, 83);
+            this.dataGridViewOXYALL.MultiSelect = false;
+            this.dataGridViewOXYALL.Name = "dataGridViewOXYALL";
+            this.dataGridViewOXYALL.ReadOnly = true;
+            this.dataGridViewOXYALL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewOXYALL.Size = new System.Drawing.Size(361, 503);
+            this.dataGridViewOXYALL.TabIndex = 15;
+            // 
+            // dataGridViewHRALL
+            // 
+            this.dataGridViewHRALL.AllowUserToAddRows = false;
+            this.dataGridViewHRALL.AllowUserToDeleteRows = false;
+            this.dataGridViewHRALL.AllowUserToOrderColumns = true;
+            this.dataGridViewHRALL.AllowUserToResizeColumns = false;
+            this.dataGridViewHRALL.AllowUserToResizeRows = false;
+            this.dataGridViewHRALL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dataGridViewHRALL.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewHRALL.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewHRALL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHRALL.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewHRALL.Location = new System.Drawing.Point(422, 83);
+            this.dataGridViewHRALL.MultiSelect = false;
+            this.dataGridViewHRALL.Name = "dataGridViewHRALL";
+            this.dataGridViewHRALL.ReadOnly = true;
+            this.dataGridViewHRALL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewHRALL.Size = new System.Drawing.Size(361, 503);
+            this.dataGridViewHRALL.TabIndex = 14;
+            // 
+            // dataGridViewBPALL
+            // 
+            this.dataGridViewBPALL.AllowUserToAddRows = false;
+            this.dataGridViewBPALL.AllowUserToDeleteRows = false;
+            this.dataGridViewBPALL.AllowUserToOrderColumns = true;
+            this.dataGridViewBPALL.AllowUserToResizeColumns = false;
+            this.dataGridViewBPALL.AllowUserToResizeRows = false;
+            this.dataGridViewBPALL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewBPALL.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewBPALL.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewBPALL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBPALL.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewBPALL.Location = new System.Drawing.Point(55, 83);
+            this.dataGridViewBPALL.MultiSelect = false;
+            this.dataGridViewBPALL.Name = "dataGridViewBPALL";
+            this.dataGridViewBPALL.ReadOnly = true;
+            this.dataGridViewBPALL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewBPALL.Size = new System.Drawing.Size(361, 503);
+            this.dataGridViewBPALL.TabIndex = 13;
+            // 
+            // timerAlerts
+            // 
+            this.timerAlerts.Interval = 10000;
+            this.timerAlerts.Tick += new System.EventHandler(this.timerAlerts_Tick);
             // 
             // FormAlertSystem
             // 
@@ -2129,6 +2281,13 @@
             this.groupBoxLast3Days.ResumeLayout(false);
             this.groupBoxLast3Days.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStats)).EndInit();
+            this.tabPageAlerts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBoxAlertsALL.ResumeLayout(false);
+            this.groupBoxAlertsALL.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOXYALL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHRALL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBPALL)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2305,6 +2464,16 @@
         private System.Windows.Forms.ToolStripMenuItem exportTopngToolStripMenuItem;
         private System.Windows.Forms.Timer timerPatientsTab;
         private System.Windows.Forms.CheckBox checkBoxRealTime;
+        private System.Windows.Forms.TabPage tabPageAlerts;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBoxAlertsALL;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label47;
+        public System.Windows.Forms.DataGridView dataGridViewOXYALL;
+        public System.Windows.Forms.DataGridView dataGridViewHRALL;
+        public System.Windows.Forms.DataGridView dataGridViewBPALL;
+        private System.Windows.Forms.Timer timerAlerts;
     }
 }
 
