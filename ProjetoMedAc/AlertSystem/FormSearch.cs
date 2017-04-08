@@ -29,6 +29,12 @@ namespace AlertSystem
             activePatients = new List<Patient>(client.GetPatientList().Where(i=> i.Ativo).ToList());
 
             fillGridView(activePatients);
+
+            comboBoxSearch.Items.Add("SNS");
+            comboBoxSearch.Items.Add("NAME");
+            comboBoxSearch.Items.Add("NIF");
+
+            comboBoxSearch.SelectedIndex = 0;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -53,7 +59,7 @@ namespace AlertSystem
             {
                 if (Convert.ToBoolean(row.Cells["Ativo"].Value))
                 {
-                    row.DefaultCellStyle.BackColor = Color.Chocolate;
+                    row.DefaultCellStyle.BackColor = Color.Green;
                 }
             }
 
@@ -91,6 +97,122 @@ namespace AlertSystem
         public Patient getPatientSearched()
         {
             return patientSelected;
+        }
+
+        private void buttonokSearch_Click(object sender, EventArgs e)
+        {
+            if (validateSearch())
+            {
+                readSearch();
+            }
+        }
+
+        private bool validateSearch()
+        {
+            if (textBoxSearch.Text.Equals("") || comboBoxSearch.SelectedIndex == -1)
+            {
+                if (textBoxSearch.Text.Equals(""))
+                {
+                    MessageBox.Show("Field with value can't be empty", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (comboBoxSearch.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Select a search type", "Warning", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            else
+            {
+                if (comboBoxSearch.Text.Equals("SNS") && !isNumber(textBoxSearch.Text) ||
+                    comboBoxSearch.Text.Equals("NIF") && !isNumber(textBoxSearch.Text))
+                {
+                    MessageBox.Show("For this type of search, value has to be a number ", "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return false;
+                }
+                else
+                {
+                    if (textBoxSearch.Text.Length < 9 && isNumber(textBoxSearch.Text))
+                    {
+                        MessageBox.Show("Introduce a number with 9 digits", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private void readSearch()
+        {
+            string type = comboBoxSearch.Text;
+            List<Patient> pSearched;
+
+            if (type.Equals("SNS"))
+            {
+                pSearched = activePatients.Where(i => i.Sns == Convert.ToInt32(textBoxSearch.Text)).ToList();
+                if (pSearched != null)
+                {
+                    dataGridViewActivePatients.DataSource = pSearched;
+                }
+                else
+                {
+                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+
+            if (type.Equals("NIF"))
+            {
+                pSearched = activePatients.Where(i => i.Nif == Convert.ToInt32(textBoxSearch.Text)).ToList();
+
+                if (pSearched != null)
+                {
+                    dataGridViewActivePatients.DataSource = pSearched;
+                }
+                else
+                {
+                    MessageBox.Show("No results!", "INFO", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+
+            if (type.Equals("NAME"))
+            {
+                string[] splited = textBoxSearch.Text.Split(' ');
+                List<Patient> pByName;
+                if (splited.Length > 1)
+                {
+                     pByName =
+                        activePatients.Where(i => i.Name.ToLower().Contains(splited[0].ToLower()) || i.Surname.ToLower().Contains(splited[1].ToLower()))
+                            .ToList();
+                }
+                else
+                {
+                    pByName =
+                       activePatients.Where(i => i.Name.ToLower().Contains(splited[0].ToLower()) || i.Surname.ToLower().Contains(splited[0].ToLower()))
+                           .ToList();
+                }
+
+                dataGridViewActivePatients.DataSource = pByName;
+            }
+        }
+        private bool isNumber(string data)
+        {
+            bool isnumeric = true;
+            char[] datachars = data.ToCharArray();
+
+            foreach (var datachar in datachars)
+                if (isnumeric == true)
+                    isnumeric = Char.IsDigit(datachar);
+
+            return isnumeric;
         }
     }
 }

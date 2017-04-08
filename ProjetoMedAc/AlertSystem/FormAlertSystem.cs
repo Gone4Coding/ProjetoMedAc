@@ -70,6 +70,8 @@ namespace AlertSystem
             eventType = new Event();
             timer.Start();
             timer.Interval = 1000;
+            timerPatientsTab.Start();
+            timerPatientsTab.Interval = 10000;
         }
         private void FormAlertSystem_Load(object sender, EventArgs e)
         {
@@ -149,7 +151,7 @@ namespace AlertSystem
                         radioButtonBloodPressure.Checked = true;
                         firstTime = false;
                         radioButtonAll.Checked = true;
-                        readRadioButtons(patientOnMonitoring);
+                        readRadioButtons(patientOnMonitoring,false);
                         readRadioButtonsAlerts(patientOnMonitoring, eventType);
                         startGraphics();
                         comboBoxChartType.SelectedIndex = 0;
@@ -430,7 +432,7 @@ namespace AlertSystem
         {
             if (radioButtonBloodPressure.Checked)
             {
-                readRadioButtons(patientOnMonitoring);
+                readRadioButtons(patientOnMonitoring,false);
                 readRadioButtonsAlerts(patientOnMonitoring, eventType);
             }
         }
@@ -438,7 +440,7 @@ namespace AlertSystem
         {
             if (radioButtonHeartRate.Checked)
             {
-                readRadioButtons(patientOnMonitoring);
+                readRadioButtons(patientOnMonitoring,false);
                 readRadioButtonsAlerts(patientOnMonitoring, eventType);
             }
         }
@@ -446,7 +448,7 @@ namespace AlertSystem
         {
             if (radioButtonOxygenSat.Checked)
             {
-                readRadioButtons(patientOnMonitoring);
+                readRadioButtons(patientOnMonitoring,false);
                 readRadioButtonsAlerts(patientOnMonitoring, eventType);
             }
         }
@@ -475,7 +477,7 @@ namespace AlertSystem
         private void bt_OK_Click(object sender, EventArgs e)
         {
             readDateTimeGraphics();
-            readRadioButtons(patientOnMonitoring);
+            readRadioButtons(patientOnMonitoring,false);
             readRadioButtonsAlerts(patientOnMonitoring, eventType);
             startGraphics();
             readComboChartTyper();
@@ -496,7 +498,7 @@ namespace AlertSystem
                 load(patientOnMonitoring, true);
                 firstTime = false;
                 radioButtonAll.Checked = true;
-                readRadioButtons(patientOnMonitoring);
+                readRadioButtons(patientOnMonitoring,false);
                 startGraphics();
                 readComboChartTyper();
 
@@ -991,6 +993,7 @@ namespace AlertSystem
         {
             try
             {
+                clearFields();
                 int rowIndex = 0;
 
                 bt_edit.Show();
@@ -1144,7 +1147,7 @@ namespace AlertSystem
         }
         private void fillComboBoxCountries()
         {
-            countries = Countries.getAllCountries();
+            countries = Countries.getAllCountries().OrderBy(i=> i.Alpha2Code).ToList();
 
             if (countries != null)
             {
@@ -1190,6 +1193,7 @@ namespace AlertSystem
             tb_height.Clear();
             tb_weight.Clear();
             richTextBoxAlergies.Clear();
+            comboBoxEmergencyCode.SelectedIndex = -1;
 
             dateTimePicker_birthdate.Format = DateTimePickerFormat.Custom;
             dateTimePicker_birthdate.CustomFormat = " ";
@@ -1448,8 +1452,20 @@ namespace AlertSystem
             if (type.Equals("NAME"))
             {
                 string[] splited = toolStripTextBox.Text.Split(' ');
-                List<Patient> pByName =
-                    patients.Where(i => i.Name.Contains(splited[0]) || i.Surname.Contains(splited[1])).ToList();
+                List<Patient> pByName;
+                if (splited.Length > 1)
+                {
+                    pByName =
+                       patients.Where(i => i.Name.ToLower().Contains(splited[0].ToLower()) || i.Surname.ToLower().Contains(splited[1].ToLower()))
+                           .ToList();
+                }
+                else
+                {
+                    pByName =
+                       patients.Where(i => i.Name.ToLower().Contains(splited[0].ToLower()) || i.Surname.ToLower().Contains(splited[0].ToLower()))
+                           .ToList();
+                }
+
 
                 dataGridViewPatients.DataSource = pByName;
             }
@@ -1505,7 +1521,7 @@ namespace AlertSystem
                                          patientOnMonitoring.Sns + " AGE: " +
                                          getAge(patientOnMonitoring.BirthDate);
         }
-        private void readRadioButtons(Patient patient)
+        private void readRadioButtons(Patient patient,bool timer)
         {
             patientsRecordBloodPressure =
                     new List<BloodPressure>(
@@ -1535,7 +1551,7 @@ namespace AlertSystem
 
                     labelResultsRecords.Text = RESULTS + patientsRecordBloodPressure.Count;
 
-                    if (patientsRecordBloodPressure.Count == 0 && !firstTime)
+                    if (patientsRecordBloodPressure.Count == 0 && !firstTime && !timer)
                     {
                         MessageBox.Show("No results for timeline selected!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -1557,7 +1573,7 @@ namespace AlertSystem
                     dataGridViewHistory.Columns[TIME].Visible = false;
 
                     labelResultsRecords.Text = RESULTS + patientsRecordHeartRate.Count;
-                    if (patientsRecordHeartRate.Count == 0)
+                    if (patientsRecordHeartRate.Count == 0 && !timer)
                     {
                         MessageBox.Show("No results for timeline selected!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -1579,7 +1595,7 @@ namespace AlertSystem
                     dataGridViewHistory.Columns[TIME].Visible = false;
 
                     labelResultsRecords.Text = RESULTS + patientsRecordOxySat.Count;
-                    if (patientsRecordOxySat.Count == 0)
+                    if (patientsRecordOxySat.Count == 0 && !timer)
                     {
                         MessageBox.Show("No results for timeline selected!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -1729,7 +1745,7 @@ namespace AlertSystem
 
             chart1.Series.Add(OXYSAT);
 
-            chart1.Series[OXYSAT].Color = Color.Chartreuse;
+            chart1.Series[OXYSAT].Color = Color.DarkOrange;
 
             if (patientsRecordOxySat != null)
             {
@@ -2135,8 +2151,6 @@ namespace AlertSystem
             }
         }
 
-
-
         #endregion
 
         #region Statistics
@@ -2323,11 +2337,35 @@ namespace AlertSystem
         private void timer1_Tick(object sender, EventArgs e)
         {
             labelTime.Text = DateTime.Now.ToLongTimeString();
+
+            if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
+            {
+                readDateTimeGraphics();
+                readRadioButtons(patientOnMonitoring,true);
+                readRadioButtonsAlerts(patientOnMonitoring, eventType);
+                startGraphics();
+                readComboChartTyper();
+                labelTimeline.Text = "Timeline: " + fromDate + " ----> " + toDate;
+            }
+           
         }
 
         public static ServiceHealthAlertClient GetClient()
         {
             return client;
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            FormSearch search = new FormSearch();
+            search.ShowDialog();
+            Patient patientSearch = search.getPatientSearched();
+            if (patientSearch != null)
+            {
+                patientToEdit = patientSearch;
+                patientOnStats = patientSearch;
+                loadStatistics();
+            }
         }
 
        

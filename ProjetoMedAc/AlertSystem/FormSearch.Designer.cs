@@ -33,8 +33,12 @@
             this.groupBoxFilters = new System.Windows.Forms.GroupBox();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.comboBoxSearch = new System.Windows.Forms.ComboBox();
+            this.buttonokSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivePatients)).BeginInit();
             this.groupBoxPatientsList.SuspendLayout();
+            this.groupBoxFilters.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewActivePatients
@@ -67,13 +71,16 @@
             this.groupBoxPatientsList.Size = new System.Drawing.Size(503, 300);
             this.groupBoxPatientsList.TabIndex = 9;
             this.groupBoxPatientsList.TabStop = false;
-            this.groupBoxPatientsList.Text = "Patients";
+            this.groupBoxPatientsList.Text = "Patients active on monitoring";
             // 
             // groupBoxFilters
             // 
+            this.groupBoxFilters.Controls.Add(this.buttonokSearch);
+            this.groupBoxFilters.Controls.Add(this.comboBoxSearch);
+            this.groupBoxFilters.Controls.Add(this.textBoxSearch);
             this.groupBoxFilters.Location = new System.Drawing.Point(12, 4);
             this.groupBoxFilters.Name = "groupBoxFilters";
-            this.groupBoxFilters.Size = new System.Drawing.Size(503, 82);
+            this.groupBoxFilters.Size = new System.Drawing.Size(503, 65);
             this.groupBoxFilters.TabIndex = 10;
             this.groupBoxFilters.TabStop = false;
             this.groupBoxFilters.Text = "Filters";
@@ -98,6 +105,32 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(6, 25);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(343, 20);
+            this.textBoxSearch.TabIndex = 0;
+            // 
+            // comboBoxSearch
+            // 
+            this.comboBoxSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSearch.FormattingEnabled = true;
+            this.comboBoxSearch.Location = new System.Drawing.Point(355, 25);
+            this.comboBoxSearch.Name = "comboBoxSearch";
+            this.comboBoxSearch.Size = new System.Drawing.Size(77, 21);
+            this.comboBoxSearch.TabIndex = 1;
+            // 
+            // buttonokSearch
+            // 
+            this.buttonokSearch.Location = new System.Drawing.Point(438, 25);
+            this.buttonokSearch.Name = "buttonokSearch";
+            this.buttonokSearch.Size = new System.Drawing.Size(59, 21);
+            this.buttonokSearch.TabIndex = 12;
+            this.buttonokSearch.Text = "OK";
+            this.buttonokSearch.UseVisualStyleBackColor = true;
+            this.buttonokSearch.Click += new System.EventHandler(this.buttonokSearch_Click);
+            // 
             // FormSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,6 +147,8 @@
             this.Load += new System.EventHandler(this.FormSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivePatients)).EndInit();
             this.groupBoxPatientsList.ResumeLayout(false);
+            this.groupBoxFilters.ResumeLayout(false);
+            this.groupBoxFilters.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -125,5 +160,8 @@
         private System.Windows.Forms.GroupBox groupBoxFilters;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonokSearch;
+        private System.Windows.Forms.ComboBox comboBoxSearch;
+        private System.Windows.Forms.TextBox textBoxSearch;
     }
 }

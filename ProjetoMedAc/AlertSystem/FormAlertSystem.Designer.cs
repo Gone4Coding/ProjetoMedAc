@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlertSystem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage_viewRecords = new System.Windows.Forms.TabPage();
@@ -199,6 +199,7 @@
             this.contextMenuStripGraphic = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportTopngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerPatientsTab = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage_viewRecords.SuspendLayout();
             this.groupBoxActivitie.SuspendLayout();
@@ -499,8 +500,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart1.ContextMenuStrip = this.contextMenuStripGraphic;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1014, 396);
@@ -741,8 +742,8 @@
             this.toolStripPatientLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripPatientLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolStripPatientLabel.Name = "toolStripPatientLabel";
-            this.toolStripPatientLabel.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.toolStripPatientLabel.Size = new System.Drawing.Size(142, 37);
+            this.toolStripPatientLabel.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripPatientLabel.Size = new System.Drawing.Size(102, 37);
             this.toolStripPatientLabel.Text = "toolStripLabel1";
             this.toolStripPatientLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1471,14 +1472,15 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 37);
             this.toolStripButton2.Text = "Search Patient";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripLabelPatientOnStats
             // 
             this.toolStripLabelPatientOnStats.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripLabelPatientOnStats.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolStripLabelPatientOnStats.Name = "toolStripLabelPatientOnStats";
-            this.toolStripLabelPatientOnStats.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.toolStripLabelPatientOnStats.Size = new System.Drawing.Size(142, 37);
+            this.toolStripLabelPatientOnStats.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripLabelPatientOnStats.Size = new System.Drawing.Size(102, 37);
             this.toolStripLabelPatientOnStats.Text = "toolStripLabel1";
             this.toolStripLabelPatientOnStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -2041,15 +2043,19 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // exportTopngToolStripMenuItem
             // 
             this.exportTopngToolStripMenuItem.Name = "exportTopngToolStripMenuItem";
-            this.exportTopngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportTopngToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.exportTopngToolStripMenuItem.Text = "Export to .png";
             this.exportTopngToolStripMenuItem.Click += new System.EventHandler(this.exportTopngToolStripMenuItem_Click);
+            // 
+            // timerPatientsTab
+            // 
+          
             // 
             // FormAlertSystem
             // 
@@ -2280,6 +2286,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripGraphic;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportTopngToolStripMenuItem;
+        private System.Windows.Forms.Timer timerPatientsTab;
     }
 }
 
