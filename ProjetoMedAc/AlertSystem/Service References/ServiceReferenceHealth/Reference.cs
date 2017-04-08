@@ -1366,22 +1366,22 @@ namespace AlertSystem.ServiceReferenceHealth {
         System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRate>> GetWarningListHeartRateAsync(AlertSystem.ServiceReferenceHealth.Event type, System.DateTime dataInicio, System.DateTime dataFim);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALLResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning> GetWarningListOxygenSaturationALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning> GetWarningListOxygenSaturationALL(System.DateTime dataInicio, System.DateTime dataFim);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListOxygenSaturationALLResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning>> GetWarningListOxygenSaturationALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning>> GetWarningListOxygenSaturationALLAsync(System.DateTime dataInicio, System.DateTime dataFim);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALLResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning> GetWarningListBloodPressureALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning> GetWarningListBloodPressureALL(System.DateTime dataInicio, System.DateTime dataFim);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListBloodPressureALLResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning>> GetWarningListBloodPressureALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning>> GetWarningListBloodPressureALLAsync(System.DateTime dataInicio, System.DateTime dataFim);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALLResponse")]
-        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning> GetWarningListHeartRateALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning> GetWarningListHeartRateALL(System.DateTime dataInicio, System.DateTime dataFim);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALL", ReplyAction="http://tempuri.org/IServiceHealthAlert/GetWarningListHeartRateALLResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning>> GetWarningListHeartRateALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning>> GetWarningListHeartRateALLAsync(System.DateTime dataInicio, System.DateTime dataFim);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1571,28 +1571,28 @@ namespace AlertSystem.ServiceReferenceHealth {
             return base.Channel.GetWarningListHeartRateAsync(type, dataInicio, dataFim);
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning> GetWarningListOxygenSaturationALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.GetWarningListOxygenSaturationALL(dataInicio, dataFim, patient);
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning> GetWarningListOxygenSaturationALL(System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListOxygenSaturationALL(dataInicio, dataFim);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning>> GetWarningListOxygenSaturationALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.GetWarningListOxygenSaturationALLAsync(dataInicio, dataFim, patient);
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.OxygenSaturationWarning>> GetWarningListOxygenSaturationALLAsync(System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListOxygenSaturationALLAsync(dataInicio, dataFim);
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning> GetWarningListBloodPressureALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.GetWarningListBloodPressureALL(dataInicio, dataFim, patient);
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning> GetWarningListBloodPressureALL(System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListBloodPressureALL(dataInicio, dataFim);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning>> GetWarningListBloodPressureALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.GetWarningListBloodPressureALLAsync(dataInicio, dataFim, patient);
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.BloodPressureWarning>> GetWarningListBloodPressureALLAsync(System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListBloodPressureALLAsync(dataInicio, dataFim);
         }
         
-        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning> GetWarningListHeartRateALL(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.GetWarningListHeartRateALL(dataInicio, dataFim, patient);
+        public System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning> GetWarningListHeartRateALL(System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListHeartRateALL(dataInicio, dataFim);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning>> GetWarningListHeartRateALLAsync(System.DateTime dataInicio, System.DateTime dataFim, AlertSystem.ServiceReferenceHealth.Patient patient) {
-            return base.Channel.GetWarningListHeartRateALLAsync(dataInicio, dataFim, patient);
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<AlertSystem.ServiceReferenceHealth.HeartRateWarning>> GetWarningListHeartRateALLAsync(System.DateTime dataInicio, System.DateTime dataFim) {
+            return base.Channel.GetWarningListHeartRateALLAsync(dataInicio, dataFim);
         }
     }
 }
