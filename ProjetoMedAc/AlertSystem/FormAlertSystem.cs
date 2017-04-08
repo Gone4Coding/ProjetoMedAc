@@ -143,7 +143,7 @@ namespace AlertSystem
             {
                 if (tabControlRecors.SelectedTab.Text.Equals("View Records"))
                 {
-                    checkBoxRealTime.Checked = true;
+                    checkBoxRealTime.Checked = false;
                     load(patientToEdit, true);
                     if (patientToEdit.Ativo)
                     {
@@ -1043,7 +1043,7 @@ namespace AlertSystem
             }
             catch (EndpointNotFoundException e)
             {
-                MessageBox.Show("No service found!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No service found! Make sure your are connected to the service.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MessageBox.Show("GOOD BYE", "BYE BYE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 this.Close();
             }
@@ -1716,9 +1716,7 @@ namespace AlertSystem
                 chart1.ChartAreas[AREA1].AxisX.Minimum = 1;
                 if (totalValues.Count > 0)
                     chart1.ChartAreas[AREA1].AxisX.Maximum = totalValues.Last();
-                //chart1.ChartAreas[AREA1].AxisX.Interval = 1;
-                chart1.ChartAreas[AREA1].AxisX.LabelStyle.ForeColor = Color.Red;
-
+            
                 chart1.ChartAreas[AREA1].AxisY.Maximum = 200;
                 chart1.ChartAreas[AREA1].AxisY.Interval = 10;
                 chart1.ChartAreas[AREA1].AxisY.Title = "#Value";
@@ -2064,7 +2062,7 @@ namespace AlertSystem
                 {
                     warningListBPALL =
                         new List<BloodPressureWarning>(client.GetWarningListBloodPressureALL(fromDate, toDate,
-                            patientOnMonitoring).OrderByDescending(i => i.Date));
+                            patientOnMonitoring).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
 
                     dataGridViewAlerts.DataSource = warningListBPALL;
                     setGridViewAlerts();
@@ -2091,7 +2089,7 @@ namespace AlertSystem
                 {
                     warningListHRALL =
                         new List<HeartRateWarning>(client.GetWarningListHeartRateALL(fromDate, toDate,
-                            patientOnMonitoring).OrderByDescending(i => i.Date));
+                            patientOnMonitoring).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
 
                     dataGridViewAlerts.DataSource = warningListHRALL;
                     setGridViewAlerts();
@@ -2118,7 +2116,7 @@ namespace AlertSystem
                 {
                     warningListOXYSATALL =
                         new List<OxygenSaturationWarning>(client.GetWarningListOxygenSaturationALL(fromDate, toDate,
-                            patientOnMonitoring).OrderByDescending(i => i.Date));
+                            patientOnMonitoring).Where(i => i.PatientSNS == patientOnMonitoring.Sns).ToList().OrderByDescending(i => i.Date));
 
                     dataGridViewAlerts.DataSource = warningListOXYSATALL;
                     setGridViewAlerts();
